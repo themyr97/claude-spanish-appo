@@ -1,6 +1,6 @@
 // Bump APP_VERSION on every deploy — this changes the SW file itself,
 // which is what triggers browsers to install a fresh worker and purge old caches.
-const APP_VERSION = 'v12';
+const APP_VERSION = 'v13';
 const CACHE_NAME = 'espanol-app-' + APP_VERSION;
 
 const ASSETS = [
