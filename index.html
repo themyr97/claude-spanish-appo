@@ -245,6 +245,26 @@
     text-overflow:ellipsis;
   }
 
+  .gender-badge{
+    display:inline-block;
+    font-size:0.62rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    border-radius:4px;
+    padding:0.08rem 0.32rem;
+    margin-left:0.4rem;
+    vertical-align:middle;
+  }
+  .gender-badge.m{ background:#dbe6f0; color:#2f4d68; }
+  .gender-badge.f{ background:#f3dfe2; color:#7a3345; }
+  .gender-note{
+    font-size:0.7rem;
+    color:var(--clay);
+    font-style:italic;
+    margin-top:0.15rem;
+  }
+
   .card-buttons{ display:flex; gap:0.4rem; flex-shrink:0; }
 
   button.icon-btn{
@@ -548,7 +568,7 @@
   <h1>Español</h1>
   <p>Every word from your lessons — hear it spoken, check verb conjugations, and practice listening.</p>
   <p class="voice-note" id="voiceNote">Your browser doesn't support spoken audio — try Chrome, Edge, or Safari.</p>
-  <div class="version-badge" id="versionBadge">v3</div>
+  <div class="version-badge" id="versionBadge">v4</div>
   <nav class="tabs">
     <button id="tabVocabBtn" class="active">Vocabulario</button>
     <button id="tabListenBtn">Escucha</button>
@@ -581,17 +601,19 @@
 /* ---------- DATA ---------- */
 const data = {
   "Nouns": [
-    ["trabajo","work / job"], ["casa","house / home"], ["familia","family"],
-    ["amigo","friend (m.)"], ["amiga","friend (f.)"], ["día","day"],
-    ["mañana","morning / tomorrow"], ["noche","night"], ["agua","water"],
-    ["comida","food"], ["escuela","school"], ["libro","book"], ["perro","dog"],
-    ["tarea","homework"], ["respuesta","answer"], ["regalo","gift"], ["pan","bread"],
-    ["hermano","brother"], ["hermana","sister"], ["madre","mother"], ["padre","father"],
-    ["ciudad","city"], ["coche","car"], ["dinero","money"], ["fin de semana","weekend"],
-    ["playa","beach"], ["sol","sun"], ["calor","heat"], ["frío","cold"],
-    ["partido","game / match"], ["música","music"], ["verano","summer"],
-    ["invierno","winter"], ["nieve","snow"], ["montaña","mountain"], ["país","country"],
-    ["mundo","world"]
+    ["trabajo","work / job","m"], ["casa","house / home","f"], ["familia","family","f"],
+    ["amigo","friend (m.)","m"], ["amiga","friend (f.)","f"], ["día","day","m"],
+    ["mañana","morning / tomorrow","f"], ["noche","night","f"], ["agua","water","f-el"],
+    ["comida","food","f"], ["escuela","school","f"], ["libro","book","m"], ["perro","dog","m"],
+    ["tarea","homework","f"], ["respuesta","answer","f"], ["regalo","gift","m"], ["pan","bread","m"],
+    ["hermano","brother","m"], ["hermana","sister","f"], ["madre","mother","f"], ["padre","father","m"],
+    ["ciudad","city","f"], ["coche","car","m"], ["dinero","money","m"], ["fin de semana","weekend","m"],
+    ["playa","beach","f"], ["sol","sun","m"], ["calor","heat","m"], ["frío","cold","m"],
+    ["partido","game / match","m"], ["música","music","f"], ["verano","summer","m"],
+    ["invierno","winter","m"], ["nieve","snow","f"], ["montaña","mountain","f"], ["país","country","m"],
+    ["mundo","world","m"], ["oficina","office","f"], ["jefe","boss (m.)","m"], ["jefa","boss (f.)","f"],
+    ["reunión","meeting","f"], ["correo","mail / email","m"], ["teléfono","phone","m"],
+    ["año","year","m"], ["señor","sir / mister","m"]
   ],
   "Verbs (infinitive)": [
     ["ser","to be (permanent)"], ["estar","to be (temporary)"], ["hablar","to speak"],
@@ -632,6 +654,21 @@ const data = {
 };
 
 const pronouns = ["yo","tú","él / ella / usted","nosotros","vosotros (España)","ellos / ustedes"];
+
+// Nouns carry a gender flag: "m", "f", or "f-el" (feminine but takes "el" in the
+// singular because it starts with a stressed a- sound, e.g. el agua fría).
+function nounArticle(gender){
+  if(!gender) return '';
+  return gender === 'm' ? 'el' : (gender === 'f-el' ? 'el' : 'la');
+}
+function displayForm(es, gender){
+  const art = nounArticle(gender);
+  return art ? art + ' ' + es : es;
+}
+function genderLabel(gender){
+  if(!gender) return '';
+  return gender === 'm' ? 'm' : 'f';
+}
 
 const irregular = {
   "ser":    { pres:["soy","eres","es","somos","sois","son"], pret:["fui","fuiste","fue","fuimos","fuisteis","fueron"] },
@@ -742,7 +779,7 @@ function renderVocab(filter=''){
     const catBtn = document.createElement('button');
     catBtn.className = 'cat-play';
     catBtn.textContent = 'Play all';
-    catBtn.onclick = () => playSequence(filtered.map(w=>w[0]), 0);
+    catBtn.onclick = () => playSequence(filtered.map(w => displayForm(w[0], w[2])), 0);
     h2.appendChild(catBtn);
     section.appendChild(h2);
 
@@ -750,16 +787,24 @@ function renderVocab(filter=''){
     cardsDiv.className = 'cards';
     const isVerbCategory = category.startsWith('Verbs');
 
-    filtered.forEach(([es, en]) => {
+    filtered.forEach(([es, en, gender]) => {
       const card = document.createElement('div');
       card.className = 'card';
 
       const top = document.createElement('div');
       top.className = 'card-top';
 
+      const shown = displayForm(es, gender);
+      const badge = gender
+        ? '<span class="gender-badge '+genderLabel(gender)+'">'+genderLabel(gender)+'</span>'
+        : '';
+      const note = gender === 'f-el'
+        ? '<div class="gender-note">feminine, but takes "el" in the singular — el agua fría</div>'
+        : '';
+
       const textDiv = document.createElement('div');
       textDiv.className = 'card-text';
-      textDiv.innerHTML = '<div class="card-es">'+es+'</div><div class="card-en">'+en+'</div>';
+      textDiv.innerHTML = '<div class="card-es">'+shown+badge+'</div><div class="card-en">'+en+'</div>'+note;
 
       const btnRow = document.createElement('div');
       btnRow.className = 'card-buttons';
@@ -767,8 +812,8 @@ function renderVocab(filter=''){
       const playBtn = document.createElement('button');
       playBtn.className = 'icon-btn';
       playBtn.innerHTML = playIconSVG();
-      playBtn.setAttribute('aria-label', 'Play ' + es);
-      playBtn.onclick = () => speak(es, 0.92, card);
+      playBtn.setAttribute('aria-label', 'Play ' + shown);
+      playBtn.onclick = () => speak(shown, 0.92, card);
       btnRow.appendChild(playBtn);
 
       let panel = null;
@@ -975,7 +1020,9 @@ async function saveProgress(showConfirmation){
 
 function buildFcPool(){
   const all = [];
-  Object.values(data).forEach(words => words.forEach(([es,en]) => all.push({es, en})));
+  Object.values(data).forEach(words => words.forEach(([es,en,gender]) => {
+    all.push({ es: displayForm(es, gender), en, gender });
+  }));
   return all;
 }
 
