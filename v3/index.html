@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Español — Vocabulario y Escucha</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Español">
+<meta name="theme-color" content="#3d5643">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600&display=swap');
+
+  :root{
+    --ink:#1f2a24;
+    --paper:#f6f3ea;
+    --paper-2:#eee8d8;
+    --sage:#5c7a63;
+    --sage-dark:#3d5643;
+    --clay:#b0553a;
+    --line:#d8cfb8;
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    padding:0 0 4rem 0;
+  }
+
+  header{
+    padding:3rem 1.5rem 1.5rem 1.5rem;
+    text-align:center;
+    border-bottom:1px solid var(--line);
+    background: linear-gradient(180deg, var(--paper-2), var(--paper));
+  }
+
+  header .eyebrow{
+    font-size:0.78rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--sage-dark);
+    font-weight:600;
+    margin-bottom:0.6rem;
+  }
+
+  header h1{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:clamp(2rem, 6vw, 2.9rem);
+    margin:0 0 0.5rem 0;
+  }
+
+  header p{
+    max-width:36rem;
+    margin:0 auto;
+    color:#5a5a4e;
+    font-size:1rem;
+    line-height:1.5;
+  }
+
+  .voice-note{
+    max-width:36rem;
+    margin:1rem auto 0 auto;
+    font-size:0.85rem;
+    color:var(--clay);
+    display:none;
+  }
+
+  .version-badge{
+    display:inline-block;
+    margin-top:0.9rem;
+    font-size:0.7rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--sage-dark);
+    background:rgba(92,122,99,0.12);
+    border-radius:999px;
+    padding:0.25rem 0.75rem;
+  }
+
+  .update-banner{
+    display:none;
+    position:fixed;
+    left:0; right:0; bottom:0;
+    background:var(--sage-dark);
+    color:white;
+    padding:0.9rem 1.2rem;
+    font-size:0.9rem;
+    text-align:center;
+    z-index:99;
+  }
+  .update-banner.show{ display:block; }
+  .update-banner button{
+    margin-left:0.8rem;
+    padding:0.35rem 0.9rem;
+    border-radius:999px;
+    border:none;
+    background:white;
+    color:var(--sage-dark);
+    font-weight:700;
+    cursor:pointer;
+    font-family:'Source Sans 3', sans-serif;
+  }
+
+  nav.tabs{
+    display:flex;
+    justify-content:center;
+    gap:0.5rem;
+    margin-top:1.4rem;
+  }
+
+  nav.tabs button{
+    font-family:'Source Sans 3', sans-serif;
+    font-weight:600;
+    font-size:0.92rem;
+    padding:0.55rem 1.3rem;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:white;
+    color:var(--ink);
+    cursor:pointer;
+  }
+
+  nav.tabs button.active{
+    background:var(--sage-dark);
+    border-color:var(--sage-dark);
+    color:white;
+  }
+
+  main{
+    max-width:54rem;
+    margin:0 auto;
+    padding:2.2rem 1.25rem;
+  }
+
+  .view{ display:none; }
+  .view.active{ display:block; }
+
+  .search-row{
+    display:flex;
+    gap:0.6rem;
+    margin-bottom:2rem;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+
+  .search-row input{
+    flex:1;
+    min-width:180px;
+    padding:0.7rem 1rem;
+    border-radius:8px;
+    border:1px solid var(--line);
+    background:white;
+    font-family:'Source Sans 3', sans-serif;
+    font-size:1rem;
+    color:var(--ink);
+  }
+
+  .search-row input:focus{ outline:2px solid var(--sage); outline-offset:1px; }
+
+  select#voiceSelect{
+    padding:0.55rem 0.7rem;
+    border-radius:8px;
+    border:1px solid var(--line);
+    background:white;
+    font-family:'Source Sans 3', sans-serif;
+    font-size:0.85rem;
+    color:var(--ink);
+    max-width:190px;
+  }
+
+  section.category{ margin-bottom:2.2rem; }
+
+  .category h2{
+    font-family:'Fraunces', serif;
+    font-size:1.25rem;
+    font-weight:600;
+    color:var(--sage-dark);
+    border-bottom:2px solid var(--sage);
+    display:inline-block;
+    padding-bottom:0.2rem;
+    margin:0 0 1rem 0;
+  }
+
+  .cat-play{
+    background:none;
+    border:1px solid var(--sage);
+    color:var(--sage-dark);
+    border-radius:999px;
+    padding:0.3rem 0.9rem;
+    font-size:0.78rem;
+    font-weight:600;
+    cursor:pointer;
+    margin-left:0.7rem;
+    font-family:'Source Sans 3', sans-serif;
+  }
+
+  .cat-play:hover{ background:var(--sage); color:white; }
+
+  .cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(230px, 1fr));
+    gap:0.7rem;
+  }
+
+  .card{
+    background:white;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:0.7rem 0.9rem;
+    transition:border-color 0.15s ease;
+  }
+
+  .card:hover{ border-color:var(--sage); }
+  .card.playing{ border-color:var(--clay); background:#fbf1ec; }
+
+  .card-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:0.6rem;
+  }
+
+  .card-text{ min-width:0; }
+
+  .card-es{
+    font-weight:600;
+    font-size:1.02rem;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  .card-en{
+    font-size:0.82rem;
+    color:#767666;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  .card-buttons{ display:flex; gap:0.4rem; flex-shrink:0; }
+
+  button.icon-btn{
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    border:none;
+    background:var(--sage);
+    color:white;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Source Sans 3', sans-serif;
+    font-size:0.8rem;
+    font-weight:700;
+  }
+
+  button.icon-btn:hover{ background:var(--sage-dark); }
+  button.icon-btn.conj{ background:white; border:1px solid var(--sage); color:var(--sage-dark); }
+  button.icon-btn.conj:hover{ background:var(--sage); color:white; }
+
+  button.icon-btn svg{ width:14px; height:14px; fill:white; margin-left:2px; }
+
+  .conj-panel{
+    display:none;
+    margin-top:0.7rem;
+    padding-top:0.7rem;
+    border-top:1px dashed var(--line);
+    font-size:0.85rem;
+  }
+
+  .conj-panel.open{ display:block; }
+
+  .conj-panel table{ width:100%; border-collapse:collapse; }
+  .conj-panel th{
+    text-align:left;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    color:var(--sage-dark);
+    padding:0.15rem 0.3rem;
+  }
+  .conj-panel td{
+    padding:0.2rem 0.3rem;
+    border-top:1px solid var(--paper-2);
+  }
+  .conj-panel td.pron{ color:#8a8a78; width:34%; }
+  .conj-panel .conj-word-row{ display:flex; align-items:center; gap:0.4rem; }
+  .conj-panel button.mini-play{
+    width:22px; height:22px; border-radius:50%; border:none;
+    background:var(--sage); color:white; cursor:pointer;
+    font-size:0.6rem; flex-shrink:0; display:flex; align-items:center; justify-content:center;
+  }
+  .conj-note{ margin-top:0.5rem; font-size:0.78rem; color:var(--clay); font-style:italic; }
+  .ref-row{ opacity:0.5; font-style:italic; }
+  .ref-row td.pron{ font-style:normal; }
+
+  .empty{ text-align:center; color:#8a8a78; padding:3rem 1rem; font-style:italic; }
+
+  /* Listening exercises */
+  .ex-card{
+    background:white;
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:1.3rem 1.4rem;
+    margin-bottom:1.2rem;
+  }
+
+  .ex-head{
+    display:flex;
+    align-items:center;
+    gap:0.8rem;
+    margin-bottom:0.9rem;
+  }
+
+  .ex-num{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:1rem;
+    color:var(--sage-dark);
+    background:var(--paper-2);
+    border-radius:50%;
+    width:32px; height:32px;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+
+  .ex-play{
+    width:44px; height:44px;
+    border-radius:50%;
+    border:none;
+    background:var(--sage);
+    color:white;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .ex-play:hover{ background:var(--sage-dark); }
+  .ex-play svg{ width:17px; height:17px; fill:white; margin-left:2px; }
+
+  .ex-instructions{ font-size:0.85rem; color:#5a5a4e; }
+
+  .ex-input-row{ display:flex; gap:0.6rem; margin-bottom:0.7rem; }
+
+  .ex-input-row input{
+    flex:1;
+    padding:0.6rem 0.9rem;
+    border-radius:8px;
+    border:1px solid var(--line);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:0.95rem;
+  }
+
+  .ex-input-row button{
+    padding:0.6rem 1.1rem;
+    border-radius:8px;
+    border:none;
+    background:var(--sage-dark);
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    font-family:'Source Sans 3', sans-serif;
+  }
+
+  .ex-result{
+    display:none;
+    padding:0.8rem 1rem;
+    border-radius:8px;
+    font-size:0.9rem;
+    line-height:1.5;
+  }
+  .ex-result.show{ display:block; }
+  .ex-result.correct{ background:#eaf3ec; border:1px solid var(--sage); }
+  .ex-result.close{ background:#fbf1ec; border:1px solid var(--clay); }
+
+  .ex-result .es-answer{ font-weight:600; }
+  .ex-result .en-answer{ color:#5a5a4e; margin-top:0.2rem; }
+
+  /* Flashcards */
+  .fc-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:1rem 0 2rem 0;
+  }
+
+  .fc-progress{
+    font-size:0.85rem;
+    color:#5a5a4e;
+    margin-bottom:0.9rem;
+  }
+
+  .fc-toprow{
+    display:flex;
+    gap:0.5rem;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-bottom:1rem;
+  }
+
+  .fc-toprow button{
+    padding:0.4rem 0.9rem;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:white;
+    color:var(--ink);
+    font-size:0.8rem;
+    font-weight:600;
+    cursor:pointer;
+    font-family:'Source Sans 3', sans-serif;
+  }
+
+  .fc-toprow button.on{
+    background:var(--sage-dark);
+    border-color:var(--sage-dark);
+    color:white;
+  }
+
+  .fc-toprow button:disabled{
+    opacity:0.4;
+    cursor:not-allowed;
+  }
+
+  .fc-back{ background:none !important; color:var(--sage-dark); border:1px solid var(--sage) !important; }
+  .fc-back:hover{ background:var(--sage) !important; color:white !important; }
+
+  .fc-saved{
+    font-size:0.72rem;
+    color:var(--sage-dark);
+    text-align:center;
+    margin-top:0.6rem;
+    opacity:0.7;
+    min-height:1em;
+  }
+
+  .fc-scene{
+    width:100%;
+    max-width:420px;
+    height:240px;
+    perspective:1200px;
+    margin-bottom:1.5rem;
+  }
+
+  .fc-card{
+    position:relative;
+    width:100%;
+    height:100%;
+    cursor:pointer;
+    transition:transform 0.5s;
+    transform-style:preserve-3d;
+  }
+
+  .fc-card.flipped{ transform:rotateY(180deg); }
+
+  .fc-face{
+    position:absolute;
+    inset:0;
+    backface-visibility:hidden;
+    border-radius:16px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:1.5rem;
+    text-align:center;
+    border:1px solid var(--line);
+    box-shadow:0 4px 14px rgba(0,0,0,0.06);
+  }
+
+  .fc-face.front{
+    background:white;
+  }
+
+  .fc-face.back{
+    background:var(--sage-dark);
+    color:white;
+    transform:rotateY(180deg);
+  }
+
+  .fc-word{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:1.7rem;
+    margin-bottom:0.6rem;
+  }
+
+  .fc-hint{
+    font-size:0.78rem;
+    opacity:0.6;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+  }
+
+  .fc-face .icon-btn{
+    margin-top:1rem;
+    background:var(--sage);
+  }
+  .fc-face.back .icon-btn{
+    background:rgba(255,255,255,0.2);
+  }
+
+  .fc-controls{
+    display:flex;
+    gap:0.7rem;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .fc-controls button{
+    padding:0.65rem 1.3rem;
+    border-radius:999px;
+    border:none;
+    font-weight:600;
+    font-size:0.88rem;
+    cursor:pointer;
+    font-family:'Source Sans 3', sans-serif;
+  }
+
+  .fc-know{ background:var(--sage); color:white; }
+  .fc-know:hover{ background:var(--sage-dark); }
+  .fc-again{ background:var(--paper-2); color:var(--ink); border:1px solid var(--line) !important; }
+  .fc-again:hover{ background:var(--line); }
+  .fc-reset{ background:none; color:var(--clay); text-decoration:underline; padding:0.65rem 0.4rem; }
+
+  .fc-done{
+    text-align:center;
+    padding:2rem 1rem;
+  }
+  .fc-done h3{ font-family:'Fraunces', serif; color:var(--sage-dark); }
+
+  @media (max-width:480px){
+    .cards{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Tu profesor de español</div>
+  <h1>Español</h1>
+  <p>Every word from your lessons — hear it spoken, check verb conjugations, and practice listening.</p>
+  <p class="voice-note" id="voiceNote">Your browser doesn't support spoken audio — try Chrome, Edge, or Safari.</p>
+  <div class="version-badge" id="versionBadge">v3</div>
+  <nav class="tabs">
+    <button id="tabVocabBtn" class="active">Vocabulario</button>
+    <button id="tabListenBtn">Escucha</button>
+    <button id="tabCardsBtn">Tarjetas</button>
+  </nav>
+</header>
+
+<main>
+  <div id="tabVocab" class="view active">
+    <div class="search-row">
+      <input type="text" id="search" placeholder="Buscar una palabra... (search a word)">
+      <select id="voiceSelect"></select>
+    </div>
+    <div id="content"></div>
+  </div>
+
+  <div id="tabListen" class="view">
+    <p style="color:#5a5a4e; font-size:0.92rem; margin-bottom:1.4rem;">
+      Press play to hear a sentence spoken in Spanish. Type what you think it means in English, then check your answer.
+    </p>
+    <div id="exContent"></div>
+  </div>
+
+  <div id="tabCards" class="view">
+    <div class="fc-wrap" id="fcWrap"></div>
+  </div>
+</main>
+
+<script>
+/* ---------- DATA ---------- */
+const data = {
+  "Nouns": [
+    ["trabajo","work / job"], ["casa","house / home"], ["familia","family"],
+    ["amigo","friend (m.)"], ["amiga","friend (f.)"], ["día","day"],
+    ["mañana","morning / tomorrow"], ["noche","night"], ["agua","water"],
+    ["comida","food"], ["escuela","school"], ["libro","book"], ["perro","dog"],
+    ["tarea","homework"], ["respuesta","answer"], ["regalo","gift"], ["pan","bread"],
+    ["hermano","brother"], ["hermana","sister"], ["madre","mother"], ["padre","father"],
+    ["ciudad","city"], ["coche","car"], ["dinero","money"], ["fin de semana","weekend"],
+    ["playa","beach"], ["sol","sun"], ["calor","heat"], ["frío","cold"],
+    ["partido","game / match"], ["música","music"], ["verano","summer"],
+    ["invierno","winter"], ["nieve","snow"], ["montaña","mountain"], ["país","country"],
+    ["mundo","world"]
+  ],
+  "Verbs (infinitive)": [
+    ["ser","to be (permanent)"], ["estar","to be (temporary)"], ["hablar","to speak"],
+    ["comer","to eat"], ["vivir","to live"], ["ir","to go"], ["tener","to have"],
+    ["querer","to want"], ["poder","to be able to / can"], ["saber","to know (facts/skills)"],
+    ["hacer","to do / make"], ["beber","to drink"], ["cenar","to have dinner"],
+    ["estudiar","to study"], ["caminar","to walk"], ["nadar","to swim"], ["cocinar","to cook"],
+    ["tocar","to play (instrument)"], ["venir","to come"], ["necesitar","to need"],
+    ["llegar","to arrive"], ["comprar","to buy"], ["conducir","to drive"], ["jugar","to play (sport)"],
+    ["ganar","to win / earn"], ["perder","to lose"], ["empezar","to begin"],
+    ["terminar","to finish"], ["bailar","to dance"], ["cantar","to sing"],
+    ["viajar","to travel"], ["gustar","to like (lit. to please)"]
+  ],
+  "Adjectives": [
+    ["cansado","tired (m.)"], ["cansada","tired (f.)"], ["feliz","happy"],
+    ["triste","sad"], ["rápido","fast"], ["temprano","early"], ["tarde","late"],
+    ["aburrido","boring / bored"], ["listo","clever / ready"], ["malo","bad"],
+    ["bueno","good"], ["rico","rich / delicious"], ["enfermo","sick"],
+    ["ocupado","busy"], ["nuevo","new"], ["viejo","old"], ["grande","big"],
+    ["pequeño","small"], ["bonito","beautiful"], ["diferente","different"]
+  ],
+  "Prepositions": [
+    ["a","to, at"], ["de","of, from"], ["en","in, on, at"], ["con","with"],
+    ["para","for (purpose)"], ["por","for (cause/duration)"]
+  ],
+  "Question words": [
+    ["quién","who"], ["dónde","where"], ["cómo","how"], ["cuándo","when"],
+    ["cuál","which"], ["qué","what"], ["por qué","why"], ["cuánto","how much"],
+    ["cuántos","how many"]
+  ],
+  "Phrases & connectors": [
+    ["me llamo...","my name is..."], ["todos los días","every day"], ["ayer","yesterday"],
+    ["hoy","today"], ["siempre","always"], ["también","also / too"], ["pero","but"],
+    ["porque","because"], ["tengo sed","I am thirsty"], ["tengo hambre","I am hungry"],
+    ["el fin de semana pasado","last weekend"], ["el próximo año","next year"],
+    ["no tengo que trabajar","I don't have to work"], ["especialmente","especially"]
+  ]
+};
+
+const pronouns = ["yo","tú","él / ella / usted","nosotros","vosotros (España)","ellos / ustedes"];
+
+const irregular = {
+  "ser":    { pres:["soy","eres","es","somos","sois","son"], pret:["fui","fuiste","fue","fuimos","fuisteis","fueron"] },
+  "estar":  { pres:["estoy","estás","está","estamos","estáis","están"], pret:["estuve","estuviste","estuvo","estuvimos","estuvisteis","estuvieron"] },
+  "ir":     { pres:["voy","vas","va","vamos","vais","van"], pret:["fui","fuiste","fue","fuimos","fuisteis","fueron"] },
+  "tener":  { pres:["tengo","tienes","tiene","tenemos","tenéis","tienen"], pret:["tuve","tuviste","tuvo","tuvimos","tuvisteis","tuvieron"] },
+  "querer": { pres:["quiero","quieres","quiere","queremos","queréis","quieren"], pret:["quise","quisiste","quiso","quisimos","quisisteis","quisieron"] },
+  "poder":  { pres:["puedo","puedes","puede","podemos","podéis","pueden"], pret:["pude","pudiste","pudo","pudimos","pudisteis","pudieron"] },
+  "hacer":  { pres:["hago","haces","hace","hacemos","hacéis","hacen"], pret:["hice","hiciste","hizo","hicimos","hicisteis","hicieron"] },
+  "saber":  { pres:["sé","sabes","sabe","sabemos","sabéis","saben"], pret:["supe","supiste","supo","supimos","supisteis","supieron"] },
+  "venir":  { pres:["vengo","vienes","viene","venimos","venís","vienen"], pret:["vine","viniste","vino","vinimos","vinisteis","vinieron"] },
+  "conducir": { pres:["conduzco","conduces","conduce","conducimos","conducís","conducen"], pret:["conduje","condujiste","condujo","condujimos","condujisteis","condujeron"] },
+  "empezar": { pres:["empiezo","empiezas","empieza","empezamos","empezáis","empiezan"], pret:["empecé","empezaste","empezó","empezamos","empezasteis","empezaron"], note:"Stem-changing (e→ie) in present; spelling changes z→c before é in the yo preterite." },
+  "jugar":  { pres:["juego","juegas","juega","jugamos","jugáis","juegan"], pret:["jugué","jugaste","jugó","jugamos","jugasteis","jugaron"], note:"Stem-changing (u→ue) in present; spelling changes g→gu before é in the yo preterite." },
+  "perder": { pres:["pierdo","pierdes","pierde","perdemos","perdéis","pierden"], pret:["perdí","perdiste","perdió","perdimos","perdisteis","perdieron"], note:"Stem-changing (e→ie) in present only — preterite is regular." }
+};
+
+function conjugate(inf){
+  if(irregular[inf]) return irregular[inf];
+  let stem, presEnd, pretEnd;
+  if(inf.endsWith('ar')){ stem = inf.slice(0,-2); presEnd=['o','as','a','amos','áis','an']; pretEnd=['é','aste','ó','amos','asteis','aron']; }
+  else if(inf.endsWith('er')){ stem = inf.slice(0,-2); presEnd=['o','es','e','emos','éis','en']; pretEnd=['í','iste','ió','imos','isteis','ieron']; }
+  else if(inf.endsWith('ir')){ stem = inf.slice(0,-2); presEnd=['o','es','e','imos','ís','en']; pretEnd=['í','iste','ió','imos','isteis','ieron']; }
+  else { return null; }
+  const pres = presEnd.map(e => stem+e);
+  const pret = pretEnd.map(e => stem+e);
+  let note = null;
+  if(inf.endsWith('car')){ pret[0] = stem.slice(0,-1)+'qué'; note = "Spelling changes c→qu before é in the yo preterite (keeps the hard 'k' sound)."; }
+  else if(inf.endsWith('gar')){ pret[0] = stem+'u'+'é'; note = "Spelling changes g→gu before é in the yo preterite (keeps the hard 'g' sound)."; }
+  else if(inf.endsWith('zar')){ pret[0] = stem.slice(0,-1)+'c'+'é'; note = "Spelling changes z→c before é in the yo preterite (Spanish avoids 'zé')."; }
+  return { pres, pret, note };
+}
+
+/* ---------- VOICES ---------- */
+let spanishVoices = [];
+const voiceSelect = document.getElementById('voiceSelect');
+
+function loadVoices(){
+  const all = window.speechSynthesis.getVoices();
+  spanishVoices = all.filter(v => v.lang.startsWith('es'));
+  voiceSelect.innerHTML = '';
+  if(spanishVoices.length === 0){
+    const opt = document.createElement('option');
+    opt.textContent = 'Default Spanish voice';
+    voiceSelect.appendChild(opt);
+    return;
+  }
+  spanishVoices.forEach(v => {
+    const opt = document.createElement('option');
+    opt.value = v.name;
+    opt.textContent = v.name + ' (' + v.lang + ')';
+    voiceSelect.appendChild(opt);
+  });
+  // Default to the Mexican Spanish voice "Mónica" when available (common on Apple devices).
+  const preferred = spanishVoices.find(v => /m[oó]nica/i.test(v.name))
+                  || spanishVoices.find(v => v.lang === 'es-MX')
+                  || spanishVoices[0];
+  if(preferred) voiceSelect.value = preferred.name;
+}
+
+if('speechSynthesis' in window){
+  loadVoices();
+  window.speechSynthesis.onvoiceschanged = loadVoices;
+} else {
+  document.getElementById('voiceNote').style.display = 'block';
+  voiceSelect.style.display = 'none';
+}
+
+function speak(text, rate, cardEl, onEnd){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(text);
+  const voice = spanishVoices.find(v => v.name === voiceSelect.value);
+  if(voice) utter.voice = voice;
+  utter.lang = voice ? voice.lang : 'es-ES';
+  utter.rate = rate || 0.92;
+  if(cardEl){
+    document.querySelectorAll('.playing').forEach(el => el.classList.remove('playing'));
+    cardEl.classList.add('playing');
+    utter.onend = () => { cardEl.classList.remove('playing'); if(onEnd) onEnd(); };
+  } else if(onEnd){
+    utter.onend = onEnd;
+  }
+  window.speechSynthesis.speak(utter);
+}
+
+/* ---------- VOCAB TAB ---------- */
+const content = document.getElementById('content');
+const searchInput = document.getElementById('search');
+
+function playIconSVG(){ return '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>'; }
+
+function renderVocab(filter=''){
+  content.innerHTML = '';
+  const f = filter.trim().toLowerCase();
+  let any = false;
+
+  Object.entries(data).forEach(([category, words]) => {
+    const filtered = words.filter(([es,en]) => es.toLowerCase().includes(f) || en.toLowerCase().includes(f));
+    if(filtered.length === 0) return;
+    any = true;
+
+    const section = document.createElement('section');
+    section.className = 'category';
+
+    const h2 = document.createElement('h2');
+    h2.textContent = category;
+    const catBtn = document.createElement('button');
+    catBtn.className = 'cat-play';
+    catBtn.textContent = 'Play all';
+    catBtn.onclick = () => playSequence(filtered.map(w=>w[0]), 0);
+    h2.appendChild(catBtn);
+    section.appendChild(h2);
+
+    const cardsDiv = document.createElement('div');
+    cardsDiv.className = 'cards';
+    const isVerbCategory = category.startsWith('Verbs');
+
+    filtered.forEach(([es, en]) => {
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      const top = document.createElement('div');
+      top.className = 'card-top';
+
+      const textDiv = document.createElement('div');
+      textDiv.className = 'card-text';
+      textDiv.innerHTML = '<div class="card-es">'+es+'</div><div class="card-en">'+en+'</div>';
+
+      const btnRow = document.createElement('div');
+      btnRow.className = 'card-buttons';
+
+      const playBtn = document.createElement('button');
+      playBtn.className = 'icon-btn';
+      playBtn.innerHTML = playIconSVG();
+      playBtn.setAttribute('aria-label', 'Play ' + es);
+      playBtn.onclick = () => speak(es, 0.92, card);
+      btnRow.appendChild(playBtn);
+
+      let panel = null;
+      if(isVerbCategory){
+        const conjBtn = document.createElement('button');
+        conjBtn.className = 'icon-btn conj';
+        conjBtn.textContent = 'v';
+        conjBtn.title = 'See conjugation';
+        conjBtn.setAttribute('aria-label', 'Show conjugation of ' + es);
+        panel = buildConjPanel(es.split(' ')[0]);
+        conjBtn.onclick = () => panel.classList.toggle('open');
+        btnRow.appendChild(conjBtn);
+      }
+
+      top.appendChild(textDiv);
+      top.appendChild(btnRow);
+      card.appendChild(top);
+      if(panel) card.appendChild(panel);
+      cardsDiv.appendChild(card);
+    });
+
+    section.appendChild(cardsDiv);
+    content.appendChild(section);
+  });
+
+  if(!any){
+    const empty = document.createElement('div');
+    empty.className = 'empty';
+    empty.textContent = 'No se encontró esa palabra. (Word not found.)';
+    content.appendChild(empty);
+  }
+}
+
+function buildConjPanel(infinitive){
+  const panel = document.createElement('div');
+  panel.className = 'conj-panel';
+  const conj = conjugate(infinitive);
+  if(!conj){
+    panel.innerHTML = '<em>No conjugation data for "'+infinitive+'".</em>';
+    return panel;
+  }
+  let html = '<table><tr><th></th><th>Present</th><th>Preterite</th></tr>';
+  pronouns.forEach((p,i) => {
+    const rowClass = (i === 4) ? ' class="ref-row"' : '';
+    html += '<tr'+rowClass+'><td class="pron">'+p+'</td>' +
+      '<td><span class="conj-word-row">'+conj.pres[i]+' <button class="mini-play" data-word="'+conj.pres[i]+'">▶</button></span></td>' +
+      '<td><span class="conj-word-row">'+conj.pret[i]+' <button class="mini-play" data-word="'+conj.pret[i]+'">▶</button></span></td></tr>';
+  });
+  html += '</table>';
+  html += '<div class="conj-note">él / ella / usted and ellos / ellas / ustedes share the same forms — usted and ustedes are just the formal/plural pronouns for everyday Latin American Spanish. Vosotros (dimmed) is Spain-only, shown for reference.</div>';
+  if(conj.note) html += '<div class="conj-note">'+conj.note+'</div>';
+  panel.innerHTML = html;
+  panel.querySelectorAll('.mini-play').forEach(btn => {
+    btn.onclick = (e) => { e.stopPropagation(); speak(btn.dataset.word, 0.92); };
+  });
+  return panel;
+}
+
+function playSequence(words, i){
+  if(i >= words.length) return;
+  speak(words[i], 0.92, null, () => setTimeout(() => playSequence(words, i+1), 150));
+}
+
+searchInput.addEventListener('input', e => renderVocab(e.target.value));
+
+/* ---------- LISTENING TAB ---------- */
+const listeningExercises = [
+  { es:"Me llamo Ana y soy estudiante.", en:"My name is Ana and I am a student." },
+  { es:"¿Dónde vives tú?", en:"Where do you live?" },
+  { es:"Voy a comer pizza con mi familia.", en:"I'm going to eat pizza with my family." },
+  { es:"Ayer, cené con mi hermano.", en:"Yesterday, I had dinner with my brother." },
+  { es:"No puedo ir porque no tengo coche.", en:"I can't go because I don't have a car." },
+  { es:"Mi madre sabe conducir muy bien.", en:"My mother knows how to drive very well." },
+  { es:"Este fin de semana vamos a la playa.", en:"This weekend we're going to the beach." },
+  { es:"Me gustan mucho los perros.", en:"I like dogs a lot." },
+  { es:"Estoy cansado, pero estoy feliz.", en:"I am tired, but I am happy." },
+  { es:"El próximo año va a ser diferente.", en:"Next year is going to be different." }
+];
+
+const exContent = document.getElementById('exContent');
+
+function normalize(str){
+  return str.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^a-z0-9\s]/g,'')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+
+function renderListening(){
+  exContent.innerHTML = '';
+  listeningExercises.forEach((item, idx) => {
+    const card = document.createElement('div');
+    card.className = 'ex-card';
+
+    const head = document.createElement('div');
+    head.className = 'ex-head';
+
+    const num = document.createElement('div');
+    num.className = 'ex-num';
+    num.textContent = idx+1;
+
+    const playBtn = document.createElement('button');
+    playBtn.className = 'ex-play';
+    playBtn.innerHTML = playIconSVG();
+    playBtn.setAttribute('aria-label', 'Play sentence '+(idx+1));
+    playBtn.onclick = () => speak(item.es, 0.85, playBtn.parentElement);
+
+    const instr = document.createElement('div');
+    instr.className = 'ex-instructions';
+    instr.textContent = 'Listen, then type the English meaning below.';
+
+    head.appendChild(num);
+    head.appendChild(playBtn);
+    head.appendChild(instr);
+
+    const inputRow = document.createElement('div');
+    inputRow.className = 'ex-input-row';
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.placeholder = 'Type what you heard, in English...';
+    const checkBtn = document.createElement('button');
+    checkBtn.textContent = 'Check';
+
+    const result = document.createElement('div');
+    result.className = 'ex-result';
+
+    checkBtn.onclick = () => {
+      const userAns = normalize(input.value);
+      const correctAns = normalize(item.en);
+      const isClose = userAns.length > 0 && (
+        correctAns.includes(userAns) || userAns.includes(correctAns) ||
+        correctAns.split(' ').filter(w => userAns.split(' ').includes(w)).length >= Math.ceil(correctAns.split(' ').length * 0.5)
+      );
+      result.classList.add('show');
+      result.classList.remove('correct','close');
+      result.classList.add(isClose ? 'correct' : 'close');
+      result.innerHTML =
+        '<div class="es-answer">'+item.es+'</div>' +
+        '<div class="en-answer">'+item.en+'</div>' +
+        '<div style="margin-top:0.4rem; font-size:0.82rem;">'+(isClose ? '✅ Close enough — nice listening!' : '📝 Not quite — compare your answer above and try the audio again.')+'</div>';
+    };
+
+    inputRow.appendChild(input);
+    inputRow.appendChild(checkBtn);
+
+    card.appendChild(head);
+    card.appendChild(inputRow);
+    card.appendChild(result);
+    exContent.appendChild(card);
+  });
+}
+
+/* ---------- FLASHCARDS ---------- */
+let fcAllWords = [];
+let fcDeck = [];
+let fcIndex = 0;
+let fcKnownCount = 0;
+let fcFlipped = false;
+let fcSpanishFront = true;
+let fcMode = 'all'; // 'all' | 'hard'
+let missCounts = {}; // keyed by es text, count of "Repasar de nuevo" hits
+let fcHistory = [];
+let progressLoaded = false;
+let saveTimer = null;
+
+let lastLoadDiagnostic = 'Cargando...';
+
+async function loadProgress(){
+  try{
+    const raw = localStorage.getItem('flashcard-progress');
+    if(raw){
+      const parsed = JSON.parse(raw);
+      missCounts = parsed.missCounts || {};
+      const savedDate = parsed.savedAt ? new Date(parsed.savedAt).toLocaleString() : 'fecha desconocida';
+      const n = Object.keys(missCounts).length;
+      lastLoadDiagnostic = n > 0
+        ? 'Progreso encontrado — guardado el ' + savedDate + ' (' + n + ' palabra(s) con seguimiento).'
+        : 'Se encontró un registro guardado, pero está vacío.';
+    } else {
+      lastLoadDiagnostic = 'No se encontró progreso guardado — empezando de cero.';
+    }
+  }catch(e){
+    missCounts = {};
+    lastLoadDiagnostic = 'Error al cargar progreso: ' + (e && e.message ? e.message : e);
+  }
+  progressLoaded = true;
+  const diagEl = document.getElementById('fcDiagnostic');
+  if(diagEl) diagEl.textContent = lastLoadDiagnostic;
+}
+
+async function saveProgress(showConfirmation){
+  const statusEl = document.getElementById('fcSavedStatus');
+  try{
+    localStorage.setItem('flashcard-progress', JSON.stringify({ missCounts, savedAt: Date.now() }));
+    if(statusEl && showConfirmation !== false){
+      statusEl.textContent = 'Progreso guardado ✓';
+      setTimeout(() => { if(statusEl) statusEl.textContent = ''; }, 2000);
+    }
+  }catch(e){
+    if(statusEl) statusEl.textContent = 'No se pudo guardar: ' + (e && e.message ? e.message : e);
+  }
+}
+
+function buildFcPool(){
+  const all = [];
+  Object.values(data).forEach(words => words.forEach(([es,en]) => all.push({es, en})));
+  return all;
+}
+
+function shuffle(arr){
+  const a = [...arr];
+  for(let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i+1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function startFcDeck(mode){
+  if(mode) fcMode = mode;
+  fcAllWords = buildFcPool();
+  const pool = fcMode === 'hard'
+    ? fcAllWords.filter(c => (missCounts[c.es] || 0) >= 2)
+    : fcAllWords;
+  fcDeck = shuffle(pool);
+  fcIndex = 0;
+  fcKnownCount = 0;
+  fcFlipped = false;
+  fcHistory = [];
+  renderFc();
+}
+
+function pushHistory(){
+  fcHistory.push({
+    deck: [...fcDeck],
+    index: fcIndex,
+    known: fcKnownCount,
+    miss: {...missCounts}
+  });
+  if(fcHistory.length > 50) fcHistory.shift();
+}
+
+function renderFc(){
+  const wrap = document.getElementById('fcWrap');
+  wrap.innerHTML = '';
+
+  const hardCount = fcAllWords.filter(c => (missCounts[c.es] || 0) >= 2).length;
+
+  const topRow = document.createElement('div');
+  topRow.className = 'fc-toprow';
+
+  const dirBtn = document.createElement('button');
+  dirBtn.textContent = fcSpanishFront ? '🔀 Español → English' : '🔀 English → Español';
+  dirBtn.onclick = () => { fcSpanishFront = !fcSpanishFront; fcFlipped = false; renderFc(); };
+
+  const allBtn = document.createElement('button');
+  allBtn.textContent = 'Todas';
+  allBtn.className = fcMode === 'all' ? 'on' : '';
+  allBtn.onclick = () => startFcDeck('all');
+
+  const hardBtn = document.createElement('button');
+  hardBtn.textContent = 'Difíciles (' + hardCount + ')';
+  hardBtn.className = fcMode === 'hard' ? 'on' : '';
+  hardBtn.disabled = hardCount === 0;
+  hardBtn.onclick = () => startFcDeck('hard');
+
+  const backBtn = document.createElement('button');
+  backBtn.className = 'fc-back';
+  backBtn.textContent = '⬅ Volver';
+  backBtn.disabled = fcHistory.length === 0;
+  backBtn.onclick = () => {
+    if(fcHistory.length === 0) return;
+    const prev = fcHistory.pop();
+    fcDeck = prev.deck;
+    fcIndex = prev.index;
+    fcKnownCount = prev.known;
+    missCounts = prev.miss;
+    fcFlipped = false;
+    renderFc();
+    saveProgress();
+  };
+
+  topRow.appendChild(dirBtn);
+  topRow.appendChild(allBtn);
+  topRow.appendChild(hardBtn);
+  topRow.appendChild(backBtn);
+  wrap.appendChild(topRow);
+
+  const diagEl = document.createElement('div');
+  diagEl.className = 'fc-saved';
+  diagEl.id = 'fcDiagnostic';
+  diagEl.style.opacity = '0.55';
+  diagEl.textContent = lastLoadDiagnostic;
+  wrap.appendChild(diagEl);
+
+  const savedStatus = document.createElement('div');
+  savedStatus.className = 'fc-saved';
+  savedStatus.id = 'fcSavedStatus';
+  wrap.appendChild(savedStatus);
+
+  const manualSaveBtn = document.createElement('button');
+  manualSaveBtn.className = 'fc-reset';
+  manualSaveBtn.style.textDecoration = 'underline';
+  manualSaveBtn.textContent = 'Guardar progreso ahora';
+  manualSaveBtn.onclick = () => saveProgress(true);
+  wrap.appendChild(manualSaveBtn);
+
+  if(fcDeck.length === 0){
+    const empty = document.createElement('div');
+    empty.className = 'fc-done';
+    empty.innerHTML = '<h3>' + (fcMode === 'hard' ? 'No hay tarjetas difíciles todavía.' : '¡Sin tarjetas!') + '</h3>' +
+      '<p style="color:#5a5a4e;">' + (fcMode === 'hard' ? 'Words land here once you mark them "Repasar de nuevo" two or more times.' : '') + '</p>';
+    wrap.appendChild(empty);
+    return;
+  }
+
+  if(fcIndex >= fcDeck.length){
+    const done = document.createElement('div');
+    done.className = 'fc-done';
+    done.innerHTML = '<h3>¡Terminaste el mazo! 🎉</h3><p style="color:#5a5a4e;">You knew ' + fcKnownCount + ' of ' + fcDeck.length + ' cards on the first try.</p>';
+    const btn = document.createElement('button');
+    btn.className = 'fc-know';
+    btn.style.marginTop = '1rem';
+    btn.textContent = 'Empezar de nuevo';
+    btn.onclick = () => startFcDeck(fcMode);
+    done.appendChild(document.createElement('br'));
+    done.appendChild(btn);
+    wrap.appendChild(done);
+    return;
+  }
+
+  const card = fcDeck[fcIndex];
+  const frontText = fcSpanishFront ? card.es : card.en;
+  const backText = fcSpanishFront ? card.en : card.es;
+  const frontLabel = fcSpanishFront ? 'Español' : 'English';
+  const backLabel = fcSpanishFront ? 'English' : 'Español';
+
+  const progress = document.createElement('div');
+  progress.className = 'fc-progress';
+  progress.textContent = 'Tarjeta ' + (fcIndex+1) + ' de ' + fcDeck.length + ' · ' + fcKnownCount + ' aprendidas';
+  wrap.appendChild(progress);
+
+  const scene = document.createElement('div');
+  scene.className = 'fc-scene';
+
+  const cardEl = document.createElement('div');
+  cardEl.className = 'fc-card' + (fcFlipped ? ' flipped' : '');
+
+  const front = document.createElement('div');
+  front.className = 'fc-face front';
+  front.innerHTML = '<div class="fc-hint">'+frontLabel+'</div><div class="fc-word">'+frontText+'</div>';
+  const frontPlay = document.createElement('button');
+  frontPlay.className = 'icon-btn';
+  frontPlay.innerHTML = playIconSVG();
+  frontPlay.onclick = (e) => { e.stopPropagation(); speak(card.es); };
+  front.appendChild(frontPlay);
+
+  const back = document.createElement('div');
+  back.className = 'fc-face back';
+  back.innerHTML = '<div class="fc-hint">'+backLabel+'</div><div class="fc-word">'+backText+'</div>';
+  const backPlay = document.createElement('button');
+  backPlay.className = 'icon-btn';
+  backPlay.innerHTML = playIconSVG();
+  backPlay.onclick = (e) => { e.stopPropagation(); speak(card.es); };
+  back.appendChild(backPlay);
+
+  cardEl.appendChild(front);
+  cardEl.appendChild(back);
+  cardEl.onclick = () => { fcFlipped = !fcFlipped; cardEl.classList.toggle('flipped'); };
+
+  scene.appendChild(cardEl);
+  wrap.appendChild(scene);
+
+  const controls = document.createElement('div');
+  controls.className = 'fc-controls';
+
+  const againBtn = document.createElement('button');
+  againBtn.className = 'fc-again';
+  againBtn.textContent = '🔁 Repasar de nuevo';
+  againBtn.onclick = () => {
+    pushHistory();
+    missCounts[card.es] = (missCounts[card.es] || 0) + 1;
+    const c = fcDeck.splice(fcIndex, 1)[0];
+    fcDeck.push(c);
+    fcFlipped = false;
+    renderFc();
+    saveProgress();
+  };
+
+  const knowBtn = document.createElement('button');
+  knowBtn.className = 'fc-know';
+  knowBtn.textContent = '✅ Lo sé';
+  knowBtn.onclick = () => {
+    pushHistory();
+    fcKnownCount++;
+    fcIndex++;
+    fcFlipped = false;
+    renderFc();
+  };
+
+  controls.appendChild(againBtn);
+  controls.appendChild(knowBtn);
+  wrap.appendChild(controls);
+
+  const resetBtn = document.createElement('button');
+  resetBtn.className = 'fc-reset';
+  resetBtn.textContent = 'Empezar de nuevo';
+  resetBtn.onclick = () => startFcDeck(fcMode);
+  wrap.appendChild(resetBtn);
+}
+
+/* ---------- TABS ---------- */
+const tabVocabBtn = document.getElementById('tabVocabBtn');
+const tabListenBtn = document.getElementById('tabListenBtn');
+const tabCardsBtn = document.getElementById('tabCardsBtn');
+const tabVocab = document.getElementById('tabVocab');
+const tabListen = document.getElementById('tabListen');
+const tabCards = document.getElementById('tabCards');
+
+function setActiveTab(btn, view){
+  [tabVocabBtn, tabListenBtn, tabCardsBtn].forEach(b => b.classList.remove('active'));
+  [tabVocab, tabListen, tabCards].forEach(v => v.classList.remove('active'));
+  btn.classList.add('active');
+  view.classList.add('active');
+}
+
+tabVocabBtn.onclick = () => setActiveTab(tabVocabBtn, tabVocab);
+tabListenBtn.onclick = () => setActiveTab(tabListenBtn, tabListen);
+tabCardsBtn.onclick = async () => {
+  setActiveTab(tabCardsBtn, tabCards);
+  if(!progressLoaded) await loadProgress();
+  if(fcAllWords.length === 0) startFcDeck('all');
+};
+
+// Kick off progress load in the background as soon as the page opens,
+// so it's likely ready by the time the user visits the Tarjetas tab.
+loadProgress();
+
+// Safety net: also try to save right before the page/tab is hidden or closed.
+document.addEventListener('visibilitychange', () => {
+  if(document.visibilityState === 'hidden' && Object.keys(missCounts).length > 0){
+    saveProgress(false);
+  }
+});
+window.addEventListener('pagehide', () => {
+  if(Object.keys(missCounts).length > 0) saveProgress(false);
+});
+
+renderVocab();
+renderListening();
+</script>
+
+<div class="update-banner" id="updateBanner">
+  Nueva versión disponible.
+  <button id="updateBtn">Actualizar</button>
+</div>
+
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('service-worker.js', { updateViaCache: 'none' })
+      .then(reg => {
+        // Check for a new version whenever the app is opened or brought to the foreground.
+        reg.update();
+        document.addEventListener('visibilitychange', () => {
+          if(document.visibilityState === 'visible') reg.update();
+        });
+
+        reg.addEventListener('updatefound', () => {
+          const newWorker = reg.installing;
+          if(!newWorker) return;
+          newWorker.addEventListener('statechange', () => {
+            if(newWorker.state === 'installed' && navigator.serviceWorker.controller){
+              const banner = document.getElementById('updateBanner');
+              if(banner) banner.classList.add('show');
+              const btn = document.getElementById('updateBtn');
+              if(btn) btn.onclick = () => {
+                newWorker.postMessage('SKIP_WAITING');
+                window.location.reload();
+              };
+            }
+          });
+        });
+      })
+      .catch(err => console.warn('SW registration failed:', err));
+
+    let refreshing = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if(refreshing) return;
+      refreshing = true;
+      window.location.reload();
+    });
+  });
+}
+</script>
+</body>
+</html>
