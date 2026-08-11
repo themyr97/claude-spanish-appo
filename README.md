@@ -11,6 +11,7 @@ Personal Spanish learning PWA. **Live app:** https://themyr97.github.io/claude-s
 ## Version log
 
 - **v1** — Initial release: vocabulary browser with audio pronunciation, verb conjugation tables (present + preterite, Latin American forms with vosotros as reference), listening exercises, flashcards (with direction toggle, difficulty tracking, undo), offline PWA support, progress saved to localStorage.
+- **v2** — Default pronunciation voice set to Mónica (Mexican Spanish), when available in the browser/device voice list. Falls back to any es-MX voice, then the first available Spanish voice.
 
 ## Rolling back
 
