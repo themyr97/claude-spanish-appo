@@ -20,6 +20,8 @@ Personal Spanish learning PWA. **Live app:** https://themyr97.github.io/claude-s
 
 - **v6** — Navigation tabs laid out as a 3-column grid so they wrap onto a second row instead of crowding one line; all modes stay visible at once without horizontal squeezing.
 
+- **v7** — Added **speaking practice** ("Hablar" tab): shows an English sentence, you say it aloud in Spanish via the microphone (Web Speech API). Matching is accent- and punctuation-tolerant and accepts the sentence with or without the subject pronoun. Checks all recognizer alternatives and scores the best one. Falls back to a text input where speech recognition is unavailable. Sentence bank drawn from the lesson exercises; extend `speakSentences` as new material is covered.
+
 ## Deploy checklist
 
 When pushing a new version, always bump `APP_VERSION` in `service-worker.js` and the badge in `index.html`. The service worker file must change byte-wise, or browsers will not install the new version.
