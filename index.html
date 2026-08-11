@@ -700,6 +700,157 @@
   .drill-mistakes ul{ margin:0; padding-left:1.1rem; color:#5a5a4e; }
   .drill-mistakes li{ margin-bottom:0.2rem; }
 
+
+  /* Speaking practice */
+  .speak-card{
+    background:white;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:1.6rem 1.4rem;
+    text-align:center;
+    max-width:460px;
+    margin:0 auto 1.2rem auto;
+    box-shadow:0 4px 14px rgba(0,0,0,0.05);
+  }
+
+  .speak-label{
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    color:var(--sage-dark);
+    font-weight:700;
+    margin-bottom:0.7rem;
+  }
+
+  .speak-prompt{
+    font-family:'Fraunces', serif;
+    font-size:1.35rem;
+    font-weight:600;
+    line-height:1.35;
+    margin-bottom:1.3rem;
+  }
+
+  .mic-btn{
+    width:74px; height:74px;
+    border-radius:50%;
+    border:none;
+    background:var(--sage);
+    color:white;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    margin:0 auto;
+    transition:background 0.2s ease, transform 0.15s ease;
+  }
+  .mic-btn:hover{ background:var(--sage-dark); }
+  .mic-btn svg{ width:30px; height:30px; fill:white; }
+  .mic-btn.listening{
+    background:var(--clay);
+    animation:pulse 1.3s infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow:0 0 0 0 rgba(176,85,58,0.5); }
+    70%{ box-shadow:0 0 0 18px rgba(176,85,58,0); }
+    100%{ box-shadow:0 0 0 0 rgba(176,85,58,0); }
+  }
+
+  .mic-hint{
+    font-size:0.8rem;
+    color:#767666;
+    margin-top:0.7rem;
+    min-height:1.2em;
+  }
+
+  .heard-text{
+    margin-top:1rem;
+    font-size:0.95rem;
+    color:var(--ink);
+    font-style:italic;
+    min-height:1.2em;
+  }
+
+  .speak-feedback{
+    margin-top:1rem;
+    padding:0.85rem 1rem;
+    border-radius:8px;
+    font-size:0.9rem;
+    line-height:1.5;
+    display:none;
+    text-align:left;
+  }
+  .speak-feedback.show{ display:block; }
+  .speak-feedback.right{ background:#eaf3ec; border:1px solid var(--sage); }
+  .speak-feedback.close{ background:#fdf6e6; border:1px solid #d6b45e; }
+  .speak-feedback.wrong{ background:#fbf1ec; border:1px solid var(--clay); }
+  .speak-answer{ font-weight:700; }
+
+  .speak-actions{
+    display:flex;
+    gap:0.5rem;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-top:1rem;
+  }
+  .speak-actions button{
+    padding:0.55rem 1.1rem;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:white;
+    color:var(--ink);
+    font-weight:600;
+    font-size:0.85rem;
+    cursor:pointer;
+    font-family:'Source Sans 3', sans-serif;
+  }
+  .speak-actions button.primary{
+    background:var(--sage-dark);
+    border-color:var(--sage-dark);
+    color:white;
+  }
+
+  .speak-fallback{
+    display:flex;
+    gap:0.5rem;
+    margin-top:1rem;
+  }
+  .speak-fallback input{
+    flex:1;
+    padding:0.65rem 0.9rem;
+    border-radius:8px;
+    border:1px solid var(--line);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:0.95rem;
+  }
+  .speak-fallback button{
+    padding:0.65rem 1.1rem;
+    border-radius:8px;
+    border:none;
+    background:var(--sage-dark);
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    font-family:'Source Sans 3', sans-serif;
+  }
+
+  .speak-note{
+    max-width:460px;
+    margin:0 auto 1.2rem auto;
+    font-size:0.82rem;
+    color:var(--clay);
+    background:#fbf1ec;
+    border:1px solid var(--clay);
+    border-radius:8px;
+    padding:0.7rem 0.9rem;
+    display:none;
+  }
+  .speak-note.show{ display:block; }
+
+  .speak-score{
+    text-align:center;
+    font-size:0.85rem;
+    color:#5a5a4e;
+    margin-bottom:1rem;
+  }
+
   @media (max-width:480px){
     .cards{ grid-template-columns:1fr; }
   }
@@ -712,12 +863,13 @@
   <h1>Español</h1>
   <p>Every word from your lessons — hear it spoken, check verb conjugations, and practice listening.</p>
   <p class="voice-note" id="voiceNote">Your browser doesn't support spoken audio — try Chrome, Edge, or Safari.</p>
-  <div class="version-badge" id="versionBadge">v6</div>
+  <div class="version-badge" id="versionBadge">v7</div>
   <nav class="tabs">
     <button id="tabVocabBtn" class="active">Vocabulario</button>
     <button id="tabListenBtn">Escucha</button>
     <button id="tabCardsBtn">Tarjetas</button>
     <button id="tabDrillBtn">Conjugar</button>
+    <button id="tabSpeakBtn">Hablar</button>
   </nav>
 </header>
 
@@ -743,6 +895,10 @@
 
   <div id="tabDrill" class="view">
     <div id="drillWrap"></div>
+  </div>
+
+  <div id="tabSpeak" class="view">
+    <div id="speakWrap"></div>
   </div>
 </main>
 
@@ -1584,6 +1740,273 @@ function renderDrill(){
   setTimeout(() => input.focus(), 50);
 }
 
+
+/* ---------- SPEAKING PRACTICE ---------- */
+// English prompt -> accepted Spanish answers. Multiple variants are listed because
+// Spanish routinely drops the subject pronoun, so both forms are genuinely correct.
+const speakSentences = [
+  { en:"I am a student.", es:["Soy estudiante.","Yo soy estudiante."] },
+  { en:"We are in Madrid.", es:["Estamos en Madrid.","Nosotros estamos en Madrid."] },
+  { en:"She is tired.", es:["Está cansada.","Ella está cansada."] },
+  { en:"I speak Spanish.", es:["Hablo español.","Yo hablo español."] },
+  { en:"She eats pizza.", es:["Come pizza.","Ella come pizza."] },
+  { en:"We live in Barcelona.", es:["Vivimos en Barcelona.","Nosotros vivimos en Barcelona."] },
+  { en:"I am going to eat pizza.", es:["Voy a comer pizza.","Yo voy a comer pizza."] },
+  { en:"They are going to live in Madrid.", es:["Van a vivir en Madrid.","Ellos van a vivir en Madrid."] },
+  { en:"I ate pizza.", es:["Comí pizza.","Yo comí pizza."] },
+  { en:"They lived in Peru.", es:["Vivieron en Perú.","Ellos vivieron en Perú."] },
+  { en:"I have a book.", es:["Tengo un libro.","Yo tengo un libro."] },
+  { en:"I have a dog.", es:["Tengo un perro.","Yo tengo un perro."] },
+  { en:"She wants to speak Spanish.", es:["Quiere hablar español.","Ella quiere hablar español."] },
+  { en:"We can eat now.", es:["Podemos comer ahora.","Nosotros podemos comer ahora."] },
+  { en:"I know how to cook.", es:["Sé cocinar.","Yo sé cocinar."] },
+  { en:"She knows how to play the piano.", es:["Sabe tocar el piano.","Ella sabe tocar el piano."] },
+  { en:"Can you come tomorrow?", es:["¿Puedes venir mañana?","Puedes venir mañana"] },
+  { en:"Where do you live?", es:["¿Dónde vives?","Dónde vives"] },
+  { en:"What do you want?", es:["¿Qué quieres?","Qué quieres"] },
+  { en:"Why do you want to study Spanish?", es:["¿Por qué quieres estudiar español?","Por qué quieres estudiar español"] },
+  { en:"This is for you.", es:["Esto es para ti."] },
+  { en:"I am from Mexico.", es:["Soy de México.","Yo soy de México."] },
+  { en:"I like music.", es:["Me gusta la música."] },
+  { en:"He likes dogs.", es:["Le gustan los perros."] },
+  { en:"We like to travel.", es:["Nos gusta viajar."] },
+  { en:"My name is Carlos and I am from Barcelona.", es:["Me llamo Carlos y soy de Barcelona."] },
+  { en:"I have a brother and a sister.", es:["Tengo un hermano y una hermana."] },
+  { en:"I need to arrive at work early.", es:["Necesito llegar al trabajo temprano."] },
+  { en:"I want to buy a car, but I don't have money.", es:["Quiero comprar un coche, pero no tengo dinero."] },
+  { en:"My mother knows how to drive well.", es:["Mi madre sabe conducir bien."] },
+  { en:"I am happy because tomorrow I don't have to work.", es:["Estoy feliz porque mañana no tengo que trabajar."] },
+  { en:"This weekend, I am going to the beach with my family.", es:["Este fin de semana, voy a la playa con mi familia.","Este fin de semana voy a la playa con mi familia."] },
+  { en:"There is a lot of sun and heat.", es:["Hay mucho sol y calor."] },
+  { en:"I don't have a lot of money, but I have a lot of friends.", es:["No tengo mucho dinero, pero tengo muchos amigos."] },
+  { en:"Next year is going to be different.", es:["El próximo año va a ser diferente."] },
+  { en:"I don't like the cold, but I like snow.", es:["No me gusta el frío, pero me gusta la nieve."] },
+  { en:"I need to speak with the boss, please.", es:["Necesito hablar con el jefe, por favor."] },
+  { en:"Can you help me find the email?", es:["¿Puedes ayudarme a encontrar el correo?","Puedes ayudarme a encontrar el correo"] },
+  { en:"I am sorry, but I can't come today because I am sick.", es:["Lo siento, pero hoy no puedo ir porque estoy enfermo.","Lo siento, pero no puedo ir hoy porque estoy enfermo."] },
+  { en:"Good morning, sir.", es:["Buenos días, señor."] },
+  { en:"I just ate.", es:["Acabo de comer."] },
+  { en:"I think about my family a lot.", es:["Pienso mucho en mi familia."] },
+  { en:"I am going to start to study now.", es:["Voy a empezar a estudiar ahora."] },
+  { en:"The meeting begins at three and finishes at five.", es:["La reunión empieza a las tres y termina a las cinco."] },
+  { en:"Yesterday, I had dinner with my family.", es:["Ayer, cené con mi familia.","Ayer cené con mi familia."] }
+];
+
+let speakIndex = 0;
+let speakRight = 0;
+let speakTotal = 0;
+let recognition = null;
+let recognizing = false;
+
+function normalizeES(s){
+  return s.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[¿?¡!.,;:]/g,'')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+
+function bestMatch(heard, accepted){
+  const h = normalizeES(heard);
+  let best = { ratio:0, target:accepted[0] };
+  accepted.forEach(a => {
+    const t = normalizeES(a);
+    if(h === t) { best = { ratio:1, target:a }; return; }
+    const hw = h.split(' '), tw = t.split(' ');
+    const matched = tw.filter(w => hw.includes(w)).length;
+    const ratio = tw.length ? matched / tw.length : 0;
+    if(ratio > best.ratio) best = { ratio, target:a };
+  });
+  return best;
+}
+
+function micIconSVG(){
+  return '<svg viewBox="0 0 24 24"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a1 1 0 0 1 2 0 7 7 0 0 1-6 6.93V21a1 1 0 0 1-2 0v-3.07A7 7 0 0 1 5 11a1 1 0 0 1 2 0 5 5 0 0 0 10 0z"/></svg>';
+}
+
+function speechAvailable(){
+  return ('webkitSpeechRecognition' in window) || ('SpeechRecognition' in window);
+}
+
+function evaluateSpeak(heard){
+  const item = speakSentences[speakIndex];
+  const fb = document.getElementById('speakFeedback');
+  const heardEl = document.getElementById('heardText');
+  if(heardEl) heardEl.textContent = heard ? '“' + heard + '”' : '';
+  if(!fb) return;
+
+  speakTotal++;
+  const m = bestMatch(heard, item.es);
+  fb.className = 'speak-feedback show';
+
+  if(m.ratio === 1){
+    speakRight++;
+    fb.classList.add('right');
+    fb.innerHTML = '✅ ¡Perfecto! <span class="speak-answer">' + m.target + '</span>';
+  } else if(m.ratio >= 0.6){
+    fb.classList.add('close');
+    fb.innerHTML = '⚠️ Casi. Se esperaba: <span class="speak-answer">' + m.target + '</span>' +
+      '<div style="margin-top:0.35rem; font-size:0.82rem;">Speech recognition can also mishear words — if you said it right, trust your ear over the transcript.</div>';
+  } else {
+    fb.classList.add('wrong');
+    fb.innerHTML = '📝 Respuesta esperada: <span class="speak-answer">' + m.target + '</span>';
+  }
+
+  const scoreEl = document.getElementById('speakScore');
+  if(scoreEl) scoreEl.textContent = speakRight + ' de ' + speakTotal + ' correctas';
+
+  const playBtn = document.getElementById('speakPlayAnswer');
+  if(playBtn) playBtn.style.display = 'inline-block';
+}
+
+function startListening(){
+  if(!speechAvailable()) return;
+  const Rec = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if(recognizing && recognition){ recognition.stop(); return; }
+
+  recognition = new Rec();
+  const voice = spanishVoices.find(v => v.name === (voiceSelect ? voiceSelect.value : ''));
+  recognition.lang = (voice && voice.lang) ? voice.lang : 'es-MX';
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 3;
+  recognition.continuous = false;
+
+  const micBtn = document.getElementById('micBtn');
+  const hint = document.getElementById('micHint');
+
+  recognition.onstart = () => {
+    recognizing = true;
+    if(micBtn) micBtn.classList.add('listening');
+    if(hint) hint.textContent = 'Escuchando... habla ahora';
+  };
+
+  recognition.onresult = (event) => {
+    const alternatives = [];
+    for(let i = 0; i < event.results[0].length; i++){
+      alternatives.push(event.results[0][i].transcript);
+    }
+    // Pick whichever alternative scores best against the expected answer,
+    // since recognizers often rank a near-miss above the correct phrase.
+    const item = speakSentences[speakIndex];
+    let bestAlt = alternatives[0], bestRatio = -1;
+    alternatives.forEach(alt => {
+      const r = bestMatch(alt, item.es).ratio;
+      if(r > bestRatio){ bestRatio = r; bestAlt = alt; }
+    });
+    evaluateSpeak(bestAlt);
+  };
+
+  recognition.onerror = (e) => {
+    if(hint) hint.textContent = e.error === 'not-allowed'
+      ? 'Micrófono bloqueado — permite el acceso en los ajustes del navegador.'
+      : 'Error de reconocimiento: ' + e.error + '. Usa el campo de texto abajo.';
+  };
+
+  recognition.onend = () => {
+    recognizing = false;
+    if(micBtn) micBtn.classList.remove('listening');
+    if(hint && hint.textContent === 'Escuchando... habla ahora') hint.textContent = 'Toca el micrófono para hablar';
+  };
+
+  try{ recognition.start(); }
+  catch(e){ if(hint) hint.textContent = 'No se pudo iniciar el micrófono.'; }
+}
+
+function renderSpeak(){
+  const wrap = document.getElementById('speakWrap');
+  if(!wrap) return;
+  wrap.innerHTML = '';
+
+  const note = document.createElement('div');
+  note.className = 'speak-note' + (speechAvailable() ? '' : ' show');
+  note.textContent = 'Speech recognition isn\u2019t available in this browser. You can still type your answer below — on iPhone, this works in Safari but may be unavailable when the app is launched from the home screen.';
+  wrap.appendChild(note);
+
+  const score = document.createElement('div');
+  score.className = 'speak-score';
+  score.id = 'speakScore';
+  score.textContent = speakTotal > 0 ? speakRight + ' de ' + speakTotal + ' correctas' : 'Di la frase en español.';
+  wrap.appendChild(score);
+
+  const item = speakSentences[speakIndex];
+
+  const card = document.createElement('div');
+  card.className = 'speak-card';
+  card.innerHTML =
+    '<div class="speak-label">Dilo en español</div>' +
+    '<div class="speak-prompt">' + item.en + '</div>';
+
+  if(speechAvailable()){
+    const micBtn = document.createElement('button');
+    micBtn.className = 'mic-btn';
+    micBtn.id = 'micBtn';
+    micBtn.innerHTML = micIconSVG();
+    micBtn.setAttribute('aria-label','Start speaking');
+    micBtn.onclick = startListening;
+    card.appendChild(micBtn);
+
+    const hint = document.createElement('div');
+    hint.className = 'mic-hint';
+    hint.id = 'micHint';
+    hint.textContent = 'Toca el micrófono para hablar';
+    card.appendChild(hint);
+  }
+
+  const heard = document.createElement('div');
+  heard.className = 'heard-text';
+  heard.id = 'heardText';
+  card.appendChild(heard);
+
+  const fallback = document.createElement('div');
+  fallback.className = 'speak-fallback';
+  const fbInput = document.createElement('input');
+  fbInput.type = 'text';
+  fbInput.placeholder = 'o escribe tu respuesta...';
+  fbInput.autocapitalize = 'none';
+  fbInput.spellcheck = false;
+  const fbBtn = document.createElement('button');
+  fbBtn.textContent = 'Comprobar';
+  fbBtn.onclick = () => { if(fbInput.value.trim()) evaluateSpeak(fbInput.value); };
+  fbInput.addEventListener('keydown', e => { if(e.key === 'Enter' && fbInput.value.trim()) evaluateSpeak(fbInput.value); });
+  fallback.appendChild(fbInput);
+  fallback.appendChild(fbBtn);
+  card.appendChild(fallback);
+
+  const fb = document.createElement('div');
+  fb.className = 'speak-feedback';
+  fb.id = 'speakFeedback';
+  card.appendChild(fb);
+
+  const actions = document.createElement('div');
+  actions.className = 'speak-actions';
+
+  const playAnswer = document.createElement('button');
+  playAnswer.id = 'speakPlayAnswer';
+  playAnswer.textContent = '🔊 Oír la respuesta';
+  playAnswer.style.display = 'none';
+  playAnswer.onclick = () => speak(item.es[0], 0.9);
+  actions.appendChild(playAnswer);
+
+  const skipBtn = document.createElement('button');
+  skipBtn.textContent = 'Saltar';
+  skipBtn.onclick = () => { nextSpeak(); };
+  actions.appendChild(skipBtn);
+
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'primary';
+  nextBtn.textContent = 'Siguiente →';
+  nextBtn.onclick = () => { nextSpeak(); };
+  actions.appendChild(nextBtn);
+
+  card.appendChild(actions);
+  wrap.appendChild(card);
+}
+
+function nextSpeak(){
+  speakIndex = Math.floor(Math.random() * speakSentences.length);
+  renderSpeak();
+}
+
 /* ---------- TABS ---------- */
 const tabVocabBtn = document.getElementById('tabVocabBtn');
 const tabListenBtn = document.getElementById('tabListenBtn');
@@ -1593,16 +2016,22 @@ const tabVocab = document.getElementById('tabVocab');
 const tabListen = document.getElementById('tabListen');
 const tabCards = document.getElementById('tabCards');
 const tabDrill = document.getElementById('tabDrill');
+const tabSpeakBtn = document.getElementById('tabSpeakBtn');
+const tabSpeak = document.getElementById('tabSpeak');
 
 function setActiveTab(btn, view){
-  [tabVocabBtn, tabListenBtn, tabCardsBtn, tabDrillBtn].forEach(b => b.classList.remove('active'));
-  [tabVocab, tabListen, tabCards, tabDrill].forEach(v => v.classList.remove('active'));
+  [tabVocabBtn, tabListenBtn, tabCardsBtn, tabDrillBtn, tabSpeakBtn].forEach(b => b.classList.remove('active'));
+  [tabVocab, tabListen, tabCards, tabDrill, tabSpeak].forEach(v => v.classList.remove('active'));
   btn.classList.add('active');
   view.classList.add('active');
 }
 
 tabVocabBtn.onclick = () => setActiveTab(tabVocabBtn, tabVocab);
 tabListenBtn.onclick = () => setActiveTab(tabListenBtn, tabListen);
+tabSpeakBtn.onclick = () => {
+  setActiveTab(tabSpeakBtn, tabSpeak);
+  nextSpeak();
+};
 tabDrillBtn.onclick = async () => {
   setActiveTab(tabDrillBtn, tabDrill);
   if(!drillProgressLoaded) await loadDrillProgress();
