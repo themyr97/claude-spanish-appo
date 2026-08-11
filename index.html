@@ -109,22 +109,30 @@
   }
 
   nav.tabs{
-    display:flex;
-    justify-content:center;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
     gap:0.5rem;
     margin-top:1.4rem;
+    max-width:26rem;
+    margin-left:auto;
+    margin-right:auto;
+    padding:0 0.25rem;
   }
 
   nav.tabs button{
     font-family:'Source Sans 3', sans-serif;
     font-weight:600;
-    font-size:0.92rem;
-    padding:0.55rem 1.3rem;
+    font-size:0.9rem;
+    padding:0.6rem 0.5rem;
     border-radius:999px;
     border:1px solid var(--line);
     background:white;
     color:var(--ink);
     cursor:pointer;
+    width:100%;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
   }
 
   nav.tabs button.active{
@@ -704,7 +712,7 @@
   <h1>Español</h1>
   <p>Every word from your lessons — hear it spoken, check verb conjugations, and practice listening.</p>
   <p class="voice-note" id="voiceNote">Your browser doesn't support spoken audio — try Chrome, Edge, or Safari.</p>
-  <div class="version-badge" id="versionBadge">v5</div>
+  <div class="version-badge" id="versionBadge">v6</div>
   <nav class="tabs">
     <button id="tabVocabBtn" class="active">Vocabulario</button>
     <button id="tabListenBtn">Escucha</button>
