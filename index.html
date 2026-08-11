@@ -914,7 +914,7 @@
   <h1>Español</h1>
   <p>Every word from your lessons — hear it spoken, check verb conjugations, and practice listening.</p>
   <p class="voice-note" id="voiceNote">Your browser doesn't support spoken audio — try Chrome, Edge, or Safari.</p>
-  <div class="version-badge" id="versionBadge">v10</div>
+  <div class="version-badge" id="versionBadge">v11</div>
   <nav class="tabs">
     <button id="tabVocabBtn" class="active">Vocabulario</button>
     <button id="tabListenBtn">Escucha</button>
@@ -1918,6 +1918,7 @@ let speechLog = [];
 let noResultTimer = null;
 let recognitionLang = 'es-MX';
 let recognitionStartedAt = null;
+let warmupTimer = null;
 
 function logSpeech(msg){
   const stamp = new Date().toLocaleTimeString();
@@ -1968,19 +1969,17 @@ async function startListening(){
     return;
   }
 
-  // Permission must be settled BEFORE the recognizer runs. Starting without it
-  // let Safari open an audio stream that only ever delivered silence.
-  if(!micPermissionGranted){
-    if(hint) hint.textContent = 'Pidiendo permiso del micrófono...';
-    const ok = await ensureMicPermission();
-    renderSpeechDiagnostics();
-    if(!ok){
-      if(hint) hint.textContent = 'Sin permiso de micrófono. Revisa Ajustes → Safari → Micrófono.';
-      return;
-    }
-    if(hint) hint.textContent = 'Permiso concedido — toca el micrófono otra vez para hablar.';
-    logSpeech('Permiso resuelto. Segundo toque necesario (gesto de usuario).');
-    return;
+  // Deliberately no getUserMedia here. On iOS it seizes the audio session, and a
+  // held audio stream is a known way to leave SpeechRecognition receiving silence.
+  // SpeechRecognition requests microphone access on its own.
+
+  // Any text-to-speech still playing (or recently played) contends for the same
+  // audio session and silently kills recognition — no error, no result. Cancel it
+  // and give WebKit a moment to release the session before starting.
+  if(window.speechSynthesis && (window.speechSynthesis.speaking || window.speechSynthesis.pending)){
+    window.speechSynthesis.cancel();
+    logSpeech('TTS cancelado antes de escuchar (conflicto de audio).');
+    await new Promise(r => setTimeout(r, 350));
   }
 
   const Rec = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -2011,14 +2010,29 @@ async function startListening(){
     recognizing = true;
     gotResult = false;
     if(micBtn) micBtn.classList.add('listening');
-    if(hint) hint.textContent = 'Escuchando... habla ahora';
     logSpeech('Reconocimiento iniciado (lang: ' + recognition.lang + ').');
+
+    // WebKit discards roughly the first couple of seconds of audio after start,
+    // so count the user in rather than letting them speak into the dead window.
+    let warmup = 2;
+    if(hint) hint.textContent = 'Espera... ' + warmup;
+    clearInterval(warmupTimer);
+    warmupTimer = setInterval(() => {
+      warmup--;
+      if(warmup > 0){
+        if(hint) hint.textContent = 'Espera... ' + warmup;
+      } else {
+        clearInterval(warmupTimer);
+        if(hint) hint.textContent = '🎤 ¡Habla ahora!';
+      }
+    }, 1000);
+
     clearTimeout(noResultTimer);
     noResultTimer = setTimeout(() => {
       if(recognizing && !gotResult){
-        logSpeech('Sin resultado tras 12s — posible bloqueo de dictado.');
+        logSpeech('Sin resultado tras 15s — posible conflicto de sesión de audio.');
       }
-    }, 12000);
+    }, 15000);
   };
 
   recognition.onresult = (event) => {
@@ -2073,8 +2087,11 @@ async function startListening(){
     if(!gotResult && parseFloat(secs) < 3){
       logSpeech('Terminó muy rápido — el servicio de dictado cerró la sesión de inmediato.');
     }
-    if(hint && hint.textContent === 'Escuchando... habla ahora'){
-      hint.textContent = gotResult ? 'Toca el micrófono para hablar' : 'No llegó ningún resultado. Revisa que el dictado esté activado.';
+    clearInterval(warmupTimer);
+    if(hint && !gotResult){
+      hint.textContent = 'No llegó resultado. Toca otra vez y espera la cuenta antes de hablar.';
+    } else if(hint && gotResult){
+      hint.textContent = 'Toca el micrófono para hablar';
     }
   };
 
@@ -2117,7 +2134,8 @@ function renderSpeechDiagnostics(){
   add('Idioma de reconocimiento', true, recognitionLang);
 
   el.innerHTML = rows.join('') +
-    '<div style="margin-top:0.7rem; font-size:0.76rem;">Si el modo es «pantalla de inicio» y el micrófono falla, ábrela en Safari: iOS bloquea el micrófono en apps instaladas en algunos casos. Comprueba también Ajustes → General → Teclado → Dictado (debe estar activado) y Ajustes → Safari → Micrófono.</div>' +
+    '<div style="margin-top:0.7rem; font-size:0.76rem;"><strong>Si no llega ningún resultado:</strong> espera la cuenta atrás antes de hablar — WebKit descarta los primeros segundos. Evita reproducir audio justo antes de grabar; comparten la misma sesión de audio y el conflicto corta el reconocimiento sin dar error. Comprueba Ajustes → General → Teclado → Dictado y Ajustes → Safari → Micrófono. Si sigue fallando, recarga la página: la sesión de audio se reinicia.</div>' +
+    '<div style="margin-top:0.5rem; font-size:0.74rem; color:#b0553a;">Nota: «Probar micrófono» usa getUserMedia, que ocupa la sesión de audio. Si lo usas y luego falla el reconocimiento, recarga la página.</div>' +
     '<button class="diag-test" id="micTestBtn">Probar micrófono</button>' +
     '<div id="speechLog"></div>';
 
@@ -2222,7 +2240,11 @@ function renderSpeak(){
   playAnswer.id = 'speakPlayAnswer';
   playAnswer.textContent = '🔊 Oír la respuesta';
   playAnswer.style.display = 'none';
-  playAnswer.onclick = () => speak(item.es[0], 0.9);
+  playAnswer.onclick = () => {
+    speak(item.es[0], 0.9);
+    const h = document.getElementById('micHint');
+    if(h) h.textContent = 'Tras escuchar el audio, espera un segundo antes de usar el micrófono.';
+  };
   actions.appendChild(playAnswer);
 
   const skipBtn = document.createElement('button');
