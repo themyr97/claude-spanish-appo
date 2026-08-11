@@ -22,6 +22,8 @@ Personal Spanish learning PWA. **Live app:** https://themyr97.github.io/claude-s
 
 - **v7** — Added **speaking practice** ("Hablar" tab): shows an English sentence, you say it aloud in Spanish via the microphone (Web Speech API). Matching is accent- and punctuation-tolerant and accepts the sentence with or without the subject pronoun. Checks all recognizer alternatives and scores the best one. Falls back to a text input where speech recognition is unavailable. Sentence bank drawn from the lesson exercises; extend `speakSentences` as new material is covered.
 
+- **v8** — **Speech recognition fixes.** v7 never requested microphone permission, so iOS often showed no prompt at all and the mic silently did nothing; v8 calls `getUserMedia` to trigger the permission dialog. Removed `maxAlternatives = 3` (unreliable in WebKit). Added handlers for `onaudiostart`, `onspeechstart`, `onnomatch` and specific messages per error code, plus a 12-second no-result watchdog. New collapsible **microphone diagnostics** panel reports API availability, secure context, standalone-vs-browser mode and permission state, with a live event log and a "Probar micrófono" test button. Note: iOS requires Dictation enabled (Settings → General → Keyboard → Dictation) and may block the microphone entirely for home-screen-installed PWAs.
+
 ## Deploy checklist
 
 When pushing a new version, always bump `APP_VERSION` in `service-worker.js` and the badge in `index.html`. The service worker file must change byte-wise, or browsers will not install the new version.
