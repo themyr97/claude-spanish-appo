@@ -12,6 +12,11 @@ Personal Spanish learning PWA. **Live app:** https://themyr97.github.io/claude-s
 
 - **v1** — Initial release: vocabulary browser with audio pronunciation, verb conjugation tables (present + preterite, Latin American forms with vosotros as reference), listening exercises, flashcards (with direction toggle, difficulty tracking, undo), offline PWA support, progress saved to localStorage.
 - **v2** — Default pronunciation voice set to Mónica (Mexican Spanish), when available in the browser/device voice list. Falls back to any es-MX voice, then the first available Spanish voice.
+- **v3** — **Update mechanism fixed.** v1/v2 used a cache-first service worker, which meant an installed home-screen app kept serving the originally cached version and never picked up new deploys. v3 switches HTML/navigation to network-first (cache is now only an offline fallback), uses a versioned cache name that purges old caches on activation, actively checks for updates on launch and when the app returns to the foreground, and shows an "Actualizar" banner when a new version is ready. A version badge in the header shows which version is running.
+
+## Deploy checklist
+
+When pushing a new version, always bump `APP_VERSION` in `service-worker.js` and the badge in `index.html`. The service worker file must change byte-wise, or browsers will not install the new version.
 
 ## Rolling back
 
