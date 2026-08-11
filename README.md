@@ -32,6 +32,8 @@ Personal Spanish learning PWA. **Live app:** https://themyr97.github.io/claude-s
 
 - **v12** — Switching tabs no longer rebuilds the **Hablar** and **Conjugar** views. Previously reopening Hablar drew a new random sentence and wiped any typed answer and feedback; both views are now built once on first open and keep their state, since the hidden panel retains its DOM.
 
+- **v13** — Restaurant vocabulary added: 16 nouns, 11 verbs, 7 adjectives, plus two new phrase categories separating the **casual register** (street stalls: 'me da', 'me regala', '¿con todo?') from the **sit-down register** ('quisiera', '¿qué recomienda?'). 18 new speaking sentences and 9 new listening sentences. Irregular conjugations added for **pedir, traer, recomendar, pensar, encontrar** — without these the drill generated non-words ('pedo', 'trao', 'penso', 'recomendo', 'encontro'); all forms re-audited after the fix. Removed a duplicate 'comprar' entry.
+
 ## Deploy checklist
 
 When pushing a new version, always bump `APP_VERSION` in `service-worker.js` and the badge in `index.html`. The service worker file must change byte-wise, or browsers will not install the new version.
