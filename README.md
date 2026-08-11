@@ -16,6 +16,8 @@ Personal Spanish learning PWA. **Live app:** https://themyr97.github.io/claude-s
 
 - **v4** — Nouns now display with their definite article (el/la) and a colour-coded m/f badge; audio speaks the article together with the noun, and flashcards use the article form. Added remaining lesson nouns (oficina, jefe/jefa, reunión, correo, teléfono, año, señor). Special case noted for "el agua" (feminine but takes el in the singular).
 
+- **v5** — Added **conjugation drill** ("Conjugar" tab): prompts a random verb + pronoun + tense, you type the form. Distinguishes fully correct, correct-but-missing-accent, and wrong; tracks which forms you miss most and lists them. Filters for present/preterite/both and all-verbs/irregulars-only. Latin American pronoun set (vosotros excluded from drilling). *gustar* excluded from the drill since its everyday use is "me gusta/gustan", not a full personal conjugation. Conjugation engine unit-tested against 31 known forms.
+
 ## Deploy checklist
 
 When pushing a new version, always bump `APP_VERSION` in `service-worker.js` and the badge in `index.html`. The service worker file must change byte-wise, or browsers will not install the new version.
