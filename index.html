@@ -914,7 +914,7 @@
   <h1>Español</h1>
   <p>Every word from your lessons — hear it spoken, check verb conjugations, and practice listening.</p>
   <p class="voice-note" id="voiceNote">Your browser doesn't support spoken audio — try Chrome, Edge, or Safari.</p>
-  <div class="version-badge" id="versionBadge">v9</div>
+  <div class="version-badge" id="versionBadge">v10</div>
   <nav class="tabs">
     <button id="tabVocabBtn" class="active">Vocabulario</button>
     <button id="tabListenBtn">Escucha</button>
@@ -1917,6 +1917,7 @@ let micPermissionGranted = false;
 let speechLog = [];
 let noResultTimer = null;
 let recognitionLang = 'es-MX';
+let recognitionStartedAt = null;
 
 function logSpeech(msg){
   const stamp = new Date().toLocaleTimeString();
@@ -1952,7 +1953,7 @@ async function ensureMicPermission(){
   }
 }
 
-function startListening(){
+async function startListening(){
   const micBtn = document.getElementById('micBtn');
   const hint = document.getElementById('micHint');
 
@@ -1964,6 +1965,21 @@ function startListening(){
 
   if(recognizing && recognition){
     try{ recognition.stop(); }catch(e){}
+    return;
+  }
+
+  // Permission must be settled BEFORE the recognizer runs. Starting without it
+  // let Safari open an audio stream that only ever delivered silence.
+  if(!micPermissionGranted){
+    if(hint) hint.textContent = 'Pidiendo permiso del micrófono...';
+    const ok = await ensureMicPermission();
+    renderSpeechDiagnostics();
+    if(!ok){
+      if(hint) hint.textContent = 'Sin permiso de micrófono. Revisa Ajustes → Safari → Micrófono.';
+      return;
+    }
+    if(hint) hint.textContent = 'Permiso concedido — toca el micrófono otra vez para hablar.';
+    logSpeech('Permiso resuelto. Segundo toque necesario (gesto de usuario).');
     return;
   }
 
@@ -2052,12 +2068,17 @@ function startListening(){
     recognizing = false;
     clearTimeout(noResultTimer);
     if(micBtn) micBtn.classList.remove('listening');
-    logSpeech('Reconocimiento terminado' + (gotResult ? '.' : ' sin resultado.'));
+    const secs = recognitionStartedAt ? ((Date.now() - recognitionStartedAt)/1000).toFixed(1) : '?';
+    logSpeech('Reconocimiento terminado tras ' + secs + 's' + (gotResult ? '.' : ' sin resultado.'));
+    if(!gotResult && parseFloat(secs) < 3){
+      logSpeech('Terminó muy rápido — el servicio de dictado cerró la sesión de inmediato.');
+    }
     if(hint && hint.textContent === 'Escuchando... habla ahora'){
       hint.textContent = gotResult ? 'Toca el micrófono para hablar' : 'No llegó ningún resultado. Revisa que el dictado esté activado.';
     }
   };
 
+  recognitionStartedAt = Date.now();
   try{
     recognition.start();
   }catch(e){
