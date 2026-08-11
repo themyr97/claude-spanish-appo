@@ -850,6 +850,57 @@
     color:#5a5a4e;
     margin-bottom:1rem;
   }
+  .speech-diag{
+    max-width:460px;
+    margin:1.2rem auto 0 auto;
+    border:1px solid var(--line);
+    border-radius:10px;
+    background:white;
+    overflow:hidden;
+  }
+  .speech-diag summary{
+    cursor:pointer;
+    padding:0.7rem 1rem;
+    font-size:0.82rem;
+    font-weight:600;
+    color:var(--sage-dark);
+    list-style:none;
+  }
+  .speech-diag summary::-webkit-details-marker{ display:none; }
+  .speech-diag summary::before{ content:'\25B8  '; }
+  .speech-diag[open] summary::before{ content:'\25BE  '; }
+  .speech-diag .diag-body{
+    padding:0 1rem 0.9rem 1rem;
+    font-size:0.78rem;
+    color:#5a5a4e;
+    line-height:1.5;
+  }
+  .diag-row{ display:flex; justify-content:space-between; gap:0.6rem; padding:0.2rem 0; border-top:1px solid var(--paper-2); }
+  .diag-row span:last-child{ font-weight:600; text-align:right; }
+  .diag-ok{ color:#3d5643; }
+  .diag-bad{ color:#b0553a; }
+  #speechLog{
+    margin-top:0.6rem;
+    font-family:ui-monospace, monospace;
+    font-size:0.7rem;
+    color:#767666;
+    max-height:9rem;
+    overflow-y:auto;
+  }
+  #speechLog div{ padding:0.12rem 0; border-top:1px dotted var(--paper-2); }
+  .diag-test{
+    margin-top:0.7rem;
+    padding:0.5rem 1rem;
+    border-radius:999px;
+    border:1px solid var(--sage);
+    background:white;
+    color:var(--sage-dark);
+    font-weight:600;
+    font-size:0.8rem;
+    cursor:pointer;
+    font-family:'Source Sans 3', sans-serif;
+  }
+
 
   @media (max-width:480px){
     .cards{ grid-template-columns:1fr; }
@@ -863,7 +914,7 @@
   <h1>Español</h1>
   <p>Every word from your lessons — hear it spoken, check verb conjugations, and practice listening.</p>
   <p class="voice-note" id="voiceNote">Your browser doesn't support spoken audio — try Chrome, Edge, or Safari.</p>
-  <div class="version-badge" id="versionBadge">v7</div>
+  <div class="version-badge" id="versionBadge">v8</div>
   <nav class="tabs">
     <button id="tabVocabBtn" class="active">Vocabulario</button>
     <button id="tabListenBtn">Escucha</button>
@@ -1859,34 +1910,104 @@ function evaluateSpeak(heard){
   if(playBtn) playBtn.style.display = 'inline-block';
 }
 
+let micPermissionGranted = false;
+let speechLog = [];
+let noResultTimer = null;
+
+function logSpeech(msg){
+  const stamp = new Date().toLocaleTimeString();
+  speechLog.unshift(stamp + ' — ' + msg);
+  speechLog = speechLog.slice(0, 8);
+  const el = document.getElementById('speechLog');
+  if(el) el.innerHTML = speechLog.map(l => '<div>' + l + '</div>').join('');
+}
+
+function isStandalone(){
+  return (window.navigator.standalone === true) ||
+         (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
+}
+
+// iOS often will not surface a microphone prompt for SpeechRecognition alone.
+// Explicitly requesting the audio stream first triggers the permission dialog,
+// then we release the track immediately so it does not hold the mic open.
+async function ensureMicPermission(){
+  if(micPermissionGranted) return true;
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    logSpeech('getUserMedia no disponible en este navegador.');
+    return false;
+  }
+  try{
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    stream.getTracks().forEach(t => t.stop());
+    micPermissionGranted = true;
+    logSpeech('Permiso de micrófono concedido.');
+    return true;
+  }catch(e){
+    logSpeech('Permiso denegado o no disponible: ' + (e && e.name ? e.name : e));
+    return false;
+  }
+}
+
 function startListening(){
-  if(!speechAvailable()) return;
-  const Rec = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if(recognizing && recognition){ recognition.stop(); return; }
-
-  recognition = new Rec();
-  const voice = spanishVoices.find(v => v.name === (voiceSelect ? voiceSelect.value : ''));
-  recognition.lang = (voice && voice.lang) ? voice.lang : 'es-MX';
-  recognition.interimResults = false;
-  recognition.maxAlternatives = 3;
-  recognition.continuous = false;
-
   const micBtn = document.getElementById('micBtn');
   const hint = document.getElementById('micHint');
 
+  if(!speechAvailable()){
+    if(hint) hint.textContent = 'Reconocimiento de voz no disponible — escribe tu respuesta.';
+    logSpeech('SpeechRecognition no existe en window.');
+    return;
+  }
+
+  if(recognizing && recognition){
+    try{ recognition.stop(); }catch(e){}
+    return;
+  }
+
+  const Rec = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  // Build and start synchronously inside the user gesture — iOS rejects
+  // recognition.start() if it is deferred past the tap that triggered it.
+  try{
+    recognition = new Rec();
+  }catch(e){
+    if(hint) hint.textContent = 'No se pudo crear el reconocedor.';
+    logSpeech('Constructor falló: ' + e.message);
+    return;
+  }
+
+  const voice = spanishVoices.find(v => v.name === (voiceSelect ? voiceSelect.value : ''));
+  recognition.lang = (voice && voice.lang) ? voice.lang : 'es-MX';
+  recognition.interimResults = false;
+  recognition.continuous = false;
+  // maxAlternatives above 1 is unreliable in WebKit; leave it at the default.
+
+  let gotResult = false;
+
+  recognition.onaudiostart = () => logSpeech('Audio capturado (onaudiostart).');
+  recognition.onspeechstart = () => logSpeech('Voz detectada (onspeechstart).');
+
   recognition.onstart = () => {
     recognizing = true;
+    gotResult = false;
     if(micBtn) micBtn.classList.add('listening');
     if(hint) hint.textContent = 'Escuchando... habla ahora';
+    logSpeech('Reconocimiento iniciado (lang: ' + recognition.lang + ').');
+    clearTimeout(noResultTimer);
+    noResultTimer = setTimeout(() => {
+      if(recognizing && !gotResult){
+        logSpeech('Sin resultado tras 12s — posible bloqueo de dictado.');
+      }
+    }, 12000);
   };
 
   recognition.onresult = (event) => {
+    gotResult = true;
+    clearTimeout(noResultTimer);
+    const res = event.results[0];
     const alternatives = [];
-    for(let i = 0; i < event.results[0].length; i++){
-      alternatives.push(event.results[0][i].transcript);
-    }
-    // Pick whichever alternative scores best against the expected answer,
-    // since recognizers often rank a near-miss above the correct phrase.
+    for(let i = 0; i < res.length; i++) alternatives.push(res[i].transcript);
+    logSpeech('Resultado: "' + alternatives[0] + '"');
+
     const item = speakSentences[speakIndex];
     let bestAlt = alternatives[0], bestRatio = -1;
     alternatives.forEach(alt => {
@@ -1896,20 +2017,94 @@ function startListening(){
     evaluateSpeak(bestAlt);
   };
 
+  recognition.onnomatch = () => {
+    logSpeech('onnomatch — no se reconoció ninguna frase.');
+    if(hint) hint.textContent = 'No se entendió. Inténtalo otra vez.';
+  };
+
   recognition.onerror = (e) => {
-    if(hint) hint.textContent = e.error === 'not-allowed'
-      ? 'Micrófono bloqueado — permite el acceso en los ajustes del navegador.'
-      : 'Error de reconocimiento: ' + e.error + '. Usa el campo de texto abajo.';
+    clearTimeout(noResultTimer);
+    const code = e && e.error ? e.error : 'desconocido';
+    logSpeech('ERROR: ' + code);
+    let msg;
+    if(code === 'not-allowed' || code === 'service-not-allowed'){
+      msg = isStandalone()
+        ? 'Micrófono bloqueado. En iPhone esto suele fallar cuando la app se abre desde la pantalla de inicio — prueba abrirla en Safari.'
+        : 'Micrófono bloqueado. Permite el acceso en Ajustes → Safari → Micrófono.';
+    } else if(code === 'no-speech'){
+      msg = 'No se detectó voz. Habla más cerca del micrófono.';
+    } else if(code === 'network'){
+      msg = 'Error de red — el reconocimiento necesita conexión a internet.';
+    } else if(code === 'aborted'){
+      msg = 'Reconocimiento cancelado.';
+    } else {
+      msg = 'Error: ' + code + '. Usa el campo de texto abajo.';
+    }
+    if(hint) hint.textContent = msg;
   };
 
   recognition.onend = () => {
     recognizing = false;
+    clearTimeout(noResultTimer);
     if(micBtn) micBtn.classList.remove('listening');
-    if(hint && hint.textContent === 'Escuchando... habla ahora') hint.textContent = 'Toca el micrófono para hablar';
+    logSpeech('Reconocimiento terminado' + (gotResult ? '.' : ' sin resultado.'));
+    if(hint && hint.textContent === 'Escuchando... habla ahora'){
+      hint.textContent = gotResult ? 'Toca el micrófono para hablar' : 'No llegó ningún resultado. Revisa que el dictado esté activado.';
+    }
   };
 
-  try{ recognition.start(); }
-  catch(e){ if(hint) hint.textContent = 'No se pudo iniciar el micrófono.'; }
+  try{
+    recognition.start();
+  }catch(e){
+    logSpeech('start() falló: ' + e.message);
+    if(hint) hint.textContent = 'No se pudo iniciar el micrófono: ' + e.message;
+    return;
+  }
+
+  // Request permission in parallel — harmless once already granted, and on the
+  // first tap it is what makes iOS actually show the microphone dialog.
+  ensureMicPermission();
+}
+
+
+function renderSpeechDiagnostics(){
+  const el = document.getElementById('diagBody');
+  if(!el) return;
+  const rows = [];
+  const add = (label, ok, text) => rows.push(
+    '<div class="diag-row"><span>'+label+'</span><span class="'+(ok?'diag-ok':'diag-bad')+'">'+text+'</span></div>'
+  );
+
+  const hasAPI = speechAvailable();
+  add('SpeechRecognition API', hasAPI, hasAPI ? 'disponible' : 'no disponible');
+
+  const hasGUM = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+  add('getUserMedia', hasGUM, hasGUM ? 'disponible' : 'no disponible');
+
+  const secure = window.isSecureContext;
+  add('Contexto seguro (HTTPS)', secure, secure ? 'sí' : 'no');
+
+  const standalone = isStandalone();
+  add('Modo', !standalone, standalone ? 'pantalla de inicio' : 'navegador');
+
+  add('Permiso de micrófono', micPermissionGranted, micPermissionGranted ? 'concedido' : 'aún no concedido');
+
+  el.innerHTML = rows.join('') +
+    '<div style="margin-top:0.7rem; font-size:0.76rem;">Si el modo es «pantalla de inicio» y el micrófono falla, ábrela en Safari: iOS bloquea el micrófono en apps instaladas en algunos casos. Comprueba también Ajustes → General → Teclado → Dictado (debe estar activado) y Ajustes → Safari → Micrófono.</div>' +
+    '<button class="diag-test" id="micTestBtn">Probar micrófono</button>' +
+    '<div id="speechLog"></div>';
+
+  const testBtn = document.getElementById('micTestBtn');
+  if(testBtn){
+    testBtn.onclick = async () => {
+      logSpeech('Probando permiso de micrófono...');
+      const ok = await ensureMicPermission();
+      logSpeech(ok ? 'Prueba OK — el micrófono responde.' : 'Prueba fallida — sin acceso al micrófono.');
+      renderSpeechDiagnostics();
+    };
+  }
+  const logEl = document.getElementById('speechLog');
+  if(logEl) logEl.innerHTML = speechLog.map(l => '<div>' + l + '</div>').join('');
 }
 
 function renderSpeak(){
@@ -2000,6 +2195,12 @@ function renderSpeak(){
 
   card.appendChild(actions);
   wrap.appendChild(card);
+
+  const diag = document.createElement('details');
+  diag.className = 'speech-diag';
+  diag.innerHTML = '<summary>Diagnóstico del micrófono</summary><div class="diag-body" id="diagBody"></div>';
+  wrap.appendChild(diag);
+  renderSpeechDiagnostics();
 }
 
 function nextSpeak(){
