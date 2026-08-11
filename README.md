@@ -30,6 +30,8 @@ Personal Spanish learning PWA. **Live app:** https://themyr97.github.io/claude-s
 
 - **v11** — **Speech recognition, root causes addressed.** (a) Removed the `getUserMedia` permission gate added in v8–v10: on iOS it seizes the audio session, a documented way to leave SpeechRecognition receiving silence. SpeechRecognition now requests the microphone itself. (b) Text-to-speech is cancelled and given 350ms to release the audio session before listening starts — TTS and recognition contend for the same session, and the conflict kills recognition with no error and no result, which matches the observed `onaudiostart` without `onspeechstart`. (c) Added a 2-second warm-up countdown before "¡Habla ahora!", since WebKit discards the first seconds of audio after start. (d) Diagnostics now warn that the mic-test button itself disturbs the audio session.
 
+- **v12** — Switching tabs no longer rebuilds the **Hablar** and **Conjugar** views. Previously reopening Hablar drew a new random sentence and wiped any typed answer and feedback; both views are now built once on first open and keep their state, since the hidden panel retains its DOM.
+
 ## Deploy checklist
 
 When pushing a new version, always bump `APP_VERSION` in `service-worker.js` and the badge in `index.html`. The service worker file must change byte-wise, or browsers will not install the new version.
