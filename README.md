@@ -28,6 +28,8 @@ Personal Spanish learning PWA. **Live app:** https://themyr97.github.io/claude-s
 
 - **v10** — Microphone permission is now resolved **before** recognition starts (first tap requests permission, second tap listens). Previously recognition could start with permission still ungranted, opening an audio stream that only ever delivered silence — `onaudiostart` fired but `onspeechstart` never did. Session duration is logged on end, with a specific note when the dictation service closes the session in under 3 seconds.
 
+- **v11** — **Speech recognition, root causes addressed.** (a) Removed the `getUserMedia` permission gate added in v8–v10: on iOS it seizes the audio session, a documented way to leave SpeechRecognition receiving silence. SpeechRecognition now requests the microphone itself. (b) Text-to-speech is cancelled and given 350ms to release the audio session before listening starts — TTS and recognition contend for the same session, and the conflict kills recognition with no error and no result, which matches the observed `onaudiostart` without `onspeechstart`. (c) Added a 2-second warm-up countdown before "¡Habla ahora!", since WebKit discards the first seconds of audio after start. (d) Diagnostics now warn that the mic-test button itself disturbs the audio session.
+
 ## Deploy checklist
 
 When pushing a new version, always bump `APP_VERSION` in `service-worker.js` and the badge in `index.html`. The service worker file must change byte-wise, or browsers will not install the new version.
