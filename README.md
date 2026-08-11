@@ -18,6 +18,8 @@ Personal Spanish learning PWA. **Live app:** https://themyr97.github.io/claude-s
 
 - **v5** — Added **conjugation drill** ("Conjugar" tab): prompts a random verb + pronoun + tense, you type the form. Distinguishes fully correct, correct-but-missing-accent, and wrong; tracks which forms you miss most and lists them. Filters for present/preterite/both and all-verbs/irregulars-only. Latin American pronoun set (vosotros excluded from drilling). *gustar* excluded from the drill since its everyday use is "me gusta/gustan", not a full personal conjugation. Conjugation engine unit-tested against 31 known forms.
 
+- **v6** — Navigation tabs laid out as a 3-column grid so they wrap onto a second row instead of crowding one line; all modes stay visible at once without horizontal squeezing.
+
 ## Deploy checklist
 
 When pushing a new version, always bump `APP_VERSION` in `service-worker.js` and the badge in `index.html`. The service worker file must change byte-wise, or browsers will not install the new version.
