@@ -26,6 +26,8 @@ Personal Spanish learning PWA. **Live app:** https://themyr97.github.io/claude-s
 
 - **v9** — **Correction:** the default voice was set to Mónica on the assumption it was Mexican; on Apple devices Mónica is the Spain (es-ES) voice and **Paulina** is the Mexican one. Default now prefers Paulina, then any es-MX/es-US voice, with Mónica only as a later fallback. Speech **recognition language is now its own setting** (default es-MX, selectable México/España/EE.UU.) instead of inheriting from the chosen text-to-speech voice. Removed the parallel `getUserMedia` call during recognition, which could starve the recognizer of audio on iOS. Added a prominent warning when running in home-screen (standalone) mode, where iOS commonly fires `onaudiostart` but never returns a dictation result.
 
+- **v10** — Microphone permission is now resolved **before** recognition starts (first tap requests permission, second tap listens). Previously recognition could start with permission still ungranted, opening an audio stream that only ever delivered silence — `onaudiostart` fired but `onspeechstart` never did. Session duration is logged on end, with a specific note when the dictation service closes the session in under 3 seconds.
+
 ## Deploy checklist
 
 When pushing a new version, always bump `APP_VERSION` in `service-worker.js` and the badge in `index.html`. The service worker file must change byte-wise, or browsers will not install the new version.
