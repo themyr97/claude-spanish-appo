@@ -914,7 +914,7 @@
   <h1>Español</h1>
   <p>Every word from your lessons — hear it spoken, check verb conjugations, and practice listening.</p>
   <p class="voice-note" id="voiceNote">Your browser doesn't support spoken audio — try Chrome, Edge, or Safari.</p>
-  <div class="version-badge" id="versionBadge">v12</div>
+  <div class="version-badge" id="versionBadge">v13</div>
   <nav class="tabs">
     <button id="tabVocabBtn" class="active">Vocabulario</button>
     <button id="tabListenBtn">Escucha</button>
@@ -969,7 +969,12 @@ const data = {
     ["invierno","winter","m"], ["nieve","snow","f"], ["montaña","mountain","f"], ["país","country","m"],
     ["mundo","world","m"], ["oficina","office","f"], ["jefe","boss (m.)","m"], ["jefa","boss (f.)","f"],
     ["reunión","meeting","f"], ["correo","mail / email","m"], ["teléfono","phone","m"],
-    ["año","year","m"], ["señor","sir / mister","m"]
+    ["año","year","m"], ["señor","sir / mister","m"],
+    ["carta","menu","f"], ["menú","menu","m"], ["mesero","waiter","m"], ["mesera","waitress","f"],
+    ["mesa","table","f"], ["cuenta","bill / check","f"], ["bebida","drink","f"],
+    ["plato","dish / plate","m"], ["entrada","starter / appetiser","f"], ["postre","dessert","m"],
+    ["propina","tip","f"], ["helado","ice cream","m"], ["cebolla","onion","f"],
+    ["especialidad","specialty","f"], ["botella","bottle","f"]
   ],
   "Verbs (infinitive)": [
     ["ser","to be (permanent)"], ["estar","to be (temporary)"], ["hablar","to speak"],
@@ -981,7 +986,11 @@ const data = {
     ["llegar","to arrive"], ["comprar","to buy"], ["conducir","to drive"], ["jugar","to play (sport)"],
     ["ganar","to win / earn"], ["perder","to lose"], ["empezar","to begin"],
     ["terminar","to finish"], ["bailar","to dance"], ["cantar","to sing"],
-    ["viajar","to travel"], ["gustar","to like (lit. to please)"]
+    ["viajar","to travel"], ["gustar","to like (lit. to please)"],
+    ["pedir","to order / ask for"], ["traer","to bring"], ["recomendar","to recommend"],
+    ["desear","to wish / would like"], ["aprender","to learn"], ["pensar","to think"],
+    ["acabar","to finish / to have just"], ["ayudar","to help"], ["encontrar","to find"],
+    ["esperar","to wait / to hope"], ["llamar","to call"]
   ],
   "Adjectives": [
     ["cansado","tired (m.)"], ["cansada","tired (f.)"], ["feliz","happy"],
@@ -989,7 +998,10 @@ const data = {
     ["aburrido","boring / bored"], ["listo","clever / ready"], ["malo","bad"],
     ["bueno","good"], ["rico","rich / delicious"], ["enfermo","sick"],
     ["ocupado","busy"], ["nuevo","new"], ["viejo","old"], ["grande","big"],
-    ["pequeño","small"], ["bonito","beautiful"], ["diferente","different"]
+    ["pequeño","small"], ["bonito","beautiful"], ["diferente","different"],
+    ["rico","delicious (with estar) / rich (with ser)"], ["sabroso","tasty"],
+    ["importante","important"], ["difícil","difficult"], ["fácil","easy"],
+    ["nervioso","nervous"], ["ocupado","busy"]
   ],
   "Prepositions": [
     ["a","to, at"], ["de","of, from"], ["en","in, on, at"], ["con","with"],
@@ -1005,7 +1017,32 @@ const data = {
     ["hoy","today"], ["siempre","always"], ["también","also / too"], ["pero","but"],
     ["porque","because"], ["tengo sed","I am thirsty"], ["tengo hambre","I am hungry"],
     ["el fin de semana pasado","last weekend"], ["el próximo año","next year"],
-    ["no tengo que trabajar","I don't have to work"], ["especialmente","especially"]
+    ["no tengo que trabajar","I don't have to work"], ["especialmente","especially"],
+    ["por favor","please"], ["lo siento","I'm sorry"], ["todavía no","not yet"],
+    ["muchas gracias","thank you very much"], ["de nada","you're welcome"]
+  ],
+  "Restaurant — casual (street stalls, small places)": [
+    ["Me da dos tacos, por favor","Two tacos, please (everyday polite)"],
+    ["¿Me regala un agua?","Could I get a water? (very common in Mexico/Colombia)"],
+    ["Quiero un taco de carnitas","I want a carnitas taco (direct, normal)"],
+    ["Dos de pastor","Two pastor (just naming it — the most common form)"],
+    ["¿Qué le doy?","What can I get you? (what they say to you)"],
+    ["¿Para aquí o para llevar?","For here or to go?"],
+    ["¿Con todo?","With everything? (onion and cilantro)"],
+    ["Sin cebolla, por favor","Without onion, please"],
+    ["¿Cuánto es?","How much is it?"],
+    ["para llevar","to take away"]
+  ],
+  "Restaurant — sit-down (formal register)": [
+    ["Quisiera agua, por favor","I would like water, please (polite)"],
+    ["Una mesa para dos, por favor","A table for two, please"],
+    ["¿Qué recomienda?","What do you recommend? (to one waiter, formal)"],
+    ["La cuenta, por favor","The bill, please"],
+    ["¿Ya están listos para pedir?","Are you ready to order? (what they ask you)"],
+    ["¿Qué desean tomar?","What would you like to drink? (what they ask you)"],
+    ["No quiero postre, gracias","I don't want dessert, thank you"],
+    ["Está muy rico","It's delicious (estar, not ser)"],
+    ["¿Me trae la carta, por favor?","Could you bring me the menu, please?"]
   ]
 };
 
@@ -1039,7 +1076,12 @@ const irregular = {
   "conducir": { pres:["conduzco","conduces","conduce","conducimos","conducís","conducen"], pret:["conduje","condujiste","condujo","condujimos","condujisteis","condujeron"] },
   "empezar": { pres:["empiezo","empiezas","empieza","empezamos","empezáis","empiezan"], pret:["empecé","empezaste","empezó","empezamos","empezasteis","empezaron"], note:"Stem-changing (e→ie) in present; spelling changes z→c before é in the yo preterite." },
   "jugar":  { pres:["juego","juegas","juega","jugamos","jugáis","juegan"], pret:["jugué","jugaste","jugó","jugamos","jugasteis","jugaron"], note:"Stem-changing (u→ue) in present; spelling changes g→gu before é in the yo preterite." },
-  "perder": { pres:["pierdo","pierdes","pierde","perdemos","perdéis","pierden"], pret:["perdí","perdiste","perdió","perdimos","perdisteis","perdieron"], note:"Stem-changing (e→ie) in present only — preterite is regular." }
+  "perder": { pres:["pierdo","pierdes","pierde","perdemos","perdéis","pierden"], pret:["perdí","perdiste","perdió","perdimos","perdisteis","perdieron"], note:"Stem-changing (e→ie) in present only — preterite is regular." },
+  "pedir": { pres:["pido","pides","pide","pedimos","pedís","piden"], pret:["pedí","pediste","pidió","pedimos","pedisteis","pidieron"], note:"Stem-changing (e→i). Note the preterite changes too, but only in él/ella and ellos: pidió, pidieron." },
+  "traer": { pres:["traigo","traes","trae","traemos","traéis","traen"], pret:["traje","trajiste","trajo","trajimos","trajisteis","trajeron"], note:"Irregular yo (traigo) and a j-stem preterite: traje, trajo, trajeron." },
+  "recomendar": { pres:["recomiendo","recomiendas","recomienda","recomendamos","recomendáis","recomiendan"], pret:["recomendé","recomendaste","recomendó","recomendamos","recomendasteis","recomendaron"], note:"Stem-changing (e→ie) in present only — preterite is regular." },
+  "pensar": { pres:["pienso","piensas","piensa","pensamos","pensáis","piensan"], pret:["pensé","pensaste","pensó","pensamos","pensasteis","pensaron"], note:"Stem-changing (e→ie) in present only. Pairs with the preposition en: pienso en ti." },
+  "encontrar": { pres:["encuentro","encuentras","encuentra","encontramos","encontráis","encuentran"], pret:["encontré","encontraste","encontró","encontramos","encontrasteis","encontraron"], note:"Stem-changing (o→ue) in present only — preterite is regular." }
 };
 
 function conjugate(inf){
@@ -1249,7 +1291,15 @@ const listeningExercises = [
   { es:"Este fin de semana vamos a la playa.", en:"This weekend we're going to the beach." },
   { es:"Me gustan mucho los perros.", en:"I like dogs a lot." },
   { es:"Estoy cansado, pero estoy feliz.", en:"I am tired, but I am happy." },
-  { es:"El próximo año va a ser diferente.", en:"Next year is going to be different." }
+  { es:"El próximo año va a ser diferente.", en:"Next year is going to be different." },
+  { es:"¿Para aquí o para llevar?", en:"For here or to go?" },
+  { es:"¿Qué le doy?", en:"What can I get you?" },
+  { es:"¿Ya están listos para pedir?", en:"Are you ready to order?" },
+  { es:"Les recomiendo los tacos al pastor.", en:"I recommend the pastor tacos." },
+  { es:"¿Qué desean tomar?", en:"What would you like to drink?" },
+  { es:"Una mesa para dos, por favor.", en:"A table for two, please." },
+  { es:"La cuenta, por favor.", en:"The bill, please." },
+  { es:"Sin cebolla, por favor.", en:"Without onion, please." }
 ];
 
 const exContent = document.getElementById('exContent');
@@ -1843,7 +1893,24 @@ const speakSentences = [
   { en:"I think about my family a lot.", es:["Pienso mucho en mi familia."] },
   { en:"I am going to start to study now.", es:["Voy a empezar a estudiar ahora."] },
   { en:"The meeting begins at three and finishes at five.", es:["La reunión empieza a las tres y termina a las cinco."] },
-  { en:"Yesterday, I had dinner with my family.", es:["Ayer, cené con mi familia.","Ayer cené con mi familia."] }
+  { en:"Yesterday, I had dinner with my family.", es:["Ayer, cené con mi familia.","Ayer cené con mi familia."] },
+  { en:"A table for two, please.", es:["Una mesa para dos, por favor.","Mesa para dos, por favor."] },
+  { en:"I would like water, please. (polite)", es:["Quisiera agua, por favor."] },
+  { en:"Not yet. What do you recommend?", es:["Todavía no. ¿Qué recomienda?","Todavía no, ¿qué recomienda?"] },
+  { en:"I don't want dessert, thank you.", es:["No quiero postre, gracias."] },
+  { en:"The bill, please.", es:["La cuenta, por favor."] },
+  { en:"Two tacos, please. (everyday polite)", es:["Me da dos tacos, por favor."] },
+  { en:"Could I get a water? (casual, Mexico)", es:["¿Me regala un agua?","Me regala un agua"] },
+  { en:"Without onion, please.", es:["Sin cebolla, por favor."] },
+  { en:"How much is it?", es:["¿Cuánto es?","Cuánto es"] },
+  { en:"To go, please.", es:["Para llevar, por favor."] },
+  { en:"It's delicious.", es:["Está muy rico.","Está rico."] },
+  { en:"Could you bring me the menu, please?", es:["¿Me trae la carta, por favor?","Me trae la carta por favor"] },
+  { en:"I want a carnitas taco.", es:["Quiero un taco de carnitas."] },
+  { en:"I am going to start to study now.", es:["Voy a empezar a estudiar ahora."] },
+  { en:"Can you help me study?", es:["¿Puedes ayudarme a estudiar?","Puedes ayudarme a estudiar"] },
+  { en:"I just arrived.", es:["Acabo de llegar."] },
+  { en:"I think about my family a lot.", es:["Pienso mucho en mi familia."] }
 ];
 
 let speakIndex = 0;
