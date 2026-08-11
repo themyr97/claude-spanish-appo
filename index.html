@@ -556,6 +556,142 @@
   }
   .fc-done h3{ font-family:'Fraunces', serif; color:var(--sage-dark); }
 
+
+  /* Conjugation drill */
+  .drill-setup{
+    display:flex;
+    gap:0.5rem;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-bottom:1.6rem;
+  }
+  .drill-setup button{
+    padding:0.45rem 1rem;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:white;
+    color:var(--ink);
+    font-size:0.82rem;
+    font-weight:600;
+    cursor:pointer;
+    font-family:'Source Sans 3', sans-serif;
+  }
+  .drill-setup button.on{
+    background:var(--sage-dark);
+    border-color:var(--sage-dark);
+    color:white;
+  }
+
+  .drill-card{
+    background:white;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:1.6rem 1.4rem;
+    text-align:center;
+    max-width:440px;
+    margin:0 auto 1.2rem auto;
+    box-shadow:0 4px 14px rgba(0,0,0,0.05);
+  }
+
+  .drill-tense{
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    color:var(--sage-dark);
+    font-weight:700;
+    margin-bottom:0.8rem;
+  }
+
+  .drill-verb{
+    font-family:'Fraunces', serif;
+    font-size:1.9rem;
+    font-weight:700;
+    margin-bottom:0.15rem;
+  }
+
+  .drill-meaning{
+    font-size:0.85rem;
+    color:#767666;
+    margin-bottom:1.1rem;
+  }
+
+  .drill-pronoun{
+    font-size:1.15rem;
+    font-weight:600;
+    color:var(--clay);
+    margin-bottom:1rem;
+  }
+
+  .drill-input-row{ display:flex; gap:0.5rem; }
+  .drill-input-row input{
+    flex:1;
+    padding:0.7rem 1rem;
+    border-radius:8px;
+    border:1px solid var(--line);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:1.05rem;
+    text-align:center;
+  }
+  .drill-input-row input:focus{ outline:2px solid var(--sage); outline-offset:1px; }
+  .drill-input-row button{
+    padding:0.7rem 1.2rem;
+    border-radius:8px;
+    border:none;
+    background:var(--sage-dark);
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    font-family:'Source Sans 3', sans-serif;
+  }
+
+  .drill-feedback{
+    margin-top:1rem;
+    padding:0.85rem 1rem;
+    border-radius:8px;
+    font-size:0.9rem;
+    line-height:1.5;
+    display:none;
+  }
+  .drill-feedback.show{ display:block; }
+  .drill-feedback.right{ background:#eaf3ec; border:1px solid var(--sage); }
+  .drill-feedback.accent{ background:#fdf6e6; border:1px solid #d6b45e; }
+  .drill-feedback.wrong{ background:#fbf1ec; border:1px solid var(--clay); }
+  .drill-answer{ font-weight:700; font-size:1.05rem; }
+
+  .drill-score{
+    text-align:center;
+    font-size:0.85rem;
+    color:#5a5a4e;
+    margin-bottom:1rem;
+  }
+
+  .drill-next{
+    display:block;
+    margin:1rem auto 0 auto;
+    padding:0.6rem 1.6rem;
+    border-radius:999px;
+    border:none;
+    background:var(--sage);
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    font-family:'Source Sans 3', sans-serif;
+  }
+
+  .drill-mistakes{
+    max-width:440px;
+    margin:1.5rem auto 0 auto;
+    font-size:0.82rem;
+  }
+  .drill-mistakes h4{
+    font-family:'Fraunces', serif;
+    color:var(--sage-dark);
+    margin:0 0 0.5rem 0;
+    font-size:0.95rem;
+  }
+  .drill-mistakes ul{ margin:0; padding-left:1.1rem; color:#5a5a4e; }
+  .drill-mistakes li{ margin-bottom:0.2rem; }
+
   @media (max-width:480px){
     .cards{ grid-template-columns:1fr; }
   }
@@ -568,11 +704,12 @@
   <h1>Español</h1>
   <p>Every word from your lessons — hear it spoken, check verb conjugations, and practice listening.</p>
   <p class="voice-note" id="voiceNote">Your browser doesn't support spoken audio — try Chrome, Edge, or Safari.</p>
-  <div class="version-badge" id="versionBadge">v4</div>
+  <div class="version-badge" id="versionBadge">v5</div>
   <nav class="tabs">
     <button id="tabVocabBtn" class="active">Vocabulario</button>
     <button id="tabListenBtn">Escucha</button>
     <button id="tabCardsBtn">Tarjetas</button>
+    <button id="tabDrillBtn">Conjugar</button>
   </nav>
 </header>
 
@@ -594,6 +731,10 @@
 
   <div id="tabCards" class="view">
     <div class="fc-wrap" id="fcWrap"></div>
+  </div>
+
+  <div id="tabDrill" class="view">
+    <div id="drillWrap"></div>
   </div>
 </main>
 
@@ -1228,23 +1369,237 @@ function renderFc(){
   wrap.appendChild(resetBtn);
 }
 
+
+/* ---------- CONJUGATION DRILL ---------- */
+let drillProgressLoaded = false;
+
+async function loadDrillProgress(){
+  try{
+    const raw = localStorage.getItem('conjugation-drill-progress');
+    if(raw){
+      const p = JSON.parse(raw);
+      drillMistakes = p.drillMistakes || {};
+      drillRight = p.drillRight || 0;
+      drillTotal = p.drillTotal || 0;
+    }
+  }catch(e){ drillMistakes = {}; }
+  drillProgressLoaded = true;
+}
+
+async function saveDrillProgress(){
+  try{
+    localStorage.setItem('conjugation-drill-progress',
+      JSON.stringify({ drillMistakes, drillRight, drillTotal, savedAt: Date.now() }));
+  }catch(e){ /* non-fatal: drilling still works, just unsaved */ }
+}
+
+const drillPronouns = [
+  { label:'yo', idx:0 },
+  { label:'tú', idx:1 },
+  { label:'él / ella / usted', idx:2 },
+  { label:'nosotros', idx:3 },
+  { label:'ellos / ustedes', idx:5 }
+];
+
+let drillTense = 'both';   // 'pres' | 'pret' | 'both'
+let drillScope = 'all';    // 'all' | 'irregular'
+let drillCurrent = null;
+let drillRight = 0;
+let drillTotal = 0;
+let drillMistakes = {};    // "infinitive|pronoun|tense" -> count
+
+function stripAccents(s){
+  return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+}
+
+function drillVerbPool(){
+  const verbs = data['Verbs (infinitive)'] || [];
+  // gustar is excluded: its everyday use is "me gusta / me gustan", not a full
+  // personal conjugation, so drilling "yo gusto" would teach the wrong pattern.
+  let pool = verbs.filter(([es]) => es !== 'gustar');
+  if(drillScope === 'irregular'){
+    pool = pool.filter(([es]) => irregular[es]);
+  }
+  return pool;
+}
+
+function nextDrill(){
+  const pool = drillVerbPool();
+  if(pool.length === 0){ return; }
+  const [inf, meaning] = pool[Math.floor(Math.random()*pool.length)];
+  const pron = drillPronouns[Math.floor(Math.random()*drillPronouns.length)];
+  let tense = drillTense;
+  if(tense === 'both') tense = Math.random() < 0.5 ? 'pres' : 'pret';
+  const conj = conjugate(inf);
+  if(!conj){ nextDrill(); return; }
+  drillCurrent = { inf, meaning, pron, tense, answer: conj[tense][pron.idx] };
+  renderDrill();
+}
+
+function checkDrill(value){
+  if(!drillCurrent) return;
+  const given = value.trim();
+  const answer = drillCurrent.answer;
+  const fbEl = document.getElementById('drillFeedback');
+  if(!fbEl) return;
+
+  drillTotal++;
+  fbEl.className = 'drill-feedback show';
+
+  if(given.toLowerCase() === answer.toLowerCase()){
+    drillRight++;
+    fbEl.classList.add('right');
+    fbEl.innerHTML = '✅ ¡Correcto! <span class="drill-answer">'+answer+'</span>';
+  } else if(stripAccents(given) === stripAccents(answer)){
+    fbEl.classList.add('accent');
+    fbEl.innerHTML = '⚠️ Casi — solo falta el acento: <span class="drill-answer">'+answer+'</span>' +
+      '<div style="margin-top:0.3rem; font-size:0.82rem;">Accents are part of the spelling in Spanish — they mark which syllable is stressed, and sometimes distinguish tenses (hablo vs. habló).</div>';
+    const key = drillCurrent.inf+'|'+drillCurrent.pron.label+'|'+drillCurrent.tense;
+    drillMistakes[key] = (drillMistakes[key]||0)+1;
+  } else {
+    fbEl.classList.add('wrong');
+    fbEl.innerHTML = '📝 No exactamente. La forma correcta es <span class="drill-answer">'+answer+'</span>' +
+      '<div style="margin-top:0.3rem; font-size:0.82rem;">Tu respuesta: '+(given || '(vacío)')+'</div>';
+    const key = drillCurrent.inf+'|'+drillCurrent.pron.label+'|'+drillCurrent.tense;
+    drillMistakes[key] = (drillMistakes[key]||0)+1;
+  }
+
+  saveDrillProgress();
+  const scoreEl = document.getElementById('drillScore');
+  if(scoreEl) scoreEl.textContent = drillRight + ' de ' + drillTotal + ' correctas';
+  const nextBtn = document.getElementById('drillNext');
+  if(nextBtn) nextBtn.style.display = 'block';
+  const speakBtn = document.getElementById('drillSpeak');
+  if(speakBtn) speakBtn.style.display = 'inline-flex';
+}
+
+function renderDrill(){
+  const wrap = document.getElementById('drillWrap');
+  if(!wrap) return;
+  wrap.innerHTML = '';
+
+  const setup = document.createElement('div');
+  setup.className = 'drill-setup';
+  const opts = [
+    { label:'Presente', v:'pres', kind:'tense' },
+    { label:'Pretérito', v:'pret', kind:'tense' },
+    { label:'Ambos', v:'both', kind:'tense' },
+    { label:'Todos los verbos', v:'all', kind:'scope' },
+    { label:'Solo irregulares', v:'irregular', kind:'scope' }
+  ];
+  opts.forEach(o => {
+    const b = document.createElement('button');
+    b.textContent = o.label;
+    const active = o.kind === 'tense' ? drillTense === o.v : drillScope === o.v;
+    if(active) b.classList.add('on');
+    b.onclick = () => {
+      if(o.kind === 'tense') drillTense = o.v; else drillScope = o.v;
+      nextDrill();
+    };
+    setup.appendChild(b);
+  });
+  wrap.appendChild(setup);
+
+  const score = document.createElement('div');
+  score.className = 'drill-score';
+  score.id = 'drillScore';
+  score.textContent = drillTotal > 0 ? drillRight + ' de ' + drillTotal + ' correctas' : 'Escribe la forma correcta del verbo.';
+  wrap.appendChild(score);
+
+  if(!drillCurrent){ return; }
+
+  const card = document.createElement('div');
+  card.className = 'drill-card';
+
+  const tenseLabel = drillCurrent.tense === 'pres' ? 'Presente' : 'Pretérito (pasado)';
+  card.innerHTML =
+    '<div class="drill-tense">'+tenseLabel+'</div>' +
+    '<div class="drill-verb">'+drillCurrent.inf+'</div>' +
+    '<div class="drill-meaning">'+drillCurrent.meaning+'</div>' +
+    '<div class="drill-pronoun">'+drillCurrent.pron.label+' ___</div>';
+
+  const row = document.createElement('div');
+  row.className = 'drill-input-row';
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.autocapitalize = 'none';
+  input.autocomplete = 'off';
+  input.spellcheck = false;
+  input.placeholder = 'tu respuesta...';
+  const btn = document.createElement('button');
+  btn.textContent = 'Comprobar';
+  btn.onclick = () => checkDrill(input.value);
+  input.addEventListener('keydown', e => { if(e.key === 'Enter') checkDrill(input.value); });
+  row.appendChild(input);
+  row.appendChild(btn);
+  card.appendChild(row);
+
+  const fb = document.createElement('div');
+  fb.className = 'drill-feedback';
+  fb.id = 'drillFeedback';
+  card.appendChild(fb);
+
+  const speakBtn = document.createElement('button');
+  speakBtn.className = 'icon-btn';
+  speakBtn.id = 'drillSpeak';
+  speakBtn.style.display = 'none';
+  speakBtn.style.margin = '0.9rem auto 0 auto';
+  speakBtn.innerHTML = playIconSVG();
+  speakBtn.onclick = () => speak(drillCurrent.answer, 0.9);
+  card.appendChild(speakBtn);
+
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'drill-next';
+  nextBtn.id = 'drillNext';
+  nextBtn.textContent = 'Siguiente →';
+  nextBtn.style.display = 'none';
+  nextBtn.onclick = () => nextDrill();
+  card.appendChild(nextBtn);
+
+  wrap.appendChild(card);
+
+  const hardest = Object.entries(drillMistakes).sort((a,b) => b[1]-a[1]).slice(0,5);
+  if(hardest.length > 0){
+    const mist = document.createElement('div');
+    mist.className = 'drill-mistakes';
+    let html = '<h4>Formas que más te cuestan</h4><ul>';
+    hardest.forEach(([key,count]) => {
+      const [inf, pron, tense] = key.split('|');
+      const t = tense === 'pres' ? 'presente' : 'pretérito';
+      html += '<li>'+inf+' — '+pron+' ('+t+') · '+count+'×</li>';
+    });
+    html += '</ul>';
+    mist.innerHTML = html;
+    wrap.appendChild(mist);
+  }
+
+  setTimeout(() => input.focus(), 50);
+}
+
 /* ---------- TABS ---------- */
 const tabVocabBtn = document.getElementById('tabVocabBtn');
 const tabListenBtn = document.getElementById('tabListenBtn');
 const tabCardsBtn = document.getElementById('tabCardsBtn');
+const tabDrillBtn = document.getElementById('tabDrillBtn');
 const tabVocab = document.getElementById('tabVocab');
 const tabListen = document.getElementById('tabListen');
 const tabCards = document.getElementById('tabCards');
+const tabDrill = document.getElementById('tabDrill');
 
 function setActiveTab(btn, view){
-  [tabVocabBtn, tabListenBtn, tabCardsBtn].forEach(b => b.classList.remove('active'));
-  [tabVocab, tabListen, tabCards].forEach(v => v.classList.remove('active'));
+  [tabVocabBtn, tabListenBtn, tabCardsBtn, tabDrillBtn].forEach(b => b.classList.remove('active'));
+  [tabVocab, tabListen, tabCards, tabDrill].forEach(v => v.classList.remove('active'));
   btn.classList.add('active');
   view.classList.add('active');
 }
 
 tabVocabBtn.onclick = () => setActiveTab(tabVocabBtn, tabVocab);
 tabListenBtn.onclick = () => setActiveTab(tabListenBtn, tabListen);
+tabDrillBtn.onclick = async () => {
+  setActiveTab(tabDrillBtn, tabDrill);
+  if(!drillProgressLoaded) await loadDrillProgress();
+  if(!drillCurrent) nextDrill(); else renderDrill();
+};
 tabCardsBtn.onclick = async () => {
   setActiveTab(tabCardsBtn, tabCards);
   if(!progressLoaded) await loadProgress();
