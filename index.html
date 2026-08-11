@@ -914,7 +914,7 @@
   <h1>Español</h1>
   <p>Every word from your lessons — hear it spoken, check verb conjugations, and practice listening.</p>
   <p class="voice-note" id="voiceNote">Your browser doesn't support spoken audio — try Chrome, Edge, or Safari.</p>
-  <div class="version-badge" id="versionBadge">v11</div>
+  <div class="version-badge" id="versionBadge">v12</div>
   <nav class="tabs">
     <button id="tabVocabBtn" class="active">Vocabulario</button>
     <button id="tabListenBtn">Escucha</button>
@@ -2294,14 +2294,26 @@ function setActiveTab(btn, view){
 
 tabVocabBtn.onclick = () => setActiveTab(tabVocabBtn, tabVocab);
 tabListenBtn.onclick = () => setActiveTab(tabListenBtn, tabListen);
+// Switching tabs must not rebuild these views: the hidden panel keeps its DOM,
+// so a re-render would throw away the current exercise, anything typed, and the
+// feedback already on screen. Only build them the first time they are opened.
+let speakInitialized = false;
+let drillInitialized = false;
+
 tabSpeakBtn.onclick = () => {
   setActiveTab(tabSpeakBtn, tabSpeak);
-  nextSpeak();
+  if(!speakInitialized){
+    nextSpeak();
+    speakInitialized = true;
+  }
 };
 tabDrillBtn.onclick = async () => {
   setActiveTab(tabDrillBtn, tabDrill);
   if(!drillProgressLoaded) await loadDrillProgress();
-  if(!drillCurrent) nextDrill(); else renderDrill();
+  if(!drillInitialized){
+    nextDrill();
+    drillInitialized = true;
+  }
 };
 tabCardsBtn.onclick = async () => {
   setActiveTab(tabCardsBtn, tabCards);
