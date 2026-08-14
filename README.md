@@ -34,6 +34,8 @@ Personal Spanish learning PWA. **Live app:** https://themyr97.github.io/claude-s
 
 - **v13** — Restaurant vocabulary added: 16 nouns, 11 verbs, 7 adjectives, plus two new phrase categories separating the **casual register** (street stalls: 'me da', 'me regala', '¿con todo?') from the **sit-down register** ('quisiera', '¿qué recomienda?'). 18 new speaking sentences and 9 new listening sentences. Irregular conjugations added for **pedir, traer, recomendar, pensar, encontrar** — without these the drill generated non-words ('pedo', 'trao', 'penso', 'recomendo', 'encontro'); all forms re-audited after the fix. Removed a duplicate 'comprar' entry.
 
+- **v14** — Added **dar** (to give) with its irregular conjugation (doy; preterite di/dio carries no accents), plus the dual-meaning verbs **tomar, quedar, llevar, dejar** and notes on **esperar** (wait/hope). New phrases: 'espero que sí', 'dar un paseo', 'esperar el autobús'. 6 new speaking and 3 new listening sentences. All new verb forms audited before deploy.
+
 ## Deploy checklist
 
 When pushing a new version, always bump `APP_VERSION` in `service-worker.js` and the badge in `index.html`. The service worker file must change byte-wise, or browsers will not install the new version.
