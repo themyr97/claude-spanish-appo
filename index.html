@@ -914,7 +914,7 @@
   <h1>Español</h1>
   <p>Every word from your lessons — hear it spoken, check verb conjugations, and practice listening.</p>
   <p class="voice-note" id="voiceNote">Your browser doesn't support spoken audio — try Chrome, Edge, or Safari.</p>
-  <div class="version-badge" id="versionBadge">v13</div>
+  <div class="version-badge" id="versionBadge">v14</div>
   <nav class="tabs">
     <button id="tabVocabBtn" class="active">Vocabulario</button>
     <button id="tabListenBtn">Escucha</button>
@@ -990,7 +990,9 @@ const data = {
     ["pedir","to order / ask for"], ["traer","to bring"], ["recomendar","to recommend"],
     ["desear","to wish / would like"], ["aprender","to learn"], ["pensar","to think"],
     ["acabar","to finish / to have just"], ["ayudar","to help"], ["encontrar","to find"],
-    ["esperar","to wait / to hope"], ["llamar","to call"]
+    ["esperar","to wait / to hope"], ["llamar","to call"],
+    ["dar","to give"], ["tomar","to take / to drink"], ["quedar","to remain / to arrange to meet"],
+    ["llevar","to carry / to wear"], ["dejar","to leave behind / to allow"]
   ],
   "Adjectives": [
     ["cansado","tired (m.)"], ["cansada","tired (f.)"], ["feliz","happy"],
@@ -1019,7 +1021,10 @@ const data = {
     ["el fin de semana pasado","last weekend"], ["el próximo año","next year"],
     ["no tengo que trabajar","I don't have to work"], ["especialmente","especially"],
     ["por favor","please"], ["lo siento","I'm sorry"], ["todavía no","not yet"],
-    ["muchas gracias","thank you very much"], ["de nada","you're welcome"]
+    ["muchas gracias","thank you very much"], ["de nada","you're welcome"],
+    ["espero que sí","I hope so"], ["esperar el autobús","to wait for the bus (no preposition needed)"],
+    ["dar un paseo","to take a walk (lit. to give a walk)"],
+    ["¿Qué desean tomar?","What would you like to drink? (tomar = drink here)"]
   ],
   "Restaurant — casual (street stalls, small places)": [
     ["Me da dos tacos, por favor","Two tacos, please (everyday polite)"],
@@ -1081,7 +1086,8 @@ const irregular = {
   "traer": { pres:["traigo","traes","trae","traemos","traéis","traen"], pret:["traje","trajiste","trajo","trajimos","trajisteis","trajeron"], note:"Irregular yo (traigo) and a j-stem preterite: traje, trajo, trajeron." },
   "recomendar": { pres:["recomiendo","recomiendas","recomienda","recomendamos","recomendáis","recomiendan"], pret:["recomendé","recomendaste","recomendó","recomendamos","recomendasteis","recomendaron"], note:"Stem-changing (e→ie) in present only — preterite is regular." },
   "pensar": { pres:["pienso","piensas","piensa","pensamos","pensáis","piensan"], pret:["pensé","pensaste","pensó","pensamos","pensasteis","pensaron"], note:"Stem-changing (e→ie) in present only. Pairs with the preposition en: pienso en ti." },
-  "encontrar": { pres:["encuentro","encuentras","encuentra","encontramos","encontráis","encuentran"], pret:["encontré","encontraste","encontró","encontramos","encontrasteis","encontraron"], note:"Stem-changing (o→ue) in present only — preterite is regular." }
+  "encontrar": { pres:["encuentro","encuentras","encuentra","encontramos","encontráis","encuentran"], pret:["encontré","encontraste","encontró","encontramos","encontrasteis","encontraron"], note:"Stem-changing (o→ue) in present only — preterite is regular." },
+  "dar": { pres:["doy","das","da","damos","dais","dan"], pret:["di","diste","dio","dimos","disteis","dieron"], note:"Irregular yo (doy), like soy/voy/estoy. The preterite carries no accents at all: di, dio are single syllables — unlike regular comí, comió." }
 };
 
 function conjugate(inf){
@@ -1299,7 +1305,10 @@ const listeningExercises = [
   { es:"¿Qué desean tomar?", en:"What would you like to drink?" },
   { es:"Una mesa para dos, por favor.", en:"A table for two, please." },
   { es:"La cuenta, por favor.", en:"The bill, please." },
-  { es:"Sin cebolla, por favor.", en:"Without onion, please." }
+  { es:"Sin cebolla, por favor.", en:"Without onion, please." },
+  { es:"Le doy el libro a mi hermana.", en:"I give the book to my sister." },
+  { es:"Espero que todo vaya bien.", en:"I hope everything goes well." },
+  { es:"Vamos a dar un paseo.", en:"We're going to take a walk." }
 ];
 
 const exContent = document.getElementById('exContent');
@@ -1910,7 +1919,13 @@ const speakSentences = [
   { en:"I am going to start to study now.", es:["Voy a empezar a estudiar ahora."] },
   { en:"Can you help me study?", es:["¿Puedes ayudarme a estudiar?","Puedes ayudarme a estudiar"] },
   { en:"I just arrived.", es:["Acabo de llegar."] },
-  { en:"I think about my family a lot.", es:["Pienso mucho en mi familia."] }
+  { en:"I think about my family a lot.", es:["Pienso mucho en mi familia."] },
+  { en:"I give him the book.", es:["Le doy el libro."] },
+  { en:"I gave you the money yesterday.", es:["Te di el dinero ayer.","Ayer te di el dinero."] },
+  { en:"Give me a coffee, please.", es:["Me da un café, por favor."] },
+  { en:"I am waiting for the bus.", es:["Espero el autobús.","Estoy esperando el autobús."] },
+  { en:"I hope so.", es:["Espero que sí."] },
+  { en:"We are going to take a walk.", es:["Vamos a dar un paseo."] }
 ];
 
 let speakIndex = 0;
