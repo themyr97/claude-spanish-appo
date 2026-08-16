@@ -211,6 +211,29 @@
 
   .cat-play:hover{ background:var(--sage); color:white; }
 
+
+  .cat-filter{
+    display:flex;
+    gap:0.4rem;
+    flex-wrap:wrap;
+    margin-bottom:1.4rem;
+  }
+  .cat-filter button{
+    padding:0.4rem 0.85rem;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:white;
+    color:var(--ink);
+    font-size:0.78rem;
+    font-weight:600;
+    cursor:pointer;
+    font-family:'Source Sans 3', sans-serif;
+  }
+  .cat-filter button.on{
+    background:var(--sage-dark);
+    border-color:var(--sage-dark);
+    color:white;
+  }
   .cards{
     display:grid;
     grid-template-columns:repeat(auto-fill, minmax(230px, 1fr));
@@ -914,7 +937,7 @@
   <h1>Español</h1>
   <p>Every word from your lessons — hear it spoken, check verb conjugations, and practice listening.</p>
   <p class="voice-note" id="voiceNote">Your browser doesn't support spoken audio — try Chrome, Edge, or Safari.</p>
-  <div class="version-badge" id="versionBadge">v14</div>
+  <div class="version-badge" id="versionBadge">v15</div>
   <nav class="tabs">
     <button id="tabVocabBtn" class="active">Vocabulario</button>
     <button id="tabListenBtn">Escucha</button>
@@ -1168,12 +1191,44 @@ const searchInput = document.getElementById('search');
 
 function playIconSVG(){ return '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>'; }
 
+let vocabCategoryFilter = 'all';
+
+// Short labels for the filter row — the raw category keys are too long for buttons.
+const categoryShortLabels = {
+  'Nouns': 'Sustantivos',
+  'Verbs (infinitive)': 'Verbos',
+  'Adjectives': 'Adjetivos',
+  'Prepositions': 'Preposiciones',
+  'Question words': 'Preguntas',
+  'Phrases & connectors': 'Frases',
+  'Restaurant — casual (street stalls, small places)': 'Restaurante (informal)',
+  'Restaurant — sit-down (formal register)': 'Restaurante (formal)'
+};
+
 function renderVocab(filter=''){
   content.innerHTML = '';
   const f = filter.trim().toLowerCase();
   let any = false;
 
+  const filterRow = document.createElement('div');
+  filterRow.className = 'cat-filter';
+  const allBtn = document.createElement('button');
+  allBtn.textContent = 'Todo';
+  if(vocabCategoryFilter === 'all') allBtn.classList.add('on');
+  allBtn.onclick = () => { vocabCategoryFilter = 'all'; renderVocab(searchInput.value); };
+  filterRow.appendChild(allBtn);
+
+  Object.keys(data).forEach(cat => {
+    const b = document.createElement('button');
+    b.textContent = categoryShortLabels[cat] || cat;
+    if(vocabCategoryFilter === cat) b.classList.add('on');
+    b.onclick = () => { vocabCategoryFilter = cat; renderVocab(searchInput.value); };
+    filterRow.appendChild(b);
+  });
+  content.appendChild(filterRow);
+
   Object.entries(data).forEach(([category, words]) => {
+    if(vocabCategoryFilter !== 'all' && category !== vocabCategoryFilter) return;
     const filtered = words.filter(([es,en]) => es.toLowerCase().includes(f) || en.toLowerCase().includes(f));
     if(filtered.length === 0) return;
     any = true;
@@ -1249,7 +1304,9 @@ function renderVocab(filter=''){
   if(!any){
     const empty = document.createElement('div');
     empty.className = 'empty';
-    empty.textContent = 'No se encontró esa palabra. (Word not found.)';
+    empty.textContent = vocabCategoryFilter === 'all'
+      ? 'No se encontró esa palabra. (Word not found.)'
+      : 'Nada en esta categoría con ese texto. (Nothing in this category matches.)';
     content.appendChild(empty);
   }
 }
@@ -1436,11 +1493,16 @@ async function saveProgress(showConfirmation){
   }
 }
 
+let fcCategoryFilter = 'all';
+
 function buildFcPool(){
   const all = [];
-  Object.values(data).forEach(words => words.forEach(([es,en,gender]) => {
-    all.push({ es: displayForm(es, gender), en, gender });
-  }));
+  Object.entries(data).forEach(([cat, words]) => {
+    if(fcCategoryFilter !== 'all' && cat !== fcCategoryFilter) return;
+    words.forEach(([es,en,gender]) => {
+      all.push({ es: displayForm(es, gender), en, gender });
+    });
+  });
   return all;
 }
 
@@ -1501,6 +1563,17 @@ function renderFc(){
   hardBtn.disabled = hardCount === 0;
   hardBtn.onclick = () => startFcDeck('hard');
 
+  const catBtn = document.createElement('button');
+  const curLabel = fcCategoryFilter === 'all' ? 'Todo' : (categoryShortLabels[fcCategoryFilter] || fcCategoryFilter);
+  catBtn.textContent = '📚 ' + curLabel;
+  catBtn.onclick = () => {
+    // Cycle through: all -> each category -> back to all
+    const cats = ['all'].concat(Object.keys(data));
+    const i = cats.indexOf(fcCategoryFilter);
+    fcCategoryFilter = cats[(i + 1) % cats.length];
+    startFcDeck(fcMode);
+  };
+
   const backBtn = document.createElement('button');
   backBtn.className = 'fc-back';
   backBtn.textContent = '⬅ Volver';
@@ -1518,6 +1591,7 @@ function renderFc(){
   };
 
   topRow.appendChild(dirBtn);
+  topRow.appendChild(catBtn);
   topRow.appendChild(allBtn);
   topRow.appendChild(hardBtn);
   topRow.appendChild(backBtn);
