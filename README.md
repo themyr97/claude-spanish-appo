@@ -36,6 +36,8 @@ Personal Spanish learning PWA. **Live app:** https://themyr97.github.io/claude-s
 
 - **v14** — Added **dar** (to give) with its irregular conjugation (doy; preterite di/dio carries no accents), plus the dual-meaning verbs **tomar, quedar, llevar, dejar** and notes on **esperar** (wait/hope). New phrases: 'espero que sí', 'dar un paseo', 'esperar el autobús'. 6 new speaking and 3 new listening sentences. All new verb forms audited before deploy.
 
+- **v15** — **Category filters.** The Vocabulario tab now has a filter row (Todo / Sustantivos / Verbos / Adjetivos / Preposiciones / Preguntas / Frases / Restaurante), so a verbs-only view is one tap. Filters combine with the search box. Flashcards gained a matching category button that cycles through the same categories, letting you drill a verbs-only (or restaurant-only) deck.
+
 ## Deploy checklist
 
 When pushing a new version, always bump `APP_VERSION` in `service-worker.js` and the badge in `index.html`. The service worker file must change byte-wise, or browsers will not install the new version.
