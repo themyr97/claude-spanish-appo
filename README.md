@@ -38,6 +38,8 @@ Personal Spanish learning PWA. **Live app:** https://themyr97.github.io/claude-s
 
 - **v15** — **Category filters.** The Vocabulario tab now has a filter row (Todo / Sustantivos / Verbos / Adjetivos / Preposiciones / Preguntas / Frases / Restaurante), so a verbs-only view is one tap. Filters combine with the search box. Flashcards gained a matching category button that cycles through the same categories, letting you drill a verbs-only (or restaurant-only) deck.
 
+- **v16** — Prepositions expanded from 6 to 23: place (encima de, debajo de, al lado de, cerca de, lejos de, delante de, detrás de, entre, dentro de, fuera de, enfrente de) and time (antes de, después de, durante, desde, hasta). Added 8 nouns (banco, gato, silla, farmacia, hotel, autobús, café, hora) and reference entries for the **del / al** contractions (masculine only) and the **está vs esta** accent distinction. 10 new speaking and 4 new listening sentences.
+
 ## Deploy checklist
 
 When pushing a new version, always bump `APP_VERSION` in `service-worker.js` and the badge in `index.html`. The service worker file must change byte-wise, or browsers will not install the new version.
