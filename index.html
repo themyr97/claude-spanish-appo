@@ -937,7 +937,7 @@
   <h1>Español</h1>
   <p>Every word from your lessons — hear it spoken, check verb conjugations, and practice listening.</p>
   <p class="voice-note" id="voiceNote">Your browser doesn't support spoken audio — try Chrome, Edge, or Safari.</p>
-  <div class="version-badge" id="versionBadge">v15</div>
+  <div class="version-badge" id="versionBadge">v16</div>
   <nav class="tabs">
     <button id="tabVocabBtn" class="active">Vocabulario</button>
     <button id="tabListenBtn">Escucha</button>
@@ -997,7 +997,10 @@ const data = {
     ["mesa","table","f"], ["cuenta","bill / check","f"], ["bebida","drink","f"],
     ["plato","dish / plate","m"], ["entrada","starter / appetiser","f"], ["postre","dessert","m"],
     ["propina","tip","f"], ["helado","ice cream","m"], ["cebolla","onion","f"],
-    ["especialidad","specialty","f"], ["botella","bottle","f"]
+    ["especialidad","specialty","f"], ["botella","bottle","f"],
+    ["banco","bank","m"], ["gato","cat","m"], ["silla","chair","f"],
+    ["farmacia","pharmacy","f"], ["hotel","hotel","m"], ["autobús","bus","m"],
+    ["café","coffee","m"], ["hora","hour / time","f"]
   ],
   "Verbs (infinitive)": [
     ["ser","to be (permanent)"], ["estar","to be (temporary)"], ["hablar","to speak"],
@@ -1030,7 +1033,13 @@ const data = {
   ],
   "Prepositions": [
     ["a","to, at"], ["de","of, from"], ["en","in, on, at"], ["con","with"],
-    ["para","for (purpose)"], ["por","for (cause/duration)"]
+    ["para","for (purpose)"], ["por","for (cause/duration)"],
+    ["sobre","on / about"], ["encima de","on top of"], ["debajo de","under"],
+    ["al lado de","next to"], ["cerca de","near"], ["lejos de","far from"],
+    ["delante de","in front of"], ["detrás de","behind"], ["entre","between (takes no de)"],
+    ["dentro de","inside"], ["fuera de","outside"], ["enfrente de","opposite / across from"],
+    ["antes de","before (+ infinitive)"], ["después de","after (+ infinitive)"],
+    ["durante","during"], ["desde","since / from"], ["hasta","until"]
   ],
   "Question words": [
     ["quién","who"], ["dónde","where"], ["cómo","how"], ["cuándo","when"],
@@ -1047,7 +1056,12 @@ const data = {
     ["muchas gracias","thank you very much"], ["de nada","you're welcome"],
     ["espero que sí","I hope so"], ["esperar el autobús","to wait for the bus (no preposition needed)"],
     ["dar un paseo","to take a walk (lit. to give a walk)"],
-    ["¿Qué desean tomar?","What would you like to drink? (tomar = drink here)"]
+    ["¿Qué desean tomar?","What would you like to drink? (tomar = drink here)"],
+    ["del","de + el — masculine only: del hotel, but de la ciudad"],
+    ["al","a + el — masculine only: al trabajo, but a la escuela"],
+    ["está","is (estar) — accent on the last syllable; esta without accent means 'this'"],
+    ["desde las nueve hasta las cinco","from nine until five (hours take plural las)"],
+    ["la una","one o'clock (the only singular hour)"]
   ],
   "Restaurant — casual (street stalls, small places)": [
     ["Me da dos tacos, por favor","Two tacos, please (everyday polite)"],
@@ -1365,7 +1379,11 @@ const listeningExercises = [
   { es:"Sin cebolla, por favor.", en:"Without onion, please." },
   { es:"Le doy el libro a mi hermana.", en:"I give the book to my sister." },
   { es:"Espero que todo vaya bien.", en:"I hope everything goes well." },
-  { es:"Vamos a dar un paseo.", en:"We're going to take a walk." }
+  { es:"Vamos a dar un paseo.", en:"We're going to take a walk." },
+  { es:"El banco está al lado del restaurante.", en:"The bank is next to the restaurant." },
+  { es:"Mi casa está lejos de la ciudad.", en:"My house is far from the city." },
+  { es:"El gato está debajo de la silla.", en:"The cat is under the chair." },
+  { es:"Trabajo desde las nueve hasta las cinco.", en:"I work from nine until five." }
 ];
 
 const exContent = document.getElementById('exContent');
@@ -1999,7 +2017,17 @@ const speakSentences = [
   { en:"Give me a coffee, please.", es:["Me da un café, por favor."] },
   { en:"I am waiting for the bus.", es:["Espero el autobús.","Estoy esperando el autobús."] },
   { en:"I hope so.", es:["Espero que sí."] },
-  { en:"We are going to take a walk.", es:["Vamos a dar un paseo."] }
+  { en:"We are going to take a walk.", es:["Vamos a dar un paseo."] },
+  { en:"The book is under the table.", es:["El libro está debajo de la mesa."] },
+  { en:"The restaurant is near the beach.", es:["El restaurante está cerca de la playa."] },
+  { en:"I study before eating.", es:["Estudio antes de comer."] },
+  { en:"The car is in front of the house.", es:["El coche está delante de la casa."] },
+  { en:"The bank is next to the restaurant.", es:["El banco está al lado del restaurante."] },
+  { en:"The cat is between the table and the chair.", es:["El gato está entre la mesa y la silla."] },
+  { en:"I work from nine until five.", es:["Trabajo desde las nueve hasta las cinco."] },
+  { en:"The pharmacy is across from the hotel.", es:["La farmacia está enfrente del hotel."] },
+  { en:"We are going to eat after working.", es:["Vamos a comer después de trabajar."] },
+  { en:"My house is far from the city.", es:["Mi casa está lejos de la ciudad."] }
 ];
 
 let speakIndex = 0;
