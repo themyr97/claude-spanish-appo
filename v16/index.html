@@ -1,0 +1,2570 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Español — Vocabulario y Escucha</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Español">
+<meta name="theme-color" content="#3d5643">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600&display=swap');
+
+  :root{
+    --ink:#1f2a24;
+    --paper:#f6f3ea;
+    --paper-2:#eee8d8;
+    --sage:#5c7a63;
+    --sage-dark:#3d5643;
+    --clay:#b0553a;
+    --line:#d8cfb8;
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    padding:0 0 4rem 0;
+  }
+
+  header{
+    padding:3rem 1.5rem 1.5rem 1.5rem;
+    text-align:center;
+    border-bottom:1px solid var(--line);
+    background: linear-gradient(180deg, var(--paper-2), var(--paper));
+  }
+
+  header .eyebrow{
+    font-size:0.78rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--sage-dark);
+    font-weight:600;
+    margin-bottom:0.6rem;
+  }
+
+  header h1{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:clamp(2rem, 6vw, 2.9rem);
+    margin:0 0 0.5rem 0;
+  }
+
+  header p{
+    max-width:36rem;
+    margin:0 auto;
+    color:#5a5a4e;
+    font-size:1rem;
+    line-height:1.5;
+  }
+
+  .voice-note{
+    max-width:36rem;
+    margin:1rem auto 0 auto;
+    font-size:0.85rem;
+    color:var(--clay);
+    display:none;
+  }
+
+  .version-badge{
+    display:inline-block;
+    margin-top:0.9rem;
+    font-size:0.7rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--sage-dark);
+    background:rgba(92,122,99,0.12);
+    border-radius:999px;
+    padding:0.25rem 0.75rem;
+  }
+
+  .update-banner{
+    display:none;
+    position:fixed;
+    left:0; right:0; bottom:0;
+    background:var(--sage-dark);
+    color:white;
+    padding:0.9rem 1.2rem;
+    font-size:0.9rem;
+    text-align:center;
+    z-index:99;
+  }
+  .update-banner.show{ display:block; }
+  .update-banner button{
+    margin-left:0.8rem;
+    padding:0.35rem 0.9rem;
+    border-radius:999px;
+    border:none;
+    background:white;
+    color:var(--sage-dark);
+    font-weight:700;
+    cursor:pointer;
+    font-family:'Source Sans 3', sans-serif;
+  }
+
+  nav.tabs{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:0.5rem;
+    margin-top:1.4rem;
+    max-width:26rem;
+    margin-left:auto;
+    margin-right:auto;
+    padding:0 0.25rem;
+  }
+
+  nav.tabs button{
+    font-family:'Source Sans 3', sans-serif;
+    font-weight:600;
+    font-size:0.9rem;
+    padding:0.6rem 0.5rem;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:white;
+    color:var(--ink);
+    cursor:pointer;
+    width:100%;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  nav.tabs button.active{
+    background:var(--sage-dark);
+    border-color:var(--sage-dark);
+    color:white;
+  }
+
+  main{
+    max-width:54rem;
+    margin:0 auto;
+    padding:2.2rem 1.25rem;
+  }
+
+  .view{ display:none; }
+  .view.active{ display:block; }
+
+  .search-row{
+    display:flex;
+    gap:0.6rem;
+    margin-bottom:2rem;
+    align-items:center;
+    flex-wrap:wrap;
+  }
+
+  .search-row input{
+    flex:1;
+    min-width:180px;
+    padding:0.7rem 1rem;
+    border-radius:8px;
+    border:1px solid var(--line);
+    background:white;
+    font-family:'Source Sans 3', sans-serif;
+    font-size:1rem;
+    color:var(--ink);
+  }
+
+  .search-row input:focus{ outline:2px solid var(--sage); outline-offset:1px; }
+
+  select#voiceSelect{
+    padding:0.55rem 0.7rem;
+    border-radius:8px;
+    border:1px solid var(--line);
+    background:white;
+    font-family:'Source Sans 3', sans-serif;
+    font-size:0.85rem;
+    color:var(--ink);
+    max-width:190px;
+  }
+
+  section.category{ margin-bottom:2.2rem; }
+
+  .category h2{
+    font-family:'Fraunces', serif;
+    font-size:1.25rem;
+    font-weight:600;
+    color:var(--sage-dark);
+    border-bottom:2px solid var(--sage);
+    display:inline-block;
+    padding-bottom:0.2rem;
+    margin:0 0 1rem 0;
+  }
+
+  .cat-play{
+    background:none;
+    border:1px solid var(--sage);
+    color:var(--sage-dark);
+    border-radius:999px;
+    padding:0.3rem 0.9rem;
+    font-size:0.78rem;
+    font-weight:600;
+    cursor:pointer;
+    margin-left:0.7rem;
+    font-family:'Source Sans 3', sans-serif;
+  }
+
+  .cat-play:hover{ background:var(--sage); color:white; }
+
+
+  .cat-filter{
+    display:flex;
+    gap:0.4rem;
+    flex-wrap:wrap;
+    margin-bottom:1.4rem;
+  }
+  .cat-filter button{
+    padding:0.4rem 0.85rem;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:white;
+    color:var(--ink);
+    font-size:0.78rem;
+    font-weight:600;
+    cursor:pointer;
+    font-family:'Source Sans 3', sans-serif;
+  }
+  .cat-filter button.on{
+    background:var(--sage-dark);
+    border-color:var(--sage-dark);
+    color:white;
+  }
+  .cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(230px, 1fr));
+    gap:0.7rem;
+  }
+
+  .card{
+    background:white;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:0.7rem 0.9rem;
+    transition:border-color 0.15s ease;
+  }
+
+  .card:hover{ border-color:var(--sage); }
+  .card.playing{ border-color:var(--clay); background:#fbf1ec; }
+
+  .card-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:0.6rem;
+  }
+
+  .card-text{ min-width:0; }
+
+  .card-es{
+    font-weight:600;
+    font-size:1.02rem;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  .card-en{
+    font-size:0.82rem;
+    color:#767666;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  .gender-badge{
+    display:inline-block;
+    font-size:0.62rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    border-radius:4px;
+    padding:0.08rem 0.32rem;
+    margin-left:0.4rem;
+    vertical-align:middle;
+  }
+  .gender-badge.m{ background:#dbe6f0; color:#2f4d68; }
+  .gender-badge.f{ background:#f3dfe2; color:#7a3345; }
+  .gender-note{
+    font-size:0.7rem;
+    color:var(--clay);
+    font-style:italic;
+    margin-top:0.15rem;
+  }
+
+  .card-buttons{ display:flex; gap:0.4rem; flex-shrink:0; }
+
+  button.icon-btn{
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    border:none;
+    background:var(--sage);
+    color:white;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Source Sans 3', sans-serif;
+    font-size:0.8rem;
+    font-weight:700;
+  }
+
+  button.icon-btn:hover{ background:var(--sage-dark); }
+  button.icon-btn.conj{ background:white; border:1px solid var(--sage); color:var(--sage-dark); }
+  button.icon-btn.conj:hover{ background:var(--sage); color:white; }
+
+  button.icon-btn svg{ width:14px; height:14px; fill:white; margin-left:2px; }
+
+  .conj-panel{
+    display:none;
+    margin-top:0.7rem;
+    padding-top:0.7rem;
+    border-top:1px dashed var(--line);
+    font-size:0.85rem;
+  }
+
+  .conj-panel.open{ display:block; }
+
+  .conj-panel table{ width:100%; border-collapse:collapse; }
+  .conj-panel th{
+    text-align:left;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    color:var(--sage-dark);
+    padding:0.15rem 0.3rem;
+  }
+  .conj-panel td{
+    padding:0.2rem 0.3rem;
+    border-top:1px solid var(--paper-2);
+  }
+  .conj-panel td.pron{ color:#8a8a78; width:34%; }
+  .conj-panel .conj-word-row{ display:flex; align-items:center; gap:0.4rem; }
+  .conj-panel button.mini-play{
+    width:22px; height:22px; border-radius:50%; border:none;
+    background:var(--sage); color:white; cursor:pointer;
+    font-size:0.6rem; flex-shrink:0; display:flex; align-items:center; justify-content:center;
+  }
+  .conj-note{ margin-top:0.5rem; font-size:0.78rem; color:var(--clay); font-style:italic; }
+  .ref-row{ opacity:0.5; font-style:italic; }
+  .ref-row td.pron{ font-style:normal; }
+
+  .empty{ text-align:center; color:#8a8a78; padding:3rem 1rem; font-style:italic; }
+
+  /* Listening exercises */
+  .ex-card{
+    background:white;
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:1.3rem 1.4rem;
+    margin-bottom:1.2rem;
+  }
+
+  .ex-head{
+    display:flex;
+    align-items:center;
+    gap:0.8rem;
+    margin-bottom:0.9rem;
+  }
+
+  .ex-num{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:1rem;
+    color:var(--sage-dark);
+    background:var(--paper-2);
+    border-radius:50%;
+    width:32px; height:32px;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+
+  .ex-play{
+    width:44px; height:44px;
+    border-radius:50%;
+    border:none;
+    background:var(--sage);
+    color:white;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .ex-play:hover{ background:var(--sage-dark); }
+  .ex-play svg{ width:17px; height:17px; fill:white; margin-left:2px; }
+
+  .ex-instructions{ font-size:0.85rem; color:#5a5a4e; }
+
+  .ex-input-row{ display:flex; gap:0.6rem; margin-bottom:0.7rem; }
+
+  .ex-input-row input{
+    flex:1;
+    padding:0.6rem 0.9rem;
+    border-radius:8px;
+    border:1px solid var(--line);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:0.95rem;
+  }
+
+  .ex-input-row button{
+    padding:0.6rem 1.1rem;
+    border-radius:8px;
+    border:none;
+    background:var(--sage-dark);
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    font-family:'Source Sans 3', sans-serif;
+  }
+
+  .ex-result{
+    display:none;
+    padding:0.8rem 1rem;
+    border-radius:8px;
+    font-size:0.9rem;
+    line-height:1.5;
+  }
+  .ex-result.show{ display:block; }
+  .ex-result.correct{ background:#eaf3ec; border:1px solid var(--sage); }
+  .ex-result.close{ background:#fbf1ec; border:1px solid var(--clay); }
+
+  .ex-result .es-answer{ font-weight:600; }
+  .ex-result .en-answer{ color:#5a5a4e; margin-top:0.2rem; }
+
+  /* Flashcards */
+  .fc-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:1rem 0 2rem 0;
+  }
+
+  .fc-progress{
+    font-size:0.85rem;
+    color:#5a5a4e;
+    margin-bottom:0.9rem;
+  }
+
+  .fc-toprow{
+    display:flex;
+    gap:0.5rem;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-bottom:1rem;
+  }
+
+  .fc-toprow button{
+    padding:0.4rem 0.9rem;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:white;
+    color:var(--ink);
+    font-size:0.8rem;
+    font-weight:600;
+    cursor:pointer;
+    font-family:'Source Sans 3', sans-serif;
+  }
+
+  .fc-toprow button.on{
+    background:var(--sage-dark);
+    border-color:var(--sage-dark);
+    color:white;
+  }
+
+  .fc-toprow button:disabled{
+    opacity:0.4;
+    cursor:not-allowed;
+  }
+
+  .fc-back{ background:none !important; color:var(--sage-dark); border:1px solid var(--sage) !important; }
+  .fc-back:hover{ background:var(--sage) !important; color:white !important; }
+
+  .fc-saved{
+    font-size:0.72rem;
+    color:var(--sage-dark);
+    text-align:center;
+    margin-top:0.6rem;
+    opacity:0.7;
+    min-height:1em;
+  }
+
+  .fc-scene{
+    width:100%;
+    max-width:420px;
+    height:240px;
+    perspective:1200px;
+    margin-bottom:1.5rem;
+  }
+
+  .fc-card{
+    position:relative;
+    width:100%;
+    height:100%;
+    cursor:pointer;
+    transition:transform 0.5s;
+    transform-style:preserve-3d;
+  }
+
+  .fc-card.flipped{ transform:rotateY(180deg); }
+
+  .fc-face{
+    position:absolute;
+    inset:0;
+    backface-visibility:hidden;
+    border-radius:16px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:1.5rem;
+    text-align:center;
+    border:1px solid var(--line);
+    box-shadow:0 4px 14px rgba(0,0,0,0.06);
+  }
+
+  .fc-face.front{
+    background:white;
+  }
+
+  .fc-face.back{
+    background:var(--sage-dark);
+    color:white;
+    transform:rotateY(180deg);
+  }
+
+  .fc-word{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:1.7rem;
+    margin-bottom:0.6rem;
+  }
+
+  .fc-hint{
+    font-size:0.78rem;
+    opacity:0.6;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+  }
+
+  .fc-face .icon-btn{
+    margin-top:1rem;
+    background:var(--sage);
+  }
+  .fc-face.back .icon-btn{
+    background:rgba(255,255,255,0.2);
+  }
+
+  .fc-controls{
+    display:flex;
+    gap:0.7rem;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .fc-controls button{
+    padding:0.65rem 1.3rem;
+    border-radius:999px;
+    border:none;
+    font-weight:600;
+    font-size:0.88rem;
+    cursor:pointer;
+    font-family:'Source Sans 3', sans-serif;
+  }
+
+  .fc-know{ background:var(--sage); color:white; }
+  .fc-know:hover{ background:var(--sage-dark); }
+  .fc-again{ background:var(--paper-2); color:var(--ink); border:1px solid var(--line) !important; }
+  .fc-again:hover{ background:var(--line); }
+  .fc-reset{ background:none; color:var(--clay); text-decoration:underline; padding:0.65rem 0.4rem; }
+
+  .fc-done{
+    text-align:center;
+    padding:2rem 1rem;
+  }
+  .fc-done h3{ font-family:'Fraunces', serif; color:var(--sage-dark); }
+
+
+  /* Conjugation drill */
+  .drill-setup{
+    display:flex;
+    gap:0.5rem;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-bottom:1.6rem;
+  }
+  .drill-setup button{
+    padding:0.45rem 1rem;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:white;
+    color:var(--ink);
+    font-size:0.82rem;
+    font-weight:600;
+    cursor:pointer;
+    font-family:'Source Sans 3', sans-serif;
+  }
+  .drill-setup button.on{
+    background:var(--sage-dark);
+    border-color:var(--sage-dark);
+    color:white;
+  }
+
+  .drill-card{
+    background:white;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:1.6rem 1.4rem;
+    text-align:center;
+    max-width:440px;
+    margin:0 auto 1.2rem auto;
+    box-shadow:0 4px 14px rgba(0,0,0,0.05);
+  }
+
+  .drill-tense{
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    color:var(--sage-dark);
+    font-weight:700;
+    margin-bottom:0.8rem;
+  }
+
+  .drill-verb{
+    font-family:'Fraunces', serif;
+    font-size:1.9rem;
+    font-weight:700;
+    margin-bottom:0.15rem;
+  }
+
+  .drill-meaning{
+    font-size:0.85rem;
+    color:#767666;
+    margin-bottom:1.1rem;
+  }
+
+  .drill-pronoun{
+    font-size:1.15rem;
+    font-weight:600;
+    color:var(--clay);
+    margin-bottom:1rem;
+  }
+
+  .drill-input-row{ display:flex; gap:0.5rem; }
+  .drill-input-row input{
+    flex:1;
+    padding:0.7rem 1rem;
+    border-radius:8px;
+    border:1px solid var(--line);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:1.05rem;
+    text-align:center;
+  }
+  .drill-input-row input:focus{ outline:2px solid var(--sage); outline-offset:1px; }
+  .drill-input-row button{
+    padding:0.7rem 1.2rem;
+    border-radius:8px;
+    border:none;
+    background:var(--sage-dark);
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    font-family:'Source Sans 3', sans-serif;
+  }
+
+  .drill-feedback{
+    margin-top:1rem;
+    padding:0.85rem 1rem;
+    border-radius:8px;
+    font-size:0.9rem;
+    line-height:1.5;
+    display:none;
+  }
+  .drill-feedback.show{ display:block; }
+  .drill-feedback.right{ background:#eaf3ec; border:1px solid var(--sage); }
+  .drill-feedback.accent{ background:#fdf6e6; border:1px solid #d6b45e; }
+  .drill-feedback.wrong{ background:#fbf1ec; border:1px solid var(--clay); }
+  .drill-answer{ font-weight:700; font-size:1.05rem; }
+
+  .drill-score{
+    text-align:center;
+    font-size:0.85rem;
+    color:#5a5a4e;
+    margin-bottom:1rem;
+  }
+
+  .drill-next{
+    display:block;
+    margin:1rem auto 0 auto;
+    padding:0.6rem 1.6rem;
+    border-radius:999px;
+    border:none;
+    background:var(--sage);
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    font-family:'Source Sans 3', sans-serif;
+  }
+
+  .drill-mistakes{
+    max-width:440px;
+    margin:1.5rem auto 0 auto;
+    font-size:0.82rem;
+  }
+  .drill-mistakes h4{
+    font-family:'Fraunces', serif;
+    color:var(--sage-dark);
+    margin:0 0 0.5rem 0;
+    font-size:0.95rem;
+  }
+  .drill-mistakes ul{ margin:0; padding-left:1.1rem; color:#5a5a4e; }
+  .drill-mistakes li{ margin-bottom:0.2rem; }
+
+
+  /* Speaking practice */
+  .speak-card{
+    background:white;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:1.6rem 1.4rem;
+    text-align:center;
+    max-width:460px;
+    margin:0 auto 1.2rem auto;
+    box-shadow:0 4px 14px rgba(0,0,0,0.05);
+  }
+
+  .speak-label{
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    color:var(--sage-dark);
+    font-weight:700;
+    margin-bottom:0.7rem;
+  }
+
+  .speak-prompt{
+    font-family:'Fraunces', serif;
+    font-size:1.35rem;
+    font-weight:600;
+    line-height:1.35;
+    margin-bottom:1.3rem;
+  }
+
+  .mic-btn{
+    width:74px; height:74px;
+    border-radius:50%;
+    border:none;
+    background:var(--sage);
+    color:white;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    margin:0 auto;
+    transition:background 0.2s ease, transform 0.15s ease;
+  }
+  .mic-btn:hover{ background:var(--sage-dark); }
+  .mic-btn svg{ width:30px; height:30px; fill:white; }
+  .mic-btn.listening{
+    background:var(--clay);
+    animation:pulse 1.3s infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow:0 0 0 0 rgba(176,85,58,0.5); }
+    70%{ box-shadow:0 0 0 18px rgba(176,85,58,0); }
+    100%{ box-shadow:0 0 0 0 rgba(176,85,58,0); }
+  }
+
+  .mic-hint{
+    font-size:0.8rem;
+    color:#767666;
+    margin-top:0.7rem;
+    min-height:1.2em;
+  }
+
+  .heard-text{
+    margin-top:1rem;
+    font-size:0.95rem;
+    color:var(--ink);
+    font-style:italic;
+    min-height:1.2em;
+  }
+
+  .speak-feedback{
+    margin-top:1rem;
+    padding:0.85rem 1rem;
+    border-radius:8px;
+    font-size:0.9rem;
+    line-height:1.5;
+    display:none;
+    text-align:left;
+  }
+  .speak-feedback.show{ display:block; }
+  .speak-feedback.right{ background:#eaf3ec; border:1px solid var(--sage); }
+  .speak-feedback.close{ background:#fdf6e6; border:1px solid #d6b45e; }
+  .speak-feedback.wrong{ background:#fbf1ec; border:1px solid var(--clay); }
+  .speak-answer{ font-weight:700; }
+
+  .speak-actions{
+    display:flex;
+    gap:0.5rem;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-top:1rem;
+  }
+  .speak-actions button{
+    padding:0.55rem 1.1rem;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:white;
+    color:var(--ink);
+    font-weight:600;
+    font-size:0.85rem;
+    cursor:pointer;
+    font-family:'Source Sans 3', sans-serif;
+  }
+  .speak-actions button.primary{
+    background:var(--sage-dark);
+    border-color:var(--sage-dark);
+    color:white;
+  }
+
+  .speak-fallback{
+    display:flex;
+    gap:0.5rem;
+    margin-top:1rem;
+  }
+  .speak-fallback input{
+    flex:1;
+    padding:0.65rem 0.9rem;
+    border-radius:8px;
+    border:1px solid var(--line);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:0.95rem;
+  }
+  .speak-fallback button{
+    padding:0.65rem 1.1rem;
+    border-radius:8px;
+    border:none;
+    background:var(--sage-dark);
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    font-family:'Source Sans 3', sans-serif;
+  }
+
+  .speak-note{
+    max-width:460px;
+    margin:0 auto 1.2rem auto;
+    font-size:0.82rem;
+    color:var(--clay);
+    background:#fbf1ec;
+    border:1px solid var(--clay);
+    border-radius:8px;
+    padding:0.7rem 0.9rem;
+    display:none;
+  }
+  .speak-note.show{ display:block; }
+
+  .speak-score{
+    text-align:center;
+    font-size:0.85rem;
+    color:#5a5a4e;
+    margin-bottom:1rem;
+  }
+  .speech-diag{
+    max-width:460px;
+    margin:1.2rem auto 0 auto;
+    border:1px solid var(--line);
+    border-radius:10px;
+    background:white;
+    overflow:hidden;
+  }
+  .speech-diag summary{
+    cursor:pointer;
+    padding:0.7rem 1rem;
+    font-size:0.82rem;
+    font-weight:600;
+    color:var(--sage-dark);
+    list-style:none;
+  }
+  .speech-diag summary::-webkit-details-marker{ display:none; }
+  .speech-diag summary::before{ content:'\25B8  '; }
+  .speech-diag[open] summary::before{ content:'\25BE  '; }
+  .speech-diag .diag-body{
+    padding:0 1rem 0.9rem 1rem;
+    font-size:0.78rem;
+    color:#5a5a4e;
+    line-height:1.5;
+  }
+  .diag-row{ display:flex; justify-content:space-between; gap:0.6rem; padding:0.2rem 0; border-top:1px solid var(--paper-2); }
+  .diag-row span:last-child{ font-weight:600; text-align:right; }
+  .diag-ok{ color:#3d5643; }
+  .diag-bad{ color:#b0553a; }
+  #speechLog{
+    margin-top:0.6rem;
+    font-family:ui-monospace, monospace;
+    font-size:0.7rem;
+    color:#767666;
+    max-height:9rem;
+    overflow-y:auto;
+  }
+  #speechLog div{ padding:0.12rem 0; border-top:1px dotted var(--paper-2); }
+  .diag-test{
+    margin-top:0.7rem;
+    padding:0.5rem 1rem;
+    border-radius:999px;
+    border:1px solid var(--sage);
+    background:white;
+    color:var(--sage-dark);
+    font-weight:600;
+    font-size:0.8rem;
+    cursor:pointer;
+    font-family:'Source Sans 3', sans-serif;
+  }
+
+
+  @media (max-width:480px){
+    .cards{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Tu profesor de español</div>
+  <h1>Español</h1>
+  <p>Every word from your lessons — hear it spoken, check verb conjugations, and practice listening.</p>
+  <p class="voice-note" id="voiceNote">Your browser doesn't support spoken audio — try Chrome, Edge, or Safari.</p>
+  <div class="version-badge" id="versionBadge">v16</div>
+  <nav class="tabs">
+    <button id="tabVocabBtn" class="active">Vocabulario</button>
+    <button id="tabListenBtn">Escucha</button>
+    <button id="tabCardsBtn">Tarjetas</button>
+    <button id="tabDrillBtn">Conjugar</button>
+    <button id="tabSpeakBtn">Hablar</button>
+  </nav>
+</header>
+
+<main>
+  <div id="tabVocab" class="view active">
+    <div class="search-row">
+      <input type="text" id="search" placeholder="Buscar una palabra... (search a word)">
+      <select id="voiceSelect"></select>
+    </div>
+    <div id="content"></div>
+  </div>
+
+  <div id="tabListen" class="view">
+    <p style="color:#5a5a4e; font-size:0.92rem; margin-bottom:1.4rem;">
+      Press play to hear a sentence spoken in Spanish. Type what you think it means in English, then check your answer.
+    </p>
+    <div id="exContent"></div>
+  </div>
+
+  <div id="tabCards" class="view">
+    <div class="fc-wrap" id="fcWrap"></div>
+  </div>
+
+  <div id="tabDrill" class="view">
+    <div id="drillWrap"></div>
+  </div>
+
+  <div id="tabSpeak" class="view">
+    <div id="speakWrap"></div>
+  </div>
+</main>
+
+<script>
+/* ---------- DATA ---------- */
+const data = {
+  "Nouns": [
+    ["trabajo","work / job","m"], ["casa","house / home","f"], ["familia","family","f"],
+    ["amigo","friend (m.)","m"], ["amiga","friend (f.)","f"], ["día","day","m"],
+    ["mañana","morning / tomorrow","f"], ["noche","night","f"], ["agua","water","f-el"],
+    ["comida","food","f"], ["escuela","school","f"], ["libro","book","m"], ["perro","dog","m"],
+    ["tarea","homework","f"], ["respuesta","answer","f"], ["regalo","gift","m"], ["pan","bread","m"],
+    ["hermano","brother","m"], ["hermana","sister","f"], ["madre","mother","f"], ["padre","father","m"],
+    ["ciudad","city","f"], ["coche","car","m"], ["dinero","money","m"], ["fin de semana","weekend","m"],
+    ["playa","beach","f"], ["sol","sun","m"], ["calor","heat","m"], ["frío","cold","m"],
+    ["partido","game / match","m"], ["música","music","f"], ["verano","summer","m"],
+    ["invierno","winter","m"], ["nieve","snow","f"], ["montaña","mountain","f"], ["país","country","m"],
+    ["mundo","world","m"], ["oficina","office","f"], ["jefe","boss (m.)","m"], ["jefa","boss (f.)","f"],
+    ["reunión","meeting","f"], ["correo","mail / email","m"], ["teléfono","phone","m"],
+    ["año","year","m"], ["señor","sir / mister","m"],
+    ["carta","menu","f"], ["menú","menu","m"], ["mesero","waiter","m"], ["mesera","waitress","f"],
+    ["mesa","table","f"], ["cuenta","bill / check","f"], ["bebida","drink","f"],
+    ["plato","dish / plate","m"], ["entrada","starter / appetiser","f"], ["postre","dessert","m"],
+    ["propina","tip","f"], ["helado","ice cream","m"], ["cebolla","onion","f"],
+    ["especialidad","specialty","f"], ["botella","bottle","f"],
+    ["banco","bank","m"], ["gato","cat","m"], ["silla","chair","f"],
+    ["farmacia","pharmacy","f"], ["hotel","hotel","m"], ["autobús","bus","m"],
+    ["café","coffee","m"], ["hora","hour / time","f"]
+  ],
+  "Verbs (infinitive)": [
+    ["ser","to be (permanent)"], ["estar","to be (temporary)"], ["hablar","to speak"],
+    ["comer","to eat"], ["vivir","to live"], ["ir","to go"], ["tener","to have"],
+    ["querer","to want"], ["poder","to be able to / can"], ["saber","to know (facts/skills)"],
+    ["hacer","to do / make"], ["beber","to drink"], ["cenar","to have dinner"],
+    ["estudiar","to study"], ["caminar","to walk"], ["nadar","to swim"], ["cocinar","to cook"],
+    ["tocar","to play (instrument)"], ["venir","to come"], ["necesitar","to need"],
+    ["llegar","to arrive"], ["comprar","to buy"], ["conducir","to drive"], ["jugar","to play (sport)"],
+    ["ganar","to win / earn"], ["perder","to lose"], ["empezar","to begin"],
+    ["terminar","to finish"], ["bailar","to dance"], ["cantar","to sing"],
+    ["viajar","to travel"], ["gustar","to like (lit. to please)"],
+    ["pedir","to order / ask for"], ["traer","to bring"], ["recomendar","to recommend"],
+    ["desear","to wish / would like"], ["aprender","to learn"], ["pensar","to think"],
+    ["acabar","to finish / to have just"], ["ayudar","to help"], ["encontrar","to find"],
+    ["esperar","to wait / to hope"], ["llamar","to call"],
+    ["dar","to give"], ["tomar","to take / to drink"], ["quedar","to remain / to arrange to meet"],
+    ["llevar","to carry / to wear"], ["dejar","to leave behind / to allow"]
+  ],
+  "Adjectives": [
+    ["cansado","tired (m.)"], ["cansada","tired (f.)"], ["feliz","happy"],
+    ["triste","sad"], ["rápido","fast"], ["temprano","early"], ["tarde","late"],
+    ["aburrido","boring / bored"], ["listo","clever / ready"], ["malo","bad"],
+    ["bueno","good"], ["rico","rich / delicious"], ["enfermo","sick"],
+    ["ocupado","busy"], ["nuevo","new"], ["viejo","old"], ["grande","big"],
+    ["pequeño","small"], ["bonito","beautiful"], ["diferente","different"],
+    ["rico","delicious (with estar) / rich (with ser)"], ["sabroso","tasty"],
+    ["importante","important"], ["difícil","difficult"], ["fácil","easy"],
+    ["nervioso","nervous"], ["ocupado","busy"]
+  ],
+  "Prepositions": [
+    ["a","to, at"], ["de","of, from"], ["en","in, on, at"], ["con","with"],
+    ["para","for (purpose)"], ["por","for (cause/duration)"],
+    ["sobre","on / about"], ["encima de","on top of"], ["debajo de","under"],
+    ["al lado de","next to"], ["cerca de","near"], ["lejos de","far from"],
+    ["delante de","in front of"], ["detrás de","behind"], ["entre","between (takes no de)"],
+    ["dentro de","inside"], ["fuera de","outside"], ["enfrente de","opposite / across from"],
+    ["antes de","before (+ infinitive)"], ["después de","after (+ infinitive)"],
+    ["durante","during"], ["desde","since / from"], ["hasta","until"]
+  ],
+  "Question words": [
+    ["quién","who"], ["dónde","where"], ["cómo","how"], ["cuándo","when"],
+    ["cuál","which"], ["qué","what"], ["por qué","why"], ["cuánto","how much"],
+    ["cuántos","how many"]
+  ],
+  "Phrases & connectors": [
+    ["me llamo...","my name is..."], ["todos los días","every day"], ["ayer","yesterday"],
+    ["hoy","today"], ["siempre","always"], ["también","also / too"], ["pero","but"],
+    ["porque","because"], ["tengo sed","I am thirsty"], ["tengo hambre","I am hungry"],
+    ["el fin de semana pasado","last weekend"], ["el próximo año","next year"],
+    ["no tengo que trabajar","I don't have to work"], ["especialmente","especially"],
+    ["por favor","please"], ["lo siento","I'm sorry"], ["todavía no","not yet"],
+    ["muchas gracias","thank you very much"], ["de nada","you're welcome"],
+    ["espero que sí","I hope so"], ["esperar el autobús","to wait for the bus (no preposition needed)"],
+    ["dar un paseo","to take a walk (lit. to give a walk)"],
+    ["¿Qué desean tomar?","What would you like to drink? (tomar = drink here)"],
+    ["del","de + el — masculine only: del hotel, but de la ciudad"],
+    ["al","a + el — masculine only: al trabajo, but a la escuela"],
+    ["está","is (estar) — accent on the last syllable; esta without accent means 'this'"],
+    ["desde las nueve hasta las cinco","from nine until five (hours take plural las)"],
+    ["la una","one o'clock (the only singular hour)"]
+  ],
+  "Restaurant — casual (street stalls, small places)": [
+    ["Me da dos tacos, por favor","Two tacos, please (everyday polite)"],
+    ["¿Me regala un agua?","Could I get a water? (very common in Mexico/Colombia)"],
+    ["Quiero un taco de carnitas","I want a carnitas taco (direct, normal)"],
+    ["Dos de pastor","Two pastor (just naming it — the most common form)"],
+    ["¿Qué le doy?","What can I get you? (what they say to you)"],
+    ["¿Para aquí o para llevar?","For here or to go?"],
+    ["¿Con todo?","With everything? (onion and cilantro)"],
+    ["Sin cebolla, por favor","Without onion, please"],
+    ["¿Cuánto es?","How much is it?"],
+    ["para llevar","to take away"]
+  ],
+  "Restaurant — sit-down (formal register)": [
+    ["Quisiera agua, por favor","I would like water, please (polite)"],
+    ["Una mesa para dos, por favor","A table for two, please"],
+    ["¿Qué recomienda?","What do you recommend? (to one waiter, formal)"],
+    ["La cuenta, por favor","The bill, please"],
+    ["¿Ya están listos para pedir?","Are you ready to order? (what they ask you)"],
+    ["¿Qué desean tomar?","What would you like to drink? (what they ask you)"],
+    ["No quiero postre, gracias","I don't want dessert, thank you"],
+    ["Está muy rico","It's delicious (estar, not ser)"],
+    ["¿Me trae la carta, por favor?","Could you bring me the menu, please?"]
+  ]
+};
+
+const pronouns = ["yo","tú","él / ella / usted","nosotros","vosotros (España)","ellos / ustedes"];
+
+// Nouns carry a gender flag: "m", "f", or "f-el" (feminine but takes "el" in the
+// singular because it starts with a stressed a- sound, e.g. el agua fría).
+function nounArticle(gender){
+  if(!gender) return '';
+  return gender === 'm' ? 'el' : (gender === 'f-el' ? 'el' : 'la');
+}
+function displayForm(es, gender){
+  const art = nounArticle(gender);
+  return art ? art + ' ' + es : es;
+}
+function genderLabel(gender){
+  if(!gender) return '';
+  return gender === 'm' ? 'm' : 'f';
+}
+
+const irregular = {
+  "ser":    { pres:["soy","eres","es","somos","sois","son"], pret:["fui","fuiste","fue","fuimos","fuisteis","fueron"] },
+  "estar":  { pres:["estoy","estás","está","estamos","estáis","están"], pret:["estuve","estuviste","estuvo","estuvimos","estuvisteis","estuvieron"] },
+  "ir":     { pres:["voy","vas","va","vamos","vais","van"], pret:["fui","fuiste","fue","fuimos","fuisteis","fueron"] },
+  "tener":  { pres:["tengo","tienes","tiene","tenemos","tenéis","tienen"], pret:["tuve","tuviste","tuvo","tuvimos","tuvisteis","tuvieron"] },
+  "querer": { pres:["quiero","quieres","quiere","queremos","queréis","quieren"], pret:["quise","quisiste","quiso","quisimos","quisisteis","quisieron"] },
+  "poder":  { pres:["puedo","puedes","puede","podemos","podéis","pueden"], pret:["pude","pudiste","pudo","pudimos","pudisteis","pudieron"] },
+  "hacer":  { pres:["hago","haces","hace","hacemos","hacéis","hacen"], pret:["hice","hiciste","hizo","hicimos","hicisteis","hicieron"] },
+  "saber":  { pres:["sé","sabes","sabe","sabemos","sabéis","saben"], pret:["supe","supiste","supo","supimos","supisteis","supieron"] },
+  "venir":  { pres:["vengo","vienes","viene","venimos","venís","vienen"], pret:["vine","viniste","vino","vinimos","vinisteis","vinieron"] },
+  "conducir": { pres:["conduzco","conduces","conduce","conducimos","conducís","conducen"], pret:["conduje","condujiste","condujo","condujimos","condujisteis","condujeron"] },
+  "empezar": { pres:["empiezo","empiezas","empieza","empezamos","empezáis","empiezan"], pret:["empecé","empezaste","empezó","empezamos","empezasteis","empezaron"], note:"Stem-changing (e→ie) in present; spelling changes z→c before é in the yo preterite." },
+  "jugar":  { pres:["juego","juegas","juega","jugamos","jugáis","juegan"], pret:["jugué","jugaste","jugó","jugamos","jugasteis","jugaron"], note:"Stem-changing (u→ue) in present; spelling changes g→gu before é in the yo preterite." },
+  "perder": { pres:["pierdo","pierdes","pierde","perdemos","perdéis","pierden"], pret:["perdí","perdiste","perdió","perdimos","perdisteis","perdieron"], note:"Stem-changing (e→ie) in present only — preterite is regular." },
+  "pedir": { pres:["pido","pides","pide","pedimos","pedís","piden"], pret:["pedí","pediste","pidió","pedimos","pedisteis","pidieron"], note:"Stem-changing (e→i). Note the preterite changes too, but only in él/ella and ellos: pidió, pidieron." },
+  "traer": { pres:["traigo","traes","trae","traemos","traéis","traen"], pret:["traje","trajiste","trajo","trajimos","trajisteis","trajeron"], note:"Irregular yo (traigo) and a j-stem preterite: traje, trajo, trajeron." },
+  "recomendar": { pres:["recomiendo","recomiendas","recomienda","recomendamos","recomendáis","recomiendan"], pret:["recomendé","recomendaste","recomendó","recomendamos","recomendasteis","recomendaron"], note:"Stem-changing (e→ie) in present only — preterite is regular." },
+  "pensar": { pres:["pienso","piensas","piensa","pensamos","pensáis","piensan"], pret:["pensé","pensaste","pensó","pensamos","pensasteis","pensaron"], note:"Stem-changing (e→ie) in present only. Pairs with the preposition en: pienso en ti." },
+  "encontrar": { pres:["encuentro","encuentras","encuentra","encontramos","encontráis","encuentran"], pret:["encontré","encontraste","encontró","encontramos","encontrasteis","encontraron"], note:"Stem-changing (o→ue) in present only — preterite is regular." },
+  "dar": { pres:["doy","das","da","damos","dais","dan"], pret:["di","diste","dio","dimos","disteis","dieron"], note:"Irregular yo (doy), like soy/voy/estoy. The preterite carries no accents at all: di, dio are single syllables — unlike regular comí, comió." }
+};
+
+function conjugate(inf){
+  if(irregular[inf]) return irregular[inf];
+  let stem, presEnd, pretEnd;
+  if(inf.endsWith('ar')){ stem = inf.slice(0,-2); presEnd=['o','as','a','amos','áis','an']; pretEnd=['é','aste','ó','amos','asteis','aron']; }
+  else if(inf.endsWith('er')){ stem = inf.slice(0,-2); presEnd=['o','es','e','emos','éis','en']; pretEnd=['í','iste','ió','imos','isteis','ieron']; }
+  else if(inf.endsWith('ir')){ stem = inf.slice(0,-2); presEnd=['o','es','e','imos','ís','en']; pretEnd=['í','iste','ió','imos','isteis','ieron']; }
+  else { return null; }
+  const pres = presEnd.map(e => stem+e);
+  const pret = pretEnd.map(e => stem+e);
+  let note = null;
+  if(inf.endsWith('car')){ pret[0] = stem.slice(0,-1)+'qué'; note = "Spelling changes c→qu before é in the yo preterite (keeps the hard 'k' sound)."; }
+  else if(inf.endsWith('gar')){ pret[0] = stem+'u'+'é'; note = "Spelling changes g→gu before é in the yo preterite (keeps the hard 'g' sound)."; }
+  else if(inf.endsWith('zar')){ pret[0] = stem.slice(0,-1)+'c'+'é'; note = "Spelling changes z→c before é in the yo preterite (Spanish avoids 'zé')."; }
+  return { pres, pret, note };
+}
+
+/* ---------- VOICES ---------- */
+let spanishVoices = [];
+const voiceSelect = document.getElementById('voiceSelect');
+
+function loadVoices(){
+  const all = window.speechSynthesis.getVoices();
+  spanishVoices = all.filter(v => v.lang.startsWith('es'));
+  voiceSelect.innerHTML = '';
+  if(spanishVoices.length === 0){
+    const opt = document.createElement('option');
+    opt.textContent = 'Default Spanish voice';
+    voiceSelect.appendChild(opt);
+    return;
+  }
+  spanishVoices.forEach(v => {
+    const opt = document.createElement('option');
+    opt.value = v.name;
+    opt.textContent = v.name + ' (' + v.lang + ')';
+    voiceSelect.appendChild(opt);
+  });
+  // Mexican Spanish first. On Apple devices the Mexican voice is "Paulina";
+  // "Mónica" is the Spain (es-ES) voice, so it is only a later fallback.
+  const preferred = spanishVoices.find(v => /paulina/i.test(v.name))
+                  || spanishVoices.find(v => v.lang === 'es-MX')
+                  || spanishVoices.find(v => v.lang === 'es-US')
+                  || spanishVoices.find(v => /m[oó]nica/i.test(v.name))
+                  || spanishVoices[0];
+  if(preferred) voiceSelect.value = preferred.name;
+}
+
+if('speechSynthesis' in window){
+  loadVoices();
+  window.speechSynthesis.onvoiceschanged = loadVoices;
+} else {
+  document.getElementById('voiceNote').style.display = 'block';
+  voiceSelect.style.display = 'none';
+}
+
+function speak(text, rate, cardEl, onEnd){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(text);
+  const voice = spanishVoices.find(v => v.name === voiceSelect.value);
+  if(voice) utter.voice = voice;
+  utter.lang = voice ? voice.lang : 'es-ES';
+  utter.rate = rate || 0.92;
+  if(cardEl){
+    document.querySelectorAll('.playing').forEach(el => el.classList.remove('playing'));
+    cardEl.classList.add('playing');
+    utter.onend = () => { cardEl.classList.remove('playing'); if(onEnd) onEnd(); };
+  } else if(onEnd){
+    utter.onend = onEnd;
+  }
+  window.speechSynthesis.speak(utter);
+}
+
+/* ---------- VOCAB TAB ---------- */
+const content = document.getElementById('content');
+const searchInput = document.getElementById('search');
+
+function playIconSVG(){ return '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>'; }
+
+let vocabCategoryFilter = 'all';
+
+// Short labels for the filter row — the raw category keys are too long for buttons.
+const categoryShortLabels = {
+  'Nouns': 'Sustantivos',
+  'Verbs (infinitive)': 'Verbos',
+  'Adjectives': 'Adjetivos',
+  'Prepositions': 'Preposiciones',
+  'Question words': 'Preguntas',
+  'Phrases & connectors': 'Frases',
+  'Restaurant — casual (street stalls, small places)': 'Restaurante (informal)',
+  'Restaurant — sit-down (formal register)': 'Restaurante (formal)'
+};
+
+function renderVocab(filter=''){
+  content.innerHTML = '';
+  const f = filter.trim().toLowerCase();
+  let any = false;
+
+  const filterRow = document.createElement('div');
+  filterRow.className = 'cat-filter';
+  const allBtn = document.createElement('button');
+  allBtn.textContent = 'Todo';
+  if(vocabCategoryFilter === 'all') allBtn.classList.add('on');
+  allBtn.onclick = () => { vocabCategoryFilter = 'all'; renderVocab(searchInput.value); };
+  filterRow.appendChild(allBtn);
+
+  Object.keys(data).forEach(cat => {
+    const b = document.createElement('button');
+    b.textContent = categoryShortLabels[cat] || cat;
+    if(vocabCategoryFilter === cat) b.classList.add('on');
+    b.onclick = () => { vocabCategoryFilter = cat; renderVocab(searchInput.value); };
+    filterRow.appendChild(b);
+  });
+  content.appendChild(filterRow);
+
+  Object.entries(data).forEach(([category, words]) => {
+    if(vocabCategoryFilter !== 'all' && category !== vocabCategoryFilter) return;
+    const filtered = words.filter(([es,en]) => es.toLowerCase().includes(f) || en.toLowerCase().includes(f));
+    if(filtered.length === 0) return;
+    any = true;
+
+    const section = document.createElement('section');
+    section.className = 'category';
+
+    const h2 = document.createElement('h2');
+    h2.textContent = category;
+    const catBtn = document.createElement('button');
+    catBtn.className = 'cat-play';
+    catBtn.textContent = 'Play all';
+    catBtn.onclick = () => playSequence(filtered.map(w => displayForm(w[0], w[2])), 0);
+    h2.appendChild(catBtn);
+    section.appendChild(h2);
+
+    const cardsDiv = document.createElement('div');
+    cardsDiv.className = 'cards';
+    const isVerbCategory = category.startsWith('Verbs');
+
+    filtered.forEach(([es, en, gender]) => {
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      const top = document.createElement('div');
+      top.className = 'card-top';
+
+      const shown = displayForm(es, gender);
+      const badge = gender
+        ? '<span class="gender-badge '+genderLabel(gender)+'">'+genderLabel(gender)+'</span>'
+        : '';
+      const note = gender === 'f-el'
+        ? '<div class="gender-note">feminine, but takes "el" in the singular — el agua fría</div>'
+        : '';
+
+      const textDiv = document.createElement('div');
+      textDiv.className = 'card-text';
+      textDiv.innerHTML = '<div class="card-es">'+shown+badge+'</div><div class="card-en">'+en+'</div>'+note;
+
+      const btnRow = document.createElement('div');
+      btnRow.className = 'card-buttons';
+
+      const playBtn = document.createElement('button');
+      playBtn.className = 'icon-btn';
+      playBtn.innerHTML = playIconSVG();
+      playBtn.setAttribute('aria-label', 'Play ' + shown);
+      playBtn.onclick = () => speak(shown, 0.92, card);
+      btnRow.appendChild(playBtn);
+
+      let panel = null;
+      if(isVerbCategory){
+        const conjBtn = document.createElement('button');
+        conjBtn.className = 'icon-btn conj';
+        conjBtn.textContent = 'v';
+        conjBtn.title = 'See conjugation';
+        conjBtn.setAttribute('aria-label', 'Show conjugation of ' + es);
+        panel = buildConjPanel(es.split(' ')[0]);
+        conjBtn.onclick = () => panel.classList.toggle('open');
+        btnRow.appendChild(conjBtn);
+      }
+
+      top.appendChild(textDiv);
+      top.appendChild(btnRow);
+      card.appendChild(top);
+      if(panel) card.appendChild(panel);
+      cardsDiv.appendChild(card);
+    });
+
+    section.appendChild(cardsDiv);
+    content.appendChild(section);
+  });
+
+  if(!any){
+    const empty = document.createElement('div');
+    empty.className = 'empty';
+    empty.textContent = vocabCategoryFilter === 'all'
+      ? 'No se encontró esa palabra. (Word not found.)'
+      : 'Nada en esta categoría con ese texto. (Nothing in this category matches.)';
+    content.appendChild(empty);
+  }
+}
+
+function buildConjPanel(infinitive){
+  const panel = document.createElement('div');
+  panel.className = 'conj-panel';
+  const conj = conjugate(infinitive);
+  if(!conj){
+    panel.innerHTML = '<em>No conjugation data for "'+infinitive+'".</em>';
+    return panel;
+  }
+  let html = '<table><tr><th></th><th>Present</th><th>Preterite</th></tr>';
+  pronouns.forEach((p,i) => {
+    const rowClass = (i === 4) ? ' class="ref-row"' : '';
+    html += '<tr'+rowClass+'><td class="pron">'+p+'</td>' +
+      '<td><span class="conj-word-row">'+conj.pres[i]+' <button class="mini-play" data-word="'+conj.pres[i]+'">▶</button></span></td>' +
+      '<td><span class="conj-word-row">'+conj.pret[i]+' <button class="mini-play" data-word="'+conj.pret[i]+'">▶</button></span></td></tr>';
+  });
+  html += '</table>';
+  html += '<div class="conj-note">él / ella / usted and ellos / ellas / ustedes share the same forms — usted and ustedes are just the formal/plural pronouns for everyday Latin American Spanish. Vosotros (dimmed) is Spain-only, shown for reference.</div>';
+  if(conj.note) html += '<div class="conj-note">'+conj.note+'</div>';
+  panel.innerHTML = html;
+  panel.querySelectorAll('.mini-play').forEach(btn => {
+    btn.onclick = (e) => { e.stopPropagation(); speak(btn.dataset.word, 0.92); };
+  });
+  return panel;
+}
+
+function playSequence(words, i){
+  if(i >= words.length) return;
+  speak(words[i], 0.92, null, () => setTimeout(() => playSequence(words, i+1), 150));
+}
+
+searchInput.addEventListener('input', e => renderVocab(e.target.value));
+
+/* ---------- LISTENING TAB ---------- */
+const listeningExercises = [
+  { es:"Me llamo Ana y soy estudiante.", en:"My name is Ana and I am a student." },
+  { es:"¿Dónde vives tú?", en:"Where do you live?" },
+  { es:"Voy a comer pizza con mi familia.", en:"I'm going to eat pizza with my family." },
+  { es:"Ayer, cené con mi hermano.", en:"Yesterday, I had dinner with my brother." },
+  { es:"No puedo ir porque no tengo coche.", en:"I can't go because I don't have a car." },
+  { es:"Mi madre sabe conducir muy bien.", en:"My mother knows how to drive very well." },
+  { es:"Este fin de semana vamos a la playa.", en:"This weekend we're going to the beach." },
+  { es:"Me gustan mucho los perros.", en:"I like dogs a lot." },
+  { es:"Estoy cansado, pero estoy feliz.", en:"I am tired, but I am happy." },
+  { es:"El próximo año va a ser diferente.", en:"Next year is going to be different." },
+  { es:"¿Para aquí o para llevar?", en:"For here or to go?" },
+  { es:"¿Qué le doy?", en:"What can I get you?" },
+  { es:"¿Ya están listos para pedir?", en:"Are you ready to order?" },
+  { es:"Les recomiendo los tacos al pastor.", en:"I recommend the pastor tacos." },
+  { es:"¿Qué desean tomar?", en:"What would you like to drink?" },
+  { es:"Una mesa para dos, por favor.", en:"A table for two, please." },
+  { es:"La cuenta, por favor.", en:"The bill, please." },
+  { es:"Sin cebolla, por favor.", en:"Without onion, please." },
+  { es:"Le doy el libro a mi hermana.", en:"I give the book to my sister." },
+  { es:"Espero que todo vaya bien.", en:"I hope everything goes well." },
+  { es:"Vamos a dar un paseo.", en:"We're going to take a walk." },
+  { es:"El banco está al lado del restaurante.", en:"The bank is next to the restaurant." },
+  { es:"Mi casa está lejos de la ciudad.", en:"My house is far from the city." },
+  { es:"El gato está debajo de la silla.", en:"The cat is under the chair." },
+  { es:"Trabajo desde las nueve hasta las cinco.", en:"I work from nine until five." }
+];
+
+const exContent = document.getElementById('exContent');
+
+function normalize(str){
+  return str.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^a-z0-9\s]/g,'')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+
+function renderListening(){
+  exContent.innerHTML = '';
+  listeningExercises.forEach((item, idx) => {
+    const card = document.createElement('div');
+    card.className = 'ex-card';
+
+    const head = document.createElement('div');
+    head.className = 'ex-head';
+
+    const num = document.createElement('div');
+    num.className = 'ex-num';
+    num.textContent = idx+1;
+
+    const playBtn = document.createElement('button');
+    playBtn.className = 'ex-play';
+    playBtn.innerHTML = playIconSVG();
+    playBtn.setAttribute('aria-label', 'Play sentence '+(idx+1));
+    playBtn.onclick = () => speak(item.es, 0.85, playBtn.parentElement);
+
+    const instr = document.createElement('div');
+    instr.className = 'ex-instructions';
+    instr.textContent = 'Listen, then type the English meaning below.';
+
+    head.appendChild(num);
+    head.appendChild(playBtn);
+    head.appendChild(instr);
+
+    const inputRow = document.createElement('div');
+    inputRow.className = 'ex-input-row';
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.placeholder = 'Type what you heard, in English...';
+    const checkBtn = document.createElement('button');
+    checkBtn.textContent = 'Check';
+
+    const result = document.createElement('div');
+    result.className = 'ex-result';
+
+    checkBtn.onclick = () => {
+      const userAns = normalize(input.value);
+      const correctAns = normalize(item.en);
+      const isClose = userAns.length > 0 && (
+        correctAns.includes(userAns) || userAns.includes(correctAns) ||
+        correctAns.split(' ').filter(w => userAns.split(' ').includes(w)).length >= Math.ceil(correctAns.split(' ').length * 0.5)
+      );
+      result.classList.add('show');
+      result.classList.remove('correct','close');
+      result.classList.add(isClose ? 'correct' : 'close');
+      result.innerHTML =
+        '<div class="es-answer">'+item.es+'</div>' +
+        '<div class="en-answer">'+item.en+'</div>' +
+        '<div style="margin-top:0.4rem; font-size:0.82rem;">'+(isClose ? '✅ Close enough — nice listening!' : '📝 Not quite — compare your answer above and try the audio again.')+'</div>';
+    };
+
+    inputRow.appendChild(input);
+    inputRow.appendChild(checkBtn);
+
+    card.appendChild(head);
+    card.appendChild(inputRow);
+    card.appendChild(result);
+    exContent.appendChild(card);
+  });
+}
+
+/* ---------- FLASHCARDS ---------- */
+let fcAllWords = [];
+let fcDeck = [];
+let fcIndex = 0;
+let fcKnownCount = 0;
+let fcFlipped = false;
+let fcSpanishFront = true;
+let fcMode = 'all'; // 'all' | 'hard'
+let missCounts = {}; // keyed by es text, count of "Repasar de nuevo" hits
+let fcHistory = [];
+let progressLoaded = false;
+let saveTimer = null;
+
+let lastLoadDiagnostic = 'Cargando...';
+
+async function loadProgress(){
+  try{
+    const raw = localStorage.getItem('flashcard-progress');
+    if(raw){
+      const parsed = JSON.parse(raw);
+      missCounts = parsed.missCounts || {};
+      const savedDate = parsed.savedAt ? new Date(parsed.savedAt).toLocaleString() : 'fecha desconocida';
+      const n = Object.keys(missCounts).length;
+      lastLoadDiagnostic = n > 0
+        ? 'Progreso encontrado — guardado el ' + savedDate + ' (' + n + ' palabra(s) con seguimiento).'
+        : 'Se encontró un registro guardado, pero está vacío.';
+    } else {
+      lastLoadDiagnostic = 'No se encontró progreso guardado — empezando de cero.';
+    }
+  }catch(e){
+    missCounts = {};
+    lastLoadDiagnostic = 'Error al cargar progreso: ' + (e && e.message ? e.message : e);
+  }
+  progressLoaded = true;
+  const diagEl = document.getElementById('fcDiagnostic');
+  if(diagEl) diagEl.textContent = lastLoadDiagnostic;
+}
+
+async function saveProgress(showConfirmation){
+  const statusEl = document.getElementById('fcSavedStatus');
+  try{
+    localStorage.setItem('flashcard-progress', JSON.stringify({ missCounts, savedAt: Date.now() }));
+    if(statusEl && showConfirmation !== false){
+      statusEl.textContent = 'Progreso guardado ✓';
+      setTimeout(() => { if(statusEl) statusEl.textContent = ''; }, 2000);
+    }
+  }catch(e){
+    if(statusEl) statusEl.textContent = 'No se pudo guardar: ' + (e && e.message ? e.message : e);
+  }
+}
+
+let fcCategoryFilter = 'all';
+
+function buildFcPool(){
+  const all = [];
+  Object.entries(data).forEach(([cat, words]) => {
+    if(fcCategoryFilter !== 'all' && cat !== fcCategoryFilter) return;
+    words.forEach(([es,en,gender]) => {
+      all.push({ es: displayForm(es, gender), en, gender });
+    });
+  });
+  return all;
+}
+
+function shuffle(arr){
+  const a = [...arr];
+  for(let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i+1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function startFcDeck(mode){
+  if(mode) fcMode = mode;
+  fcAllWords = buildFcPool();
+  const pool = fcMode === 'hard'
+    ? fcAllWords.filter(c => (missCounts[c.es] || 0) >= 2)
+    : fcAllWords;
+  fcDeck = shuffle(pool);
+  fcIndex = 0;
+  fcKnownCount = 0;
+  fcFlipped = false;
+  fcHistory = [];
+  renderFc();
+}
+
+function pushHistory(){
+  fcHistory.push({
+    deck: [...fcDeck],
+    index: fcIndex,
+    known: fcKnownCount,
+    miss: {...missCounts}
+  });
+  if(fcHistory.length > 50) fcHistory.shift();
+}
+
+function renderFc(){
+  const wrap = document.getElementById('fcWrap');
+  wrap.innerHTML = '';
+
+  const hardCount = fcAllWords.filter(c => (missCounts[c.es] || 0) >= 2).length;
+
+  const topRow = document.createElement('div');
+  topRow.className = 'fc-toprow';
+
+  const dirBtn = document.createElement('button');
+  dirBtn.textContent = fcSpanishFront ? '🔀 Español → English' : '🔀 English → Español';
+  dirBtn.onclick = () => { fcSpanishFront = !fcSpanishFront; fcFlipped = false; renderFc(); };
+
+  const allBtn = document.createElement('button');
+  allBtn.textContent = 'Todas';
+  allBtn.className = fcMode === 'all' ? 'on' : '';
+  allBtn.onclick = () => startFcDeck('all');
+
+  const hardBtn = document.createElement('button');
+  hardBtn.textContent = 'Difíciles (' + hardCount + ')';
+  hardBtn.className = fcMode === 'hard' ? 'on' : '';
+  hardBtn.disabled = hardCount === 0;
+  hardBtn.onclick = () => startFcDeck('hard');
+
+  const catBtn = document.createElement('button');
+  const curLabel = fcCategoryFilter === 'all' ? 'Todo' : (categoryShortLabels[fcCategoryFilter] || fcCategoryFilter);
+  catBtn.textContent = '📚 ' + curLabel;
+  catBtn.onclick = () => {
+    // Cycle through: all -> each category -> back to all
+    const cats = ['all'].concat(Object.keys(data));
+    const i = cats.indexOf(fcCategoryFilter);
+    fcCategoryFilter = cats[(i + 1) % cats.length];
+    startFcDeck(fcMode);
+  };
+
+  const backBtn = document.createElement('button');
+  backBtn.className = 'fc-back';
+  backBtn.textContent = '⬅ Volver';
+  backBtn.disabled = fcHistory.length === 0;
+  backBtn.onclick = () => {
+    if(fcHistory.length === 0) return;
+    const prev = fcHistory.pop();
+    fcDeck = prev.deck;
+    fcIndex = prev.index;
+    fcKnownCount = prev.known;
+    missCounts = prev.miss;
+    fcFlipped = false;
+    renderFc();
+    saveProgress();
+  };
+
+  topRow.appendChild(dirBtn);
+  topRow.appendChild(catBtn);
+  topRow.appendChild(allBtn);
+  topRow.appendChild(hardBtn);
+  topRow.appendChild(backBtn);
+  wrap.appendChild(topRow);
+
+  const diagEl = document.createElement('div');
+  diagEl.className = 'fc-saved';
+  diagEl.id = 'fcDiagnostic';
+  diagEl.style.opacity = '0.55';
+  diagEl.textContent = lastLoadDiagnostic;
+  wrap.appendChild(diagEl);
+
+  const savedStatus = document.createElement('div');
+  savedStatus.className = 'fc-saved';
+  savedStatus.id = 'fcSavedStatus';
+  wrap.appendChild(savedStatus);
+
+  const manualSaveBtn = document.createElement('button');
+  manualSaveBtn.className = 'fc-reset';
+  manualSaveBtn.style.textDecoration = 'underline';
+  manualSaveBtn.textContent = 'Guardar progreso ahora';
+  manualSaveBtn.onclick = () => saveProgress(true);
+  wrap.appendChild(manualSaveBtn);
+
+  if(fcDeck.length === 0){
+    const empty = document.createElement('div');
+    empty.className = 'fc-done';
+    empty.innerHTML = '<h3>' + (fcMode === 'hard' ? 'No hay tarjetas difíciles todavía.' : '¡Sin tarjetas!') + '</h3>' +
+      '<p style="color:#5a5a4e;">' + (fcMode === 'hard' ? 'Words land here once you mark them "Repasar de nuevo" two or more times.' : '') + '</p>';
+    wrap.appendChild(empty);
+    return;
+  }
+
+  if(fcIndex >= fcDeck.length){
+    const done = document.createElement('div');
+    done.className = 'fc-done';
+    done.innerHTML = '<h3>¡Terminaste el mazo! 🎉</h3><p style="color:#5a5a4e;">You knew ' + fcKnownCount + ' of ' + fcDeck.length + ' cards on the first try.</p>';
+    const btn = document.createElement('button');
+    btn.className = 'fc-know';
+    btn.style.marginTop = '1rem';
+    btn.textContent = 'Empezar de nuevo';
+    btn.onclick = () => startFcDeck(fcMode);
+    done.appendChild(document.createElement('br'));
+    done.appendChild(btn);
+    wrap.appendChild(done);
+    return;
+  }
+
+  const card = fcDeck[fcIndex];
+  const frontText = fcSpanishFront ? card.es : card.en;
+  const backText = fcSpanishFront ? card.en : card.es;
+  const frontLabel = fcSpanishFront ? 'Español' : 'English';
+  const backLabel = fcSpanishFront ? 'English' : 'Español';
+
+  const progress = document.createElement('div');
+  progress.className = 'fc-progress';
+  progress.textContent = 'Tarjeta ' + (fcIndex+1) + ' de ' + fcDeck.length + ' · ' + fcKnownCount + ' aprendidas';
+  wrap.appendChild(progress);
+
+  const scene = document.createElement('div');
+  scene.className = 'fc-scene';
+
+  const cardEl = document.createElement('div');
+  cardEl.className = 'fc-card' + (fcFlipped ? ' flipped' : '');
+
+  const front = document.createElement('div');
+  front.className = 'fc-face front';
+  front.innerHTML = '<div class="fc-hint">'+frontLabel+'</div><div class="fc-word">'+frontText+'</div>';
+  const frontPlay = document.createElement('button');
+  frontPlay.className = 'icon-btn';
+  frontPlay.innerHTML = playIconSVG();
+  frontPlay.onclick = (e) => { e.stopPropagation(); speak(card.es); };
+  front.appendChild(frontPlay);
+
+  const back = document.createElement('div');
+  back.className = 'fc-face back';
+  back.innerHTML = '<div class="fc-hint">'+backLabel+'</div><div class="fc-word">'+backText+'</div>';
+  const backPlay = document.createElement('button');
+  backPlay.className = 'icon-btn';
+  backPlay.innerHTML = playIconSVG();
+  backPlay.onclick = (e) => { e.stopPropagation(); speak(card.es); };
+  back.appendChild(backPlay);
+
+  cardEl.appendChild(front);
+  cardEl.appendChild(back);
+  cardEl.onclick = () => { fcFlipped = !fcFlipped; cardEl.classList.toggle('flipped'); };
+
+  scene.appendChild(cardEl);
+  wrap.appendChild(scene);
+
+  const controls = document.createElement('div');
+  controls.className = 'fc-controls';
+
+  const againBtn = document.createElement('button');
+  againBtn.className = 'fc-again';
+  againBtn.textContent = '🔁 Repasar de nuevo';
+  againBtn.onclick = () => {
+    pushHistory();
+    missCounts[card.es] = (missCounts[card.es] || 0) + 1;
+    const c = fcDeck.splice(fcIndex, 1)[0];
+    fcDeck.push(c);
+    fcFlipped = false;
+    renderFc();
+    saveProgress();
+  };
+
+  const knowBtn = document.createElement('button');
+  knowBtn.className = 'fc-know';
+  knowBtn.textContent = '✅ Lo sé';
+  knowBtn.onclick = () => {
+    pushHistory();
+    fcKnownCount++;
+    fcIndex++;
+    fcFlipped = false;
+    renderFc();
+  };
+
+  controls.appendChild(againBtn);
+  controls.appendChild(knowBtn);
+  wrap.appendChild(controls);
+
+  const resetBtn = document.createElement('button');
+  resetBtn.className = 'fc-reset';
+  resetBtn.textContent = 'Empezar de nuevo';
+  resetBtn.onclick = () => startFcDeck(fcMode);
+  wrap.appendChild(resetBtn);
+}
+
+
+/* ---------- CONJUGATION DRILL ---------- */
+let drillProgressLoaded = false;
+
+async function loadDrillProgress(){
+  try{
+    const raw = localStorage.getItem('conjugation-drill-progress');
+    if(raw){
+      const p = JSON.parse(raw);
+      drillMistakes = p.drillMistakes || {};
+      drillRight = p.drillRight || 0;
+      drillTotal = p.drillTotal || 0;
+    }
+  }catch(e){ drillMistakes = {}; }
+  drillProgressLoaded = true;
+}
+
+async function saveDrillProgress(){
+  try{
+    localStorage.setItem('conjugation-drill-progress',
+      JSON.stringify({ drillMistakes, drillRight, drillTotal, savedAt: Date.now() }));
+  }catch(e){ /* non-fatal: drilling still works, just unsaved */ }
+}
+
+const drillPronouns = [
+  { label:'yo', idx:0 },
+  { label:'tú', idx:1 },
+  { label:'él / ella / usted', idx:2 },
+  { label:'nosotros', idx:3 },
+  { label:'ellos / ustedes', idx:5 }
+];
+
+let drillTense = 'both';   // 'pres' | 'pret' | 'both'
+let drillScope = 'all';    // 'all' | 'irregular'
+let drillCurrent = null;
+let drillRight = 0;
+let drillTotal = 0;
+let drillMistakes = {};    // "infinitive|pronoun|tense" -> count
+
+function stripAccents(s){
+  return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+}
+
+function drillVerbPool(){
+  const verbs = data['Verbs (infinitive)'] || [];
+  // gustar is excluded: its everyday use is "me gusta / me gustan", not a full
+  // personal conjugation, so drilling "yo gusto" would teach the wrong pattern.
+  let pool = verbs.filter(([es]) => es !== 'gustar');
+  if(drillScope === 'irregular'){
+    pool = pool.filter(([es]) => irregular[es]);
+  }
+  return pool;
+}
+
+function nextDrill(){
+  const pool = drillVerbPool();
+  if(pool.length === 0){ return; }
+  const [inf, meaning] = pool[Math.floor(Math.random()*pool.length)];
+  const pron = drillPronouns[Math.floor(Math.random()*drillPronouns.length)];
+  let tense = drillTense;
+  if(tense === 'both') tense = Math.random() < 0.5 ? 'pres' : 'pret';
+  const conj = conjugate(inf);
+  if(!conj){ nextDrill(); return; }
+  drillCurrent = { inf, meaning, pron, tense, answer: conj[tense][pron.idx] };
+  renderDrill();
+}
+
+function checkDrill(value){
+  if(!drillCurrent) return;
+  const given = value.trim();
+  const answer = drillCurrent.answer;
+  const fbEl = document.getElementById('drillFeedback');
+  if(!fbEl) return;
+
+  drillTotal++;
+  fbEl.className = 'drill-feedback show';
+
+  if(given.toLowerCase() === answer.toLowerCase()){
+    drillRight++;
+    fbEl.classList.add('right');
+    fbEl.innerHTML = '✅ ¡Correcto! <span class="drill-answer">'+answer+'</span>';
+  } else if(stripAccents(given) === stripAccents(answer)){
+    fbEl.classList.add('accent');
+    fbEl.innerHTML = '⚠️ Casi — solo falta el acento: <span class="drill-answer">'+answer+'</span>' +
+      '<div style="margin-top:0.3rem; font-size:0.82rem;">Accents are part of the spelling in Spanish — they mark which syllable is stressed, and sometimes distinguish tenses (hablo vs. habló).</div>';
+    const key = drillCurrent.inf+'|'+drillCurrent.pron.label+'|'+drillCurrent.tense;
+    drillMistakes[key] = (drillMistakes[key]||0)+1;
+  } else {
+    fbEl.classList.add('wrong');
+    fbEl.innerHTML = '📝 No exactamente. La forma correcta es <span class="drill-answer">'+answer+'</span>' +
+      '<div style="margin-top:0.3rem; font-size:0.82rem;">Tu respuesta: '+(given || '(vacío)')+'</div>';
+    const key = drillCurrent.inf+'|'+drillCurrent.pron.label+'|'+drillCurrent.tense;
+    drillMistakes[key] = (drillMistakes[key]||0)+1;
+  }
+
+  saveDrillProgress();
+  const scoreEl = document.getElementById('drillScore');
+  if(scoreEl) scoreEl.textContent = drillRight + ' de ' + drillTotal + ' correctas';
+  const nextBtn = document.getElementById('drillNext');
+  if(nextBtn) nextBtn.style.display = 'block';
+  const speakBtn = document.getElementById('drillSpeak');
+  if(speakBtn) speakBtn.style.display = 'inline-flex';
+}
+
+function renderDrill(){
+  const wrap = document.getElementById('drillWrap');
+  if(!wrap) return;
+  wrap.innerHTML = '';
+
+  const setup = document.createElement('div');
+  setup.className = 'drill-setup';
+  const opts = [
+    { label:'Presente', v:'pres', kind:'tense' },
+    { label:'Pretérito', v:'pret', kind:'tense' },
+    { label:'Ambos', v:'both', kind:'tense' },
+    { label:'Todos los verbos', v:'all', kind:'scope' },
+    { label:'Solo irregulares', v:'irregular', kind:'scope' }
+  ];
+  opts.forEach(o => {
+    const b = document.createElement('button');
+    b.textContent = o.label;
+    const active = o.kind === 'tense' ? drillTense === o.v : drillScope === o.v;
+    if(active) b.classList.add('on');
+    b.onclick = () => {
+      if(o.kind === 'tense') drillTense = o.v; else drillScope = o.v;
+      nextDrill();
+    };
+    setup.appendChild(b);
+  });
+  wrap.appendChild(setup);
+
+  const score = document.createElement('div');
+  score.className = 'drill-score';
+  score.id = 'drillScore';
+  score.textContent = drillTotal > 0 ? drillRight + ' de ' + drillTotal + ' correctas' : 'Escribe la forma correcta del verbo.';
+  wrap.appendChild(score);
+
+  if(!drillCurrent){ return; }
+
+  const card = document.createElement('div');
+  card.className = 'drill-card';
+
+  const tenseLabel = drillCurrent.tense === 'pres' ? 'Presente' : 'Pretérito (pasado)';
+  card.innerHTML =
+    '<div class="drill-tense">'+tenseLabel+'</div>' +
+    '<div class="drill-verb">'+drillCurrent.inf+'</div>' +
+    '<div class="drill-meaning">'+drillCurrent.meaning+'</div>' +
+    '<div class="drill-pronoun">'+drillCurrent.pron.label+' ___</div>';
+
+  const row = document.createElement('div');
+  row.className = 'drill-input-row';
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.autocapitalize = 'none';
+  input.autocomplete = 'off';
+  input.spellcheck = false;
+  input.placeholder = 'tu respuesta...';
+  const btn = document.createElement('button');
+  btn.textContent = 'Comprobar';
+  btn.onclick = () => checkDrill(input.value);
+  input.addEventListener('keydown', e => { if(e.key === 'Enter') checkDrill(input.value); });
+  row.appendChild(input);
+  row.appendChild(btn);
+  card.appendChild(row);
+
+  const fb = document.createElement('div');
+  fb.className = 'drill-feedback';
+  fb.id = 'drillFeedback';
+  card.appendChild(fb);
+
+  const speakBtn = document.createElement('button');
+  speakBtn.className = 'icon-btn';
+  speakBtn.id = 'drillSpeak';
+  speakBtn.style.display = 'none';
+  speakBtn.style.margin = '0.9rem auto 0 auto';
+  speakBtn.innerHTML = playIconSVG();
+  speakBtn.onclick = () => speak(drillCurrent.answer, 0.9);
+  card.appendChild(speakBtn);
+
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'drill-next';
+  nextBtn.id = 'drillNext';
+  nextBtn.textContent = 'Siguiente →';
+  nextBtn.style.display = 'none';
+  nextBtn.onclick = () => nextDrill();
+  card.appendChild(nextBtn);
+
+  wrap.appendChild(card);
+
+  const hardest = Object.entries(drillMistakes).sort((a,b) => b[1]-a[1]).slice(0,5);
+  if(hardest.length > 0){
+    const mist = document.createElement('div');
+    mist.className = 'drill-mistakes';
+    let html = '<h4>Formas que más te cuestan</h4><ul>';
+    hardest.forEach(([key,count]) => {
+      const [inf, pron, tense] = key.split('|');
+      const t = tense === 'pres' ? 'presente' : 'pretérito';
+      html += '<li>'+inf+' — '+pron+' ('+t+') · '+count+'×</li>';
+    });
+    html += '</ul>';
+    mist.innerHTML = html;
+    wrap.appendChild(mist);
+  }
+
+  setTimeout(() => input.focus(), 50);
+}
+
+
+/* ---------- SPEAKING PRACTICE ---------- */
+// English prompt -> accepted Spanish answers. Multiple variants are listed because
+// Spanish routinely drops the subject pronoun, so both forms are genuinely correct.
+const speakSentences = [
+  { en:"I am a student.", es:["Soy estudiante.","Yo soy estudiante."] },
+  { en:"We are in Madrid.", es:["Estamos en Madrid.","Nosotros estamos en Madrid."] },
+  { en:"She is tired.", es:["Está cansada.","Ella está cansada."] },
+  { en:"I speak Spanish.", es:["Hablo español.","Yo hablo español."] },
+  { en:"She eats pizza.", es:["Come pizza.","Ella come pizza."] },
+  { en:"We live in Barcelona.", es:["Vivimos en Barcelona.","Nosotros vivimos en Barcelona."] },
+  { en:"I am going to eat pizza.", es:["Voy a comer pizza.","Yo voy a comer pizza."] },
+  { en:"They are going to live in Madrid.", es:["Van a vivir en Madrid.","Ellos van a vivir en Madrid."] },
+  { en:"I ate pizza.", es:["Comí pizza.","Yo comí pizza."] },
+  { en:"They lived in Peru.", es:["Vivieron en Perú.","Ellos vivieron en Perú."] },
+  { en:"I have a book.", es:["Tengo un libro.","Yo tengo un libro."] },
+  { en:"I have a dog.", es:["Tengo un perro.","Yo tengo un perro."] },
+  { en:"She wants to speak Spanish.", es:["Quiere hablar español.","Ella quiere hablar español."] },
+  { en:"We can eat now.", es:["Podemos comer ahora.","Nosotros podemos comer ahora."] },
+  { en:"I know how to cook.", es:["Sé cocinar.","Yo sé cocinar."] },
+  { en:"She knows how to play the piano.", es:["Sabe tocar el piano.","Ella sabe tocar el piano."] },
+  { en:"Can you come tomorrow?", es:["¿Puedes venir mañana?","Puedes venir mañana"] },
+  { en:"Where do you live?", es:["¿Dónde vives?","Dónde vives"] },
+  { en:"What do you want?", es:["¿Qué quieres?","Qué quieres"] },
+  { en:"Why do you want to study Spanish?", es:["¿Por qué quieres estudiar español?","Por qué quieres estudiar español"] },
+  { en:"This is for you.", es:["Esto es para ti."] },
+  { en:"I am from Mexico.", es:["Soy de México.","Yo soy de México."] },
+  { en:"I like music.", es:["Me gusta la música."] },
+  { en:"He likes dogs.", es:["Le gustan los perros."] },
+  { en:"We like to travel.", es:["Nos gusta viajar."] },
+  { en:"My name is Carlos and I am from Barcelona.", es:["Me llamo Carlos y soy de Barcelona."] },
+  { en:"I have a brother and a sister.", es:["Tengo un hermano y una hermana."] },
+  { en:"I need to arrive at work early.", es:["Necesito llegar al trabajo temprano."] },
+  { en:"I want to buy a car, but I don't have money.", es:["Quiero comprar un coche, pero no tengo dinero."] },
+  { en:"My mother knows how to drive well.", es:["Mi madre sabe conducir bien."] },
+  { en:"I am happy because tomorrow I don't have to work.", es:["Estoy feliz porque mañana no tengo que trabajar."] },
+  { en:"This weekend, I am going to the beach with my family.", es:["Este fin de semana, voy a la playa con mi familia.","Este fin de semana voy a la playa con mi familia."] },
+  { en:"There is a lot of sun and heat.", es:["Hay mucho sol y calor."] },
+  { en:"I don't have a lot of money, but I have a lot of friends.", es:["No tengo mucho dinero, pero tengo muchos amigos."] },
+  { en:"Next year is going to be different.", es:["El próximo año va a ser diferente."] },
+  { en:"I don't like the cold, but I like snow.", es:["No me gusta el frío, pero me gusta la nieve."] },
+  { en:"I need to speak with the boss, please.", es:["Necesito hablar con el jefe, por favor."] },
+  { en:"Can you help me find the email?", es:["¿Puedes ayudarme a encontrar el correo?","Puedes ayudarme a encontrar el correo"] },
+  { en:"I am sorry, but I can't come today because I am sick.", es:["Lo siento, pero hoy no puedo ir porque estoy enfermo.","Lo siento, pero no puedo ir hoy porque estoy enfermo."] },
+  { en:"Good morning, sir.", es:["Buenos días, señor."] },
+  { en:"I just ate.", es:["Acabo de comer."] },
+  { en:"I think about my family a lot.", es:["Pienso mucho en mi familia."] },
+  { en:"I am going to start to study now.", es:["Voy a empezar a estudiar ahora."] },
+  { en:"The meeting begins at three and finishes at five.", es:["La reunión empieza a las tres y termina a las cinco."] },
+  { en:"Yesterday, I had dinner with my family.", es:["Ayer, cené con mi familia.","Ayer cené con mi familia."] },
+  { en:"A table for two, please.", es:["Una mesa para dos, por favor.","Mesa para dos, por favor."] },
+  { en:"I would like water, please. (polite)", es:["Quisiera agua, por favor."] },
+  { en:"Not yet. What do you recommend?", es:["Todavía no. ¿Qué recomienda?","Todavía no, ¿qué recomienda?"] },
+  { en:"I don't want dessert, thank you.", es:["No quiero postre, gracias."] },
+  { en:"The bill, please.", es:["La cuenta, por favor."] },
+  { en:"Two tacos, please. (everyday polite)", es:["Me da dos tacos, por favor."] },
+  { en:"Could I get a water? (casual, Mexico)", es:["¿Me regala un agua?","Me regala un agua"] },
+  { en:"Without onion, please.", es:["Sin cebolla, por favor."] },
+  { en:"How much is it?", es:["¿Cuánto es?","Cuánto es"] },
+  { en:"To go, please.", es:["Para llevar, por favor."] },
+  { en:"It's delicious.", es:["Está muy rico.","Está rico."] },
+  { en:"Could you bring me the menu, please?", es:["¿Me trae la carta, por favor?","Me trae la carta por favor"] },
+  { en:"I want a carnitas taco.", es:["Quiero un taco de carnitas."] },
+  { en:"I am going to start to study now.", es:["Voy a empezar a estudiar ahora."] },
+  { en:"Can you help me study?", es:["¿Puedes ayudarme a estudiar?","Puedes ayudarme a estudiar"] },
+  { en:"I just arrived.", es:["Acabo de llegar."] },
+  { en:"I think about my family a lot.", es:["Pienso mucho en mi familia."] },
+  { en:"I give him the book.", es:["Le doy el libro."] },
+  { en:"I gave you the money yesterday.", es:["Te di el dinero ayer.","Ayer te di el dinero."] },
+  { en:"Give me a coffee, please.", es:["Me da un café, por favor."] },
+  { en:"I am waiting for the bus.", es:["Espero el autobús.","Estoy esperando el autobús."] },
+  { en:"I hope so.", es:["Espero que sí."] },
+  { en:"We are going to take a walk.", es:["Vamos a dar un paseo."] },
+  { en:"The book is under the table.", es:["El libro está debajo de la mesa."] },
+  { en:"The restaurant is near the beach.", es:["El restaurante está cerca de la playa."] },
+  { en:"I study before eating.", es:["Estudio antes de comer."] },
+  { en:"The car is in front of the house.", es:["El coche está delante de la casa."] },
+  { en:"The bank is next to the restaurant.", es:["El banco está al lado del restaurante."] },
+  { en:"The cat is between the table and the chair.", es:["El gato está entre la mesa y la silla."] },
+  { en:"I work from nine until five.", es:["Trabajo desde las nueve hasta las cinco."] },
+  { en:"The pharmacy is across from the hotel.", es:["La farmacia está enfrente del hotel."] },
+  { en:"We are going to eat after working.", es:["Vamos a comer después de trabajar."] },
+  { en:"My house is far from the city.", es:["Mi casa está lejos de la ciudad."] }
+];
+
+let speakIndex = 0;
+let speakRight = 0;
+let speakTotal = 0;
+let recognition = null;
+let recognizing = false;
+
+function normalizeES(s){
+  return s.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[¿?¡!.,;:]/g,'')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+
+function bestMatch(heard, accepted){
+  const h = normalizeES(heard);
+  let best = { ratio:0, target:accepted[0] };
+  accepted.forEach(a => {
+    const t = normalizeES(a);
+    if(h === t) { best = { ratio:1, target:a }; return; }
+    const hw = h.split(' '), tw = t.split(' ');
+    const matched = tw.filter(w => hw.includes(w)).length;
+    const ratio = tw.length ? matched / tw.length : 0;
+    if(ratio > best.ratio) best = { ratio, target:a };
+  });
+  return best;
+}
+
+function micIconSVG(){
+  return '<svg viewBox="0 0 24 24"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a1 1 0 0 1 2 0 7 7 0 0 1-6 6.93V21a1 1 0 0 1-2 0v-3.07A7 7 0 0 1 5 11a1 1 0 0 1 2 0 5 5 0 0 0 10 0z"/></svg>';
+}
+
+function speechAvailable(){
+  return ('webkitSpeechRecognition' in window) || ('SpeechRecognition' in window);
+}
+
+function evaluateSpeak(heard){
+  const item = speakSentences[speakIndex];
+  const fb = document.getElementById('speakFeedback');
+  const heardEl = document.getElementById('heardText');
+  if(heardEl) heardEl.textContent = heard ? '“' + heard + '”' : '';
+  if(!fb) return;
+
+  speakTotal++;
+  const m = bestMatch(heard, item.es);
+  fb.className = 'speak-feedback show';
+
+  if(m.ratio === 1){
+    speakRight++;
+    fb.classList.add('right');
+    fb.innerHTML = '✅ ¡Perfecto! <span class="speak-answer">' + m.target + '</span>';
+  } else if(m.ratio >= 0.6){
+    fb.classList.add('close');
+    fb.innerHTML = '⚠️ Casi. Se esperaba: <span class="speak-answer">' + m.target + '</span>' +
+      '<div style="margin-top:0.35rem; font-size:0.82rem;">Speech recognition can also mishear words — if you said it right, trust your ear over the transcript.</div>';
+  } else {
+    fb.classList.add('wrong');
+    fb.innerHTML = '📝 Respuesta esperada: <span class="speak-answer">' + m.target + '</span>';
+  }
+
+  const scoreEl = document.getElementById('speakScore');
+  if(scoreEl) scoreEl.textContent = speakRight + ' de ' + speakTotal + ' correctas';
+
+  const playBtn = document.getElementById('speakPlayAnswer');
+  if(playBtn) playBtn.style.display = 'inline-block';
+}
+
+let micPermissionGranted = false;
+let speechLog = [];
+let noResultTimer = null;
+let recognitionLang = 'es-MX';
+let recognitionStartedAt = null;
+let warmupTimer = null;
+
+function logSpeech(msg){
+  const stamp = new Date().toLocaleTimeString();
+  speechLog.unshift(stamp + ' — ' + msg);
+  speechLog = speechLog.slice(0, 8);
+  const el = document.getElementById('speechLog');
+  if(el) el.innerHTML = speechLog.map(l => '<div>' + l + '</div>').join('');
+}
+
+function isStandalone(){
+  return (window.navigator.standalone === true) ||
+         (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
+}
+
+// iOS often will not surface a microphone prompt for SpeechRecognition alone.
+// Explicitly requesting the audio stream first triggers the permission dialog,
+// then we release the track immediately so it does not hold the mic open.
+async function ensureMicPermission(){
+  if(micPermissionGranted) return true;
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    logSpeech('getUserMedia no disponible en este navegador.');
+    return false;
+  }
+  try{
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    stream.getTracks().forEach(t => t.stop());
+    micPermissionGranted = true;
+    logSpeech('Permiso de micrófono concedido.');
+    return true;
+  }catch(e){
+    logSpeech('Permiso denegado o no disponible: ' + (e && e.name ? e.name : e));
+    return false;
+  }
+}
+
+async function startListening(){
+  const micBtn = document.getElementById('micBtn');
+  const hint = document.getElementById('micHint');
+
+  if(!speechAvailable()){
+    if(hint) hint.textContent = 'Reconocimiento de voz no disponible — escribe tu respuesta.';
+    logSpeech('SpeechRecognition no existe en window.');
+    return;
+  }
+
+  if(recognizing && recognition){
+    try{ recognition.stop(); }catch(e){}
+    return;
+  }
+
+  // Deliberately no getUserMedia here. On iOS it seizes the audio session, and a
+  // held audio stream is a known way to leave SpeechRecognition receiving silence.
+  // SpeechRecognition requests microphone access on its own.
+
+  // Any text-to-speech still playing (or recently played) contends for the same
+  // audio session and silently kills recognition — no error, no result. Cancel it
+  // and give WebKit a moment to release the session before starting.
+  if(window.speechSynthesis && (window.speechSynthesis.speaking || window.speechSynthesis.pending)){
+    window.speechSynthesis.cancel();
+    logSpeech('TTS cancelado antes de escuchar (conflicto de audio).');
+    await new Promise(r => setTimeout(r, 350));
+  }
+
+  const Rec = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  // Build and start synchronously inside the user gesture — iOS rejects
+  // recognition.start() if it is deferred past the tap that triggered it.
+  try{
+    recognition = new Rec();
+  }catch(e){
+    if(hint) hint.textContent = 'No se pudo crear el reconocedor.';
+    logSpeech('Constructor falló: ' + e.message);
+    return;
+  }
+
+  // Recognition dialect is its own setting: the voice you listen to should not
+  // decide which accent the recognizer expects from you.
+  recognition.lang = recognitionLang;
+  recognition.interimResults = false;
+  recognition.continuous = false;
+  // maxAlternatives above 1 is unreliable in WebKit; leave it at the default.
+
+  let gotResult = false;
+
+  recognition.onaudiostart = () => logSpeech('Audio capturado (onaudiostart).');
+  recognition.onspeechstart = () => logSpeech('Voz detectada (onspeechstart).');
+
+  recognition.onstart = () => {
+    recognizing = true;
+    gotResult = false;
+    if(micBtn) micBtn.classList.add('listening');
+    logSpeech('Reconocimiento iniciado (lang: ' + recognition.lang + ').');
+
+    // WebKit discards roughly the first couple of seconds of audio after start,
+    // so count the user in rather than letting them speak into the dead window.
+    let warmup = 2;
+    if(hint) hint.textContent = 'Espera... ' + warmup;
+    clearInterval(warmupTimer);
+    warmupTimer = setInterval(() => {
+      warmup--;
+      if(warmup > 0){
+        if(hint) hint.textContent = 'Espera... ' + warmup;
+      } else {
+        clearInterval(warmupTimer);
+        if(hint) hint.textContent = '🎤 ¡Habla ahora!';
+      }
+    }, 1000);
+
+    clearTimeout(noResultTimer);
+    noResultTimer = setTimeout(() => {
+      if(recognizing && !gotResult){
+        logSpeech('Sin resultado tras 15s — posible conflicto de sesión de audio.');
+      }
+    }, 15000);
+  };
+
+  recognition.onresult = (event) => {
+    gotResult = true;
+    clearTimeout(noResultTimer);
+    const res = event.results[0];
+    const alternatives = [];
+    for(let i = 0; i < res.length; i++) alternatives.push(res[i].transcript);
+    logSpeech('Resultado: "' + alternatives[0] + '"');
+
+    const item = speakSentences[speakIndex];
+    let bestAlt = alternatives[0], bestRatio = -1;
+    alternatives.forEach(alt => {
+      const r = bestMatch(alt, item.es).ratio;
+      if(r > bestRatio){ bestRatio = r; bestAlt = alt; }
+    });
+    evaluateSpeak(bestAlt);
+  };
+
+  recognition.onnomatch = () => {
+    logSpeech('onnomatch — no se reconoció ninguna frase.');
+    if(hint) hint.textContent = 'No se entendió. Inténtalo otra vez.';
+  };
+
+  recognition.onerror = (e) => {
+    clearTimeout(noResultTimer);
+    const code = e && e.error ? e.error : 'desconocido';
+    logSpeech('ERROR: ' + code);
+    let msg;
+    if(code === 'not-allowed' || code === 'service-not-allowed'){
+      msg = isStandalone()
+        ? 'Micrófono bloqueado. En iPhone esto suele fallar cuando la app se abre desde la pantalla de inicio — prueba abrirla en Safari.'
+        : 'Micrófono bloqueado. Permite el acceso en Ajustes → Safari → Micrófono.';
+    } else if(code === 'no-speech'){
+      msg = 'No se detectó voz. Habla más cerca del micrófono.';
+    } else if(code === 'network'){
+      msg = 'Error de red — el reconocimiento necesita conexión a internet.';
+    } else if(code === 'aborted'){
+      msg = 'Reconocimiento cancelado.';
+    } else {
+      msg = 'Error: ' + code + '. Usa el campo de texto abajo.';
+    }
+    if(hint) hint.textContent = msg;
+  };
+
+  recognition.onend = () => {
+    recognizing = false;
+    clearTimeout(noResultTimer);
+    if(micBtn) micBtn.classList.remove('listening');
+    const secs = recognitionStartedAt ? ((Date.now() - recognitionStartedAt)/1000).toFixed(1) : '?';
+    logSpeech('Reconocimiento terminado tras ' + secs + 's' + (gotResult ? '.' : ' sin resultado.'));
+    if(!gotResult && parseFloat(secs) < 3){
+      logSpeech('Terminó muy rápido — el servicio de dictado cerró la sesión de inmediato.');
+    }
+    clearInterval(warmupTimer);
+    if(hint && !gotResult){
+      hint.textContent = 'No llegó resultado. Toca otra vez y espera la cuenta antes de hablar.';
+    } else if(hint && gotResult){
+      hint.textContent = 'Toca el micrófono para hablar';
+    }
+  };
+
+  recognitionStartedAt = Date.now();
+  try{
+    recognition.start();
+  }catch(e){
+    logSpeech('start() falló: ' + e.message);
+    if(hint) hint.textContent = 'No se pudo iniciar el micrófono: ' + e.message;
+    return;
+  }
+
+  // Deliberately NOT calling getUserMedia here: holding a second audio stream
+  // while the recognizer is running can starve it of input on iOS. Permission is
+  // requested from the "Probar micrófono" button instead.
+}
+
+
+function renderSpeechDiagnostics(){
+  const el = document.getElementById('diagBody');
+  if(!el) return;
+  const rows = [];
+  const add = (label, ok, text) => rows.push(
+    '<div class="diag-row"><span>'+label+'</span><span class="'+(ok?'diag-ok':'diag-bad')+'">'+text+'</span></div>'
+  );
+
+  const hasAPI = speechAvailable();
+  add('SpeechRecognition API', hasAPI, hasAPI ? 'disponible' : 'no disponible');
+
+  const hasGUM = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+  add('getUserMedia', hasGUM, hasGUM ? 'disponible' : 'no disponible');
+
+  const secure = window.isSecureContext;
+  add('Contexto seguro (HTTPS)', secure, secure ? 'sí' : 'no');
+
+  const standalone = isStandalone();
+  add('Modo', !standalone, standalone ? 'pantalla de inicio' : 'navegador');
+
+  add('Permiso de micrófono', micPermissionGranted, micPermissionGranted ? 'concedido' : 'aún no concedido');
+  add('Idioma de reconocimiento', true, recognitionLang);
+
+  el.innerHTML = rows.join('') +
+    '<div style="margin-top:0.7rem; font-size:0.76rem;"><strong>Si no llega ningún resultado:</strong> espera la cuenta atrás antes de hablar — WebKit descarta los primeros segundos. Evita reproducir audio justo antes de grabar; comparten la misma sesión de audio y el conflicto corta el reconocimiento sin dar error. Comprueba Ajustes → General → Teclado → Dictado y Ajustes → Safari → Micrófono. Si sigue fallando, recarga la página: la sesión de audio se reinicia.</div>' +
+    '<div style="margin-top:0.5rem; font-size:0.74rem; color:#b0553a;">Nota: «Probar micrófono» usa getUserMedia, que ocupa la sesión de audio. Si lo usas y luego falla el reconocimiento, recarga la página.</div>' +
+    '<button class="diag-test" id="micTestBtn">Probar micrófono</button>' +
+    '<div id="speechLog"></div>';
+
+  const testBtn = document.getElementById('micTestBtn');
+  if(testBtn){
+    testBtn.onclick = async () => {
+      logSpeech('Probando permiso de micrófono...');
+      const ok = await ensureMicPermission();
+      logSpeech(ok ? 'Prueba OK — el micrófono responde.' : 'Prueba fallida — sin acceso al micrófono.');
+      renderSpeechDiagnostics();
+    };
+  }
+  const logEl = document.getElementById('speechLog');
+  if(logEl) logEl.innerHTML = speechLog.map(l => '<div>' + l + '</div>').join('');
+}
+
+function renderSpeak(){
+  const wrap = document.getElementById('speakWrap');
+  if(!wrap) return;
+  wrap.innerHTML = '';
+
+  const note = document.createElement('div');
+  const standalone = isStandalone();
+  note.className = 'speak-note' + ((!speechAvailable() || standalone) ? ' show' : '');
+  if(!speechAvailable()){
+    note.textContent = 'Speech recognition isn\u2019t available in this browser. Type your answer below instead.';
+  } else if(standalone){
+    note.innerHTML = '<strong>Micrófono limitado en la pantalla de inicio.</strong> iOS suele capturar el audio pero no devolver ningún resultado cuando la app se abre desde el icono. Para hablar, abre la web en <strong>Safari</strong>. Aquí puedes escribir la respuesta.';
+  }
+  wrap.appendChild(note);
+
+  const langRow = document.createElement('div');
+  langRow.className = 'drill-setup';
+  [['México','es-MX'],['España','es-ES'],['EE.UU.','es-US']].forEach(([label, code]) => {
+    const b = document.createElement('button');
+    b.textContent = label;
+    if(recognitionLang === code) b.classList.add('on');
+    b.onclick = () => { recognitionLang = code; logSpeech('Idioma de reconocimiento: ' + code); renderSpeak(); };
+    langRow.appendChild(b);
+  });
+  wrap.appendChild(langRow);
+
+  const score = document.createElement('div');
+  score.className = 'speak-score';
+  score.id = 'speakScore';
+  score.textContent = speakTotal > 0 ? speakRight + ' de ' + speakTotal + ' correctas' : 'Di la frase en español.';
+  wrap.appendChild(score);
+
+  const item = speakSentences[speakIndex];
+
+  const card = document.createElement('div');
+  card.className = 'speak-card';
+  card.innerHTML =
+    '<div class="speak-label">Dilo en español</div>' +
+    '<div class="speak-prompt">' + item.en + '</div>';
+
+  if(speechAvailable()){
+    const micBtn = document.createElement('button');
+    micBtn.className = 'mic-btn';
+    micBtn.id = 'micBtn';
+    micBtn.innerHTML = micIconSVG();
+    micBtn.setAttribute('aria-label','Start speaking');
+    micBtn.onclick = startListening;
+    card.appendChild(micBtn);
+
+    const hint = document.createElement('div');
+    hint.className = 'mic-hint';
+    hint.id = 'micHint';
+    hint.textContent = 'Toca el micrófono para hablar';
+    card.appendChild(hint);
+  }
+
+  const heard = document.createElement('div');
+  heard.className = 'heard-text';
+  heard.id = 'heardText';
+  card.appendChild(heard);
+
+  const fallback = document.createElement('div');
+  fallback.className = 'speak-fallback';
+  const fbInput = document.createElement('input');
+  fbInput.type = 'text';
+  fbInput.placeholder = 'o escribe tu respuesta...';
+  fbInput.autocapitalize = 'none';
+  fbInput.spellcheck = false;
+  const fbBtn = document.createElement('button');
+  fbBtn.textContent = 'Comprobar';
+  fbBtn.onclick = () => { if(fbInput.value.trim()) evaluateSpeak(fbInput.value); };
+  fbInput.addEventListener('keydown', e => { if(e.key === 'Enter' && fbInput.value.trim()) evaluateSpeak(fbInput.value); });
+  fallback.appendChild(fbInput);
+  fallback.appendChild(fbBtn);
+  card.appendChild(fallback);
+
+  const fb = document.createElement('div');
+  fb.className = 'speak-feedback';
+  fb.id = 'speakFeedback';
+  card.appendChild(fb);
+
+  const actions = document.createElement('div');
+  actions.className = 'speak-actions';
+
+  const playAnswer = document.createElement('button');
+  playAnswer.id = 'speakPlayAnswer';
+  playAnswer.textContent = '🔊 Oír la respuesta';
+  playAnswer.style.display = 'none';
+  playAnswer.onclick = () => {
+    speak(item.es[0], 0.9);
+    const h = document.getElementById('micHint');
+    if(h) h.textContent = 'Tras escuchar el audio, espera un segundo antes de usar el micrófono.';
+  };
+  actions.appendChild(playAnswer);
+
+  const skipBtn = document.createElement('button');
+  skipBtn.textContent = 'Saltar';
+  skipBtn.onclick = () => { nextSpeak(); };
+  actions.appendChild(skipBtn);
+
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'primary';
+  nextBtn.textContent = 'Siguiente →';
+  nextBtn.onclick = () => { nextSpeak(); };
+  actions.appendChild(nextBtn);
+
+  card.appendChild(actions);
+  wrap.appendChild(card);
+
+  const diag = document.createElement('details');
+  diag.className = 'speech-diag';
+  diag.innerHTML = '<summary>Diagnóstico del micrófono</summary><div class="diag-body" id="diagBody"></div>';
+  wrap.appendChild(diag);
+  renderSpeechDiagnostics();
+}
+
+function nextSpeak(){
+  speakIndex = Math.floor(Math.random() * speakSentences.length);
+  renderSpeak();
+}
+
+/* ---------- TABS ---------- */
+const tabVocabBtn = document.getElementById('tabVocabBtn');
+const tabListenBtn = document.getElementById('tabListenBtn');
+const tabCardsBtn = document.getElementById('tabCardsBtn');
+const tabDrillBtn = document.getElementById('tabDrillBtn');
+const tabVocab = document.getElementById('tabVocab');
+const tabListen = document.getElementById('tabListen');
+const tabCards = document.getElementById('tabCards');
+const tabDrill = document.getElementById('tabDrill');
+const tabSpeakBtn = document.getElementById('tabSpeakBtn');
+const tabSpeak = document.getElementById('tabSpeak');
+
+function setActiveTab(btn, view){
+  [tabVocabBtn, tabListenBtn, tabCardsBtn, tabDrillBtn, tabSpeakBtn].forEach(b => b.classList.remove('active'));
+  [tabVocab, tabListen, tabCards, tabDrill, tabSpeak].forEach(v => v.classList.remove('active'));
+  btn.classList.add('active');
+  view.classList.add('active');
+}
+
+tabVocabBtn.onclick = () => setActiveTab(tabVocabBtn, tabVocab);
+tabListenBtn.onclick = () => setActiveTab(tabListenBtn, tabListen);
+// Switching tabs must not rebuild these views: the hidden panel keeps its DOM,
+// so a re-render would throw away the current exercise, anything typed, and the
+// feedback already on screen. Only build them the first time they are opened.
+let speakInitialized = false;
+let drillInitialized = false;
+
+tabSpeakBtn.onclick = () => {
+  setActiveTab(tabSpeakBtn, tabSpeak);
+  if(!speakInitialized){
+    nextSpeak();
+    speakInitialized = true;
+  }
+};
+tabDrillBtn.onclick = async () => {
+  setActiveTab(tabDrillBtn, tabDrill);
+  if(!drillProgressLoaded) await loadDrillProgress();
+  if(!drillInitialized){
+    nextDrill();
+    drillInitialized = true;
+  }
+};
+tabCardsBtn.onclick = async () => {
+  setActiveTab(tabCardsBtn, tabCards);
+  if(!progressLoaded) await loadProgress();
+  if(fcAllWords.length === 0) startFcDeck('all');
+};
+
+// Kick off progress load in the background as soon as the page opens,
+// so it's likely ready by the time the user visits the Tarjetas tab.
+loadProgress();
+
+// Safety net: also try to save right before the page/tab is hidden or closed.
+document.addEventListener('visibilitychange', () => {
+  if(document.visibilityState === 'hidden' && Object.keys(missCounts).length > 0){
+    saveProgress(false);
+  }
+});
+window.addEventListener('pagehide', () => {
+  if(Object.keys(missCounts).length > 0) saveProgress(false);
+});
+
+renderVocab();
+renderListening();
+</script>
+
+<div class="update-banner" id="updateBanner">
+  Nueva versión disponible.
+  <button id="updateBtn">Actualizar</button>
+</div>
+
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('service-worker.js', { updateViaCache: 'none' })
+      .then(reg => {
+        // Check for a new version whenever the app is opened or brought to the foreground.
+        reg.update();
+        document.addEventListener('visibilitychange', () => {
+          if(document.visibilityState === 'visible') reg.update();
+        });
+
+        reg.addEventListener('updatefound', () => {
+          const newWorker = reg.installing;
+          if(!newWorker) return;
+          newWorker.addEventListener('statechange', () => {
+            if(newWorker.state === 'installed' && navigator.serviceWorker.controller){
+              const banner = document.getElementById('updateBanner');
+              if(banner) banner.classList.add('show');
+              const btn = document.getElementById('updateBtn');
+              if(btn) btn.onclick = () => {
+                newWorker.postMessage('SKIP_WAITING');
+                window.location.reload();
+              };
+            }
+          });
+        });
+      })
+      .catch(err => console.warn('SW registration failed:', err));
+
+    let refreshing = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if(refreshing) return;
+      refreshing = true;
+      window.location.reload();
+    });
+  });
+}
+</script>
+</body>
+</html>
