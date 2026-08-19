@@ -937,7 +937,7 @@
   <h1>Español</h1>
   <p>Every word from your lessons — hear it spoken, check verb conjugations, and practice listening.</p>
   <p class="voice-note" id="voiceNote">Your browser doesn't support spoken audio — try Chrome, Edge, or Safari.</p>
-  <div class="version-badge" id="versionBadge">v16</div>
+  <div class="version-badge" id="versionBadge">v17</div>
   <nav class="tabs">
     <button id="tabVocabBtn" class="active">Vocabulario</button>
     <button id="tabListenBtn">Escucha</button>
@@ -1481,11 +1481,15 @@ async function loadProgress(){
     if(raw){
       const parsed = JSON.parse(raw);
       missCounts = parsed.missCounts || {};
+      pendingSession = parsed.session || null;
       const savedDate = parsed.savedAt ? new Date(parsed.savedAt).toLocaleString() : 'fecha desconocida';
       const n = Object.keys(missCounts).length;
-      lastLoadDiagnostic = n > 0
-        ? 'Progreso encontrado — guardado el ' + savedDate + ' (' + n + ' palabra(s) con seguimiento).'
-        : 'Se encontró un registro guardado, pero está vacío.';
+      const resumeInfo = pendingSession && pendingSession.deckKeys
+        ? ' Mazo guardado: ' + (pendingSession.index || 0) + '/' + pendingSession.deckKeys.length + '.'
+        : '';
+      lastLoadDiagnostic = (n > 0
+        ? 'Progreso encontrado — guardado el ' + savedDate + ' (' + n + ' palabra(s) difíciles).'
+        : 'Progreso encontrado — guardado el ' + savedDate + '.') + resumeInfo;
     } else {
       lastLoadDiagnostic = 'No se encontró progreso guardado — empezando de cero.';
     }
@@ -1501,7 +1505,7 @@ async function loadProgress(){
 async function saveProgress(showConfirmation){
   const statusEl = document.getElementById('fcSavedStatus');
   try{
-    localStorage.setItem('flashcard-progress', JSON.stringify({ missCounts, savedAt: Date.now() }));
+    localStorage.setItem('flashcard-progress', JSON.stringify(buildSessionSnapshot()));
     if(statusEl && showConfirmation !== false){
       statusEl.textContent = 'Progreso guardado ✓';
       setTimeout(() => { if(statusEl) statusEl.textContent = ''; }, 2000);
@@ -1512,6 +1516,51 @@ async function saveProgress(showConfirmation){
 }
 
 let fcCategoryFilter = 'all';
+let pendingSession = null;
+
+
+// The saved record holds the whole session, not just difficulty counts, so a
+// deck can be resumed mid-way. Only the card keys are stored, not the card
+// objects — the vocabulary itself lives in the app and may have grown since.
+function buildSessionSnapshot(){
+  return {
+    missCounts,
+    savedAt: Date.now(),
+    session: {
+      deckKeys: fcDeck.map(c => c.es),
+      index: fcIndex,
+      known: fcKnownCount,
+      mode: fcMode,
+      category: fcCategoryFilter,
+      spanishFront: fcSpanishFront
+    }
+  };
+}
+
+// Rebuild a saved deck against the CURRENT vocabulary. Words that no longer
+// exist are dropped rather than resurrected as blank cards; if the deck no
+// longer resolves to anything, we fall back to a fresh shuffle.
+function restoreSession(s){
+  if(!s || !Array.isArray(s.deckKeys) || s.deckKeys.length === 0) return false;
+
+  fcCategoryFilter = s.category || 'all';
+  fcMode = s.mode || 'all';
+  fcSpanishFront = (s.spanishFront !== undefined) ? s.spanishFront : true;
+
+  fcAllWords = buildFcPool();
+  const byKey = {};
+  fcAllWords.forEach(c => { byKey[c.es] = c; });
+
+  const restored = s.deckKeys.map(k => byKey[k]).filter(Boolean);
+  if(restored.length === 0) return false;
+
+  fcDeck = restored;
+  fcIndex = Math.min(Math.max(0, s.index || 0), fcDeck.length);
+  fcKnownCount = Math.min(Math.max(0, s.known || 0), fcDeck.length);
+  fcFlipped = false;
+  fcHistory = [];
+  return true;
+}
 
 function buildFcPool(){
   const all = [];
@@ -1545,6 +1594,7 @@ function startFcDeck(mode){
   fcFlipped = false;
   fcHistory = [];
   renderFc();
+  saveProgress(false);
 }
 
 function pushHistory(){
@@ -1568,7 +1618,7 @@ function renderFc(){
 
   const dirBtn = document.createElement('button');
   dirBtn.textContent = fcSpanishFront ? '🔀 Español → English' : '🔀 English → Español';
-  dirBtn.onclick = () => { fcSpanishFront = !fcSpanishFront; fcFlipped = false; renderFc(); };
+  dirBtn.onclick = () => { fcSpanishFront = !fcSpanishFront; fcFlipped = false; renderFc(); saveProgress(false); };
 
   const allBtn = document.createElement('button');
   allBtn.textContent = 'Todas';
@@ -1725,6 +1775,7 @@ function renderFc(){
     fcIndex++;
     fcFlipped = false;
     renderFc();
+    saveProgress(false);
   };
 
   controls.appendChild(againBtn);
@@ -1733,7 +1784,8 @@ function renderFc(){
 
   const resetBtn = document.createElement('button');
   resetBtn.className = 'fc-reset';
-  resetBtn.textContent = 'Empezar de nuevo';
+  resetBtn.textContent = '🔀 Barajar de nuevo';
+  resetBtn.title = 'Empieza el mazo otra vez en orden aleatorio (mantiene las palabras difíciles)';
   resetBtn.onclick = () => startFcDeck(fcMode);
   wrap.appendChild(resetBtn);
 }
@@ -2502,7 +2554,15 @@ tabDrillBtn.onclick = async () => {
 tabCardsBtn.onclick = async () => {
   setActiveTab(tabCardsBtn, tabCards);
   if(!progressLoaded) await loadProgress();
-  if(fcAllWords.length === 0) startFcDeck('all');
+  if(fcAllWords.length === 0){
+    // Resume the saved deck if there is one; otherwise deal a fresh one.
+    if(pendingSession && restoreSession(pendingSession)){
+      pendingSession = null;
+      renderFc();
+    } else {
+      startFcDeck('all');
+    }
+  }
 };
 
 // Kick off progress load in the background as soon as the page opens,
