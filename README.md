@@ -40,6 +40,8 @@ Personal Spanish learning PWA. **Live app:** https://themyr97.github.io/claude-s
 
 - **v16** — Prepositions expanded from 6 to 23: place (encima de, debajo de, al lado de, cerca de, lejos de, delante de, detrás de, entre, dentro de, fuera de, enfrente de) and time (antes de, después de, durante, desde, hasta). Added 8 nouns (banco, gato, silla, farmacia, hotel, autobús, café, hora) and reference entries for the **del / al** contractions (masculine only) and the **está vs esta** accent distinction. 10 new speaking and 4 new listening sentences.
 
+- **v17** — **Flashcard progress bug fixed.** The ✅ *Lo sé* button never called `saveProgress`, so working through a deck wrote nothing to storage; only *Repasar de nuevo* (which increments `missCounts`) persisted anything. Storage now holds the whole session — deck order, position, known count, mode, category filter and card direction — so a deck resumes where you left off. Saved decks store card **keys**, not card objects, and are rebuilt against the current vocabulary on load: removed words are dropped, out-of-range indices are clamped, and an unresolvable deck falls back to a fresh shuffle. The reset button is now **🔀 Barajar de nuevo** for an explicit reshuffle. Restore logic tested against stale, partial, empty and out-of-range saved decks.
+
 ## Deploy checklist
 
 When pushing a new version, always bump `APP_VERSION` in `service-worker.js` and the badge in `index.html`. The service worker file must change byte-wise, or browsers will not install the new version.
