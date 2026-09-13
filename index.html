@@ -937,7 +937,7 @@
   <h1>Español</h1>
   <p>Every word from your lessons — hear it spoken, check verb conjugations, and practice listening.</p>
   <p class="voice-note" id="voiceNote">Your browser doesn't support spoken audio — try Chrome, Edge, or Safari.</p>
-  <div class="version-badge" id="versionBadge">v18</div>
+  <div class="version-badge" id="versionBadge">v19</div>
   <nav class="tabs">
     <button id="tabVocabBtn" class="active">Vocabulario</button>
     <button id="tabListenBtn">Escucha</button>
@@ -1021,7 +1021,13 @@ const data = {
     ["acabar","to finish / to have just"], ["ayudar","to help"], ["encontrar","to find"],
     ["esperar","to wait / to hope"], ["llamar","to call"],
     ["dar","to give"], ["tomar","to take / to drink"], ["quedar","to remain / to arrange to meet"],
-    ["llevar","to carry / to wear"], ["dejar","to leave behind / to allow"]
+    ["llevar","to carry / to wear"], ["dejar","to leave behind / to allow"],
+    ["buscar","to look for (no preposition: busco a mi hermano)"],
+    ["decir","to say / to tell"], ["ver","to see"], ["poner","to put"],
+    ["salir","to leave / to go out"], ["seguir","to follow / to continue"],
+    ["entender","to understand"], ["leer","to read"], ["escribir","to write"],
+    ["abrir","to open"], ["responder","to answer"], ["contestar","to answer"],
+    ["mandar","to send"]
   ],
   "Adjectives": [
     ["cansado","tired (m.)"], ["cansada","tired (f.)"], ["feliz","happy"],
@@ -1087,7 +1093,7 @@ const data = {
     ["a las ocho","at eight (hours take a + las; the number has no -s)"],
     ["por la mañana","in the morning (fixed expression, not 'en mañana')"],
     ["no hay problema","no problem (not 'no problema')"],
-    ["yo tampoco","me neither"], ["no te preocupes","don't worry"],
+    ["yo tampoco","me neither"], ["no te preocupes","don't worry (from preocuparse, a reflexive verb)"],
     ["buenos días","good morning (día is masculine)"],
     ["ser difícil","to be difficult (a characteristic → ser, not estar)"],
     ["otro","another (never 'un otro' — no article)"]
@@ -1153,7 +1159,14 @@ const irregular = {
   "recomendar": { pres:["recomiendo","recomiendas","recomienda","recomendamos","recomendáis","recomiendan"], pret:["recomendé","recomendaste","recomendó","recomendamos","recomendasteis","recomendaron"], note:"Stem-changing (e→ie) in present only — preterite is regular." },
   "pensar": { pres:["pienso","piensas","piensa","pensamos","pensáis","piensan"], pret:["pensé","pensaste","pensó","pensamos","pensasteis","pensaron"], note:"Stem-changing (e→ie) in present only. Pairs with the preposition en: pienso en ti." },
   "encontrar": { pres:["encuentro","encuentras","encuentra","encontramos","encontráis","encuentran"], pret:["encontré","encontraste","encontró","encontramos","encontrasteis","encontraron"], note:"Stem-changing (o→ue) in present only — preterite is regular." },
-  "dar": { pres:["doy","das","da","damos","dais","dan"], pret:["di","diste","dio","dimos","disteis","dieron"], note:"Irregular yo (doy), like soy/voy/estoy. The preterite carries no accents at all: di, dio are single syllables — unlike regular comí, comió." }
+  "dar": { pres:["doy","das","da","damos","dais","dan"], pret:["di","diste","dio","dimos","disteis","dieron"], note:"Irregular yo (doy), like soy/voy/estoy. The preterite carries no accents at all: di, dio are single syllables — unlike regular comí, comió." },
+  "decir": { pres:["digo","dices","dice","decimos","decís","dicen"], pret:["dije","dijiste","dijo","dijimos","dijisteis","dijeron"], note:"Irregular yo (digo) plus e→i stem change, and a j-stem preterite: dije, dijo, dijeron." },
+  "ver": { pres:["veo","ves","ve","vemos","veis","ven"], pret:["vi","viste","vio","vimos","visteis","vieron"], note:"Irregular yo (veo). Like dar, the preterite takes no accents: vi, vio." },
+  "poner": { pres:["pongo","pones","pone","ponemos","ponéis","ponen"], pret:["puse","pusiste","puso","pusimos","pusisteis","pusieron"], note:"Irregular yo (pongo) and a u-stem preterite: puse, puso — same family as tener/estar." },
+  "salir": { pres:["salgo","sales","sale","salimos","salís","salen"], pret:["salí","saliste","salió","salimos","salisteis","salieron"], note:"Irregular yo (salgo), like pongo/tengo. The preterite is completely regular." },
+  "seguir": { pres:["sigo","sigues","sigue","seguimos","seguís","siguen"], pret:["seguí","seguiste","siguió","seguimos","seguisteis","siguieron"], note:"Stem change e→i. The u in seguimos is only there to keep the g hard — it drops in sigo, sigues." },
+  "entender": { pres:["entiendo","entiendes","entiende","entendemos","entendéis","entienden"], pret:["entendí","entendiste","entendió","entendimos","entendisteis","entendieron"], note:"Stem-changing (e→ie) in present only — preterite is regular." },
+  "leer": { pres:["leo","lees","lee","leemos","leéis","leen"], pret:["leí","leíste","leyó","leímos","leísteis","leyeron"], note:"Spelling change in the preterite: i becomes y between vowels (leyó, leyeron), and leí/leíste carry an accent on the i." }
 };
 
 function conjugate(inf){
