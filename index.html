@@ -937,7 +937,7 @@
   <h1>Español</h1>
   <p>Every word from your lessons — hear it spoken, check verb conjugations, and practice listening.</p>
   <p class="voice-note" id="voiceNote">Your browser doesn't support spoken audio — try Chrome, Edge, or Safari.</p>
-  <div class="version-badge" id="versionBadge">v17</div>
+  <div class="version-badge" id="versionBadge">v18</div>
   <nav class="tabs">
     <button id="tabVocabBtn" class="active">Vocabulario</button>
     <button id="tabListenBtn">Escucha</button>
@@ -1000,7 +1000,10 @@ const data = {
     ["especialidad","specialty","f"], ["botella","bottle","f"],
     ["banco","bank","m"], ["gato","cat","m"], ["silla","chair","f"],
     ["farmacia","pharmacy","f"], ["hotel","hotel","m"], ["autobús","bus","m"],
-    ["café","coffee","m"], ["hora","hour / time","f"]
+    ["café","coffee","m"], ["hora","hour / time","f"],
+    ["llave","key","f"], ["habitación","room","f"], ["equipaje","luggage","m"],
+    ["mensaje","message","m"], ["verdad","truth","f"],
+    ["estacionamiento","parking","m"], ["nombre","name","m"]
   ],
   "Verbs (infinitive)": [
     ["ser","to be (permanent)"], ["estar","to be (temporary)"], ["hablar","to speak"],
@@ -1046,6 +1049,24 @@ const data = {
     ["cuál","which"], ["qué","what"], ["por qué","why"], ["cuánto","how much"],
     ["cuántos","how many"]
   ],
+  "Pronouns": [
+    ["yo","I (usually omitted — the verb ending says who)"],
+    ["tú","you (informal)"], ["usted","you (formal)"],
+    ["él","he"], ["ella","she"], ["nosotros","we"],
+    ["ustedes","you (plural, Latin America)"], ["ellos","they"],
+    ["me","me (direct & indirect) — ¿me ayudas?"],
+    ["te","you (direct & indirect) — voy a ayudarte"],
+    ["lo","him / it (direct) — no lo encuentro"],
+    ["la","her / it (direct) — no la encuentro"],
+    ["le","to him / to her (indirect) — le doy el libro"],
+    ["nos","us — nos vemos mañana"],
+    ["los","them (direct, masc.)"], ["las","them (direct, fem.)"],
+    ["les","to them (indirect) — les digo la verdad"],
+    ["mi / mis","my (agrees with the thing owned: mi hermano, mis hermanos)"],
+    ["tu / tus","your"], ["su / sus","his / her / your (formal) / their"],
+    ["nuestro / nuestra","our"],
+    ["mí","me (after a preposition: para mí) — note the accent"]
+  ],
   "Phrases & connectors": [
     ["me llamo...","my name is..."], ["todos los días","every day"], ["ayer","yesterday"],
     ["hoy","today"], ["siempre","always"], ["también","also / too"], ["pero","but"],
@@ -1061,7 +1082,15 @@ const data = {
     ["al","a + el — masculine only: al trabajo, but a la escuela"],
     ["está","is (estar) — accent on the last syllable; esta without accent means 'this'"],
     ["desde las nueve hasta las cinco","from nine until five (hours take plural las)"],
-    ["la una","one o'clock (the only singular hour)"]
+    ["la una","one o'clock (the only singular hour)"],
+    ["a personal","before a person always use a: espero a mi amiga (but espero el autobús)"],
+    ["a las ocho","at eight (hours take a + las; the number has no -s)"],
+    ["por la mañana","in the morning (fixed expression, not 'en mañana')"],
+    ["no hay problema","no problem (not 'no problema')"],
+    ["yo tampoco","me neither"], ["no te preocupes","don't worry"],
+    ["buenos días","good morning (día is masculine)"],
+    ["ser difícil","to be difficult (a characteristic → ser, not estar)"],
+    ["otro","another (never 'un otro' — no article)"]
   ],
   "Restaurant — casual (street stalls, small places)": [
     ["Me da dos tacos, por favor","Two tacos, please (everyday polite)"],
@@ -1214,6 +1243,7 @@ const categoryShortLabels = {
   'Adjectives': 'Adjetivos',
   'Prepositions': 'Preposiciones',
   'Question words': 'Preguntas',
+  'Pronouns': 'Pronombres',
   'Phrases & connectors': 'Frases',
   'Restaurant — casual (street stalls, small places)': 'Restaurante (informal)',
   'Restaurant — sit-down (formal register)': 'Restaurante (formal)'
@@ -1383,7 +1413,11 @@ const listeningExercises = [
   { es:"El banco está al lado del restaurante.", en:"The bank is next to the restaurant." },
   { es:"Mi casa está lejos de la ciudad.", en:"My house is far from the city." },
   { es:"El gato está debajo de la silla.", en:"The cat is under the chair." },
-  { es:"Trabajo desde las nueve hasta las cinco.", en:"I work from nine until five." }
+  { es:"Trabajo desde las nueve hasta las cinco.", en:"I work from nine until five." },
+  { es:"Le doy propina al mesero.", en:"I give the waiter a tip." },
+  { es:"No te preocupes, yo también acabo de llegar.", en:"Don't worry, I just arrived too." },
+  { es:"¿Me puedes ayudar con el correo?", en:"Can you help me with the email?" },
+  { es:"Siempre tomo café por la mañana.", en:"I always drink coffee in the morning." }
 ];
 
 const exContent = document.getElementById('exContent');
@@ -2079,7 +2113,18 @@ const speakSentences = [
   { en:"I work from nine until five.", es:["Trabajo desde las nueve hasta las cinco."] },
   { en:"The pharmacy is across from the hotel.", es:["La farmacia está enfrente del hotel."] },
   { en:"We are going to eat after working.", es:["Vamos a comer después de trabajar."] },
-  { en:"My house is far from the city.", es:["Mi casa está lejos de la ciudad."] }
+  { en:"My house is far from the city.", es:["Mi casa está lejos de la ciudad."] },
+  { en:"I call my boss at nine.", es:["Llamo a mi jefe a las nueve."] },
+  { en:"I can't find it. (the email)", es:["No lo encuentro."] },
+  { en:"I give the waiter a tip.", es:["Le doy propina al mesero.","Doy propina al mesero."] },
+  { en:"I'm waiting for my friend at the restaurant. (female friend)", es:["Espero a mi amiga en el restaurante."] },
+  { en:"I tell them the truth.", es:["Les digo la verdad."] },
+  { en:"Can you help me?", es:["¿Puedes ayudarme?","¿Me puedes ayudar?","Puedes ayudarme"] },
+  { en:"I'm going to call her tomorrow.", es:["Voy a llamarla mañana.","La voy a llamar mañana."] },
+  { en:"Don't worry, I just arrived too.", es:["No te preocupes, yo también acabo de llegar."] },
+  { en:"I always drink coffee in the morning.", es:["Siempre tomo café por la mañana."] },
+  { en:"I left the luggage in the room.", es:["Dejé el equipaje en la habitación."] },
+  { en:"I think the tacos are the specialty here.", es:["Pienso que los tacos son la especialidad aquí."] }
 ];
 
 let speakIndex = 0;
