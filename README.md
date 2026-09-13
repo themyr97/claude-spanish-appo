@@ -42,6 +42,8 @@ Personal Spanish learning PWA. **Live app:** https://themyr97.github.io/claude-s
 
 - **v17** — **Flashcard progress bug fixed.** The ✅ *Lo sé* button never called `saveProgress`, so working through a deck wrote nothing to storage; only *Repasar de nuevo* (which increments `missCounts`) persisted anything. Storage now holds the whole session — deck order, position, known count, mode, category filter and card direction — so a deck resumes where you left off. Saved decks store card **keys**, not card objects, and are rebuilt against the current vocabulary on load: removed words are dropped, out-of-range indices are clamped, and an unresolvable deck falls back to a fresh shuffle. The reset button is now **🔀 Barajar de nuevo** for an explicit reshuffle. Restore logic tested against stale, partial, empty and out-of-range saved decks.
 
+- **v18** — New **Pronouns** category (22 entries): subject pronouns, direct object (lo/la/los/las), indirect object (le/les), and possessives, each with a usage example and the lo-vs-le distinction spelled out. Added 7 nouns (llave, habitación, equipaje, mensaje, verdad, estacionamiento, nombre) and 9 reference entries for recurring grammar points — the **a personal**, hour formatting (a las ocho), *por la mañana*, *no hay problema*, *otro* without an article, and *ser* vs *estar* for characteristics. 12 new speaking and 4 new listening sentences focused on pronoun placement. 260 vocabulary entries total.
+
 ## Deploy checklist
 
 When pushing a new version, always bump `APP_VERSION` in `service-worker.js` and the badge in `index.html`. The service worker file must change byte-wise, or browsers will not install the new version.
