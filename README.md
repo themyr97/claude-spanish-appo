@@ -44,6 +44,8 @@ Personal Spanish learning PWA. **Live app:** https://themyr97.github.io/claude-s
 
 - **v18** — New **Pronouns** category (22 entries): subject pronouns, direct object (lo/la/los/las), indirect object (le/les), and possessives, each with a usage example and the lo-vs-le distinction spelled out. Added 7 nouns (llave, habitación, equipaje, mensaje, verdad, estacionamiento, nombre) and 9 reference entries for recurring grammar points — the **a personal**, hour formatting (a las ocho), *por la mañana*, *no hay problema*, *otro* without an article, and *ser* vs *estar* for characteristics. 12 new speaking and 4 new listening sentences focused on pronoun placement. 260 vocabulary entries total.
 
+- **v19** — 13 verbs added from the lesson dialogues: buscar, decir, ver, poner, salir, seguir, entender, leer, escribir, abrir, responder, contestar, mandar (61 total). Irregular tables written for **decir, ver, poner, salir, seguir, entender, leer** — the regular rules produced non-words for all seven (deco, vo, pono, salo, seguo, entendo, leió). Note added for *leer*, where the preterite i becomes y between vowels (leyó, leyeron). **preocuparse** was deliberately NOT added as a drillable verb: the conjugator returns null for reflexive -se infinitives, which would render an empty table, so it lives in Phrases as *no te preocupes* until reflexives are covered. Full audit: 732 generated forms, no nulls, no duplicates.
+
 ## Deploy checklist
 
 When pushing a new version, always bump `APP_VERSION` in `service-worker.js` and the badge in `index.html`. The service worker file must change byte-wise, or browsers will not install the new version.
