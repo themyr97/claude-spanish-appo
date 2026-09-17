@@ -42,7 +42,7 @@
 | Verben mit fester Präposition (empezar a, pensar en …) | geübt |
 | Zahlen 0–1000 | eingeführt |
 | Uhrzeiten (a las …) | eingeführt, noch fehleranfällig |
-| Pronomen (Subjekt, direkt, indirekt, Possessiv) | **zuletzt eingeführt** |
+| Pronomen (Subjekt, direkt, indirekt, Possessiv) | eingeführt + geübt; Regel «gibt es schon ein Was?» erklärt |
 
 ---
 
@@ -63,6 +63,9 @@ Diese bei Korrekturen gezielt beachten:
    *officina*, *problema* ohne *hay*. Tritt regelmässig auf.
 7. **muy vs. mucho** — *mucho* + Adjektiv statt *muy*.
 8. **Genus** — *un ciudad*, *el reunión*; deshalb Artikel in der App gekoppelt.
+9. **lo/la vs. le** — *le* wird auf Verben ohne zweites Objekt übertragen
+   (*le llamo*, *le encuentro* statt *lo llamo*, *lo encuentro*). Bei Sachen
+   ist *le* immer falsch. Regel dazu erklärt, noch nicht gefestigt.
 
 ## Behoben / stabil
 
@@ -73,6 +76,8 @@ Diese bei Korrekturen gezielt beachten:
 - Präpositionen *de* bei Ortsangaben (*cerca de*, *delante de*)
 - *quedar* als «sich verabreden»
 - Pretérito-Bildung bei regelmässigen Verben (*dejé*, *cené*)
+- Indirekte Pronomen bei Geben/Sagen (*le doy propina*, *les digo la verdad*)
+- Pronomen am Infinitiv angehängt (*llamarla*, *ayudarte*)
 
 ---
 
@@ -82,14 +87,17 @@ Diese bei Korrekturen gezielt beachten:
   (Büro, Restaurant, Hotel) — Wiederholung mit Kontextwechsel
 - **Pronomen-Erklärung** (Subjekt / direkt / indirekt / Possessiv) auf
   Nachfrage eingeschoben
-- **Ejercicio 25 (Pronomen) ist gestellt, aber noch nicht beantwortet**
+- **Ejercicio 25 (Pronomen): 5 von 7 richtig.** Beide Fehler betrafen dasselbe
+  Muster (*le* statt *lo* bei *llamar* / *encontrar*). Danach Regel erklärt:
+  «Gibt es im Satz schon ein Was?» → dann *le*; sonst *lo/la*. Ausserdem
+  *leísmo* als spanische Variante erwähnt, für Mexiko nicht zu übernehmen.
 
 ## Nächste sinnvolle Themen
 
 - Reflexive Verben (*llamarse, levantarse, preocuparse*) — steht an, da
   *preocuparse* in der App bewusst ausgeklammert wurde
 - Uhrzeiten aktiv üben (*son las tres y media*)
-- Direkte/indirekte Pronomen festigen
+- Direkte/indirekte Pronomen festigen (Verbliste lo/la vs. le durchüben)
 - Imperfekt als zweite Vergangenheitsform
 
 ---
