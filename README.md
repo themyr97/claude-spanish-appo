@@ -46,6 +46,8 @@ Personal Spanish learning PWA. **Live app:** https://themyr97.github.io/claude-s
 
 - **v19** — 13 verbs added from the lesson dialogues: buscar, decir, ver, poner, salir, seguir, entender, leer, escribir, abrir, responder, contestar, mandar (61 total). Irregular tables written for **decir, ver, poner, salir, seguir, entender, leer** — the regular rules produced non-words for all seven (deco, vo, pono, salo, seguo, entendo, leió). Note added for *leer*, where the preterite i becomes y between vowels (leyó, leyeron). **preocuparse** was deliberately NOT added as a drillable verb: the conjugator returns null for reflexive -se infinitives, which would render an empty table, so it lives in Phrases as *no te preocupes* until reflexives are covered. Full audit: 732 generated forms, no nulls, no duplicates.
 
+- **v20** — Unter den Karteikarten eine aufklappbare **Fehlerwortliste**: zeigt alle Wörter mit mindestens einem Fehler, absteigend nach Fehlerzahl (bei Gleichstand alphabetisch). Beachtet den Kategoriefilter. Wörter ab 2 Fehlern sind rot markiert und zählen als schwierig, Wörter mit 1 Fehler beige — sonst wäre die Liste irreführend, da nur ab 2 der Difíciles-Modus greift. Jeder Eintrag einzeln zurücksetzbar; der Zustand wird sofort gespeichert. Die Liste bleibt über das Neuzeichnen hinweg geöffnet.
+
 ## Deploy checklist
 
 When pushing a new version, always bump `APP_VERSION` in `service-worker.js` and the badge in `index.html`. The service worker file must change byte-wise, or browsers will not install the new version.
