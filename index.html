@@ -997,7 +997,7 @@
   <h1>Español</h1>
   <p>Every word from your lessons — hear it spoken, check verb conjugations, and practice listening.</p>
   <p class="voice-note" id="voiceNote">Your browser doesn't support spoken audio — try Chrome, Edge, or Safari.</p>
-  <div class="version-badge" id="versionBadge">v20</div>
+  <div class="version-badge" id="versionBadge">v21</div>
   <nav class="tabs">
     <button id="tabVocabBtn" class="active">Vocabulario</button>
     <button id="tabListenBtn">Escucha</button>
@@ -1093,12 +1093,12 @@ const data = {
     ["cansado","tired (m.)"], ["cansada","tired (f.)"], ["feliz","happy"],
     ["triste","sad"], ["rápido","fast"], ["temprano","early"], ["tarde","late"],
     ["aburrido","boring / bored"], ["listo","clever / ready"], ["malo","bad"],
-    ["bueno","good"], ["rico","rich / delicious"], ["enfermo","sick"],
+    ["bueno","good"], ["enfermo","sick"],
     ["ocupado","busy"], ["nuevo","new"], ["viejo","old"], ["grande","big"],
     ["pequeño","small"], ["bonito","beautiful"], ["diferente","different"],
     ["rico","delicious (with estar) / rich (with ser)"], ["sabroso","tasty"],
     ["importante","important"], ["difícil","difficult"], ["fácil","easy"],
-    ["nervioso","nervous"], ["ocupado","busy"]
+    ["nervioso","nervous"], 
   ],
   "Prepositions": [
     ["a","to, at"], ["de","of, from"], ["en","in, on, at"], ["con","with"],
@@ -1669,12 +1669,25 @@ function restoreSession(s){
   return true;
 }
 
+
+// Wann jedes Wort in die App kam. Die Werte bis v20 wurden aus den
+// Versionsarchiven im Repo rekonstruiert (Commit-Datum der jeweiligen
+// Version); neue Wörter werden ab jetzt beim Hinzufügen direkt eingetragen.
+// Wörter ohne Eintrag gelten als alt und stehen am Ende der Reihenfolge.
+const addedAt = {"trabajo":"2026-08-11","casa":"2026-08-11","familia":"2026-08-11","amigo":"2026-08-11","amiga":"2026-08-11","día":"2026-08-11","mañana":"2026-08-11","noche":"2026-08-11","agua":"2026-08-11","comida":"2026-08-11","escuela":"2026-08-11","libro":"2026-08-11","perro":"2026-08-11","tarea":"2026-08-11","respuesta":"2026-08-11","regalo":"2026-08-11","pan":"2026-08-11","hermano":"2026-08-11","hermana":"2026-08-11","madre":"2026-08-11","padre":"2026-08-11","ciudad":"2026-08-11","coche":"2026-08-11","dinero":"2026-08-11","fin de semana":"2026-08-11","playa":"2026-08-11","sol":"2026-08-11","calor":"2026-08-11","frío":"2026-08-11","partido":"2026-08-11","música":"2026-08-11","verano":"2026-08-11","invierno":"2026-08-11","nieve":"2026-08-11","montaña":"2026-08-11","país":"2026-08-11","mundo":"2026-08-11","ser":"2026-08-11","estar":"2026-08-11","hablar":"2026-08-11","comer":"2026-08-11","vivir":"2026-08-11","ir":"2026-08-11","tener":"2026-08-11","querer":"2026-08-11","poder":"2026-08-11","saber":"2026-08-11","hacer":"2026-08-11","beber":"2026-08-11","cenar":"2026-08-11","estudiar":"2026-08-11","caminar":"2026-08-11","nadar":"2026-08-11","cocinar":"2026-08-11","tocar":"2026-08-11","venir":"2026-08-11","necesitar":"2026-08-11","llegar":"2026-08-11","comprar":"2026-08-11","conducir":"2026-08-11","jugar":"2026-08-11","ganar":"2026-08-11","perder":"2026-08-11","empezar":"2026-08-11","terminar":"2026-08-11","bailar":"2026-08-11","cantar":"2026-08-11","viajar":"2026-08-11","gustar":"2026-08-11","cansado":"2026-08-11","cansada":"2026-08-11","feliz":"2026-08-11","triste":"2026-08-11","rápido":"2026-08-11","temprano":"2026-08-11","tarde":"2026-08-11","aburrido":"2026-08-11","listo":"2026-08-11","malo":"2026-08-11","bueno":"2026-08-11","rico":"2026-08-11","enfermo":"2026-08-11","ocupado":"2026-08-11","nuevo":"2026-08-11","viejo":"2026-08-11","grande":"2026-08-11","pequeño":"2026-08-11","bonito":"2026-08-11","diferente":"2026-08-11","a":"2026-08-11","de":"2026-08-11","en":"2026-08-11","con":"2026-08-11","para":"2026-08-11","por":"2026-08-11","quién":"2026-08-11","dónde":"2026-08-11","cómo":"2026-08-11","cuándo":"2026-08-11","cuál":"2026-08-11","qué":"2026-08-11","por qué":"2026-08-11","cuánto":"2026-08-11","cuántos":"2026-08-11","me llamo...":"2026-08-11","todos los días":"2026-08-11","ayer":"2026-08-11","hoy":"2026-08-11","siempre":"2026-08-11","también":"2026-08-11","pero":"2026-08-11","porque":"2026-08-11","tengo sed":"2026-08-11","tengo hambre":"2026-08-11","el fin de semana pasado":"2026-08-11","el próximo año":"2026-08-11","no tengo que trabajar":"2026-08-11","especialmente":"2026-08-11","oficina":"2026-08-11","jefe":"2026-08-11","jefa":"2026-08-11","reunión":"2026-08-11","correo":"2026-08-11","teléfono":"2026-08-11","año":"2026-08-11","señor":"2026-08-11","carta":"2026-08-11","menú":"2026-08-11","mesero":"2026-08-11","mesera":"2026-08-11","mesa":"2026-08-11","cuenta":"2026-08-11","bebida":"2026-08-11","plato":"2026-08-11","entrada":"2026-08-11","postre":"2026-08-11","propina":"2026-08-11","helado":"2026-08-11","cebolla":"2026-08-11","especialidad":"2026-08-11","botella":"2026-08-11","pedir":"2026-08-11","traer":"2026-08-11","recomendar":"2026-08-11","desear":"2026-08-11","aprender":"2026-08-11","pensar":"2026-08-11","acabar":"2026-08-11","ayudar":"2026-08-11","encontrar":"2026-08-11","esperar":"2026-08-11","llamar":"2026-08-11","sabroso":"2026-08-11","importante":"2026-08-11","difícil":"2026-08-11","fácil":"2026-08-11","nervioso":"2026-08-11","por favor":"2026-08-11","lo siento":"2026-08-11","todavía no":"2026-08-11","muchas gracias":"2026-08-11","de nada":"2026-08-11","Me da dos tacos, por favor":"2026-08-11","¿Me regala un agua?":"2026-08-11","Quiero un taco de carnitas":"2026-08-11","Dos de pastor":"2026-08-11","¿Qué le doy?":"2026-08-11","¿Para aquí o para llevar?":"2026-08-11","¿Con todo?":"2026-08-11","Sin cebolla, por favor":"2026-08-11","¿Cuánto es?":"2026-08-11","para llevar":"2026-08-11","Quisiera agua, por favor":"2026-08-11","Una mesa para dos, por favor":"2026-08-11","¿Qué recomienda?":"2026-08-11","La cuenta, por favor":"2026-08-11","¿Ya están listos para pedir?":"2026-08-11","¿Qué desean tomar?":"2026-08-11","No quiero postre, gracias":"2026-08-11","Está muy rico":"2026-08-11","¿Me trae la carta, por favor?":"2026-08-11","dar":"2026-08-14","tomar":"2026-08-14","quedar":"2026-08-14","llevar":"2026-08-14","dejar":"2026-08-14","espero que sí":"2026-08-14","esperar el autobús":"2026-08-14","dar un paseo":"2026-08-14","banco":"2026-08-17","gato":"2026-08-17","silla":"2026-08-17","farmacia":"2026-08-17","hotel":"2026-08-17","autobús":"2026-08-17","café":"2026-08-17","hora":"2026-08-17","sobre":"2026-08-17","encima de":"2026-08-17","debajo de":"2026-08-17","al lado de":"2026-08-17","cerca de":"2026-08-17","lejos de":"2026-08-17","delante de":"2026-08-17","detrás de":"2026-08-17","entre":"2026-08-17","dentro de":"2026-08-17","fuera de":"2026-08-17","enfrente de":"2026-08-17","antes de":"2026-08-17","después de":"2026-08-17","durante":"2026-08-17","desde":"2026-08-17","hasta":"2026-08-17","del":"2026-08-17","al":"2026-08-17","está":"2026-08-17","desde las nueve hasta las cinco":"2026-08-17","la una":"2026-08-17","llave":"2026-09-13","habitación":"2026-09-13","equipaje":"2026-09-13","mensaje":"2026-09-13","verdad":"2026-09-13","estacionamiento":"2026-09-13","nombre":"2026-09-13","yo":"2026-09-13","tú":"2026-09-13","usted":"2026-09-13","él":"2026-09-13","ella":"2026-09-13","nosotros":"2026-09-13","ustedes":"2026-09-13","ellos":"2026-09-13","me":"2026-09-13","te":"2026-09-13","lo":"2026-09-13","la":"2026-09-13","le":"2026-09-13","nos":"2026-09-13","los":"2026-09-13","las":"2026-09-13","les":"2026-09-13","mi / mis":"2026-09-13","tu / tus":"2026-09-13","su / sus":"2026-09-13","nuestro / nuestra":"2026-09-13","mí":"2026-09-13","a personal":"2026-09-13","a las ocho":"2026-09-13","por la mañana":"2026-09-13","no hay problema":"2026-09-13","yo tampoco":"2026-09-13","no te preocupes":"2026-09-13","buenos días":"2026-09-13","ser difícil":"2026-09-13","otro":"2026-09-13","buscar":"2026-09-13","decir":"2026-09-13","ver":"2026-09-13","poner":"2026-09-13","salir":"2026-09-13","seguir":"2026-09-13","entender":"2026-09-13","leer":"2026-09-13","escribir":"2026-09-13","abrir":"2026-09-13","responder":"2026-09-13","contestar":"2026-09-13","mandar":"2026-09-13"};
+
+function addedDate(es){
+  return addedAt[es] || '0000-00-00';
+}
+
 function buildFcPool(){
   const all = [];
   Object.entries(data).forEach(([cat, words]) => {
     if(fcCategoryFilter !== 'all' && cat !== fcCategoryFilter) return;
     words.forEach(([es,en,gender]) => {
-      all.push({ es: displayForm(es, gender), en, gender });
+      // raw wird fuer die addedAt-Zuordnung gebraucht: es traegt bei
+      // Substantiven bereits den Artikel und passt dann nicht mehr.
+      all.push({ es: displayForm(es, gender), en, gender, raw: es });
     });
   });
   return all;
@@ -1692,9 +1705,18 @@ function shuffle(arr){
 function startFcDeck(mode){
   if(mode) fcMode = mode;
   fcAllWords = buildFcPool();
-  const pool = fcMode === 'hard'
-    ? fcAllWords.filter(c => (missCounts[c.es] || 0) >= 2)
-    : fcAllWords;
+  let pool;
+  if(fcMode === 'hard'){
+    pool = fcAllWords.filter(c => (missCounts[c.es] || 0) >= 2);
+  } else if(fcMode === 'new'){
+    // Die 50 zuletzt hinzugekommenen Woerter, danach gemischt: die Auswahl
+    // richtet sich nach dem Datum, die Abfragereihenfolge bleibt zufaellig.
+    pool = fcAllWords.slice()
+      .sort((a, b) => addedDate(b.raw).localeCompare(addedDate(a.raw)))
+      .slice(0, 50);
+  } else {
+    pool = fcAllWords;
+  }
   fcDeck = shuffle(pool);
   fcIndex = 0;
   fcKnownCount = 0;
@@ -1793,6 +1815,7 @@ function renderFc(){
   wrap.innerHTML = '';
 
   const hardCount = fcAllWords.filter(c => (missCounts[c.es] || 0) >= 2).length;
+  const newCount = Math.min(50, fcAllWords.length);
 
   const topRow = document.createElement('div');
   topRow.className = 'fc-toprow';
@@ -1811,6 +1834,12 @@ function renderFc(){
   hardBtn.className = fcMode === 'hard' ? 'on' : '';
   hardBtn.disabled = hardCount === 0;
   hardBtn.onclick = () => startFcDeck('hard');
+
+  const newBtn = document.createElement('button');
+  newBtn.className = 'fc-mode' + (fcMode === 'new' ? ' on' : '');
+  newBtn.textContent = 'Nuevas (' + newCount + ')';
+  newBtn.title = 'Die 50 zuletzt hinzugefügten Wörter dieser Kategorie';
+  newBtn.onclick = () => startFcDeck('new');
 
   const catBtn = document.createElement('button');
   const curLabel = fcCategoryFilter === 'all' ? 'Todo' : (categoryShortLabels[fcCategoryFilter] || fcCategoryFilter);
@@ -1843,6 +1872,7 @@ function renderFc(){
   topRow.appendChild(catBtn);
   topRow.appendChild(allBtn);
   topRow.appendChild(hardBtn);
+  topRow.appendChild(newBtn);
   topRow.appendChild(backBtn);
   wrap.appendChild(topRow);
 
