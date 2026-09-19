@@ -925,6 +925,66 @@
   }
 
 
+
+  /* Liste der Fehlerwörter unter den Karteikarten */
+  .miss-list{
+    max-width:460px;
+    margin:1.6rem auto 0 auto;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:white;
+    overflow:hidden;
+  }
+  .miss-list summary{
+    cursor:pointer;
+    padding:0.8rem 1rem;
+    font-size:0.86rem;
+    font-weight:600;
+    color:var(--sage-dark);
+    list-style:none;
+  }
+  .miss-list summary::-webkit-details-marker{ display:none; }
+  .miss-list summary::before{ content:'\25B8  '; }
+  .miss-list[open] summary::before{ content:'\25BE  '; }
+  .miss-body{ padding:0 0.75rem 0.8rem 0.75rem; }
+  .miss-row{
+    display:flex;
+    align-items:center;
+    gap:0.6rem;
+    padding:0.5rem 0.25rem;
+    border-top:1px solid var(--paper-2);
+  }
+  .miss-word{ flex:1; min-width:0; }
+  .miss-es{ font-weight:600; font-size:0.92rem; }
+  .miss-en{ font-size:0.76rem; color:#767666; }
+  .miss-count{
+    font-size:0.7rem;
+    font-weight:700;
+    border-radius:999px;
+    padding:0.15rem 0.5rem;
+    white-space:nowrap;
+  }
+  .miss-count.hard{ background:#f3dfe2; color:#7a3345; }
+  .miss-count.soft{ background:#f0ece2; color:#7a6f50; }
+  .miss-reset{
+    border:1px solid var(--line);
+    background:white;
+    border-radius:999px;
+    padding:0.3rem 0.6rem;
+    font-size:0.72rem;
+    cursor:pointer;
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    white-space:nowrap;
+  }
+  .miss-note{
+    font-size:0.74rem;
+    color:var(--clay);
+    padding:0.6rem 0.25rem 0 0.25rem;
+    line-height:1.45;
+  }
+  .miss-empty{ font-size:0.82rem; color:#767666; padding:0.5rem 0.25rem; }
+
   @media (max-width:480px){
     .cards{ grid-template-columns:1fr; }
   }
@@ -937,7 +997,7 @@
   <h1>Español</h1>
   <p>Every word from your lessons — hear it spoken, check verb conjugations, and practice listening.</p>
   <p class="voice-note" id="voiceNote">Your browser doesn't support spoken audio — try Chrome, Edge, or Safari.</p>
-  <div class="version-badge" id="versionBadge">v19</div>
+  <div class="version-badge" id="versionBadge">v20</div>
   <nav class="tabs">
     <button id="tabVocabBtn" class="active">Vocabulario</button>
     <button id="tabListenBtn">Escucha</button>
@@ -1654,6 +1714,80 @@ function pushHistory(){
   if(fcHistory.length > 50) fcHistory.shift();
 }
 
+
+// Bleibt über das Neuzeichnen hinweg offen: renderFc() baut den ganzen Bereich
+// neu auf, sonst würde die Liste bei jedem Zurücksetzen zuklappen.
+let missListOpen = false;
+
+function renderMissList(){
+  const box = document.createElement('details');
+  box.className = 'miss-list';
+  box.open = missListOpen;
+  box.addEventListener('toggle', () => { missListOpen = box.open; });
+
+  // Nur Wörter des aktuellen Kategoriefilters: fcAllWords wird bereits
+  // über buildFcPool() gefiltert.
+  const entries = fcAllWords
+    .filter(card => (missCounts[card.es] || 0) > 0)
+    .map(card => ({ card, count: missCounts[card.es] }))
+    .sort((a, b) => b.count - a.count || a.card.es.localeCompare(b.card.es));
+
+  const hardTotal = entries.filter(e => e.count >= 2).length;
+
+  const sum = document.createElement('summary');
+  sum.textContent = entries.length === 0
+    ? 'Fehlerwörter (keine)'
+    : 'Fehlerwörter (' + entries.length + ', davon ' + hardTotal + ' schwierig)';
+  box.appendChild(sum);
+
+  const body = document.createElement('div');
+  body.className = 'miss-body';
+
+  if(entries.length === 0){
+    const empty = document.createElement('div');
+    empty.className = 'miss-empty';
+    empty.textContent = 'Noch keine Fehler in dieser Kategorie. Wörter erscheinen hier, sobald du «Repasar de nuevo» drückst.';
+    body.appendChild(empty);
+  } else {
+    entries.forEach(({ card, count }) => {
+      const row = document.createElement('div');
+      row.className = 'miss-row';
+
+      const word = document.createElement('div');
+      word.className = 'miss-word';
+      word.innerHTML = '<div class="miss-es">' + card.es + '</div>' +
+                       '<div class="miss-en">' + card.en + '</div>';
+
+      const badge = document.createElement('span');
+      badge.className = 'miss-count ' + (count >= 2 ? 'hard' : 'soft');
+      badge.textContent = count + '\u00D7';
+      badge.title = count >= 2 ? 'Zählt als schwierig' : 'Noch nicht schwierig (ab 2)';
+
+      const reset = document.createElement('button');
+      reset.className = 'miss-reset';
+      reset.textContent = 'Zurücksetzen';
+      reset.onclick = () => {
+        delete missCounts[card.es];
+        saveProgress(false);
+        renderFc();
+      };
+
+      row.appendChild(word);
+      row.appendChild(badge);
+      row.appendChild(reset);
+      body.appendChild(row);
+    });
+
+    const note = document.createElement('div');
+    note.className = 'miss-note';
+    note.textContent = 'Ab 2 Fehlern zählt ein Wort als schwierig und erscheint im Difíciles-Modus.';
+    body.appendChild(note);
+  }
+
+  box.appendChild(body);
+  return box;
+}
+
 function renderFc(){
   const wrap = document.getElementById('fcWrap');
   wrap.innerHTML = '';
@@ -1835,6 +1969,8 @@ function renderFc(){
   resetBtn.title = 'Empieza el mazo otra vez en orden aleatorio (mantiene las palabras difíciles)';
   resetBtn.onclick = () => startFcDeck(fcMode);
   wrap.appendChild(resetBtn);
+
+  wrap.appendChild(renderMissList());
 }
 
 
