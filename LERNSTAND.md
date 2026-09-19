@@ -63,9 +63,16 @@ Diese bei Korrekturen gezielt beachten:
    *officina*, *problema* ohne *hay*. Tritt regelmässig auf.
 7. **muy vs. mucho** — *mucho* + Adjektiv statt *muy*.
 8. **Genus** — *un ciudad*, *el reunión*; deshalb Artikel in der App gekoppelt.
-9. **lo/la vs. le** — *le* wird auf Verben ohne zweites Objekt übertragen
-   (*le llamo*, *le encuentro* statt *lo llamo*, *lo encuentro*). Bei Sachen
-   ist *le* immer falsch. Regel dazu erklärt, noch nicht gefestigt.
+9. **lo/la vs. le** — *le* wird hartnäckig auf Verben ohne zweites Objekt
+   übertragen (*le espero*, *le veo* statt *los espero*, *lo veo*). Betrifft
+   v.a. *esperar, ver, llamar, encontrar*. Zweimal aufgetreten (Ej. 25, 26).
+10. **Geschlecht statt Funktion** — bei weiblichem Empfänger wird *la* gewählt,
+   obwohl indirekt (*la escribo un correo* statt *le escribo*). Merksatz
+   erklärt: *le/les* kennen kein Geschlecht.
+11. **Numerus beim Pronomen** — Singular/Plural stimmt nicht mit dem ersetzten
+   Substantiv überein (*le* für *a mis amigos*, *les* für *al recepcionista*).
+12. **Stellung bei Verneinung** — *las no encuentro* statt *no las encuentro*;
+   das Pronomen steht unmittelbar vor dem Verb.
 
 ## Behoben / stabil
 
@@ -91,13 +98,18 @@ Diese bei Korrekturen gezielt beachten:
   Muster (*le* statt *lo* bei *llamar* / *encontrar*). Danach Regel erklärt:
   «Gibt es im Satz schon ein Was?» → dann *le*; sonst *lo/la*. Ausserdem
   *leísmo* als spanische Variante erwähnt, für Mexiko nicht zu übernehmen.
+- **Ejercicio 26 (lo/la vs. le gemischt): 3 von 8 vollständig richtig.**
+  Der Typ-Test sitzt, wenn das «Was» offensichtlich ist (*le digo la verdad*,
+  *les mando una postal*, *lo busco*). Danach Zwei-Schritt-Verfahren erklärt:
+  erst direkt/indirekt, dann — nur bei direkt — Geschlecht und Zahl.
 
 ## Nächste sinnvolle Themen
 
 - Reflexive Verben (*llamarse, levantarse, preocuparse*) — steht an, da
   *preocuparse* in der App bewusst ausgeklammert wurde
 - Uhrzeiten aktiv üben (*son las tres y media*)
-- Direkte/indirekte Pronomen festigen (Verbliste lo/la vs. le durchüben)
+- Direkte/indirekte Pronomen festigen — Schwerpunkt: *esperar, ver, llamar,
+  encontrar* nehmen *lo/la*; und Numerus des Pronomens prüfen
 - Imperfekt als zweite Vergangenheitsform
 
 ---
