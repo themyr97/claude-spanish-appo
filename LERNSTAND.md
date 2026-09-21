@@ -6,7 +6,7 @@
 > Rohdatei:
 > https://raw.githubusercontent.com/themyr97/claude-spanish-appo/main/LERNSTAND.md
 
-**Stand:** 17. September 2026 · App-Version v19 · 273 Vokabeleinträge
+**Stand:** 19. September 2026 · App-Version v21 · 271 Vokabeleinträge
 
 ---
 
@@ -43,6 +43,7 @@
 | Zahlen 0–1000 | eingeführt |
 | Uhrzeiten (a las …) | eingeführt, noch fehleranfällig |
 | Pronomen (Subjekt, direkt, indirekt, Possessiv) | eingeführt + geübt; Regel «gibt es schon ein Was?» erklärt |
+| Wochentage (el lunes / los lunes, kein *en*) | eingeführt; Herleitung über Planeten und Französisch/Italienisch |
 
 ---
 
@@ -59,13 +60,18 @@ Diese bei Korrekturen gezielt beachten:
 4. **Akzente** — *está* vs. *esta*; *sí* vs. *si*; Akzentrichtung teils
    italienisch/französisch (*està*).
 5. **ser vs. estar bei Eigenschaften** — *va a estar difícil* statt *ser*.
-6. **Fremdsprachinterferenz** — *cinque*, *les*, *sistera*, *pharmacía*,
-   *officina*, *problema* ohne *hay*. Tritt regelmässig auf.
+6. **Französische Artikel** — *le* und *les* statt *el* und *los*. In Ej. 28
+   siebenmal in sechs Sätzen. Der gewählte Artikel**typ** war jedes Mal
+   richtig (einmalig vs. wiederkehrend), nur die Form französisch. Also keine
+   Verständnislücke, sondern fehlende Umschaltung. Wirksamste Korrektur:
+   auf die Parallele hinweisen (le lundi → el lunes, les lundis → los lunes).
+6b. **Weitere Interferenz** — *cinque*, *sistera*, *pharmacía*, *officina*,
+   *vientres* für *viernes*; *no problema* ohne *hay*.
 7. **muy vs. mucho** — *mucho* + Adjektiv statt *muy*.
 8. **Genus** — *un ciudad*, *el reunión*; deshalb Artikel in der App gekoppelt.
-9. **lo/la vs. le** — *le* wird hartnäckig auf Verben ohne zweites Objekt
-   übertragen (*le espero*, *le veo* statt *los espero*, *lo veo*). Betrifft
-   v.a. *esperar, ver, llamar, encontrar*. Zweimal aufgetreten (Ej. 25, 26).
+9. **lo/la vs. le** — in Ej. 28 erstmals alle drei richtig (*lo veo*,
+   *los espero*, *le escribo*). Vorher zweimal falsch (Ej. 25, 26).
+   Beobachten, ob es hält; noch nicht als behoben verbuchen.
 10. **Geschlecht statt Funktion** — bei weiblichem Empfänger wird *la* gewählt,
    obwohl indirekt (*la escribo un correo* statt *le escribo*). Merksatz
    erklärt: *le/les* kennen kein Geschlecht.
@@ -98,6 +104,10 @@ Diese bei Korrekturen gezielt beachten:
   Muster (*le* statt *lo* bei *llamar* / *encontrar*). Danach Regel erklärt:
   «Gibt es im Satz schon ein Was?» → dann *le*; sonst *lo/la*. Ausserdem
   *leísmo* als spanische Variante erwähnt, für Mexiko nicht zu übernehmen.
+- **Ejercicio 28 (Wochentage + Pronomen):** Pronomen 3/3 richtig, Artikeltyp
+  6/6 richtig — aber durchgehend französische Formen (*les lunes*). Ausserdem
+  erneut fehlende *a personal* und *les nueves* statt *a las nueve*.
+  *acabar **a*** statt *acabar **de*** im Rahmensatz (Wiederholung aus Ej. 22).
 - **Ejercicio 26 (lo/la vs. le gemischt): 3 von 8 vollständig richtig.**
   Der Typ-Test sitzt, wenn das «Was» offensichtlich ist (*le digo la verdad*,
   *les mando una postal*, *lo busco*). Danach Zwei-Schritt-Verfahren erklärt:
@@ -108,8 +118,10 @@ Diese bei Korrekturen gezielt beachten:
 - Reflexive Verben (*llamarse, levantarse, preocuparse*) — steht an, da
   *preocuparse* in der App bewusst ausgeklammert wurde
 - Uhrzeiten aktiv üben (*son las tres y media*)
-- Direkte/indirekte Pronomen festigen — Schwerpunkt: *esperar, ver, llamar,
-  encontrar* nehmen *lo/la*; und Numerus des Pronomens prüfen
+- Artikel el/los gegen französisch le/les gezielt drillen — aktuell das
+  häufigste Einzelmuster
+- *a personal* und Uhrzeiten (*a las nueve*) — beide zum dritten Mal offen
+- Direkte/indirekte Pronomen beobachten (in Ej. 28 erstmals fehlerfrei)
 - Imperfekt als zweite Vergangenheitsform
 
 ---
