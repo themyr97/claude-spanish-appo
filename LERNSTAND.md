@@ -53,18 +53,19 @@ Diese bei Korrekturen gezielt beachten:
 
 1. **«a personal»** — vor Personen fehlt das *a*
    (*llamar a mi jefe*, *esperar a mi amiga*). Häufigster aktueller Fehler.
-2. **Uhrzeiten** — *a las ocho*; wiederholt *les*, Plural-s am Zahlwort
-   (*nueves*), oder *en* statt *a*.
+2. **Uhrzeiten — derzeit die klarste Baustelle (4. Wiederholung).** Formel
+   *a las* + Zahl ohne -s; Ausnahme *a la una*. In Ej. 29 zweimal falsch
+   (*les seis*, *les ochos*), während die Wochentage gleichzeitig richtig
+   waren. Das französische *les* überlebt also nur noch hier.
 3. **Stammwechsel im Präsens** — *penso* statt *pienso*; teils Partizip
    (*pensado*) statt konjugierter Form.
 4. **Akzente** — *está* vs. *esta*; *sí* vs. *si*; Akzentrichtung teils
    italienisch/französisch (*està*).
 5. **ser vs. estar bei Eigenschaften** — *va a estar difícil* statt *ser*.
-6. **Französische Artikel** — *le* und *les* statt *el* und *los*. In Ej. 28
-   siebenmal in sechs Sätzen. Der gewählte Artikel**typ** war jedes Mal
-   richtig (einmalig vs. wiederkehrend), nur die Form französisch. Also keine
-   Verständnislücke, sondern fehlende Umschaltung. Wirksamste Korrektur:
-   auf die Parallele hinweisen (le lundi → el lunes, les lundis → los lunes).
+6. **Französische Artikel** — bei Wochentagen in Ej. 29 **behoben**
+   (dreimal *los* richtig, kein *les* mehr). Überlebt nur noch bei
+   Uhrzeiten, siehe Muster 2. Was geholfen hat: die Parallele zum
+   Französischen zeigen (le lundi → el lunes, les lundis → los lunes).
 6b. **Weitere Interferenz** — *cinque*, *sistera*, *pharmacía*, *officina*,
    *vientres* für *viernes*; *no problema* ohne *hay*.
 7. **muy vs. mucho** — *mucho* + Adjektiv statt *muy*.
@@ -79,6 +80,11 @@ Diese bei Korrekturen gezielt beachten:
    Substantiv überein (*le* für *a mis amigos*, *les* für *al recepcionista*).
 12. **Stellung bei Verneinung** — *las no encuentro* statt *no las encuentro*;
    das Pronomen steht unmittelbar vor dem Verb.
+13. **Fehlendes *que*** — nach *pensar/decir/saber* muss *que* stehen
+   (*pienso que llega tarde*). In Ej. 29 stattdessen ein Pronomen eingesetzt
+   (*pensado siempre lo llega*), weil das Englische ohne «that» auskommt.
+14. **Stammwechsel *pensar*** — *pensado* statt *pienso*, zum dritten Mal.
+   Partizip anstelle der konjugierten Form.
 
 ## Behoben / stabil
 
@@ -91,6 +97,8 @@ Diese bei Korrekturen gezielt beachten:
 - Pretérito-Bildung bei regelmässigen Verben (*dejé*, *cené*)
 - Indirekte Pronomen bei Geben/Sagen (*le doy propina*, *les digo la verdad*)
 - Pronomen am Infinitiv angehängt (*llamarla*, *ayudarte*)
+- *acabar de* + Infinitiv (in Ej. 29 richtig, vorher zweimal *acabar a*)
+- Artikel bei Wochentagen (*los jueves*, *el viernes*)
 
 ---
 
@@ -104,6 +112,11 @@ Diese bei Korrekturen gezielt beachten:
   Muster (*le* statt *lo* bei *llamar* / *encontrar*). Danach Regel erklärt:
   «Gibt es im Satz schon ein Was?» → dann *le*; sonst *lo/la*. Ausserdem
   *leísmo* als spanische Variante erwähnt, für Mexiko nicht zu übernehmen.
+- **Ejercicio 29 (Telefondialog, alle elf Verben):** *acabar de* und die
+  Wochentagsartikel erstmals richtig; Pronomen 3/4 (*lo dejar*, *te mandar*,
+  *lo espero*; bei «call him» fehlte *lo*). Offen: Uhrzeiten, *que* nach
+  *pensar*, *pienso* statt *pensado*, *llegar **a*** statt *en*,
+  Genus *la oficina*.
 - **Ejercicio 28 (Wochentage + Pronomen):** Pronomen 3/3 richtig, Artikeltyp
   6/6 richtig — aber durchgehend französische Formen (*les lunes*). Ausserdem
   erneut fehlende *a personal* und *les nueves* statt *a las nueve*.
@@ -118,10 +131,11 @@ Diese bei Korrekturen gezielt beachten:
 - Reflexive Verben (*llamarse, levantarse, preocuparse*) — steht an, da
   *preocuparse* in der App bewusst ausgeklammert wurde
 - Uhrzeiten aktiv üben (*son las tres y media*)
-- Artikel el/los gegen französisch le/les gezielt drillen — aktuell das
-  häufigste Einzelmuster
-- *a personal* und Uhrzeiten (*a las nueve*) — beide zum dritten Mal offen
-- Direkte/indirekte Pronomen beobachten (in Ej. 28 erstmals fehlerfrei)
+- **Uhrzeiten gezielt drillen** (*a las* + Zahl ohne -s, *a la una*) —
+  klarste offene Baustelle
+- *que* nach *pensar/decir/saber* einführen und üben
+- *a personal* weiter beobachten
+- Reflexive Verben (steht seit v19 an)
 - Imperfekt als zweite Vergangenheitsform
 
 ---
