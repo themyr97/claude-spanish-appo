@@ -44,6 +44,7 @@
 | Uhrzeiten (a las …) | eingeführt, noch fehleranfällig |
 | Pronomen (Subjekt, direkt, indirekt, Possessiv) | eingeführt + geübt; Regel «gibt es schon ein Was?» erklärt |
 | Wochentage (el lunes / los lunes, kein *en*) | eingeführt; Herleitung über Planeten und Französisch/Italienisch |
+| Uhrzeit (¿qué hora es? / ¿a qué hora?, y cuarto, y media, menos cuarto) | eingeführt und in Ej. 30 sicher angewendet |
 
 ---
 
@@ -53,10 +54,9 @@ Diese bei Korrekturen gezielt beachten:
 
 1. **«a personal»** — vor Personen fehlt das *a*
    (*llamar a mi jefe*, *esperar a mi amiga*). Häufigster aktueller Fehler.
-2. **Uhrzeiten — derzeit die klarste Baustelle (4. Wiederholung).** Formel
-   *a las* + Zahl ohne -s; Ausnahme *a la una*. In Ej. 29 zweimal falsch
-   (*les seis*, *les ochos*), während die Wochentage gleichzeitig richtig
-   waren. Das französische *les* überlebt also nur noch hier.
+2. **Uhrzeiten** — in Ej. 30 erstmals fehlerfrei (viermal *a las*, kein
+   *les*), inkl. *es la una* vs. *son las dos*. Nach vier Wiederholungen
+   gelöst; beim nächsten Mal bestätigen, dann nach «behoben» verschieben.
 3. **Stammwechsel im Präsens** — *penso* statt *pienso*; teils Partizip
    (*pensado*) statt konjugierter Form.
 4. **Akzente** — *está* vs. *esta*; *sí* vs. *si*; Akzentrichtung teils
@@ -83,8 +83,13 @@ Diese bei Korrekturen gezielt beachten:
 13. **Fehlendes *que*** — nach *pensar/decir/saber* muss *que* stehen
    (*pienso que llega tarde*). In Ej. 29 stattdessen ein Pronomen eingesetzt
    (*pensado siempre lo llega*), weil das Englische ohne «that» auskommt.
-14. **Stammwechsel *pensar*** — *pensado* statt *pienso*, zum dritten Mal.
-   Partizip anstelle der konjugierten Form.
+14. **Stammwechsel *pensar*** — in Ej. 30 richtig (*pienso que*), vorher
+   dreimal falsch. Beobachten.
+15. **Tageszeit mit *de*, nicht *a*** — *a la noche* statt *de la noche*,
+   in Ej. 30 dreimal. Übergeneralisierung der frisch gelernten
+   *a las*-Regel, also ein Folgefehler des Lernerfolgs. Abgrenzung:
+   *a las* + Zahl, *de la* + Tageszeit; zusammen *a las siete de la noche*.
+   Sonderfall *por la mañana* ohne Uhrzeit.
 
 ## Behoben / stabil
 
@@ -99,6 +104,7 @@ Diese bei Korrekturen gezielt beachten:
 - Pronomen am Infinitiv angehängt (*llamarla*, *ayudarte*)
 - *acabar de* + Infinitiv (in Ej. 29 richtig, vorher zweimal *acabar a*)
 - Artikel bei Wochentagen (*los jueves*, *el viernes*)
+- *que* nach *pensar* (*pienso que llega tarde*)
 
 ---
 
@@ -112,6 +118,11 @@ Diese bei Korrekturen gezielt beachten:
   Muster (*le* statt *lo* bei *llamar* / *encontrar*). Danach Regel erklärt:
   «Gibt es im Satz schon ein Was?» → dann *le*; sonst *lo/la*. Ausserdem
   *leísmo* als spanische Variante erwähnt, für Mexiko nicht zu übernehmen.
+- **Ejercicio 30 (Uhrzeiten): bester Durchgang bisher.** Uhrzeitformel,
+  *es la una* / *son las dos*, *desde … hasta*, Pronomen *lo* und
+  *pienso que* alle richtig. Einziges systematisches Problem: *a la* statt
+  *de la* bei der Tageszeit (dreimal). Daneben Wortfehler: *qué horas*
+  statt *qué hora*, *respuesta* statt *reunión*, *diece* statt *diez*.
 - **Ejercicio 29 (Telefondialog, alle elf Verben):** *acabar de* und die
   Wochentagsartikel erstmals richtig; Pronomen 3/4 (*lo dejar*, *te mandar*,
   *lo espero*; bei «call him» fehlte *lo*). Offen: Uhrzeiten, *que* nach
@@ -131,11 +142,11 @@ Diese bei Korrekturen gezielt beachten:
 - Reflexive Verben (*llamarse, levantarse, preocuparse*) — steht an, da
   *preocuparse* in der App bewusst ausgeklammert wurde
 - Uhrzeiten aktiv üben (*son las tres y media*)
-- **Uhrzeiten gezielt drillen** (*a las* + Zahl ohne -s, *a la una*) —
-  klarste offene Baustelle
-- *que* nach *pensar/decir/saber* einführen und üben
-- *a personal* weiter beobachten
+- Tageszeit *de la mañana/tarde/noche* festigen — aktuell einziges
+  systematisches Muster
+- *a personal* weiter beobachten (seit Ej. 29 nicht mehr geprüft)
 - Reflexive Verben (steht seit v19 an)
+- Imperfekt als zweite Vergangenheitsform
 - Imperfekt als zweite Vergangenheitsform
 
 ---
