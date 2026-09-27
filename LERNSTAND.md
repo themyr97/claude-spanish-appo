@@ -6,7 +6,7 @@
 > Rohdatei:
 > https://raw.githubusercontent.com/themyr97/claude-spanish-appo/main/LERNSTAND.md
 
-**Stand:** 27. September 2026 · App-Version v21 · 271 Vokabeleinträge
+**Stand:** 27. September 2026 · App-Version v22 · 300 Vokabeleinträge
 
 ---
 
@@ -46,6 +46,7 @@
 | Pronomen (Subjekt, direkt, indirekt, Possessiv) | eingeführt + geübt; Regel «gibt es schon ein Was?» erklärt |
 | Wochentage (el lunes / los lunes, kein *en*) | eingeführt; Herleitung über Planeten und Französisch/Italienisch |
 | Uhrzeit (¿qué hora es? / ¿a qué hora?, y cuarto, y media, menos cuarto) | eingeführt und in Ej. 30 sicher angewendet |
+| Reflexive Verben (me/te/se/nos/se, Stellung, Stammwechsel) | eingeführt Ej. 32/33, in Ej. 34 fehlerfrei angewendet |
 
 ---
 
@@ -86,15 +87,24 @@ Diese bei Korrekturen gezielt beachten:
    (*pensado siempre lo llega*), weil das Englische ohne «that» auskommt.
 14. **Stammwechsel *pensar*** — in Ej. 30 richtig (*pienso que*), vorher
    dreimal falsch. Beobachten.
-15. **Tageszeit: de la vs. por la** — *a la noche* (Ej. 30, dreimal) ist in
-   Ej. 31 behoben, *de la* viermal richtig. Neu offen: ohne Uhrzeit muss
-   *por la* stehen (*por la noche ceno*), er schrieb *de la noche*.
-   Entscheidend ist nicht die Tageszeit, sondern ob eine **Zahl** dabeisteht:
-   Zahl → *de la*, keine Zahl → *por la*.
+15. **Tageszeit** — mit Uhrzeit *de la* (a las ocho de la noche), ohne
+   Uhrzeit *en la* oder *por la*. **Wichtig: In Mexiko ist *en la noche* /
+   *en la mañana* die übliche Form**, *por la* klingt europäisch. Das war
+   in Ej. 31 von mir ungenau unterrichtet und in Ej. 34 korrigiert —
+   seine Form *en la noche* war richtig. Beide gelten, nicht als Fehler
+   anstreichen.
 16. **Verben statt Umschreibung** — *tener el desayuno* (aus dem Englischen)
    statt *desayunar*. Mahlzeiten haben eigene Verben: desayunar, comer, cenar.
 17. **Bewegung mit *a*** — *voy **en** el gimnasio* statt *voy **al** gimnasio*.
    *ir* immer mit *a*; a + el = al.
+18. **Präposition vor Wochentagen** — in Ej. 34 viermal *en sábado*,
+   *en miércoles*. Diesmal aus dem Deutschen («am Samstag»), in Ej. 28 war
+   es dieselbe Regel aus dem Französischen (*les lunes*). Die Fehlerquelle
+   wechselt die Sprache, die Regel bleibt: nur *el* oder *los*, nie eine
+   Präposition. Vermutlich mehrfach nötig.
+19. **desde / después verwechselt** — *despues las seis* statt *desde*.
+20. **bien / bueno** — *no me siento bueno* statt *bien*; mit *sentirse*
+   steht das Adverb.
 
 ## Behoben / stabil
 
@@ -123,6 +133,11 @@ Diese bei Korrekturen gezielt beachten:
   Muster (*le* statt *lo* bei *llamar* / *encontrar*). Danach Regel erklärt:
   «Gibt es im Satz schon ein Was?» → dann *le*; sonst *lo/la*. Ausserdem
   *leísmo* als spanische Variante erwähnt, für Mexiko nicht zu übernehmen.
+- **Ejercicio 34 (Gespräch, Vokabelwiederholung):** *llamarte*, *me acuesto*,
+  *me quedo*, *pienso que*, *muy contento* richtig — die reflexiven Verben
+  sitzen. Hauptmuster: viermal *en* vor Wochentagen (aus dem Deutschen).
+  Neu: desde/después, bien/bueno. Dabei meine eigene Ungenauigkeit aus
+  Ej. 31 zu *por la noche* richtiggestellt.
 - **Ejercicio 31 (Tageszeit):** *de la mañana/tarde/noche* viermal richtig,
   *por la mañana* richtig — die Übergeneralisierung aus Ej. 30 ist weg.
   Einziger Regelfehler: *de la noche* ohne Uhrzeit statt *por la noche*.
@@ -156,8 +171,13 @@ Von Miro am 19.09.2026 gewünschte Reihenfolge:
 
 1. Tageszeit festigen — **erledigt** (Ej. 31); *por la* vs. *de la* beim
    nächsten Mal kurz gegenprüfen
-2. **Reflexive Verben** (llamarse, levantarse, sentirse) — als Nächstes
-3. Danach wieder gemischte Übungen in Gesprächssituationen
+2. **Reflexive Verben** — eingeführt (Ej. 32/33) und in Ej. 34 sicher
+   angewendet; in v22 als eigene Kategorie in der App
+3. Gemischte Gesprächsübungen — **laufend** (Ej. 34 ff.)
+
+Aktueller Schwerpunkt: Wochentage ohne Präposition; Vokabelabruf ist
+schwächer als die Grammatik (erkennt Wörter, produziert sie aber nicht —
+Karteikarten in Richtung DE→ES empfohlen).
 
 Später: *a personal* weiter beobachten (seit Ej. 29 nicht geprüft),
 Imperfekt als zweite Vergangenheitsform.
