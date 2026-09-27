@@ -50,6 +50,8 @@ Personal Spanish learning PWA. **Live app:** https://themyr97.github.io/claude-s
 
 - **v21** — Dritter Karteikartenmodus **Nuevas**: die 50 zuletzt hinzugefügten Wörter, unter Beachtung des Kategoriefilters. Dafür trägt die App neu eine `addedAt`-Tabelle mit dem Datum je Wort. Die Werte bis v20 wurden aus den 20 Versionsarchiven im Repo rekonstruiert (Erstauftreten je Wort, datiert auf den Commit der jeweiligen Version); neue Wörter werden ab jetzt beim Hinzufügen eingetragen. Die Auswahl erfolgt nach Datum, die Abfragereihenfolge bleibt gemischt. Nebenbei zwei echte Duplikate bereinigt: *rico* und *ocupado* standen seit v13 doppelt in den Adjektiven (273 → 271 Einträge).
 
+- **v22** — Reflexive Verben als **eigene Kategorie «Reflexive verbs»**, bewusst nicht in «Verbs (infinitive)»: `conjugate()` liefert bei `-se`-Infinitiven `null`, und ein Kategoriename, der mit «Verbs» beginnt, würde einen Konjugationsknopf mit leerer Tabelle erzeugen. Die Einträge tragen stattdessen eine konjugierte Beispielform in der Glosse (*me levanto a las siete*). Neu: 8 reflexive Verben, 6 Substantive (gimnasio, cita, desayuno, tren, vino, dirección), 2 Verben (desayunar, invitar) und 12 Zeitausdrücke inkl. der Unterscheidung *por la noche* (ohne Uhrzeit) vs. *de la noche* (mit Uhrzeit). 13 neue Sprech- und 5 neue Hörsätze. 300 Einträge.
+
 ## Deploy checklist
 
 When pushing a new version, always bump `APP_VERSION` in `service-worker.js` and the badge in `index.html`. The service worker file must change byte-wise, or browsers will not install the new version.
