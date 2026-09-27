@@ -6,7 +6,7 @@
 > Rohdatei:
 > https://raw.githubusercontent.com/themyr97/claude-spanish-appo/main/LERNSTAND.md
 
-**Stand:** 19. September 2026 · App-Version v21 · 271 Vokabeleinträge
+**Stand:** 27. September 2026 · App-Version v21 · 271 Vokabeleinträge
 
 ---
 
@@ -15,8 +15,9 @@
 - Absoluter Anfänger, Beginn dieser Lernreihe
 - **Lateinamerikanisches Spanisch** (Mexiko-Fokus); *vosotros* nur als Referenz,
   nie aktiv üben
-- Unterrichtssprache Englisch, spanische Beispiele; kurze Übungen,
-  Fehlerkorrektur mit Begründung
+- Unterrichtssprache seit 19.09.2026: **überwiegend Spanisch** auf seinem
+  Niveau; Deutsch nur für neue Vokabeln und schwierige Grammatikpunkte
+  (vorher Englisch). Kurze Übungen, Fehlerkorrektur mit Begründung
 - Spricht Deutsch (Muttersprache), Französisch, Italienisch, Englisch —
   daher regelmässige Interferenzen (siehe unten)
 
@@ -85,11 +86,15 @@ Diese bei Korrekturen gezielt beachten:
    (*pensado siempre lo llega*), weil das Englische ohne «that» auskommt.
 14. **Stammwechsel *pensar*** — in Ej. 30 richtig (*pienso que*), vorher
    dreimal falsch. Beobachten.
-15. **Tageszeit mit *de*, nicht *a*** — *a la noche* statt *de la noche*,
-   in Ej. 30 dreimal. Übergeneralisierung der frisch gelernten
-   *a las*-Regel, also ein Folgefehler des Lernerfolgs. Abgrenzung:
-   *a las* + Zahl, *de la* + Tageszeit; zusammen *a las siete de la noche*.
-   Sonderfall *por la mañana* ohne Uhrzeit.
+15. **Tageszeit: de la vs. por la** — *a la noche* (Ej. 30, dreimal) ist in
+   Ej. 31 behoben, *de la* viermal richtig. Neu offen: ohne Uhrzeit muss
+   *por la* stehen (*por la noche ceno*), er schrieb *de la noche*.
+   Entscheidend ist nicht die Tageszeit, sondern ob eine **Zahl** dabeisteht:
+   Zahl → *de la*, keine Zahl → *por la*.
+16. **Verben statt Umschreibung** — *tener el desayuno* (aus dem Englischen)
+   statt *desayunar*. Mahlzeiten haben eigene Verben: desayunar, comer, cenar.
+17. **Bewegung mit *a*** — *voy **en** el gimnasio* statt *voy **al** gimnasio*.
+   *ir* immer mit *a*; a + el = al.
 
 ## Behoben / stabil
 
@@ -118,6 +123,11 @@ Diese bei Korrekturen gezielt beachten:
   Muster (*le* statt *lo* bei *llamar* / *encontrar*). Danach Regel erklärt:
   «Gibt es im Satz schon ein Was?» → dann *le*; sonst *lo/la*. Ausserdem
   *leísmo* als spanische Variante erwähnt, für Mexiko nicht zu übernehmen.
+- **Ejercicio 31 (Tageszeit):** *de la mañana/tarde/noche* viermal richtig,
+  *por la mañana* richtig — die Übergeneralisierung aus Ej. 30 ist weg.
+  Einziger Regelfehler: *de la noche* ohne Uhrzeit statt *por la noche*.
+  Danach die Dreiteilung erklärt (Zahl → de la, keine Zahl → por la) und
+  die Mahlzeitenverben eingeführt.
 - **Ejercicio 30 (Uhrzeiten): bester Durchgang bisher.** Uhrzeitformel,
   *es la una* / *son las dos*, *desde … hasta*, Pronomen *lo* und
   *pienso que* alle richtig. Einziges systematisches Problem: *a la* statt
@@ -142,11 +152,15 @@ Diese bei Korrekturen gezielt beachten:
 - Reflexive Verben (*llamarse, levantarse, preocuparse*) — steht an, da
   *preocuparse* in der App bewusst ausgeklammert wurde
 - Uhrzeiten aktiv üben (*son las tres y media*)
-- Tageszeit *de la mañana/tarde/noche* festigen — aktuell einziges
-  systematisches Muster
-- *a personal* weiter beobachten (seit Ej. 29 nicht mehr geprüft)
-- Reflexive Verben (steht seit v19 an)
-- Imperfekt als zweite Vergangenheitsform
+Von Miro am 19.09.2026 gewünschte Reihenfolge:
+
+1. Tageszeit festigen — **erledigt** (Ej. 31); *por la* vs. *de la* beim
+   nächsten Mal kurz gegenprüfen
+2. **Reflexive Verben** (llamarse, levantarse, sentirse) — als Nächstes
+3. Danach wieder gemischte Übungen in Gesprächssituationen
+
+Später: *a personal* weiter beobachten (seit Ej. 29 nicht geprüft),
+Imperfekt als zweite Vergangenheitsform.
 - Imperfekt als zweite Vergangenheitsform
 
 ---
