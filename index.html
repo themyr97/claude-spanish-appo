@@ -997,7 +997,7 @@
   <h1>Español</h1>
   <p>Every word from your lessons — hear it spoken, check verb conjugations, and practice listening.</p>
   <p class="voice-note" id="voiceNote">Your browser doesn't support spoken audio — try Chrome, Edge, or Safari.</p>
-  <div class="version-badge" id="versionBadge">v21</div>
+  <div class="version-badge" id="versionBadge">v22</div>
   <nav class="tabs">
     <button id="tabVocabBtn" class="active">Vocabulario</button>
     <button id="tabListenBtn">Escucha</button>
@@ -1063,7 +1063,10 @@ const data = {
     ["café","coffee","m"], ["hora","hour / time","f"],
     ["llave","key","f"], ["habitación","room","f"], ["equipaje","luggage","m"],
     ["mensaje","message","m"], ["verdad","truth","f"],
-    ["estacionamiento","parking","m"], ["nombre","name","m"]
+    ["estacionamiento","parking","m"], ["nombre","name","m"],
+    ["gimnasio","gym","m"], ["cita","appointment / date","f"],
+    ["desayuno","breakfast","m"], ["tren","train","m"], ["vino","wine","m"],
+    ["dirección","address","f"]
   ],
   "Verbs (infinitive)": [
     ["ser","to be (permanent)"], ["estar","to be (temporary)"], ["hablar","to speak"],
@@ -1087,7 +1090,23 @@ const data = {
     ["salir","to leave / to go out"], ["seguir","to follow / to continue"],
     ["entender","to understand"], ["leer","to read"], ["escribir","to write"],
     ["abrir","to open"], ["responder","to answer"], ["contestar","to answer"],
-    ["mandar","to send"]
+    ["mandar","to send"], ["desayunar","to have breakfast"],
+    ["invitar","to invite"]
+  ],
+
+  // Reflexive Verben stehen bewusst in einer eigenen Kategorie: conjugate()
+  // liefert bei -se-Infinitiven null, und der Name darf nicht mit "Verbs"
+  // beginnen, sonst zeigte die App einen Konjugationsknopf mit leerer Tabelle.
+  "Reflexive verbs": [
+    ["llamarse","to be called — me llamo Miro"],
+    ["levantarse","to get up — me levanto a las siete"],
+    ["despertarse","to wake up (e→ie) — me despierto a las seis"],
+    ["ducharse","to shower — me ducho por la mañana"],
+    ["acostarse","to go to bed (o→ue) — me acuesto a las once"],
+    ["sentirse","to feel (e→ie) — me siento cansado"],
+    ["preocuparse","to worry — no te preocupes"],
+    ["quedarse","to stay — me quedo en casa"],
+    ["me / te / se / nos / se","the reflexive pronouns, one per person"]
   ],
   "Adjectives": [
     ["cansado","tired (m.)"], ["cansada","tired (f.)"], ["feliz","happy"],
@@ -1156,7 +1175,18 @@ const data = {
     ["yo tampoco","me neither"], ["no te preocupes","don't worry (from preocuparse, a reflexive verb)"],
     ["buenos días","good morning (día is masculine)"],
     ["ser difícil","to be difficult (a characteristic → ser, not estar)"],
-    ["otro","another (never 'un otro' — no article)"]
+    ["otro","another (never 'un otro' — no article)"],
+    ["luego","then / later — me ducho y luego desayuno"],
+    ["en casa","at home (no article) — me quedo en casa"],
+    ["a casa","(to) home — voy a casa"],
+    ["once","eleven"], ["y media","half past — son las dos y media"],
+    ["y cuarto","quarter past — a las nueve y cuarto"],
+    ["menos cuarto","quarter to — son las tres menos cuarto"],
+    ["por la noche","in the evening (no clock time) — por la noche ceno"],
+    ["de la noche","at night (with a clock time) — a las ocho de la noche"],
+    ["¿Qué hora es?","What time is it? (hora singular)"],
+    ["¿A qué hora?","At what time?"],
+    ["en punto","exactly / on the dot — a las tres en punto"]
   ],
   "Restaurant — casual (street stalls, small places)": [
     ["Me da dos tacos, por favor","Two tacos, please (everyday polite)"],
@@ -1317,6 +1347,7 @@ const categoryShortLabels = {
   'Prepositions': 'Preposiciones',
   'Question words': 'Preguntas',
   'Pronouns': 'Pronombres',
+  'Reflexive verbs': 'Reflexivos',
   'Phrases & connectors': 'Frases',
   'Restaurant — casual (street stalls, small places)': 'Restaurante (informal)',
   'Restaurant — sit-down (formal register)': 'Restaurante (formal)'
@@ -1490,7 +1521,12 @@ const listeningExercises = [
   { es:"Le doy propina al mesero.", en:"I give the waiter a tip." },
   { es:"No te preocupes, yo también acabo de llegar.", en:"Don't worry, I just arrived too." },
   { es:"¿Me puedes ayudar con el correo?", en:"Can you help me with the email?" },
-  { es:"Siempre tomo café por la mañana.", en:"I always drink coffee in the morning." }
+  { es:"Siempre tomo café por la mañana.", en:"I always drink coffee in the morning." },
+  { es:"Me levanto a las siete y luego me ducho.", en:"I get up at seven and then I shower." },
+  { es:"¿Cómo te sientes hoy?", en:"How do you feel today?" },
+  { es:"Los domingos nos quedamos en casa.", en:"On Sundays we stay at home." },
+  { es:"Me acuesto a las once de la noche.", en:"I go to bed at eleven at night." },
+  { es:"Por la noche ceno con mi familia.", en:"In the evening I have dinner with my family." }
 ];
 
 const exContent = document.getElementById('exContent');
@@ -1674,7 +1710,7 @@ function restoreSession(s){
 // Versionsarchiven im Repo rekonstruiert (Commit-Datum der jeweiligen
 // Version); neue Wörter werden ab jetzt beim Hinzufügen direkt eingetragen.
 // Wörter ohne Eintrag gelten als alt und stehen am Ende der Reihenfolge.
-const addedAt = {"trabajo":"2026-08-11","casa":"2026-08-11","familia":"2026-08-11","amigo":"2026-08-11","amiga":"2026-08-11","día":"2026-08-11","mañana":"2026-08-11","noche":"2026-08-11","agua":"2026-08-11","comida":"2026-08-11","escuela":"2026-08-11","libro":"2026-08-11","perro":"2026-08-11","tarea":"2026-08-11","respuesta":"2026-08-11","regalo":"2026-08-11","pan":"2026-08-11","hermano":"2026-08-11","hermana":"2026-08-11","madre":"2026-08-11","padre":"2026-08-11","ciudad":"2026-08-11","coche":"2026-08-11","dinero":"2026-08-11","fin de semana":"2026-08-11","playa":"2026-08-11","sol":"2026-08-11","calor":"2026-08-11","frío":"2026-08-11","partido":"2026-08-11","música":"2026-08-11","verano":"2026-08-11","invierno":"2026-08-11","nieve":"2026-08-11","montaña":"2026-08-11","país":"2026-08-11","mundo":"2026-08-11","ser":"2026-08-11","estar":"2026-08-11","hablar":"2026-08-11","comer":"2026-08-11","vivir":"2026-08-11","ir":"2026-08-11","tener":"2026-08-11","querer":"2026-08-11","poder":"2026-08-11","saber":"2026-08-11","hacer":"2026-08-11","beber":"2026-08-11","cenar":"2026-08-11","estudiar":"2026-08-11","caminar":"2026-08-11","nadar":"2026-08-11","cocinar":"2026-08-11","tocar":"2026-08-11","venir":"2026-08-11","necesitar":"2026-08-11","llegar":"2026-08-11","comprar":"2026-08-11","conducir":"2026-08-11","jugar":"2026-08-11","ganar":"2026-08-11","perder":"2026-08-11","empezar":"2026-08-11","terminar":"2026-08-11","bailar":"2026-08-11","cantar":"2026-08-11","viajar":"2026-08-11","gustar":"2026-08-11","cansado":"2026-08-11","cansada":"2026-08-11","feliz":"2026-08-11","triste":"2026-08-11","rápido":"2026-08-11","temprano":"2026-08-11","tarde":"2026-08-11","aburrido":"2026-08-11","listo":"2026-08-11","malo":"2026-08-11","bueno":"2026-08-11","rico":"2026-08-11","enfermo":"2026-08-11","ocupado":"2026-08-11","nuevo":"2026-08-11","viejo":"2026-08-11","grande":"2026-08-11","pequeño":"2026-08-11","bonito":"2026-08-11","diferente":"2026-08-11","a":"2026-08-11","de":"2026-08-11","en":"2026-08-11","con":"2026-08-11","para":"2026-08-11","por":"2026-08-11","quién":"2026-08-11","dónde":"2026-08-11","cómo":"2026-08-11","cuándo":"2026-08-11","cuál":"2026-08-11","qué":"2026-08-11","por qué":"2026-08-11","cuánto":"2026-08-11","cuántos":"2026-08-11","me llamo...":"2026-08-11","todos los días":"2026-08-11","ayer":"2026-08-11","hoy":"2026-08-11","siempre":"2026-08-11","también":"2026-08-11","pero":"2026-08-11","porque":"2026-08-11","tengo sed":"2026-08-11","tengo hambre":"2026-08-11","el fin de semana pasado":"2026-08-11","el próximo año":"2026-08-11","no tengo que trabajar":"2026-08-11","especialmente":"2026-08-11","oficina":"2026-08-11","jefe":"2026-08-11","jefa":"2026-08-11","reunión":"2026-08-11","correo":"2026-08-11","teléfono":"2026-08-11","año":"2026-08-11","señor":"2026-08-11","carta":"2026-08-11","menú":"2026-08-11","mesero":"2026-08-11","mesera":"2026-08-11","mesa":"2026-08-11","cuenta":"2026-08-11","bebida":"2026-08-11","plato":"2026-08-11","entrada":"2026-08-11","postre":"2026-08-11","propina":"2026-08-11","helado":"2026-08-11","cebolla":"2026-08-11","especialidad":"2026-08-11","botella":"2026-08-11","pedir":"2026-08-11","traer":"2026-08-11","recomendar":"2026-08-11","desear":"2026-08-11","aprender":"2026-08-11","pensar":"2026-08-11","acabar":"2026-08-11","ayudar":"2026-08-11","encontrar":"2026-08-11","esperar":"2026-08-11","llamar":"2026-08-11","sabroso":"2026-08-11","importante":"2026-08-11","difícil":"2026-08-11","fácil":"2026-08-11","nervioso":"2026-08-11","por favor":"2026-08-11","lo siento":"2026-08-11","todavía no":"2026-08-11","muchas gracias":"2026-08-11","de nada":"2026-08-11","Me da dos tacos, por favor":"2026-08-11","¿Me regala un agua?":"2026-08-11","Quiero un taco de carnitas":"2026-08-11","Dos de pastor":"2026-08-11","¿Qué le doy?":"2026-08-11","¿Para aquí o para llevar?":"2026-08-11","¿Con todo?":"2026-08-11","Sin cebolla, por favor":"2026-08-11","¿Cuánto es?":"2026-08-11","para llevar":"2026-08-11","Quisiera agua, por favor":"2026-08-11","Una mesa para dos, por favor":"2026-08-11","¿Qué recomienda?":"2026-08-11","La cuenta, por favor":"2026-08-11","¿Ya están listos para pedir?":"2026-08-11","¿Qué desean tomar?":"2026-08-11","No quiero postre, gracias":"2026-08-11","Está muy rico":"2026-08-11","¿Me trae la carta, por favor?":"2026-08-11","dar":"2026-08-14","tomar":"2026-08-14","quedar":"2026-08-14","llevar":"2026-08-14","dejar":"2026-08-14","espero que sí":"2026-08-14","esperar el autobús":"2026-08-14","dar un paseo":"2026-08-14","banco":"2026-08-17","gato":"2026-08-17","silla":"2026-08-17","farmacia":"2026-08-17","hotel":"2026-08-17","autobús":"2026-08-17","café":"2026-08-17","hora":"2026-08-17","sobre":"2026-08-17","encima de":"2026-08-17","debajo de":"2026-08-17","al lado de":"2026-08-17","cerca de":"2026-08-17","lejos de":"2026-08-17","delante de":"2026-08-17","detrás de":"2026-08-17","entre":"2026-08-17","dentro de":"2026-08-17","fuera de":"2026-08-17","enfrente de":"2026-08-17","antes de":"2026-08-17","después de":"2026-08-17","durante":"2026-08-17","desde":"2026-08-17","hasta":"2026-08-17","del":"2026-08-17","al":"2026-08-17","está":"2026-08-17","desde las nueve hasta las cinco":"2026-08-17","la una":"2026-08-17","llave":"2026-09-13","habitación":"2026-09-13","equipaje":"2026-09-13","mensaje":"2026-09-13","verdad":"2026-09-13","estacionamiento":"2026-09-13","nombre":"2026-09-13","yo":"2026-09-13","tú":"2026-09-13","usted":"2026-09-13","él":"2026-09-13","ella":"2026-09-13","nosotros":"2026-09-13","ustedes":"2026-09-13","ellos":"2026-09-13","me":"2026-09-13","te":"2026-09-13","lo":"2026-09-13","la":"2026-09-13","le":"2026-09-13","nos":"2026-09-13","los":"2026-09-13","las":"2026-09-13","les":"2026-09-13","mi / mis":"2026-09-13","tu / tus":"2026-09-13","su / sus":"2026-09-13","nuestro / nuestra":"2026-09-13","mí":"2026-09-13","a personal":"2026-09-13","a las ocho":"2026-09-13","por la mañana":"2026-09-13","no hay problema":"2026-09-13","yo tampoco":"2026-09-13","no te preocupes":"2026-09-13","buenos días":"2026-09-13","ser difícil":"2026-09-13","otro":"2026-09-13","buscar":"2026-09-13","decir":"2026-09-13","ver":"2026-09-13","poner":"2026-09-13","salir":"2026-09-13","seguir":"2026-09-13","entender":"2026-09-13","leer":"2026-09-13","escribir":"2026-09-13","abrir":"2026-09-13","responder":"2026-09-13","contestar":"2026-09-13","mandar":"2026-09-13"};
+const addedAt = {"gimnasio":"2026-09-27","cita":"2026-09-27","desayuno":"2026-09-27","tren":"2026-09-27","vino":"2026-09-27","dirección":"2026-09-27","desayunar":"2026-09-27","invitar":"2026-09-27","llamarse":"2026-09-27","levantarse":"2026-09-27","despertarse":"2026-09-27","ducharse":"2026-09-27","acostarse":"2026-09-27","sentirse":"2026-09-27","preocuparse":"2026-09-27","quedarse":"2026-09-27","me / te / se / nos / se":"2026-09-27","luego":"2026-09-27","en casa":"2026-09-27","a casa":"2026-09-27","once":"2026-09-27","y media":"2026-09-27","y cuarto":"2026-09-27","menos cuarto":"2026-09-27","por la noche":"2026-09-27","de la noche":"2026-09-27","¿Qué hora es?":"2026-09-27","¿A qué hora?":"2026-09-27","en punto":"2026-09-27","trabajo":"2026-08-11","casa":"2026-08-11","familia":"2026-08-11","amigo":"2026-08-11","amiga":"2026-08-11","día":"2026-08-11","mañana":"2026-08-11","noche":"2026-08-11","agua":"2026-08-11","comida":"2026-08-11","escuela":"2026-08-11","libro":"2026-08-11","perro":"2026-08-11","tarea":"2026-08-11","respuesta":"2026-08-11","regalo":"2026-08-11","pan":"2026-08-11","hermano":"2026-08-11","hermana":"2026-08-11","madre":"2026-08-11","padre":"2026-08-11","ciudad":"2026-08-11","coche":"2026-08-11","dinero":"2026-08-11","fin de semana":"2026-08-11","playa":"2026-08-11","sol":"2026-08-11","calor":"2026-08-11","frío":"2026-08-11","partido":"2026-08-11","música":"2026-08-11","verano":"2026-08-11","invierno":"2026-08-11","nieve":"2026-08-11","montaña":"2026-08-11","país":"2026-08-11","mundo":"2026-08-11","ser":"2026-08-11","estar":"2026-08-11","hablar":"2026-08-11","comer":"2026-08-11","vivir":"2026-08-11","ir":"2026-08-11","tener":"2026-08-11","querer":"2026-08-11","poder":"2026-08-11","saber":"2026-08-11","hacer":"2026-08-11","beber":"2026-08-11","cenar":"2026-08-11","estudiar":"2026-08-11","caminar":"2026-08-11","nadar":"2026-08-11","cocinar":"2026-08-11","tocar":"2026-08-11","venir":"2026-08-11","necesitar":"2026-08-11","llegar":"2026-08-11","comprar":"2026-08-11","conducir":"2026-08-11","jugar":"2026-08-11","ganar":"2026-08-11","perder":"2026-08-11","empezar":"2026-08-11","terminar":"2026-08-11","bailar":"2026-08-11","cantar":"2026-08-11","viajar":"2026-08-11","gustar":"2026-08-11","cansado":"2026-08-11","cansada":"2026-08-11","feliz":"2026-08-11","triste":"2026-08-11","rápido":"2026-08-11","temprano":"2026-08-11","tarde":"2026-08-11","aburrido":"2026-08-11","listo":"2026-08-11","malo":"2026-08-11","bueno":"2026-08-11","rico":"2026-08-11","enfermo":"2026-08-11","ocupado":"2026-08-11","nuevo":"2026-08-11","viejo":"2026-08-11","grande":"2026-08-11","pequeño":"2026-08-11","bonito":"2026-08-11","diferente":"2026-08-11","a":"2026-08-11","de":"2026-08-11","en":"2026-08-11","con":"2026-08-11","para":"2026-08-11","por":"2026-08-11","quién":"2026-08-11","dónde":"2026-08-11","cómo":"2026-08-11","cuándo":"2026-08-11","cuál":"2026-08-11","qué":"2026-08-11","por qué":"2026-08-11","cuánto":"2026-08-11","cuántos":"2026-08-11","me llamo...":"2026-08-11","todos los días":"2026-08-11","ayer":"2026-08-11","hoy":"2026-08-11","siempre":"2026-08-11","también":"2026-08-11","pero":"2026-08-11","porque":"2026-08-11","tengo sed":"2026-08-11","tengo hambre":"2026-08-11","el fin de semana pasado":"2026-08-11","el próximo año":"2026-08-11","no tengo que trabajar":"2026-08-11","especialmente":"2026-08-11","oficina":"2026-08-11","jefe":"2026-08-11","jefa":"2026-08-11","reunión":"2026-08-11","correo":"2026-08-11","teléfono":"2026-08-11","año":"2026-08-11","señor":"2026-08-11","carta":"2026-08-11","menú":"2026-08-11","mesero":"2026-08-11","mesera":"2026-08-11","mesa":"2026-08-11","cuenta":"2026-08-11","bebida":"2026-08-11","plato":"2026-08-11","entrada":"2026-08-11","postre":"2026-08-11","propina":"2026-08-11","helado":"2026-08-11","cebolla":"2026-08-11","especialidad":"2026-08-11","botella":"2026-08-11","pedir":"2026-08-11","traer":"2026-08-11","recomendar":"2026-08-11","desear":"2026-08-11","aprender":"2026-08-11","pensar":"2026-08-11","acabar":"2026-08-11","ayudar":"2026-08-11","encontrar":"2026-08-11","esperar":"2026-08-11","llamar":"2026-08-11","sabroso":"2026-08-11","importante":"2026-08-11","difícil":"2026-08-11","fácil":"2026-08-11","nervioso":"2026-08-11","por favor":"2026-08-11","lo siento":"2026-08-11","todavía no":"2026-08-11","muchas gracias":"2026-08-11","de nada":"2026-08-11","Me da dos tacos, por favor":"2026-08-11","¿Me regala un agua?":"2026-08-11","Quiero un taco de carnitas":"2026-08-11","Dos de pastor":"2026-08-11","¿Qué le doy?":"2026-08-11","¿Para aquí o para llevar?":"2026-08-11","¿Con todo?":"2026-08-11","Sin cebolla, por favor":"2026-08-11","¿Cuánto es?":"2026-08-11","para llevar":"2026-08-11","Quisiera agua, por favor":"2026-08-11","Una mesa para dos, por favor":"2026-08-11","¿Qué recomienda?":"2026-08-11","La cuenta, por favor":"2026-08-11","¿Ya están listos para pedir?":"2026-08-11","¿Qué desean tomar?":"2026-08-11","No quiero postre, gracias":"2026-08-11","Está muy rico":"2026-08-11","¿Me trae la carta, por favor?":"2026-08-11","dar":"2026-08-14","tomar":"2026-08-14","quedar":"2026-08-14","llevar":"2026-08-14","dejar":"2026-08-14","espero que sí":"2026-08-14","esperar el autobús":"2026-08-14","dar un paseo":"2026-08-14","banco":"2026-08-17","gato":"2026-08-17","silla":"2026-08-17","farmacia":"2026-08-17","hotel":"2026-08-17","autobús":"2026-08-17","café":"2026-08-17","hora":"2026-08-17","sobre":"2026-08-17","encima de":"2026-08-17","debajo de":"2026-08-17","al lado de":"2026-08-17","cerca de":"2026-08-17","lejos de":"2026-08-17","delante de":"2026-08-17","detrás de":"2026-08-17","entre":"2026-08-17","dentro de":"2026-08-17","fuera de":"2026-08-17","enfrente de":"2026-08-17","antes de":"2026-08-17","después de":"2026-08-17","durante":"2026-08-17","desde":"2026-08-17","hasta":"2026-08-17","del":"2026-08-17","al":"2026-08-17","está":"2026-08-17","desde las nueve hasta las cinco":"2026-08-17","la una":"2026-08-17","llave":"2026-09-13","habitación":"2026-09-13","equipaje":"2026-09-13","mensaje":"2026-09-13","verdad":"2026-09-13","estacionamiento":"2026-09-13","nombre":"2026-09-13","yo":"2026-09-13","tú":"2026-09-13","usted":"2026-09-13","él":"2026-09-13","ella":"2026-09-13","nosotros":"2026-09-13","ustedes":"2026-09-13","ellos":"2026-09-13","me":"2026-09-13","te":"2026-09-13","lo":"2026-09-13","la":"2026-09-13","le":"2026-09-13","nos":"2026-09-13","los":"2026-09-13","las":"2026-09-13","les":"2026-09-13","mi / mis":"2026-09-13","tu / tus":"2026-09-13","su / sus":"2026-09-13","nuestro / nuestra":"2026-09-13","mí":"2026-09-13","a personal":"2026-09-13","a las ocho":"2026-09-13","por la mañana":"2026-09-13","no hay problema":"2026-09-13","yo tampoco":"2026-09-13","no te preocupes":"2026-09-13","buenos días":"2026-09-13","ser difícil":"2026-09-13","otro":"2026-09-13","buscar":"2026-09-13","decir":"2026-09-13","ver":"2026-09-13","poner":"2026-09-13","salir":"2026-09-13","seguir":"2026-09-13","entender":"2026-09-13","leer":"2026-09-13","escribir":"2026-09-13","abrir":"2026-09-13","responder":"2026-09-13","contestar":"2026-09-13","mandar":"2026-09-13"};
 
 function addedDate(es){
   return addedAt[es] || '0000-00-00';
@@ -2303,7 +2339,20 @@ const speakSentences = [
   { en:"Don't worry, I just arrived too.", es:["No te preocupes, yo también acabo de llegar."] },
   { en:"I always drink coffee in the morning.", es:["Siempre tomo café por la mañana."] },
   { en:"I left the luggage in the room.", es:["Dejé el equipaje en la habitación."] },
-  { en:"I think the tacos are the specialty here.", es:["Pienso que los tacos son la especialidad aquí."] }
+  { en:"I think the tacos are the specialty here.", es:["Pienso que los tacos son la especialidad aquí."] },
+  { en:"I get up at seven in the morning.", es:["Me levanto a las siete de la mañana."] },
+  { en:"My sister is called Ana.", es:["Mi hermana se llama Ana."] },
+  { en:"I shower and then I have breakfast.", es:["Me ducho y luego desayuno."] },
+  { en:"I go to bed at eleven at night.", es:["Me acuesto a las once de la noche.","Voy a acostarme a las once de la noche."] },
+  { en:"Today I don't feel well.", es:["Hoy no me siento bien."] },
+  { en:"On Sundays we stay at home.", es:["Los domingos nos quedamos en casa."] },
+  { en:"I wake up at six thirty.", es:["Me despierto a las seis y media."] },
+  { en:"How do you feel?", es:["¿Cómo te sientes?","Cómo te sientes"] },
+  { en:"In the evening I have dinner with my family.", es:["Por la noche ceno con mi familia."] },
+  { en:"I have an appointment at a quarter past four.", es:["Tengo una cita a las cuatro y cuarto."] },
+  { en:"I go to the gym at eight at night.", es:["Voy al gimnasio a las ocho de la noche."] },
+  { en:"What time is it? It's one o'clock.", es:["¿Qué hora es? Es la una.","Qué hora es. Es la una"] },
+  { en:"I think the train arrives at ten thirty.", es:["Pienso que el tren llega a las diez y media."] }
 ];
 
 let speakIndex = 0;
