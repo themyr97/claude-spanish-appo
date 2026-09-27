@@ -15,9 +15,9 @@
 - Absoluter Anfänger, Beginn dieser Lernreihe
 - **Lateinamerikanisches Spanisch** (Mexiko-Fokus); *vosotros* nur als Referenz,
   nie aktiv üben
-- Unterrichtssprache seit 19.09.2026: **überwiegend Spanisch** auf seinem
-  Niveau; Deutsch nur für neue Vokabeln und schwierige Grammatikpunkte
-  (vorher Englisch). Kurze Übungen, Fehlerkorrektur mit Begründung
+- Unterrichtssprache seit 27.09.2026: **nur Spanisch und Englisch, kein
+  Deutsch** (vorher Spanisch mit deutschen Erklärungen, davor Englisch).
+  Kurze Übungen, Fehlerkorrektur mit Begründung
 - Spricht Deutsch (Muttersprache), Französisch, Italienisch, Englisch —
   daher regelmässige Interferenzen (siehe unten)
 
@@ -97,11 +97,13 @@ Diese bei Korrekturen gezielt beachten:
    statt *desayunar*. Mahlzeiten haben eigene Verben: desayunar, comer, cenar.
 17. **Bewegung mit *a*** — *voy **en** el gimnasio* statt *voy **al** gimnasio*.
    *ir* immer mit *a*; a + el = al.
-18. **Präposition vor Wochentagen** — in Ej. 34 viermal *en sábado*,
-   *en miércoles*. Diesmal aus dem Deutschen («am Samstag»), in Ej. 28 war
-   es dieselbe Regel aus dem Französischen (*les lunes*). Die Fehlerquelle
-   wechselt die Sprache, die Regel bleibt: nur *el* oder *los*, nie eine
-   Präposition. Vermutlich mehrfach nötig.
+18. **Präposition vor Wochentagen** — in Ej. 35 **behoben** (*el domingo*,
+   *el lunes* richtig, nach viermal *en sábado* in Ej. 34). Nur eine Runde
+   nötig. Beobachten, ob es hält.
+18b. **Verben ohne Präposition** — *busco **por** la estación* statt *busco
+   la estación*. Gruppe: buscar, esperar, pedir — im Englischen mit «for»,
+   im Spanischen ohne. Ausnahme bleibt die *a personal* bei Personen
+   (*busco a mi hermana*).
 19. **desde / después verwechselt** — *despues las seis* statt *desde*.
 20. **bien / bueno** — *no me siento bueno* statt *bien*; mit *sentirse*
    steht das Adverb.
@@ -133,6 +135,11 @@ Diese bei Korrekturen gezielt beachten:
   Muster (*le* statt *lo* bei *llamar* / *encontrar*). Danach Regel erklärt:
   «Gibt es im Satz schon ein Was?» → dann *le*; sonst *lo/la*. Ausserdem
   *leísmo* als spanische Variante erwähnt, für Mexiko nicht zu übernehmen.
+- **Ejercicio 35 (Wegbeschreibung):** Wochentage ohne Präposition richtig
+  (*el domingo*, *el lunes*) — Muster 18 nach einer Runde weg. *¿A qué hora
+  llega el autobús?* fehlerfrei. Neu: *buscar* ohne Präposition,
+  *sale* statt *sala*, *ser* statt *estar* bei *amable*, Konsistenz bei
+  *usted*. Ausserdem *podemos* (nosotros ohne Stammwechsel) korrigiert.
 - **Ejercicio 34 (Gespräch, Vokabelwiederholung):** *llamarte*, *me acuesto*,
   *me quedo*, *pienso que*, *muy contento* richtig — die reflexiven Verben
   sitzen. Hauptmuster: viermal *en* vor Wochentagen (aus dem Deutschen).
@@ -175,9 +182,13 @@ Von Miro am 19.09.2026 gewünschte Reihenfolge:
    angewendet; in v22 als eigene Kategorie in der App
 3. Gemischte Gesprächsübungen — **laufend** (Ej. 34 ff.)
 
-Aktueller Schwerpunkt: Wochentage ohne Präposition; Vokabelabruf ist
-schwächer als die Grammatik (erkennt Wörter, produziert sie aber nicht —
-Karteikarten in Richtung DE→ES empfohlen).
+Aktueller Schwerpunkt: Vokabelabruf — er erkennt Wörter, produziert sie aber
+nicht (in Ej. 33 und 35 fehlten je zwei bereits gelernte Wörter). Grammatik
+läuft inzwischen deutlich besser als der Wortschatz. Karteikarten in Richtung
+EN→ES empfohlen, dazu der Nuevas-Modus.
+
+Noch offen als Themen: Imperfekt, *a personal* (seit Ej. 29 nicht geprüft),
+Stammwechsel bei nosotros (*podemos*, *queremos* — nicht *puedemos*).
 
 Später: *a personal* weiter beobachten (seit Ej. 29 nicht geprüft),
 Imperfekt als zweite Vergangenheitsform.
