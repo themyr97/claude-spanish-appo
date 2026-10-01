@@ -107,6 +107,16 @@ Diese bei Korrekturen gezielt beachten:
 19. **desde / después verwechselt** — *despues las seis* statt *desde*.
 20. **bien / bueno** — *no me siento bueno* statt *bien*; mit *sentirse*
    steht das Adverb.
+21. **traer unregelmässig** — *traeo* statt *traigo*, in Ej. 36 und 37.
+   Gruppe hago/salgo/pongo/digo/traigo.
+22. **Infinitiv ohne Präposition nach Modalverben** — *puedo **a** dejar*
+   statt *puedo dejar* (poder, querer, deber, desear, necesitar).
+23. **Stunden sind weiblich** — *los diez*, *a los cinco* statt *las*.
+   In Ej. 37 schon behoben.
+24. **Possessiv *su*** — *el escritorio de ustedes* statt *su escritorio*.
+25. **desde / hasta** — dritte Verwechslung (zusätzlich zu desde/después).
+26. **llevar / levantar vermischt** — *me llevanto* statt *me levanto*,
+   obwohl *levantarse* vorher viermal richtig war.
 
 ## Behoben / stabil
 
@@ -135,6 +145,10 @@ Diese bei Korrekturen gezielt beachten:
   Muster (*le* statt *lo* bei *llamar* / *encontrar*). Danach Regel erklärt:
   «Gibt es im Satz schon ein Was?» → dann *le*; sonst *lo/la*. Ausserdem
   *leísmo* als spanische Variante erwähnt, für Mexiko nicht zu übernehmen.
+- **Ejercicio 36/37 (Fiesta und Büro, die sechs Fehlerwörter der App):**
+  Verbwahl durchgehend richtig — llegar/traer und dejar/quedarse sitzen nach
+  einer Erklärung. *Se lo llevo* auf Anhieb korrekt (le + lo → se lo).
+  Offen: *traigo*, Possessiv *su*, Modalverb + Infinitiv ohne Präposition.
 - **Ejercicio 35 (Wegbeschreibung):** Wochentage ohne Präposition richtig
   (*el domingo*, *el lunes*) — Muster 18 nach einer Runde weg. *¿A qué hora
   llega el autobús?* fehlerfrei. Neu: *buscar* ohne Präposition,
@@ -195,6 +209,44 @@ Imperfekt als zweite Vergangenheitsform.
 - Imperfekt als zweite Vergangenheitsform
 
 ---
+
+---
+
+## Korrekturformat — verbindlich
+
+Von Miro am 27.09.2026 festgelegt, weil die Korrekturen vorher uneinheitlich
+waren und er nicht rekonstruieren konnte, was er falsch gemacht hatte.
+**Dieses Format bei jeder Übung einhalten, ohne Ausnahme.**
+
+Pro Satz, in dieser Reihenfolge:
+
+1. Die Nummer
+2. **Tú:** sein Satz, wortwörtlich wie geschrieben, kursiv
+3. Die Fehler, **ein Fehler pro Zeile**, als Aufzählung:
+   `*falsch* → **richtig** — kurze Begründung`
+4. Der vollständig korrekte Satz, fett, mit ✅ davor
+
+Wichtig:
+- **Nicht** den englischen Übungssatz wiederholen — er will *seine*
+  Übersetzung sehen, nicht die Vorgabe.
+- Auch fehlerfreie Sätze bekommen das ganze Format, mit «Sin errores ✅»
+  statt der Fehlerliste. So lassen sich die ✅-Zeilen als Reinschrift lesen.
+- Schreibt er seine Nachricht an mich auf Spanisch (keine Übung), die
+  Grammatik trotzdem kurz korrigieren, aber ohne das ganze Schema.
+
+Danach folgt ein Abschnitt mit Hinweisen (Muster, Vergleiche, warum etwas
+schwierig ist, Fortschritte). Den schätzt er ausdrücklich — beibehalten.
+
+### Beispiel
+
+**1.**
+**Tú:** *Buenas diàs. Traeo ustedes una copia.*
+- *Buenas* → **Buenos** — *día* ist männlich
+- *diàs* → **días** — Akzente zeigen im Spanischen immer nach rechts
+- *Traeo* → **traigo** — *traer* ist in der yo-Form unregelmässig
+- *ustedes* → **le** — «Ihnen» ist das indirekte Pronomen *le*
+
+**✅ Buenos días. Le traigo una copia.**
 
 ## Methodik, die funktioniert
 
