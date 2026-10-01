@@ -38,8 +38,17 @@ description: >
 
 Lesen ohne Token (immer möglich):
 `https://raw.githubusercontent.com/themyr97/claude-spanish-appo/main/index.html`
-Achtung: Diese URL wird vom CDN gecacht und kann veraltet sein — zum
-Verifizieren die API verwenden.
+
+**Nur zum Nachschlagen, nie als Grundlage für einen Upload.** Diese URL wird
+vom CDN gecacht und liefert teils veraltete Stände. Eine so geholte Datei
+wieder hochzuladen überschreibt neuere Änderungen — genau das ist am
+27.09.2026 mit LERNSTAND.md passiert und musste aus der Commit-Historie
+wiederhergestellt werden. **Zum Bearbeiten und Verifizieren immer die API
+verwenden** (`Accept: application/vnd.github.raw`). Scheitert ein Patch an
+einem fehlenden Ankertext, ist die Ursache meist eine veraltete Kopie: dann
+über die API neu laden und **nicht** den unveränderten Stand hochladen.
+Verlorene Inhalte lassen sich über
+`/commits?path=<datei>` und `/contents/<datei>?ref=<sha>` zurückholen.
 
 ## Ablauf jeder Änderung
 
