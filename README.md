@@ -52,6 +52,8 @@ Personal Spanish learning PWA. **Live app:** https://themyr97.github.io/claude-s
 
 - **v22** — Reflexive Verben als **eigene Kategorie «Reflexive verbs»**, bewusst nicht in «Verbs (infinitive)»: `conjugate()` liefert bei `-se`-Infinitiven `null`, und ein Kategoriename, der mit «Verbs» beginnt, würde einen Konjugationsknopf mit leerer Tabelle erzeugen. Die Einträge tragen stattdessen eine konjugierte Beispielform in der Glosse (*me levanto a las siete*). Neu: 8 reflexive Verben, 6 Substantive (gimnasio, cita, desayuno, tren, vino, dirección), 2 Verben (desayunar, invitar) und 12 Zeitausdrücke inkl. der Unterscheidung *por la noche* (ohne Uhrzeit) vs. *de la noche* (mit Uhrzeit). 13 neue Sprech- und 5 neue Hörsätze. 300 Einträge.
 
+- **v23** — Die zwölf alltagsrelevanten Verben aus der Frequenz-Top-50 ergänzt, die noch fehlten: haber, pasar, deber, parecer, volver, conocer, contar, mirar, sentir, creer, trabajar, recibir — dazu pagar und sacar aus dem Einkaufsdialog. Sieben davon brauchten handgeschriebene Tabellen, weil die Regeln Nichtwörter erzeugten (*habo, pareco, volvo, conoco, conto, sento, creió*): haber (he/hay/hubo), parecer und conocer (c→zc), volver und contar (o→ue), sentir (e→ie mit sintió/sintieron nur in der 3. Person), creer (creyó/creyeron wie leer). Ausserdem 7 Substantive und 2 Adjektive aus dem Einkaufsdialog sowie 4 Wendungen (me lo llevo, hay). Nebenbei ein hängendes Komma in der Adjektivliste bereinigt, Rest der Duplikat-Entfernung aus v21.
+
 ## Deploy checklist
 
 When pushing a new version, always bump `APP_VERSION` in `service-worker.js` and the badge in `index.html`. The service worker file must change byte-wise, or browsers will not install the new version.
