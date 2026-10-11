@@ -47,6 +47,8 @@
 | Wochentage (el lunes / los lunes, kein *en*) | eingeführt; Herleitung über Planeten und Französisch/Italienisch |
 | Uhrzeit (¿qué hora es? / ¿a qué hora?, y cuarto, y media, menos cuarto) | eingeführt und in Ej. 30 sicher angewendet |
 | Reflexive Verben (me/te/se/nos/se, Stellung, Stammwechsel) | eingeführt Ej. 32/33, in Ej. 34 fehlerfrei angewendet |
+| Pretérito vs. Imperfecto (Gegenüberstellung, Signalwörter) | am 08.10.2026 erklärt; Imperfekt noch nicht geübt |
+| Starke Pretérito-Formen (tuv-, pud-, vin-, dij-, hic-, estuv-, sup-, traj-) | als Gruppe mit gemeinsamen Endungen erklärt |
 
 ---
 
@@ -107,6 +109,12 @@ Diese bei Korrekturen gezielt beachten:
 19. **desde / después verwechselt** — *despues las seis* statt *desde*.
 20. **bien / bueno** — *no me siento bueno* statt *bien*; mit *sentirse*
    steht das Adverb.
+20b. **Starke Pretérito-Formen** — regelmässige Endungen daraufgesetzt
+   (*podí* statt *pude*). Gruppe tuv-/pud-/vin-/dij-/hic-/estuv-/sup-/traj-
+   mit -e/-iste/-o/-imos/-ieron. Ausnahmen: hizo (c→z), dijeron/trajeron
+   (nach j kein i).
+20c. **Bewegung: en statt a** — *vino **en** mi casa* statt *a mi casa*.
+   Gleiche Wurzel wie *voy en el gimnasio* aus Ej. 31.
 21. **traer unregelmässig** — *traeo* statt *traigo*, in Ej. 36 und 37.
    Gruppe hago/salgo/pongo/digo/traigo.
 22. **Infinitiv ohne Präposition nach Modalverben** — *puedo **a** dejar*
@@ -196,7 +204,12 @@ Von Miro am 19.09.2026 gewünschte Reihenfolge:
    angewendet; in v22 als eigene Kategorie in der App
 3. Gemischte Gesprächsübungen — **laufend** (Ej. 34 ff.)
 
-Aktueller Schwerpunkt: Vokabelabruf — er erkennt Wörter, produziert sie aber
+**Schwerpunkt seit 07.10.2026 (Wunsch von Miro): Verben wiederholen und die
+Vergangenheitsformen festigen.** Pretérito regelmässig sitzt; als Nächstes die
+starken Formen ohne Nachschlagen, danach das Imperfekt und zuletzt die
+Gegenüberstellung beider Zeiten im selben Text.
+
+Daneben weiter: Vokabelabruf — er erkennt Wörter, produziert sie aber
 nicht (in Ej. 33 und 35 fehlten je zwei bereits gelernte Wörter). Grammatik
 läuft inzwischen deutlich besser als der Wortschatz. Karteikarten in Richtung
 EN→ES empfohlen, dazu der Nuevas-Modus.
