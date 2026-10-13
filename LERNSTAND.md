@@ -66,10 +66,10 @@ Diese bei Korrekturen gezielt beachten:
 4. **Akzente** — *está* vs. *esta*; *sí* vs. *si*; Akzentrichtung teils
    italienisch/französisch (*està*).
 5. **ser vs. estar bei Eigenschaften** — *va a estar difícil* statt *ser*.
-6. **Französische Artikel** — bei Wochentagen in Ej. 29 **behoben**
-   (dreimal *los* richtig, kein *les* mehr). Überlebt nur noch bei
-   Uhrzeiten, siehe Muster 2. Was geholfen hat: die Parallele zum
-   Französischen zeigen (le lundi → el lunes, les lundis → los lunes).
+6. **Französische Artikel** — bei Wochentagen und Uhrzeiten behoben, kommt
+   aber unter Last zurück: *le vuelo* in Ej. 40, während die Aufmerksamkeit
+   auf den Verben lag. Kein Wissensproblem, nur Rückfall bei geteilter
+   Aufmerksamkeit — beim Korrigieren kurz benennen, nicht neu erklären.
 6b. **Weitere Interferenz** — *cinque*, *sistera*, *pharmacía*, *officina*,
    *vientres* für *viernes*; *no problema* ohne *hay*.
 7. **muy vs. mucho** — *mucho* + Adjektiv statt *muy*.
@@ -109,12 +109,14 @@ Diese bei Korrekturen gezielt beachten:
 19. **desde / después verwechselt** — *despues las seis* statt *desde*.
 20. **bien / bueno** — *no me siento bueno* statt *bien*; mit *sentirse*
    steht das Adverb.
-20b. **Starke Pretérito-Formen** — regelmässige Endungen daraufgesetzt
-   (*podí* statt *pude*). Gruppe tuv-/pud-/vin-/dij-/hic-/estuv-/sup-/traj-
-   mit -e/-iste/-o/-imos/-ieron. Ausnahmen: hizo (c→z), dijeron/trajeron
-   (nach j kein i).
-20c. **Bewegung: en statt a** — *vino **en** mi casa* statt *a mi casa*.
-   Gleiche Wurzel wie *voy en el gimnasio* aus Ej. 31.
+20b. **Starke Pretérito-Formen** — in Ej. 40 **alle acht richtig und ohne
+   Nachschlagen** (tuve, pude, estuve, vino, dije, dijo, supimos, trajeron),
+   inklusive der j-Regel und der nosotros-Form. Nach *podí* in Ej. 39 also
+   in einer Runde gelöst. Beim nächsten Mal bestätigen.
+20c. **a oder en** — jetzt in beide Richtungen falsch gewesen: *vino **en**
+   mi casa* (Ej. 39) und *estuve **al** aeropuerto* (Ej. 40). Regel über das
+   Verb erklärt: Bewegung (ir, venir, llegar, volver) → *a*; Position
+   (estar, quedarse, vivir) → *en*. Aktuell das klarste offene Muster.
 21. **traer unregelmässig** — *traeo* statt *traigo*, in Ej. 36 und 37.
    Gruppe hago/salgo/pongo/digo/traigo.
 22. **Infinitiv ohne Präposition nach Modalverben** — *puedo **a** dejar*
@@ -205,8 +207,8 @@ Von Miro am 19.09.2026 gewünschte Reihenfolge:
 3. Gemischte Gesprächsübungen — **laufend** (Ej. 34 ff.)
 
 **Schwerpunkt seit 07.10.2026 (Wunsch von Miro): Verben wiederholen und die
-Vergangenheitsformen festigen.** Pretérito regelmässig sitzt; als Nächstes die
-starken Formen ohne Nachschlagen, danach das Imperfekt und zuletzt die
+Vergangenheitsformen festigen.** Pretérito regelmässig und die starken Formen
+sitzen (Ej. 40 fehlerfrei). **Als Nächstes das Imperfekt**, danach die
 Gegenüberstellung beider Zeiten im selben Text.
 
 Daneben weiter: Vokabelabruf — er erkennt Wörter, produziert sie aber
