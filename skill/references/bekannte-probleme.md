@@ -2,9 +2,23 @@
 
 Vor dem Debuggen lesen. Alle Punkte sind belegt, nicht vermutet.
 
+## Stand v24 (14.10.2026)
+
+- Der **Escucha-Fehler** (ein Buchstabe gilt als richtig) betrifft seit v24
+  nur noch die klassische Ansicht `/v23/`, nicht mehr die Haupt-App. Beim
+  Wiedereinbau des Hörens in Phase 2 nicht übernehmen.
+- **`/mnt/skills/user` wird zurückgesetzt, samt `scripts/`.** Beim
+  Wiederherstellen immer den ganzen Ordner `skill/` aus dem Repo holen, nicht
+  nur `SKILL.md` — am 14.10. fehlte dadurch `deploy.py`.
+- **deploy.py lud Manifest und Symbole nur ins Archiv**, nie in die Wurzel.
+  Bemerkt bei v24, als das neue Symbol nicht live ging. Seit 14.10. behoben.
+- `¿Qué desean tomar?` steht weiter in zwei Kategorien; die Karte existiert
+  einmal (Duplikate werden beim Aufbau entfernt), in der Kategorie
+  «Restaurante (formal)» fehlt sie dadurch.
+
 ## Offen — noch nicht behoben
 
-### Escucha-Tab wertet fast alles als richtig
+### Escucha-Tab wertet fast alles als richtig (nur noch in /v23/)
 `checkBtn.onclick` prüft mit
 `correctAns.includes(userAns) || userAns.includes(correctAns)`.
 Getestet: Die Eingabe **«a»** wird bei jedem Satz als richtig gewertet, ebenso
