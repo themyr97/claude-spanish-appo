@@ -6,7 +6,7 @@
 > Rohdatei:
 > https://raw.githubusercontent.com/themyr97/claude-spanish-appo/main/LERNSTAND.md
 
-**Stand:** 27. September 2026 · App-Version v22 · 300 Vokabeleinträge
+**Stand:** 14. Oktober 2026 · App-Version v22 · 300 Vokabeleinträge
 
 ---
 
@@ -20,6 +20,17 @@
   Kurze Übungen, Fehlerkorrektur mit Begründung
 - Spricht Deutsch (Muttersprache), Französisch, Italienisch, Englisch —
   daher regelmässige Interferenzen (siehe unten)
+
+---
+
+## Ziel (seit 14.10.2026)
+
+- [stated] **Sich in Alltagssituationen auf Spanisch unterhalten können**, wenn
+  er spanischsprachige Menschen trifft.
+- [stated] **Selbst eine App bauen** — die Arbeit an der App ist also ein
+  eigenes Ziel, kein Umweg.
+- Massstab: A2-Kannbeschreibungen des Europäischen Referenzrahmens
+  (Alltagsgespräche zu vertrauten Themen, einfache Routinesituationen).
 
 ---
 
@@ -266,6 +277,27 @@ schwierig ist, Fortschritte). Den schätzt er ausdrücklich — beibehalten.
 - Sin errores ✅
 
 **✅ Pienso que a las nueve y cuarto de la mañana.**
+
+## Lerntaktik ab 14.10.2026
+
+Abgeleitet aus der Verbesserungsprüfung (`skill/references/verbesserungspruefung.md`)
+und aus den Rohantworten der Übungen 22–40:
+
+- **Befund:** 18 Lücken («?») in 19 Übungen, fast alle bei bereits gelernten
+  Wörtern. Grammatikmuster verschwinden nach 1–2 Runden; Wortschatz nicht.
+  Engpass ist der **Abruf**, nicht das Lernen.
+- **Im Chat: Gespräche statt Übersetzungslisten.** Ich schreibe Spanisch, er
+  antwortet frei ohne englische Vorlage. Übersetzungsübungen nur noch gezielt
+  für einzelne Grammatikpunkte. Das Korrekturformat gilt weiter; bei freien
+  Antworten steht in Zeile 1 die spanische Frage statt eines englischen Satzes.
+- **In der App: Wiederholung und Hören** — was der Chat nicht leisten kann.
+- **Rettungssätze zuerst** (¿Puede repetir?, Más despacio, ¿Cómo se dice…?).
+- **«Behoben» erst nach drei fehlerfreien Runden** in verschiedenen Übungen,
+  mit zeitlichem Abstand. Frühere Einträge, die nach einer Runde als behoben
+  galten, sind nur «vorläufig».
+- **Akzente weiter korrigieren, aber knapp** — für das Gesprächsziel zweitrangig.
+
+---
 
 ## Methodik, die funktioniert
 
