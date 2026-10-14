@@ -54,6 +54,16 @@ Personal Spanish learning PWA. **Live app:** https://themyr97.github.io/claude-s
 
 - **v23** — Die zwölf alltagsrelevanten Verben aus der Frequenz-Top-50 ergänzt, die noch fehlten: haber, pasar, deber, parecer, volver, conocer, contar, mirar, sentir, creer, trabajar, recibir — dazu pagar und sacar aus dem Einkaufsdialog. Sieben davon brauchten handgeschriebene Tabellen, weil die Regeln Nichtwörter erzeugten (*habo, pareco, volvo, conoco, conto, sento, creió*): haber (he/hay/hubo), parecer und conocer (c→zc), volver und contar (o→ue), sentir (e→ie mit sintió/sintieron nur in der 3. Person), creer (creyó/creyeron wie leer). Ausserdem 7 Substantive und 2 Adjektive aus dem Einkaufsdialog sowie 4 Wendungen (me lo llevo, hay). Nebenbei ein hängendes Komma in der Adjektivliste bereinigt, Rest der Duplikat-Entfernung aus v21.
 
+- **v24 — Neugestaltung, Phase 1.** Ausgerichtet auf Miros Ziel (Alltagsgespräche) und auf die tatsächlich genutzten Bereiche (Karteikarten, Vokabeln, Konjugationen nachschlagen). Grundlage: die Verbesserungsprüfung im Skill.
+  - **Wiederholungsplanung** (SM-2 mit Lernschritten 1/10 min) ersetzt den Fehlerzähler, der nie vergass. Abfrage standardmässig Englisch → Spanisch (Abruf statt Erkennen), Bewertung *Otra vez / Difícil / Bien / Fácil* mit Intervall-Vorschau; die drei positiven Intervalle sind immer unterscheidbar. Tageslimit für neue Karten (Standard 20). Neuer Speicher `srs-v1`; der alte Fortschritt aus `flashcard-progress` wird einmalig übernommen (Wörter mit Fehlern kommen als Wiederholung, Leichtigkeit nach Fehlerzahl), der alte Speicher bleibt unangetastet.
+  - **Hoy** als Startseite: Tagespensum, Fortschritt als Trajinera auf dem Kanal, Tagesserie, Frase del día.
+  - **Supervivencia**: 16 Rettungssätze (¿Mande?, Más despacio…), werden als erste neue Karten eingeführt.
+  - **Verbos**: Konjugationstabellen zweispaltig; Stammwechsel violett — die Felder bilden die Stiefelform; starke Präterita mit Stamm und Endungen farbig; Einordnung (Verbo bota, Yo irregular, Pretérito fuerte, Cambia en él y ellos, Ortografía en yo). Rückwärtssuche über konjugierte Formen (pienso → pensar, fui → ser/ir). Reflexive Verben erstmals mit Tabelle (Basen acostar/despertar ergänzt).
+  - Beibehalten: Kategorien, Fehlerwortliste mit Einzel-Reset, «Las 50 más nuevas», «Las difíciles», Zustand bleibt beim Tabwechsel erhalten.
+  - Gestaltung neu: Ajolote als Begleiter, Hell/Dunkel, Baloo 2 + Atkinson Hyperlegible, neues App-Symbol.
+  - Escucha, Hablar und Conjugar vorerst nur in der klassischen Ansicht `/v23/` (laut Miro ungenutzt); Integration in Hoy ist Phase 2.
+  - Geprüft: 22 Logiktests, Einordnung von 38 Prüfverben, alle 85 Verben mit Tabelle, keine doppelten Karten, Darstellung bei 390 und 320 px hell/dunkel ohne Überlauf und ohne Laufzeitfehler.
+
 ## Deploy checklist
 
 When pushing a new version, always bump `APP_VERSION` in `service-worker.js` and the badge in `index.html`. The service worker file must change byte-wise, or browsers will not install the new version.
