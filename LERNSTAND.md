@@ -6,7 +6,7 @@
 > Rohdatei:
 > https://raw.githubusercontent.com/themyr97/claude-spanish-appo/main/LERNSTAND.md
 
-**Stand:** 14. Oktober 2026 · App-Version v22 · 300 Vokabeleinträge
+**Stand:** 14. Oktober 2026 · App-Version v24 · 342 Karten
 
 ---
 
