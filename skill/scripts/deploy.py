@@ -15,7 +15,9 @@ import base64, json, os, subprocess, sys
 
 USER, REPO = 'themyr97', 'claude-spanish-appo'
 API = f'https://api.github.com/repos/{USER}/{REPO}/contents'
-LIVE = ['index.html', 'service-worker.js', 'README.md', 'LERNSTAND.md']
+# Manifest und Symbole gehören in die Wurzel — bis v24 fehlten sie hier,
+# neue Symbole landeten nur im Archiv und gingen nie live.
+LIVE = ['index.html', 'service-worker.js', 'manifest.json', 'icon-192.png', 'icon-512.png', 'README.md', 'LERNSTAND.md']
 ARCHIVE = ['index.html', 'manifest.json', 'service-worker.js',
            'icon-192.png', 'icon-512.png']
 
