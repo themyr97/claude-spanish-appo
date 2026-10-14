@@ -2,1043 +2,427 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Español — Vocabulario y Escucha</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1A7F7A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Ajolote">
+<title>Ajolote · Español</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Español">
-<meta name="theme-color" content="#3d5643">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Baloo+2:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600&display=swap');
-
-  :root{
-    --ink:#1f2a24;
-    --paper:#f6f3ea;
-    --paper-2:#eee8d8;
-    --sage:#5c7a63;
-    --sage-dark:#3d5643;
-    --clay:#b0553a;
-    --line:#d8cfb8;
-  }
-
-  *{ box-sizing:border-box; }
-
-  body{
-    margin:0;
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'Source Sans 3', sans-serif;
-    padding:0 0 4rem 0;
-  }
-
-  header{
-    padding:3rem 1.5rem 1.5rem 1.5rem;
-    text-align:center;
-    border-bottom:1px solid var(--line);
-    background: linear-gradient(180deg, var(--paper-2), var(--paper));
-  }
-
-  header .eyebrow{
-    font-size:0.78rem;
-    letter-spacing:0.14em;
-    text-transform:uppercase;
-    color:var(--sage-dark);
-    font-weight:600;
-    margin-bottom:0.6rem;
-  }
-
-  header h1{
-    font-family:'Fraunces', serif;
-    font-weight:700;
-    font-size:clamp(2rem, 6vw, 2.9rem);
-    margin:0 0 0.5rem 0;
-  }
-
-  header p{
-    max-width:36rem;
-    margin:0 auto;
-    color:#5a5a4e;
-    font-size:1rem;
-    line-height:1.5;
-  }
-
-  .voice-note{
-    max-width:36rem;
-    margin:1rem auto 0 auto;
-    font-size:0.85rem;
-    color:var(--clay);
-    display:none;
-  }
-
-  .version-badge{
-    display:inline-block;
-    margin-top:0.9rem;
-    font-size:0.7rem;
-    letter-spacing:0.08em;
-    text-transform:uppercase;
-    color:var(--sage-dark);
-    background:rgba(92,122,99,0.12);
-    border-radius:999px;
-    padding:0.25rem 0.75rem;
-  }
-
-  .update-banner{
-    display:none;
-    position:fixed;
-    left:0; right:0; bottom:0;
-    background:var(--sage-dark);
-    color:white;
-    padding:0.9rem 1.2rem;
-    font-size:0.9rem;
-    text-align:center;
-    z-index:99;
-  }
-  .update-banner.show{ display:block; }
-  .update-banner button{
-    margin-left:0.8rem;
-    padding:0.35rem 0.9rem;
-    border-radius:999px;
-    border:none;
-    background:white;
-    color:var(--sage-dark);
-    font-weight:700;
-    cursor:pointer;
-    font-family:'Source Sans 3', sans-serif;
-  }
-
-  nav.tabs{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:0.5rem;
-    margin-top:1.4rem;
-    max-width:26rem;
-    margin-left:auto;
-    margin-right:auto;
-    padding:0 0.25rem;
-  }
-
-  nav.tabs button{
-    font-family:'Source Sans 3', sans-serif;
-    font-weight:600;
-    font-size:0.9rem;
-    padding:0.6rem 0.5rem;
-    border-radius:999px;
-    border:1px solid var(--line);
-    background:white;
-    color:var(--ink);
-    cursor:pointer;
-    width:100%;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-  }
-
-  nav.tabs button.active{
-    background:var(--sage-dark);
-    border-color:var(--sage-dark);
-    color:white;
-  }
-
-  main{
-    max-width:54rem;
-    margin:0 auto;
-    padding:2.2rem 1.25rem;
-  }
-
-  .view{ display:none; }
-  .view.active{ display:block; }
-
-  .search-row{
-    display:flex;
-    gap:0.6rem;
-    margin-bottom:2rem;
-    align-items:center;
-    flex-wrap:wrap;
-  }
-
-  .search-row input{
-    flex:1;
-    min-width:180px;
-    padding:0.7rem 1rem;
-    border-radius:8px;
-    border:1px solid var(--line);
-    background:white;
-    font-family:'Source Sans 3', sans-serif;
-    font-size:1rem;
-    color:var(--ink);
-  }
-
-  .search-row input:focus{ outline:2px solid var(--sage); outline-offset:1px; }
-
-  select#voiceSelect{
-    padding:0.55rem 0.7rem;
-    border-radius:8px;
-    border:1px solid var(--line);
-    background:white;
-    font-family:'Source Sans 3', sans-serif;
-    font-size:0.85rem;
-    color:var(--ink);
-    max-width:190px;
-  }
-
-  section.category{ margin-bottom:2.2rem; }
-
-  .category h2{
-    font-family:'Fraunces', serif;
-    font-size:1.25rem;
-    font-weight:600;
-    color:var(--sage-dark);
-    border-bottom:2px solid var(--sage);
-    display:inline-block;
-    padding-bottom:0.2rem;
-    margin:0 0 1rem 0;
-  }
-
-  .cat-play{
-    background:none;
-    border:1px solid var(--sage);
-    color:var(--sage-dark);
-    border-radius:999px;
-    padding:0.3rem 0.9rem;
-    font-size:0.78rem;
-    font-weight:600;
-    cursor:pointer;
-    margin-left:0.7rem;
-    font-family:'Source Sans 3', sans-serif;
-  }
-
-  .cat-play:hover{ background:var(--sage); color:white; }
-
-
-  .cat-filter{
-    display:flex;
-    gap:0.4rem;
-    flex-wrap:wrap;
-    margin-bottom:1.4rem;
-  }
-  .cat-filter button{
-    padding:0.4rem 0.85rem;
-    border-radius:999px;
-    border:1px solid var(--line);
-    background:white;
-    color:var(--ink);
-    font-size:0.78rem;
-    font-weight:600;
-    cursor:pointer;
-    font-family:'Source Sans 3', sans-serif;
-  }
-  .cat-filter button.on{
-    background:var(--sage-dark);
-    border-color:var(--sage-dark);
-    color:white;
-  }
-  .cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fill, minmax(230px, 1fr));
-    gap:0.7rem;
-  }
-
-  .card{
-    background:white;
-    border:1px solid var(--line);
-    border-radius:10px;
-    padding:0.7rem 0.9rem;
-    transition:border-color 0.15s ease;
-  }
-
-  .card:hover{ border-color:var(--sage); }
-  .card.playing{ border-color:var(--clay); background:#fbf1ec; }
-
-  .card-top{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:0.6rem;
-  }
-
-  .card-text{ min-width:0; }
-
-  .card-es{
-    font-weight:600;
-    font-size:1.02rem;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-  }
-
-  .card-en{
-    font-size:0.82rem;
-    color:#767666;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-  }
-
-  .gender-badge{
-    display:inline-block;
-    font-size:0.62rem;
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:0.05em;
-    border-radius:4px;
-    padding:0.08rem 0.32rem;
-    margin-left:0.4rem;
-    vertical-align:middle;
-  }
-  .gender-badge.m{ background:#dbe6f0; color:#2f4d68; }
-  .gender-badge.f{ background:#f3dfe2; color:#7a3345; }
-  .gender-note{
-    font-size:0.7rem;
-    color:var(--clay);
-    font-style:italic;
-    margin-top:0.15rem;
-  }
-
-  .card-buttons{ display:flex; gap:0.4rem; flex-shrink:0; }
-
-  button.icon-btn{
-    width:36px;
-    height:36px;
-    border-radius:50%;
-    border:none;
-    background:var(--sage);
-    color:white;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-family:'Source Sans 3', sans-serif;
-    font-size:0.8rem;
-    font-weight:700;
-  }
-
-  button.icon-btn:hover{ background:var(--sage-dark); }
-  button.icon-btn.conj{ background:white; border:1px solid var(--sage); color:var(--sage-dark); }
-  button.icon-btn.conj:hover{ background:var(--sage); color:white; }
-
-  button.icon-btn svg{ width:14px; height:14px; fill:white; margin-left:2px; }
-
-  .conj-panel{
-    display:none;
-    margin-top:0.7rem;
-    padding-top:0.7rem;
-    border-top:1px dashed var(--line);
-    font-size:0.85rem;
-  }
-
-  .conj-panel.open{ display:block; }
-
-  .conj-panel table{ width:100%; border-collapse:collapse; }
-  .conj-panel th{
-    text-align:left;
-    font-size:0.72rem;
-    text-transform:uppercase;
-    letter-spacing:0.04em;
-    color:var(--sage-dark);
-    padding:0.15rem 0.3rem;
-  }
-  .conj-panel td{
-    padding:0.2rem 0.3rem;
-    border-top:1px solid var(--paper-2);
-  }
-  .conj-panel td.pron{ color:#8a8a78; width:34%; }
-  .conj-panel .conj-word-row{ display:flex; align-items:center; gap:0.4rem; }
-  .conj-panel button.mini-play{
-    width:22px; height:22px; border-radius:50%; border:none;
-    background:var(--sage); color:white; cursor:pointer;
-    font-size:0.6rem; flex-shrink:0; display:flex; align-items:center; justify-content:center;
-  }
-  .conj-note{ margin-top:0.5rem; font-size:0.78rem; color:var(--clay); font-style:italic; }
-  .ref-row{ opacity:0.5; font-style:italic; }
-  .ref-row td.pron{ font-style:normal; }
-
-  .empty{ text-align:center; color:#8a8a78; padding:3rem 1rem; font-style:italic; }
-
-  /* Listening exercises */
-  .ex-card{
-    background:white;
-    border:1px solid var(--line);
-    border-radius:12px;
-    padding:1.3rem 1.4rem;
-    margin-bottom:1.2rem;
-  }
-
-  .ex-head{
-    display:flex;
-    align-items:center;
-    gap:0.8rem;
-    margin-bottom:0.9rem;
-  }
-
-  .ex-num{
-    font-family:'Fraunces', serif;
-    font-weight:700;
-    font-size:1rem;
-    color:var(--sage-dark);
-    background:var(--paper-2);
-    border-radius:50%;
-    width:32px; height:32px;
-    display:flex; align-items:center; justify-content:center;
-    flex-shrink:0;
-  }
-
-  .ex-play{
-    width:44px; height:44px;
-    border-radius:50%;
-    border:none;
-    background:var(--sage);
-    color:white;
-    cursor:pointer;
-    display:flex; align-items:center; justify-content:center;
-    flex-shrink:0;
-  }
-  .ex-play:hover{ background:var(--sage-dark); }
-  .ex-play svg{ width:17px; height:17px; fill:white; margin-left:2px; }
-
-  .ex-instructions{ font-size:0.85rem; color:#5a5a4e; }
-
-  .ex-input-row{ display:flex; gap:0.6rem; margin-bottom:0.7rem; }
-
-  .ex-input-row input{
-    flex:1;
-    padding:0.6rem 0.9rem;
-    border-radius:8px;
-    border:1px solid var(--line);
-    font-family:'Source Sans 3', sans-serif;
-    font-size:0.95rem;
-  }
-
-  .ex-input-row button{
-    padding:0.6rem 1.1rem;
-    border-radius:8px;
-    border:none;
-    background:var(--sage-dark);
-    color:white;
-    font-weight:600;
-    cursor:pointer;
-    font-family:'Source Sans 3', sans-serif;
-  }
-
-  .ex-result{
-    display:none;
-    padding:0.8rem 1rem;
-    border-radius:8px;
-    font-size:0.9rem;
-    line-height:1.5;
-  }
-  .ex-result.show{ display:block; }
-  .ex-result.correct{ background:#eaf3ec; border:1px solid var(--sage); }
-  .ex-result.close{ background:#fbf1ec; border:1px solid var(--clay); }
-
-  .ex-result .es-answer{ font-weight:600; }
-  .ex-result .en-answer{ color:#5a5a4e; margin-top:0.2rem; }
-
-  /* Flashcards */
-  .fc-wrap{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    padding:1rem 0 2rem 0;
-  }
-
-  .fc-progress{
-    font-size:0.85rem;
-    color:#5a5a4e;
-    margin-bottom:0.9rem;
-  }
-
-  .fc-toprow{
-    display:flex;
-    gap:0.5rem;
-    flex-wrap:wrap;
-    justify-content:center;
-    margin-bottom:1rem;
-  }
-
-  .fc-toprow button{
-    padding:0.4rem 0.9rem;
-    border-radius:999px;
-    border:1px solid var(--line);
-    background:white;
-    color:var(--ink);
-    font-size:0.8rem;
-    font-weight:600;
-    cursor:pointer;
-    font-family:'Source Sans 3', sans-serif;
-  }
-
-  .fc-toprow button.on{
-    background:var(--sage-dark);
-    border-color:var(--sage-dark);
-    color:white;
-  }
-
-  .fc-toprow button:disabled{
-    opacity:0.4;
-    cursor:not-allowed;
-  }
-
-  .fc-back{ background:none !important; color:var(--sage-dark); border:1px solid var(--sage) !important; }
-  .fc-back:hover{ background:var(--sage) !important; color:white !important; }
-
-  .fc-saved{
-    font-size:0.72rem;
-    color:var(--sage-dark);
-    text-align:center;
-    margin-top:0.6rem;
-    opacity:0.7;
-    min-height:1em;
-  }
-
-  .fc-scene{
-    width:100%;
-    max-width:420px;
-    height:240px;
-    perspective:1200px;
-    margin-bottom:1.5rem;
-  }
-
-  .fc-card{
-    position:relative;
-    width:100%;
-    height:100%;
-    cursor:pointer;
-    transition:transform 0.5s;
-    transform-style:preserve-3d;
-  }
-
-  .fc-card.flipped{ transform:rotateY(180deg); }
-
-  .fc-face{
-    position:absolute;
-    inset:0;
-    backface-visibility:hidden;
-    border-radius:16px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    padding:1.5rem;
-    text-align:center;
-    border:1px solid var(--line);
-    box-shadow:0 4px 14px rgba(0,0,0,0.06);
-  }
-
-  .fc-face.front{
-    background:white;
-  }
-
-  .fc-face.back{
-    background:var(--sage-dark);
-    color:white;
-    transform:rotateY(180deg);
-  }
-
-  .fc-word{
-    font-family:'Fraunces', serif;
-    font-weight:700;
-    font-size:1.7rem;
-    margin-bottom:0.6rem;
-  }
-
-  .fc-hint{
-    font-size:0.78rem;
-    opacity:0.6;
-    text-transform:uppercase;
-    letter-spacing:0.06em;
-  }
-
-  .fc-face .icon-btn{
-    margin-top:1rem;
-    background:var(--sage);
-  }
-  .fc-face.back .icon-btn{
-    background:rgba(255,255,255,0.2);
-  }
-
-  .fc-controls{
-    display:flex;
-    gap:0.7rem;
-    flex-wrap:wrap;
-    justify-content:center;
-  }
-
-  .fc-controls button{
-    padding:0.65rem 1.3rem;
-    border-radius:999px;
-    border:none;
-    font-weight:600;
-    font-size:0.88rem;
-    cursor:pointer;
-    font-family:'Source Sans 3', sans-serif;
-  }
-
-  .fc-know{ background:var(--sage); color:white; }
-  .fc-know:hover{ background:var(--sage-dark); }
-  .fc-again{ background:var(--paper-2); color:var(--ink); border:1px solid var(--line) !important; }
-  .fc-again:hover{ background:var(--line); }
-  .fc-reset{ background:none; color:var(--clay); text-decoration:underline; padding:0.65rem 0.4rem; }
-
-  .fc-done{
-    text-align:center;
-    padding:2rem 1rem;
-  }
-  .fc-done h3{ font-family:'Fraunces', serif; color:var(--sage-dark); }
-
-
-  /* Conjugation drill */
-  .drill-setup{
-    display:flex;
-    gap:0.5rem;
-    flex-wrap:wrap;
-    justify-content:center;
-    margin-bottom:1.6rem;
-  }
-  .drill-setup button{
-    padding:0.45rem 1rem;
-    border-radius:999px;
-    border:1px solid var(--line);
-    background:white;
-    color:var(--ink);
-    font-size:0.82rem;
-    font-weight:600;
-    cursor:pointer;
-    font-family:'Source Sans 3', sans-serif;
-  }
-  .drill-setup button.on{
-    background:var(--sage-dark);
-    border-color:var(--sage-dark);
-    color:white;
-  }
-
-  .drill-card{
-    background:white;
-    border:1px solid var(--line);
-    border-radius:14px;
-    padding:1.6rem 1.4rem;
-    text-align:center;
-    max-width:440px;
-    margin:0 auto 1.2rem auto;
-    box-shadow:0 4px 14px rgba(0,0,0,0.05);
-  }
-
-  .drill-tense{
-    font-size:0.72rem;
-    text-transform:uppercase;
-    letter-spacing:0.12em;
-    color:var(--sage-dark);
-    font-weight:700;
-    margin-bottom:0.8rem;
-  }
-
-  .drill-verb{
-    font-family:'Fraunces', serif;
-    font-size:1.9rem;
-    font-weight:700;
-    margin-bottom:0.15rem;
-  }
-
-  .drill-meaning{
-    font-size:0.85rem;
-    color:#767666;
-    margin-bottom:1.1rem;
-  }
-
-  .drill-pronoun{
-    font-size:1.15rem;
-    font-weight:600;
-    color:var(--clay);
-    margin-bottom:1rem;
-  }
-
-  .drill-input-row{ display:flex; gap:0.5rem; }
-  .drill-input-row input{
-    flex:1;
-    padding:0.7rem 1rem;
-    border-radius:8px;
-    border:1px solid var(--line);
-    font-family:'Source Sans 3', sans-serif;
-    font-size:1.05rem;
-    text-align:center;
-  }
-  .drill-input-row input:focus{ outline:2px solid var(--sage); outline-offset:1px; }
-  .drill-input-row button{
-    padding:0.7rem 1.2rem;
-    border-radius:8px;
-    border:none;
-    background:var(--sage-dark);
-    color:white;
-    font-weight:600;
-    cursor:pointer;
-    font-family:'Source Sans 3', sans-serif;
-  }
-
-  .drill-feedback{
-    margin-top:1rem;
-    padding:0.85rem 1rem;
-    border-radius:8px;
-    font-size:0.9rem;
-    line-height:1.5;
-    display:none;
-  }
-  .drill-feedback.show{ display:block; }
-  .drill-feedback.right{ background:#eaf3ec; border:1px solid var(--sage); }
-  .drill-feedback.accent{ background:#fdf6e6; border:1px solid #d6b45e; }
-  .drill-feedback.wrong{ background:#fbf1ec; border:1px solid var(--clay); }
-  .drill-answer{ font-weight:700; font-size:1.05rem; }
-
-  .drill-score{
-    text-align:center;
-    font-size:0.85rem;
-    color:#5a5a4e;
-    margin-bottom:1rem;
-  }
-
-  .drill-next{
-    display:block;
-    margin:1rem auto 0 auto;
-    padding:0.6rem 1.6rem;
-    border-radius:999px;
-    border:none;
-    background:var(--sage);
-    color:white;
-    font-weight:600;
-    cursor:pointer;
-    font-family:'Source Sans 3', sans-serif;
-  }
-
-  .drill-mistakes{
-    max-width:440px;
-    margin:1.5rem auto 0 auto;
-    font-size:0.82rem;
-  }
-  .drill-mistakes h4{
-    font-family:'Fraunces', serif;
-    color:var(--sage-dark);
-    margin:0 0 0.5rem 0;
-    font-size:0.95rem;
-  }
-  .drill-mistakes ul{ margin:0; padding-left:1.1rem; color:#5a5a4e; }
-  .drill-mistakes li{ margin-bottom:0.2rem; }
-
-
-  /* Speaking practice */
-  .speak-card{
-    background:white;
-    border:1px solid var(--line);
-    border-radius:14px;
-    padding:1.6rem 1.4rem;
-    text-align:center;
-    max-width:460px;
-    margin:0 auto 1.2rem auto;
-    box-shadow:0 4px 14px rgba(0,0,0,0.05);
-  }
-
-  .speak-label{
-    font-size:0.72rem;
-    text-transform:uppercase;
-    letter-spacing:0.12em;
-    color:var(--sage-dark);
-    font-weight:700;
-    margin-bottom:0.7rem;
-  }
-
-  .speak-prompt{
-    font-family:'Fraunces', serif;
-    font-size:1.35rem;
-    font-weight:600;
-    line-height:1.35;
-    margin-bottom:1.3rem;
-  }
-
-  .mic-btn{
-    width:74px; height:74px;
-    border-radius:50%;
-    border:none;
-    background:var(--sage);
-    color:white;
-    cursor:pointer;
-    display:flex; align-items:center; justify-content:center;
-    margin:0 auto;
-    transition:background 0.2s ease, transform 0.15s ease;
-  }
-  .mic-btn:hover{ background:var(--sage-dark); }
-  .mic-btn svg{ width:30px; height:30px; fill:white; }
-  .mic-btn.listening{
-    background:var(--clay);
-    animation:pulse 1.3s infinite;
-  }
-  @keyframes pulse{
-    0%{ box-shadow:0 0 0 0 rgba(176,85,58,0.5); }
-    70%{ box-shadow:0 0 0 18px rgba(176,85,58,0); }
-    100%{ box-shadow:0 0 0 0 rgba(176,85,58,0); }
-  }
-
-  .mic-hint{
-    font-size:0.8rem;
-    color:#767666;
-    margin-top:0.7rem;
-    min-height:1.2em;
-  }
-
-  .heard-text{
-    margin-top:1rem;
-    font-size:0.95rem;
-    color:var(--ink);
-    font-style:italic;
-    min-height:1.2em;
-  }
-
-  .speak-feedback{
-    margin-top:1rem;
-    padding:0.85rem 1rem;
-    border-radius:8px;
-    font-size:0.9rem;
-    line-height:1.5;
-    display:none;
-    text-align:left;
-  }
-  .speak-feedback.show{ display:block; }
-  .speak-feedback.right{ background:#eaf3ec; border:1px solid var(--sage); }
-  .speak-feedback.close{ background:#fdf6e6; border:1px solid #d6b45e; }
-  .speak-feedback.wrong{ background:#fbf1ec; border:1px solid var(--clay); }
-  .speak-answer{ font-weight:700; }
-
-  .speak-actions{
-    display:flex;
-    gap:0.5rem;
-    justify-content:center;
-    flex-wrap:wrap;
-    margin-top:1rem;
-  }
-  .speak-actions button{
-    padding:0.55rem 1.1rem;
-    border-radius:999px;
-    border:1px solid var(--line);
-    background:white;
-    color:var(--ink);
-    font-weight:600;
-    font-size:0.85rem;
-    cursor:pointer;
-    font-family:'Source Sans 3', sans-serif;
-  }
-  .speak-actions button.primary{
-    background:var(--sage-dark);
-    border-color:var(--sage-dark);
-    color:white;
-  }
-
-  .speak-fallback{
-    display:flex;
-    gap:0.5rem;
-    margin-top:1rem;
-  }
-  .speak-fallback input{
-    flex:1;
-    padding:0.65rem 0.9rem;
-    border-radius:8px;
-    border:1px solid var(--line);
-    font-family:'Source Sans 3', sans-serif;
-    font-size:0.95rem;
-  }
-  .speak-fallback button{
-    padding:0.65rem 1.1rem;
-    border-radius:8px;
-    border:none;
-    background:var(--sage-dark);
-    color:white;
-    font-weight:600;
-    cursor:pointer;
-    font-family:'Source Sans 3', sans-serif;
-  }
-
-  .speak-note{
-    max-width:460px;
-    margin:0 auto 1.2rem auto;
-    font-size:0.82rem;
-    color:var(--clay);
-    background:#fbf1ec;
-    border:1px solid var(--clay);
-    border-radius:8px;
-    padding:0.7rem 0.9rem;
-    display:none;
-  }
-  .speak-note.show{ display:block; }
-
-  .speak-score{
-    text-align:center;
-    font-size:0.85rem;
-    color:#5a5a4e;
-    margin-bottom:1rem;
-  }
-  .speech-diag{
-    max-width:460px;
-    margin:1.2rem auto 0 auto;
-    border:1px solid var(--line);
-    border-radius:10px;
-    background:white;
-    overflow:hidden;
-  }
-  .speech-diag summary{
-    cursor:pointer;
-    padding:0.7rem 1rem;
-    font-size:0.82rem;
-    font-weight:600;
-    color:var(--sage-dark);
-    list-style:none;
-  }
-  .speech-diag summary::-webkit-details-marker{ display:none; }
-  .speech-diag summary::before{ content:'\25B8  '; }
-  .speech-diag[open] summary::before{ content:'\25BE  '; }
-  .speech-diag .diag-body{
-    padding:0 1rem 0.9rem 1rem;
-    font-size:0.78rem;
-    color:#5a5a4e;
-    line-height:1.5;
-  }
-  .diag-row{ display:flex; justify-content:space-between; gap:0.6rem; padding:0.2rem 0; border-top:1px solid var(--paper-2); }
-  .diag-row span:last-child{ font-weight:600; text-align:right; }
-  .diag-ok{ color:#3d5643; }
-  .diag-bad{ color:#b0553a; }
-  #speechLog{
-    margin-top:0.6rem;
-    font-family:ui-monospace, monospace;
-    font-size:0.7rem;
-    color:#767666;
-    max-height:9rem;
-    overflow-y:auto;
-  }
-  #speechLog div{ padding:0.12rem 0; border-top:1px dotted var(--paper-2); }
-  .diag-test{
-    margin-top:0.7rem;
-    padding:0.5rem 1rem;
-    border-radius:999px;
-    border:1px solid var(--sage);
-    background:white;
-    color:var(--sage-dark);
-    font-weight:600;
-    font-size:0.8rem;
-    cursor:pointer;
-    font-family:'Source Sans 3', sans-serif;
-  }
-
-
-
-  /* Liste der Fehlerwörter unter den Karteikarten */
-  .miss-list{
-    max-width:460px;
-    margin:1.6rem auto 0 auto;
-    border:1px solid var(--line);
-    border-radius:12px;
-    background:white;
-    overflow:hidden;
-  }
-  .miss-list summary{
-    cursor:pointer;
-    padding:0.8rem 1rem;
-    font-size:0.86rem;
-    font-weight:600;
-    color:var(--sage-dark);
-    list-style:none;
-  }
-  .miss-list summary::-webkit-details-marker{ display:none; }
-  .miss-list summary::before{ content:'\25B8  '; }
-  .miss-list[open] summary::before{ content:'\25BE  '; }
-  .miss-body{ padding:0 0.75rem 0.8rem 0.75rem; }
-  .miss-row{
-    display:flex;
-    align-items:center;
-    gap:0.6rem;
-    padding:0.5rem 0.25rem;
-    border-top:1px solid var(--paper-2);
-  }
-  .miss-word{ flex:1; min-width:0; }
-  .miss-es{ font-weight:600; font-size:0.92rem; }
-  .miss-en{ font-size:0.76rem; color:#767666; }
-  .miss-count{
-    font-size:0.7rem;
-    font-weight:700;
-    border-radius:999px;
-    padding:0.15rem 0.5rem;
-    white-space:nowrap;
-  }
-  .miss-count.hard{ background:#f3dfe2; color:#7a3345; }
-  .miss-count.soft{ background:#f0ece2; color:#7a6f50; }
-  .miss-reset{
-    border:1px solid var(--line);
-    background:white;
-    border-radius:999px;
-    padding:0.3rem 0.6rem;
-    font-size:0.72rem;
-    cursor:pointer;
-    color:var(--ink);
-    font-family:'Source Sans 3', sans-serif;
-    white-space:nowrap;
-  }
-  .miss-note{
-    font-size:0.74rem;
-    color:var(--clay);
-    padding:0.6rem 0.25rem 0 0.25rem;
-    line-height:1.45;
-  }
-  .miss-empty{ font-size:0.82rem; color:#767666; padding:0.5rem 0.25rem; }
-
-  @media (max-width:480px){
-    .cards{ grid-template-columns:1fr; }
-  }
+:root{
+  --agua:#1A7F7A; --agua-2:#0E5E5A; --agua-claro:#CDEDEA; --on-agua:#FFFFFF;
+  --rosa:#F49BBE; --rosa-2:#D9578A; --rosa-claro:#FDE4EF;
+  --flor:#FFB020; --flor-2:#C77700; --flor-claro:#FFF1CF;
+  --jaca:#7B5CD6; --jaca-claro:#ECE6FC;
+  --bg:#EEF8F6; --surface:#FFFFFF; --ink:#1C2B3A; --ink-2:#506272; --line:#D2E6E3;
+  --mejilla:#FF8FA3;
+  --r-xl:30px; --r-lg:20px; --r-md:14px;
+  --font-display:'Baloo 2', ui-rounded, 'SF Pro Rounded', system-ui, sans-serif;
+  --font-body:'Atkinson Hyperlegible', -apple-system, system-ui, 'Segoe UI', sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --agua:#43BDB4; --agua-2:#1E7F79; --agua-claro:#163E40; --on-agua:#0F1E26;
+    --rosa:#F49BBE; --rosa-2:#E27AA6; --rosa-claro:#3B2333;
+    --flor:#FFC14D; --flor-2:#FFB020; --flor-claro:#3A2F14;
+    --jaca:#A991F0; --jaca-claro:#2E2754;
+    --bg:#0F1E26; --surface:#172C36; --ink:#E8F4F2; --ink-2:#A6BFC4; --line:#28454F;
+    --mejilla:#F07A92; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --agua:#43BDB4; --agua-2:#1E7F79; --agua-claro:#163E40; --on-agua:#0F1E26;
+  --rosa:#F49BBE; --rosa-2:#E27AA6; --rosa-claro:#3B2333;
+  --flor:#FFC14D; --flor-2:#FFB020; --flor-claro:#3A2F14;
+  --jaca:#A991F0; --jaca-claro:#2E2754;
+  --bg:#0F1E26; --surface:#172C36; --ink:#E8F4F2; --ink-2:#A6BFC4; --line:#28454F;
+  --mejilla:#F07A92; color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%; scroll-padding-top:env(safe-area-inset-top,0px)}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--font-body); font-size:17px; line-height:1.5;
+  padding-top:env(safe-area-inset-top,0px);
+  -webkit-tap-highlight-color:transparent;
+}
+button, input, select{font:inherit; color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--flor); outline-offset:2px; border-radius:10px}
+.ic{width:24px; height:24px; display:block; flex-shrink:0}
+
+.app{max-width:560px; margin:0 auto; padding:14px 18px calc(104px + env(safe-area-inset-bottom,0px))}
+.view{display:none}
+.view.active{display:block}
+
+h1,h2,h3{font-family:var(--font-display); line-height:1.1; margin:0}
+.title{font-size:2rem; font-weight:800}
+.muted{color:var(--ink-2)}
+.top{display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin:.4rem 0 1rem}
+
+/* ---------- Botones ---------- */
+.btn-go{
+  display:block; width:100%; border:0; border-radius:999px;
+  background:var(--agua); color:var(--on-agua);
+  font-family:var(--font-display); font-weight:800; font-size:1.35rem;
+  padding:.8rem 1.4rem .7rem; box-shadow:0 5px 0 var(--agua-2);
+  transition:transform .08s, box-shadow .08s;
+}
+.btn-go:active{transform:translateY(3px); box-shadow:0 2px 0 var(--agua-2)}
+.btn-go[disabled]{opacity:.45; box-shadow:none}
+.btn-soft{
+  border:2px solid var(--line); background:var(--surface); border-radius:999px;
+  padding:.55rem 1.05rem; font-weight:700; box-shadow:0 3px 0 var(--line);
+}
+.btn-soft:active{transform:translateY(2px); box-shadow:0 1px 0 var(--line)}
+.btn-text{border:0; background:none; font-weight:700; color:var(--agua); padding:.4rem .2rem}
+.btn-text[disabled]{opacity:.35}
+.icon-btn{
+  width:46px; height:46px; border-radius:16px; border:2px solid var(--line);
+  background:var(--surface); display:grid; place-items:center; color:var(--ink);
+}
+.play{
+  width:42px; height:42px; border-radius:50%; border:2px solid var(--line);
+  background:var(--surface); display:grid; place-items:center; color:var(--agua); flex-shrink:0;
+}
+.play .ic{width:16px; height:16px; margin-left:2px}
+.play:active{transform:scale(.94)}
+
+/* ---------- Chips ---------- */
+.chips{display:flex; gap:8px; overflow-x:auto; padding:2px 2px 6px; margin:0 -2px; scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{
+  white-space:nowrap; border:2px solid var(--line); background:var(--surface);
+  border-radius:999px; padding:.3rem .85rem; font-weight:700; font-size:.92rem;
+}
+.chip[aria-pressed="true"]{background:var(--ink); color:var(--bg); border-color:var(--ink)}
+
+.search{
+  width:100%; border:2px solid var(--line); background:var(--surface);
+  border-radius:var(--r-lg); padding:.7rem 1rem; font-size:1rem; margin-bottom:.8rem;
+}
+.search::placeholder{color:var(--ink-2)}
+
+/* ---------- Hoy ---------- */
+.hoy-head{display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-top:.3rem}
+.fecha{margin:0 0 .1rem; color:var(--ink-2); font-weight:700}
+.greet{font-size:clamp(2.1rem, 9vw, 2.7rem); font-weight:800; letter-spacing:-.01em}
+.lede{font-size:1.12rem; margin:.5rem 0 1rem}
+.lago{
+  background:var(--agua-claro); border-radius:var(--r-xl);
+  padding:14px 10px 10px; margin-bottom:1.3rem; overflow:hidden;
+}
+.lago .ajolote{width:min(270px, 72%); margin:0 auto; display:block}
+.lago .ajolote.enter{animation:pop .55s cubic-bezier(.2,1.4,.4,1) both}
+@keyframes pop{from{transform:scale(.82) translateY(10px); opacity:0} to{transform:none; opacity:1}}
+.canal{width:100%; display:block; margin-top:-16px}
+.canal-cap{margin:.2rem .4rem 0; font-weight:700; color:var(--agua-2); font-size:.95rem}
+:root[data-theme="dark"] .canal-cap{color:var(--agua)}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .canal-cap{color:var(--agua)} }
+.c-water{fill:var(--agua)}
+.c-water2{fill:var(--agua-2); opacity:.35}
+.c-boat{transition:transform 1s cubic-bezier(.3,.9,.3,1)}
+.b-hull{fill:var(--flor)}
+.b-arch{fill:var(--rosa-2)}
+.b-p1{fill:var(--flor-claro)} .b-p2{fill:var(--agua-claro)} .b-p3{fill:var(--jaca-claro)}
+.b-post{fill:var(--ink-2)}
+
+.racha{display:flex; align-items:center; gap:10px; margin:1.2rem 0 .2rem; font-weight:700}
+.flores{display:flex}
+.flores svg{width:26px; height:26px; margin-right:-5px}
+.frase{
+  margin-top:1.3rem; background:var(--surface); border:2px solid var(--line);
+  border-radius:var(--r-lg); padding:1rem 1.1rem; display:flex; gap:12px; align-items:center;
+}
+.frase h2{font-size:1rem; color:var(--ink-2); font-weight:700; margin-bottom:.15rem}
+.frase-es{font-family:var(--font-display); font-weight:700; font-size:1.35rem; margin:0; line-height:1.15}
+.frase-en{margin:.15rem 0 0; color:var(--ink-2)}
+.frase > div{flex:1}
+
+/* ---------- Ajolote ---------- */
+.a-gill{fill:var(--rosa-2)}
+.a-vein{fill:none; stroke:var(--rosa); stroke-width:2.5; stroke-linecap:round; opacity:.8}
+.a-head,.a-body{fill:var(--rosa)}
+.a-tail{fill:var(--rosa-2); opacity:.9}
+.a-arm{fill:var(--rosa-2)}
+.a-shine{fill:#fff; opacity:.3}
+.a-spot{fill:var(--rosa-2); opacity:.55}
+.a-eye{fill:#1C2B3A}
+.a-glint{fill:#fff}
+.a-line{fill:none; stroke:#1C2B3A; stroke-width:4; stroke-linecap:round}
+.a-cheek{fill:var(--mejilla); opacity:.55}
+.a-z{font:800 20px var(--font-display); fill:var(--ink-2)}
+.sparkles path{fill:var(--flor)}
+.ajolote .eyes, .ajolote .sparkles{display:none}
+.ajolote[data-mood="normal"] .eyes-normal,
+.ajolote[data-mood="happy"] .eyes-happy,
+.ajolote[data-mood="happy"] .sparkles,
+.ajolote[data-mood="sleepy"] .eyes-sleepy{display:inline}
+.sway-l{transform-box:view-box; transform-origin:0 0; animation:swayL 3.6s ease-in-out infinite alternate}
+.sway-r{transform-box:view-box; transform-origin:0 0; animation:swayR 3.6s ease-in-out infinite alternate}
+@keyframes swayL{from{transform:translate(66px,92px) rotate(-4deg)} to{transform:translate(66px,92px) rotate(4deg)}}
+@keyframes swayR{from{transform:translate(174px,92px) scale(-1,1) rotate(-4deg)} to{transform:translate(174px,92px) scale(-1,1) rotate(4deg)}}
+.ajolote[data-mood="happy"] .sparkles path{animation:twinkle .9s ease-out both}
+.ajolote[data-mood="happy"] .sparkles path:nth-child(2){animation-delay:.15s}
+.ajolote[data-mood="happy"] .sparkles path:nth-child(3){animation-delay:.3s}
+@keyframes twinkle{from{opacity:0; transform:scale(.3)} 60%{opacity:1; transform:scale(1.2)} to{transform:scale(1)}}
+.sparkles path{transform-box:fill-box; transform-origin:center}
+
+/* ---------- Tarjetas ---------- */
+.sess-top{display:flex; align-items:center; justify-content:space-between; gap:8px; margin:.1rem 0 .2rem}
+.counts{display:flex; justify-content:center; gap:22px; font-weight:700; margin:0 0 .9rem}
+.counts span{display:flex; flex-direction:column; align-items:center; line-height:1.05}
+.counts b{font-size:1.05rem}
+.counts small{font-size:.68rem; opacity:.85}
+.n-new{color:var(--agua)} .n-learn{color:var(--rosa-2)} .n-rev{color:var(--jaca)}
+.flash{display:block; width:100%; border:0; padding:0; background:none; perspective:1300px; text-align:center}
+.flash-inner{display:block; position:relative; height:min(330px, 46vh); min-height:250px; transition:transform .5s cubic-bezier(.2,.85,.25,1); transform-style:preserve-3d}
+.flash.flipped .flash-inner{transform:rotateY(180deg)}
+.face{
+  position:absolute; inset:0; -webkit-backface-visibility:hidden; backface-visibility:hidden;
+  background:var(--surface); border:2px solid var(--line); border-radius:var(--r-xl);
+  box-shadow:0 7px 0 var(--line);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.6rem; padding:22px 20px;
+}
+.face.back{transform:rotateY(180deg); background:var(--rosa-claro); border-color:var(--rosa)}
+.flash-cat{font-weight:700; font-size:.85rem; color:var(--ink-2); background:var(--bg); border-radius:999px; padding:.15rem .7rem}
+.face.back .flash-cat{background:var(--surface)}
+.flash-big{font-family:var(--font-display); font-weight:700; font-size:clamp(1.7rem, 7.5vw, 2.4rem); line-height:1.12; overflow-wrap:anywhere}
+.flash-small{color:var(--ink-2); font-size:1.05rem}
+.flash-hint{color:var(--ink-2); font-size:.9rem; margin-top:.4rem}
+.below{margin-top:1.4rem}
+.grades{display:grid; grid-template-columns:repeat(4,1fr); gap:8px}
+.grade{
+  border:2px solid currentColor; background:var(--surface); border-radius:var(--r-lg);
+  padding:.55rem .2rem .45rem; display:flex; flex-direction:column; align-items:center; gap:.1rem;
+  font-weight:700; box-shadow:0 4px 0 currentColor;
+}
+.grade:active{transform:translateY(2px); box-shadow:0 2px 0 currentColor}
+.grade span{font-family:var(--font-display); font-size:clamp(.88rem, 3.9vw, 1.05rem); line-height:1.1; white-space:nowrap}
+.grade small{font-weight:400; font-size:.78rem; color:var(--ink-2)}
+.g1{color:var(--rosa-2)} .g2{color:var(--flor-2)} .g3{color:var(--agua)} .g4{color:var(--jaca)}
+.idle h2{font-size:1.25rem; margin:1.6rem 0 .6rem}
+.idle .summary{font-size:1.08rem; margin:.4rem 0 1rem}
+.practice{display:flex; flex-wrap:wrap; gap:10px}
+.done{text-align:center; padding-top:.5rem}
+.done .ajolote{width:min(230px,65%); margin:0 auto; display:block}
+.done h1{font-size:2.3rem; margin:.4rem 0 .3rem}
+.done p{font-size:1.1rem; margin:0 0 1.4rem}
+.done .practice{justify-content:center; margin-top:1rem}
+
+.misslist{margin-top:1.8rem; border:2px solid var(--line); border-radius:var(--r-lg); background:var(--surface)}
+.misslist summary{cursor:pointer; padding:.85rem 1rem; font-weight:700; list-style:none}
+.misslist summary::-webkit-details-marker{display:none}
+.misslist summary::before{content:"▸"; display:inline-block; width:1.1em; transition:transform .2s}
+.misslist[open] summary::before{transform:rotate(90deg)}
+.misslist .rows{padding:0 1rem .6rem}
+.miss-n{font-weight:700; border-radius:999px; padding:.05rem .55rem; font-size:.82rem}
+.miss-n.hard{background:var(--rosa-claro); color:var(--rosa-2)}
+.miss-n.soft{background:var(--bg); color:var(--ink-2)}
+.miss-note{font-size:.88rem; color:var(--ink-2); margin:.6rem 0 .2rem}
+
+/* ---------- Listas ---------- */
+.group h2{font-size:1.3rem; margin:1.4rem 0 .3rem; display:flex; align-items:center; gap:10px}
+.group h2 .muted{font-family:var(--font-body); font-size:.9rem; font-weight:400}
+.row{display:flex; align-items:center; gap:12px; padding:.65rem 0; border-bottom:1.5px solid var(--line)}
+.row:last-child{border-bottom:0}
+.w{flex:1; min-width:0; display:flex; flex-direction:column; text-align:left; border:0; background:none; padding:0}
+.w-es{font-weight:700; font-size:1.1rem; display:flex; align-items:center; gap:7px; flex-wrap:wrap}
+.w-en{color:var(--ink-2); font-size:.93rem}
+.w.link .w-es{color:var(--agua)}
+.w.link .w-es::after{content:"conjugar"; font-weight:400; font-size:.75rem; color:var(--ink-2); border:1.5px solid var(--line); border-radius:6px; padding:0 .35rem}
+.gp{font-size:.72rem; font-weight:700; border-radius:6px; padding:.02rem .4rem}
+.gp-m{background:var(--agua-claro); color:var(--agua-2)}
+.gp-f{background:var(--flor-claro); color:var(--flor-2)}
+:root[data-theme="dark"] .gp-m{color:var(--agua)}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .gp-m{color:var(--agua)} }
+.dot{width:11px; height:11px; border-radius:50%; background:transparent; border:2px solid var(--line); flex-shrink:0}
+.dot.learning{background:var(--rosa); border-color:var(--rosa)}
+.dot.review{background:var(--agua); border-color:var(--agua)}
+.dot.mature{background:var(--jaca); border-color:var(--jaca)}
+.legend{display:flex; flex-wrap:wrap; gap:4px 14px; font-size:.85rem; color:var(--ink-2); margin:.2rem 0 .4rem}
+.legend span{display:inline-flex; align-items:center; gap:6px}
+.empty{color:var(--ink-2); padding:1rem 0}
+
+/* ---------- Verbos ---------- */
+.tags{display:flex; flex-wrap:wrap; gap:5px; margin-top:.2rem}
+.tag{font-size:.74rem; font-weight:700; border-radius:7px; padding:.05rem .45rem}
+.tag-bota{background:var(--jaca-claro); color:var(--jaca)}
+.tag-fuerte{background:var(--flor-claro); color:var(--flor-2)}
+.tag-irr{background:var(--rosa-claro); color:var(--rosa-2)}
+.tag-yo{background:var(--agua-claro); color:var(--agua-2)}
+:root[data-theme="dark"] .tag-yo{color:var(--agua)}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .tag-yo{color:var(--agua)} }
+.hit{
+  display:block; width:100%; text-align:left; border:2px solid var(--jaca); background:var(--jaca-claro);
+  border-radius:var(--r-md); padding:.65rem .9rem; margin-bottom:.6rem; color:var(--ink);
+}
+.hit b{color:var(--jaca)}
+
+/* ---------- Hojas ---------- */
+dialog.sheet{
+  border:0; padding:0; margin:auto auto 0; width:100%; max-width:560px; max-height:92vh;
+  border-radius:28px 28px 0 0; background:var(--bg); color:var(--ink); overflow:auto;
+}
+dialog.sheet::backdrop{background:rgba(15,30,38,.5)}
+dialog.sheet[open]{animation:sheetUp .28s cubic-bezier(.2,.9,.3,1)}
+@keyframes sheetUp{from{transform:translateY(40px); opacity:.4}}
+.sheet-in{padding:10px 18px calc(22px + env(safe-area-inset-bottom,0px))}
+.grab{width:44px; height:5px; border-radius:3px; background:var(--line); margin:4px auto 14px}
+.sheet-head{display:flex; justify-content:space-between; align-items:flex-start; gap:12px}
+.verb-title{font-size:2.3rem; font-weight:800}
+.sheet h3{font-size:1.2rem; margin:1.3rem 0 .55rem}
+.conj{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.cell{
+  text-align:left; background:var(--surface); border:2px solid var(--line); border-radius:var(--r-md);
+  padding:.45rem .65rem .5rem; color:var(--ink);
+}
+.cell small{display:block; color:var(--ink-2); font-size:.76rem}
+.cell .f{font-weight:700; font-size:1.08rem; overflow-wrap:anywhere}
+.cell.chg{background:var(--jaca-claro); border-color:var(--jaca)}
+.cell.vos{opacity:.5}
+.refl{color:var(--ink-2); font-weight:400}
+mark{background:none; color:inherit}
+mark.chg{color:var(--jaca); text-decoration:underline 3px; text-underline-offset:3px}
+mark.end{background:var(--flor-claro); color:var(--flor-2); border-radius:4px; padding:0 1px}
+.cell.chg mark.end{background:var(--surface)}
+.explain{display:flex; gap:10px; align-items:flex-start; margin:.6rem 0 0; font-size:.95rem}
+.explain svg{width:30px; height:30px; flex-shrink:0; color:var(--jaca)}
+.explain.fuerte svg{color:var(--flor-2)}
+.nw{white-space:nowrap}
+.note{background:var(--surface); border:2px dashed var(--line); border-radius:var(--r-md); padding:.7rem .9rem; font-size:.93rem; margin:1.2rem 0 0}
+.sheet .btn-soft.close{display:block; margin:1.4rem auto 0}
+
+.set{margin:1.2rem 0}
+.set > label, .set > .lbl{display:block; font-weight:700; margin-bottom:.45rem}
+.seg{display:flex; background:var(--surface); border:2px solid var(--line); border-radius:999px; padding:3px}
+.seg button{flex:1; border:0; background:none; border-radius:999px; padding:.42rem .3rem; font-weight:700; font-size:.95rem}
+.seg button[aria-pressed="true"]{background:var(--ink); color:var(--bg)}
+select{width:100%; border:2px solid var(--line); background:var(--surface); border-radius:var(--r-md); padding:.6rem .8rem}
+.sheet a{color:var(--agua); font-weight:700}
+
+/* ---------- Barra inferior ---------- */
+.tabbar{
+  position:fixed; left:0; right:0; bottom:0; z-index:5;
+  background:var(--surface); border-top:2px solid var(--line);
+  padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px));
+}
+.tabbar-in{max-width:560px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:4px}
+.tab{
+  border:0; background:none; display:flex; flex-direction:column; align-items:center; gap:2px;
+  padding:6px 0 4px; font-size:.78rem; font-weight:700; color:var(--ink-2); border-radius:16px;
+}
+.tab .blob{width:52px; height:32px; border-radius:16px; display:grid; place-items:center; transition:background .2s}
+.tab[aria-current="page"]{color:var(--ink)}
+.tab[aria-current="page"] .blob{background:var(--rosa-claro); color:var(--rosa-2)}
+
+.toast{
+  position:fixed; left:50%; transform:translateX(-50%);
+  bottom:calc(86px + env(safe-area-inset-bottom,0px)); z-index:20;
+  background:var(--ink); color:var(--bg); border-radius:18px; padding:.7rem .8rem .7rem 1.1rem;
+  display:flex; align-items:center; gap:12px; max-width:calc(100% - 32px); width:max-content;
+  box-shadow:0 6px 0 rgba(0,0,0,.15); font-weight:700;
+}
+.toast[hidden]{display:none}
+.toast button{border:0; background:var(--flor); color:#1C2B3A; border-radius:999px; padding:.35rem .9rem; font-weight:800}
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{animation:none !important; transition:none !important}
+  .flash.flipped .flash-inner{transform:none}
+  .flash .face.back{transform:none; display:none}
+  .flash.flipped .face.front{display:none}
+  .flash.flipped .face.back{display:flex}
+}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="eyebrow">Tu profesor de español</div>
-  <h1>Español</h1>
-  <p>Every word from your lessons — hear it spoken, check verb conjugations, and practice listening.</p>
-  <p class="voice-note" id="voiceNote">Your browser doesn't support spoken audio — try Chrome, Edge, or Safari.</p>
-  <div class="version-badge" id="versionBadge">v23</div>
-  <nav class="tabs">
-    <button id="tabVocabBtn" class="active">Vocabulario</button>
-    <button id="tabListenBtn">Escucha</button>
-    <button id="tabCardsBtn">Tarjetas</button>
-    <button id="tabDrillBtn">Conjugar</button>
-    <button id="tabSpeakBtn">Hablar</button>
-  </nav>
-</header>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-hoy" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.6" fill="currentColor"/><g stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></symbol>
+    <symbol id="i-tarjetas" viewBox="0 0 24 24"><rect x="7.5" y="3" width="13" height="16" rx="3.2" fill="none" stroke="currentColor" stroke-width="2.2" transform="rotate(10 14 11)"/><rect x="3.5" y="5" width="13" height="16" rx="3.2" fill="currentColor"/></symbol>
+    <symbol id="i-palabras" viewBox="0 0 24 24"><path d="M5 4h14a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3h-7l-5 3.6V18H5a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3z" fill="currentColor"/><g fill="var(--surface)"><circle cx="8" cy="11" r="1.4"/><circle cx="12" cy="11" r="1.4"/><circle cx="16" cy="11" r="1.4"/></g></symbol>
+    <symbol id="i-verbos" viewBox="0 0 24 24"><path d="M13.5 2 4.5 13.4h6.2L9.6 22l9.9-12.6h-6.4L13.5 2z" fill="currentColor" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-play" viewBox="0 0 16 16"><path d="M4 2.6v10.8c0 .8.9 1.3 1.6.9l8.6-5.4c.6-.4.6-1.4 0-1.8L5.6 1.7C4.9 1.3 4 1.8 4 2.6z" fill="currentColor"/></symbol>
+    <symbol id="i-ajustes" viewBox="0 0 24 24"><g stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M4 6.5h16M4 12h16M4 17.5h16"/></g><g fill="var(--surface)" stroke="currentColor" stroke-width="2.3"><circle cx="9" cy="6.5" r="2.3"/><circle cx="15.5" cy="12" r="2.3"/><circle cx="7.5" cy="17.5" r="2.3"/></g></symbol>
+    <symbol id="i-bota" viewBox="0 0 32 32"><path d="M8 3h9v13.5l7.2 3.3c3.4 1.6 3 6.2-.8 6.2H7.5C6.1 26 5 24.9 5 23.5V6c0-1.7 1.3-3 3-3z" fill="currentColor"/><path d="M5 22.5h22.6" stroke="var(--surface)" stroke-width="2" opacity=".6"/></symbol>
+    <symbol id="i-estrella" viewBox="0 0 32 32"><path d="M16 3l3.2 8.6L28 12.2l-6.8 5.6L23.4 27 16 22l-7.4 5 2.2-9.2L4 12.2l8.8-.6L16 3z" fill="currentColor"/></symbol>
+    <symbol id="flor" viewBox="0 0 24 24">
+      <g fill="#FFB020"><circle cx="12" cy="5.2" r="4"/><circle cx="12" cy="18.8" r="4"/><circle cx="5.2" cy="12" r="4"/><circle cx="18.8" cy="12" r="4"/><circle cx="7.2" cy="7.2" r="3.6"/><circle cx="16.8" cy="16.8" r="3.6"/><circle cx="16.8" cy="7.2" r="3.6"/><circle cx="7.2" cy="16.8" r="3.6"/></g>
+      <circle cx="12" cy="12" r="4.2" fill="#E07F00"/><circle cx="12" cy="12" r="1.8" fill="#FFD27A"/>
+    </symbol>
+  </defs>
+</svg>
 
-<main>
-  <div id="tabVocab" class="view active">
-    <div class="search-row">
-      <input type="text" id="search" placeholder="Buscar una palabra... (search a word)">
-      <select id="voiceSelect"></select>
-    </div>
-    <div id="content"></div>
-  </div>
+<div class="app">
+  <main>
+    <section id="view-hoy" class="view active" aria-label="Hoy"></section>
+    <section id="view-tarjetas" class="view" aria-label="Tarjetas"></section>
+    <section id="view-palabras" class="view" aria-label="Palabras"></section>
+    <section id="view-verbos" class="view" aria-label="Verbos"></section>
+  </main>
+</div>
 
-  <div id="tabListen" class="view">
-    <p style="color:#5a5a4e; font-size:0.92rem; margin-bottom:1.4rem;">
-      Press play to hear a sentence spoken in Spanish. Type what you think it means in English, then check your answer.
-    </p>
-    <div id="exContent"></div>
+<nav class="tabbar" aria-label="Secciones">
+  <div class="tabbar-in">
+    <button class="tab" data-view="hoy" aria-current="page"><span class="blob"><svg class="ic"><use href="#i-hoy"></use></svg></span>Hoy</button>
+    <button class="tab" data-view="tarjetas" aria-current="false"><span class="blob"><svg class="ic"><use href="#i-tarjetas"></use></svg></span>Tarjetas</button>
+    <button class="tab" data-view="palabras" aria-current="false"><span class="blob"><svg class="ic"><use href="#i-palabras"></use></svg></span>Palabras</button>
+    <button class="tab" data-view="verbos" aria-current="false"><span class="blob"><svg class="ic"><use href="#i-verbos"></use></svg></span>Verbos</button>
   </div>
+</nav>
 
-  <div id="tabCards" class="view">
-    <div class="fc-wrap" id="fcWrap"></div>
-  </div>
+<dialog id="sheet-verb" class="sheet" aria-label="Conjugación"></dialog>
 
-  <div id="tabDrill" class="view">
-    <div id="drillWrap"></div>
+<dialog id="sheet-settings" class="sheet" aria-label="Ajustes">
+  <div class="sheet-in">
+    <div class="grab"></div>
+    <div class="sheet-head"><h2 class="verb-title">Ajustes</h2></div>
+    <div class="set"><span class="lbl">Palabras nuevas por día</span>
+      <div class="seg" data-setting="newPerDay"><button data-value="10">10</button><button data-value="20">20</button><button data-value="30">30</button></div></div>
+    <div class="set"><span class="lbl">Primero veo la palabra en</span>
+      <div class="seg" data-setting="front"><button data-value="en">Inglés</button><button data-value="es">Español</button></div></div>
+    <div class="set"><span class="lbl">Leer la respuesta en voz alta</span>
+      <div class="seg" data-setting="autoplay"><button data-value="true">Sí</button><button data-value="false">No</button></div></div>
+    <div class="set"><span class="lbl">Tema</span>
+      <div class="seg" data-setting="theme"><button data-value="auto">Automático</button><button data-value="light">Claro</button><button data-value="dark">Oscuro</button></div></div>
+    <div class="set"><label for="voz">Voz</label><select id="voz"></select></div>
+    <p class="muted">Escucha, Hablar y Conjugar siguen en la <a href="./v23/">versión clásica</a> mientras los integro en Hoy.</p>
+    <p class="muted">Versión <span id="versionBadge">v24</span></p>
+    <button class="btn-soft close" data-close>Cerrar</button>
   </div>
+</dialog>
 
-  <div id="tabSpeak" class="view">
-    <div id="speakWrap"></div>
-  </div>
-</main>
+<div id="toast" class="toast" role="status" hidden></div>
 
 <script>
-/* ---------- DATA ---------- */
+// Daten aus v23 übernommen; ergänzt um Supervivencia und die Basen acostar/despertar
 const data = {
+  "Survival phrases": [
+    ["¿Mande?", "Sorry? / Pardon? (very common in Mexico)"],
+    ["¿Puede repetir, por favor?", "Could you repeat that, please? (formal)"],
+    ["¿Puedes repetir?", "Can you repeat that? (informal)"],
+    ["Más despacio, por favor.", "Slower, please."],
+    ["No entiendo.", "I don't understand."],
+    ["¿Cómo se dice … en español?", "How do you say … in Spanish?"],
+    ["¿Qué significa …?", "What does … mean?"],
+    ["¿Me lo puede escribir?", "Could you write it down for me? (formal)"],
+    ["Hablo un poco de español.", "I speak a little Spanish."],
+    ["Estoy aprendiendo español.", "I'm learning Spanish."],
+    ["Perdón, ¿qué dijo?", "Sorry, what did you say? (formal)"],
+    ["Un momento, por favor.", "One moment, please."],
+    ["¿Me ayuda, por favor?", "Can you help me, please? (formal)"],
+    ["Mucho gusto.", "Nice to meet you."],
+    ["¿De dónde eres?", "Where are you from? (informal)"],
+    ["Soy de Suiza.", "I'm from Switzerland."]
+  ],
   "Nouns": [
     ["trabajo","work / job","m"], ["casa","house / home","f"], ["familia","family","f"],
     ["amigo","friend (m.)","m"], ["amiga","friend (f.)","f"], ["día","day","m"],
@@ -1228,23 +612,6 @@ const data = {
   ]
 };
 
-const pronouns = ["yo","tú","él / ella / usted","nosotros","vosotros (España)","ellos / ustedes"];
-
-// Nouns carry a gender flag: "m", "f", or "f-el" (feminine but takes "el" in the
-// singular because it starts with a stressed a- sound, e.g. el agua fría).
-function nounArticle(gender){
-  if(!gender) return '';
-  return gender === 'm' ? 'el' : (gender === 'f-el' ? 'el' : 'la');
-}
-function displayForm(es, gender){
-  const art = nounArticle(gender);
-  return art ? art + ' ' + es : es;
-}
-function genderLabel(gender){
-  if(!gender) return '';
-  return gender === 'm' ? 'm' : 'f';
-}
-
 const irregular = {
   "ser":    { pres:["soy","eres","es","somos","sois","son"], pret:["fui","fuiste","fue","fuimos","fuisteis","fueron"] },
   "estar":  { pres:["estoy","estás","está","estamos","estáis","están"], pret:["estuve","estuviste","estuvo","estuvimos","estuvisteis","estuvieron"] },
@@ -1278,8 +645,25 @@ const irregular = {
   "conocer": { pres:["conozco","conoces","conoce","conocemos","conocéis","conocen"], pret:["conocí","conociste","conoció","conocimos","conocisteis","conocieron"], note:"Irregular yo: conozco (c→zc). Use conocer for people and places, saber for facts." },
   "contar": { pres:["cuento","cuentas","cuenta","contamos","contáis","cuentan"], pret:["conté","contaste","contó","contamos","contasteis","contaron"], note:"Stem-changing (o→ue) in the present only. Means both to count and to tell a story." },
   "sentir": { pres:["siento","sientes","siente","sentimos","sentís","sienten"], pret:["sentí","sentiste","sintió","sentimos","sentisteis","sintieron"], note:"Stem-changing (e→ie) in the present; in the preterite the stem changes to i in the third person only: sintió, sintieron." },
-  "creer": { pres:["creo","crees","cree","creemos","creéis","creen"], pret:["creí","creíste","creyó","creímos","creísteis","creyeron"], note:"Same spelling change as leer: i becomes y between vowels (creyó, creyeron)." }
+  "creer": { pres:["creo","crees","cree","creemos","creéis","creen"], pret:["creí","creíste","creyó","creímos","creísteis","creyeron"], note:"Same spelling change as leer: i becomes y between vowels (creyó, creyeron)." },
+  "acostar": { pres:["acuesto","acuestas","acuesta","acostamos","acostáis","acuestan"], pret:["acosté","acostaste","acostó","acostamos","acostasteis","acostaron"], note:"Base of acostarse. Stem-changing (o→ue) in the present only." },
+  "despertar": { pres:["despierto","despiertas","despierta","despertamos","despertáis","despiertan"], pret:["desperté","despertaste","despertó","despertamos","despertasteis","despertaron"], note:"Base of despertarse. Stem-changing (e→ie) in the present only." }
 };
+
+function nounArticle(gender){
+  if(!gender) return '';
+  return gender === 'm' ? 'el' : (gender === 'f-el' ? 'el' : 'la');
+}
+
+function displayForm(es, gender){
+  const art = nounArticle(gender);
+  return art ? art + ' ' + es : es;
+}
+
+function genderLabel(gender){
+  if(!gender) return '';
+  return gender === 'm' ? 'm' : 'f';
+}
 
 function conjugate(inf){
   if(irregular[inf]) return irregular[inf];
@@ -1297,72 +681,8 @@ function conjugate(inf){
   return { pres, pret, note };
 }
 
-/* ---------- VOICES ---------- */
-let spanishVoices = [];
-const voiceSelect = document.getElementById('voiceSelect');
-
-function loadVoices(){
-  const all = window.speechSynthesis.getVoices();
-  spanishVoices = all.filter(v => v.lang.startsWith('es'));
-  voiceSelect.innerHTML = '';
-  if(spanishVoices.length === 0){
-    const opt = document.createElement('option');
-    opt.textContent = 'Default Spanish voice';
-    voiceSelect.appendChild(opt);
-    return;
-  }
-  spanishVoices.forEach(v => {
-    const opt = document.createElement('option');
-    opt.value = v.name;
-    opt.textContent = v.name + ' (' + v.lang + ')';
-    voiceSelect.appendChild(opt);
-  });
-  // Mexican Spanish first. On Apple devices the Mexican voice is "Paulina";
-  // "Mónica" is the Spain (es-ES) voice, so it is only a later fallback.
-  const preferred = spanishVoices.find(v => /paulina/i.test(v.name))
-                  || spanishVoices.find(v => v.lang === 'es-MX')
-                  || spanishVoices.find(v => v.lang === 'es-US')
-                  || spanishVoices.find(v => /m[oó]nica/i.test(v.name))
-                  || spanishVoices[0];
-  if(preferred) voiceSelect.value = preferred.name;
-}
-
-if('speechSynthesis' in window){
-  loadVoices();
-  window.speechSynthesis.onvoiceschanged = loadVoices;
-} else {
-  document.getElementById('voiceNote').style.display = 'block';
-  voiceSelect.style.display = 'none';
-}
-
-function speak(text, rate, cardEl, onEnd){
-  if(!('speechSynthesis' in window)) return;
-  window.speechSynthesis.cancel();
-  const utter = new SpeechSynthesisUtterance(text);
-  const voice = spanishVoices.find(v => v.name === voiceSelect.value);
-  if(voice) utter.voice = voice;
-  utter.lang = voice ? voice.lang : 'es-ES';
-  utter.rate = rate || 0.92;
-  if(cardEl){
-    document.querySelectorAll('.playing').forEach(el => el.classList.remove('playing'));
-    cardEl.classList.add('playing');
-    utter.onend = () => { cardEl.classList.remove('playing'); if(onEnd) onEnd(); };
-  } else if(onEnd){
-    utter.onend = onEnd;
-  }
-  window.speechSynthesis.speak(utter);
-}
-
-/* ---------- VOCAB TAB ---------- */
-const content = document.getElementById('content');
-const searchInput = document.getElementById('search');
-
-function playIconSVG(){ return '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>'; }
-
-let vocabCategoryFilter = 'all';
-
-// Short labels for the filter row — the raw category keys are too long for buttons.
 const categoryShortLabels = {
+  'Survival phrases': 'Supervivencia',
   'Nouns': 'Sustantivos',
   'Verbs (infinitive)': 'Verbos',
   'Adjectives': 'Adjetivos',
@@ -1375,903 +695,12 @@ const categoryShortLabels = {
   'Restaurant — sit-down (formal register)': 'Restaurante (formal)'
 };
 
-function renderVocab(filter=''){
-  content.innerHTML = '';
-  const f = filter.trim().toLowerCase();
-  let any = false;
-
-  const filterRow = document.createElement('div');
-  filterRow.className = 'cat-filter';
-  const allBtn = document.createElement('button');
-  allBtn.textContent = 'Todo';
-  if(vocabCategoryFilter === 'all') allBtn.classList.add('on');
-  allBtn.onclick = () => { vocabCategoryFilter = 'all'; renderVocab(searchInput.value); };
-  filterRow.appendChild(allBtn);
-
-  Object.keys(data).forEach(cat => {
-    const b = document.createElement('button');
-    b.textContent = categoryShortLabels[cat] || cat;
-    if(vocabCategoryFilter === cat) b.classList.add('on');
-    b.onclick = () => { vocabCategoryFilter = cat; renderVocab(searchInput.value); };
-    filterRow.appendChild(b);
-  });
-  content.appendChild(filterRow);
-
-  Object.entries(data).forEach(([category, words]) => {
-    if(vocabCategoryFilter !== 'all' && category !== vocabCategoryFilter) return;
-    const filtered = words.filter(([es,en]) => es.toLowerCase().includes(f) || en.toLowerCase().includes(f));
-    if(filtered.length === 0) return;
-    any = true;
-
-    const section = document.createElement('section');
-    section.className = 'category';
-
-    const h2 = document.createElement('h2');
-    h2.textContent = category;
-    const catBtn = document.createElement('button');
-    catBtn.className = 'cat-play';
-    catBtn.textContent = 'Play all';
-    catBtn.onclick = () => playSequence(filtered.map(w => displayForm(w[0], w[2])), 0);
-    h2.appendChild(catBtn);
-    section.appendChild(h2);
-
-    const cardsDiv = document.createElement('div');
-    cardsDiv.className = 'cards';
-    const isVerbCategory = category.startsWith('Verbs');
-
-    filtered.forEach(([es, en, gender]) => {
-      const card = document.createElement('div');
-      card.className = 'card';
-
-      const top = document.createElement('div');
-      top.className = 'card-top';
-
-      const shown = displayForm(es, gender);
-      const badge = gender
-        ? '<span class="gender-badge '+genderLabel(gender)+'">'+genderLabel(gender)+'</span>'
-        : '';
-      const note = gender === 'f-el'
-        ? '<div class="gender-note">feminine, but takes "el" in the singular — el agua fría</div>'
-        : '';
-
-      const textDiv = document.createElement('div');
-      textDiv.className = 'card-text';
-      textDiv.innerHTML = '<div class="card-es">'+shown+badge+'</div><div class="card-en">'+en+'</div>'+note;
-
-      const btnRow = document.createElement('div');
-      btnRow.className = 'card-buttons';
-
-      const playBtn = document.createElement('button');
-      playBtn.className = 'icon-btn';
-      playBtn.innerHTML = playIconSVG();
-      playBtn.setAttribute('aria-label', 'Play ' + shown);
-      playBtn.onclick = () => speak(shown, 0.92, card);
-      btnRow.appendChild(playBtn);
-
-      let panel = null;
-      if(isVerbCategory){
-        const conjBtn = document.createElement('button');
-        conjBtn.className = 'icon-btn conj';
-        conjBtn.textContent = 'v';
-        conjBtn.title = 'See conjugation';
-        conjBtn.setAttribute('aria-label', 'Show conjugation of ' + es);
-        panel = buildConjPanel(es.split(' ')[0]);
-        conjBtn.onclick = () => panel.classList.toggle('open');
-        btnRow.appendChild(conjBtn);
-      }
-
-      top.appendChild(textDiv);
-      top.appendChild(btnRow);
-      card.appendChild(top);
-      if(panel) card.appendChild(panel);
-      cardsDiv.appendChild(card);
-    });
-
-    section.appendChild(cardsDiv);
-    content.appendChild(section);
-  });
-
-  if(!any){
-    const empty = document.createElement('div');
-    empty.className = 'empty';
-    empty.textContent = vocabCategoryFilter === 'all'
-      ? 'No se encontró esa palabra. (Word not found.)'
-      : 'Nada en esta categoría con ese texto. (Nothing in this category matches.)';
-    content.appendChild(empty);
-  }
-}
-
-function buildConjPanel(infinitive){
-  const panel = document.createElement('div');
-  panel.className = 'conj-panel';
-  const conj = conjugate(infinitive);
-  if(!conj){
-    panel.innerHTML = '<em>No conjugation data for "'+infinitive+'".</em>';
-    return panel;
-  }
-  let html = '<table><tr><th></th><th>Present</th><th>Preterite</th></tr>';
-  pronouns.forEach((p,i) => {
-    const rowClass = (i === 4) ? ' class="ref-row"' : '';
-    html += '<tr'+rowClass+'><td class="pron">'+p+'</td>' +
-      '<td><span class="conj-word-row">'+conj.pres[i]+' <button class="mini-play" data-word="'+conj.pres[i]+'">▶</button></span></td>' +
-      '<td><span class="conj-word-row">'+conj.pret[i]+' <button class="mini-play" data-word="'+conj.pret[i]+'">▶</button></span></td></tr>';
-  });
-  html += '</table>';
-  html += '<div class="conj-note">él / ella / usted and ellos / ellas / ustedes share the same forms — usted and ustedes are just the formal/plural pronouns for everyday Latin American Spanish. Vosotros (dimmed) is Spain-only, shown for reference.</div>';
-  if(conj.note) html += '<div class="conj-note">'+conj.note+'</div>';
-  panel.innerHTML = html;
-  panel.querySelectorAll('.mini-play').forEach(btn => {
-    btn.onclick = (e) => { e.stopPropagation(); speak(btn.dataset.word, 0.92); };
-  });
-  return panel;
-}
-
-function playSequence(words, i){
-  if(i >= words.length) return;
-  speak(words[i], 0.92, null, () => setTimeout(() => playSequence(words, i+1), 150));
-}
-
-searchInput.addEventListener('input', e => renderVocab(e.target.value));
-
-/* ---------- LISTENING TAB ---------- */
-const listeningExercises = [
-  { es:"Me llamo Ana y soy estudiante.", en:"My name is Ana and I am a student." },
-  { es:"¿Dónde vives tú?", en:"Where do you live?" },
-  { es:"Voy a comer pizza con mi familia.", en:"I'm going to eat pizza with my family." },
-  { es:"Ayer, cené con mi hermano.", en:"Yesterday, I had dinner with my brother." },
-  { es:"No puedo ir porque no tengo coche.", en:"I can't go because I don't have a car." },
-  { es:"Mi madre sabe conducir muy bien.", en:"My mother knows how to drive very well." },
-  { es:"Este fin de semana vamos a la playa.", en:"This weekend we're going to the beach." },
-  { es:"Me gustan mucho los perros.", en:"I like dogs a lot." },
-  { es:"Estoy cansado, pero estoy feliz.", en:"I am tired, but I am happy." },
-  { es:"El próximo año va a ser diferente.", en:"Next year is going to be different." },
-  { es:"¿Para aquí o para llevar?", en:"For here or to go?" },
-  { es:"¿Qué le doy?", en:"What can I get you?" },
-  { es:"¿Ya están listos para pedir?", en:"Are you ready to order?" },
-  { es:"Les recomiendo los tacos al pastor.", en:"I recommend the pastor tacos." },
-  { es:"¿Qué desean tomar?", en:"What would you like to drink?" },
-  { es:"Una mesa para dos, por favor.", en:"A table for two, please." },
-  { es:"La cuenta, por favor.", en:"The bill, please." },
-  { es:"Sin cebolla, por favor.", en:"Without onion, please." },
-  { es:"Le doy el libro a mi hermana.", en:"I give the book to my sister." },
-  { es:"Espero que todo vaya bien.", en:"I hope everything goes well." },
-  { es:"Vamos a dar un paseo.", en:"We're going to take a walk." },
-  { es:"El banco está al lado del restaurante.", en:"The bank is next to the restaurant." },
-  { es:"Mi casa está lejos de la ciudad.", en:"My house is far from the city." },
-  { es:"El gato está debajo de la silla.", en:"The cat is under the chair." },
-  { es:"Trabajo desde las nueve hasta las cinco.", en:"I work from nine until five." },
-  { es:"Le doy propina al mesero.", en:"I give the waiter a tip." },
-  { es:"No te preocupes, yo también acabo de llegar.", en:"Don't worry, I just arrived too." },
-  { es:"¿Me puedes ayudar con el correo?", en:"Can you help me with the email?" },
-  { es:"Siempre tomo café por la mañana.", en:"I always drink coffee in the morning." },
-  { es:"Me levanto a las siete y luego me ducho.", en:"I get up at seven and then I shower." },
-  { es:"¿Cómo te sientes hoy?", en:"How do you feel today?" },
-  { es:"Los domingos nos quedamos en casa.", en:"On Sundays we stay at home." },
-  { es:"Me acuesto a las once de la noche.", en:"I go to bed at eleven at night." },
-  { es:"Por la noche ceno con mi familia.", en:"In the evening I have dinner with my family." }
-];
-
-const exContent = document.getElementById('exContent');
-
-function normalize(str){
-  return str.toLowerCase()
-    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
-    .replace(/[^a-z0-9\s]/g,'')
-    .replace(/\s+/g,' ')
-    .trim();
-}
-
-function renderListening(){
-  exContent.innerHTML = '';
-  listeningExercises.forEach((item, idx) => {
-    const card = document.createElement('div');
-    card.className = 'ex-card';
-
-    const head = document.createElement('div');
-    head.className = 'ex-head';
-
-    const num = document.createElement('div');
-    num.className = 'ex-num';
-    num.textContent = idx+1;
-
-    const playBtn = document.createElement('button');
-    playBtn.className = 'ex-play';
-    playBtn.innerHTML = playIconSVG();
-    playBtn.setAttribute('aria-label', 'Play sentence '+(idx+1));
-    playBtn.onclick = () => speak(item.es, 0.85, playBtn.parentElement);
-
-    const instr = document.createElement('div');
-    instr.className = 'ex-instructions';
-    instr.textContent = 'Listen, then type the English meaning below.';
-
-    head.appendChild(num);
-    head.appendChild(playBtn);
-    head.appendChild(instr);
-
-    const inputRow = document.createElement('div');
-    inputRow.className = 'ex-input-row';
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.placeholder = 'Type what you heard, in English...';
-    const checkBtn = document.createElement('button');
-    checkBtn.textContent = 'Check';
-
-    const result = document.createElement('div');
-    result.className = 'ex-result';
-
-    checkBtn.onclick = () => {
-      const userAns = normalize(input.value);
-      const correctAns = normalize(item.en);
-      const isClose = userAns.length > 0 && (
-        correctAns.includes(userAns) || userAns.includes(correctAns) ||
-        correctAns.split(' ').filter(w => userAns.split(' ').includes(w)).length >= Math.ceil(correctAns.split(' ').length * 0.5)
-      );
-      result.classList.add('show');
-      result.classList.remove('correct','close');
-      result.classList.add(isClose ? 'correct' : 'close');
-      result.innerHTML =
-        '<div class="es-answer">'+item.es+'</div>' +
-        '<div class="en-answer">'+item.en+'</div>' +
-        '<div style="margin-top:0.4rem; font-size:0.82rem;">'+(isClose ? '✅ Close enough — nice listening!' : '📝 Not quite — compare your answer above and try the audio again.')+'</div>';
-    };
-
-    inputRow.appendChild(input);
-    inputRow.appendChild(checkBtn);
-
-    card.appendChild(head);
-    card.appendChild(inputRow);
-    card.appendChild(result);
-    exContent.appendChild(card);
-  });
-}
-
-/* ---------- FLASHCARDS ---------- */
-let fcAllWords = [];
-let fcDeck = [];
-let fcIndex = 0;
-let fcKnownCount = 0;
-let fcFlipped = false;
-let fcSpanishFront = true;
-let fcMode = 'all'; // 'all' | 'hard'
-let missCounts = {}; // keyed by es text, count of "Repasar de nuevo" hits
-let fcHistory = [];
-let progressLoaded = false;
-let saveTimer = null;
-
-let lastLoadDiagnostic = 'Cargando...';
-
-async function loadProgress(){
-  try{
-    const raw = localStorage.getItem('flashcard-progress');
-    if(raw){
-      const parsed = JSON.parse(raw);
-      missCounts = parsed.missCounts || {};
-      pendingSession = parsed.session || null;
-      const savedDate = parsed.savedAt ? new Date(parsed.savedAt).toLocaleString() : 'fecha desconocida';
-      const n = Object.keys(missCounts).length;
-      const resumeInfo = pendingSession && pendingSession.deckKeys
-        ? ' Mazo guardado: ' + (pendingSession.index || 0) + '/' + pendingSession.deckKeys.length + '.'
-        : '';
-      lastLoadDiagnostic = (n > 0
-        ? 'Progreso encontrado — guardado el ' + savedDate + ' (' + n + ' palabra(s) difíciles).'
-        : 'Progreso encontrado — guardado el ' + savedDate + '.') + resumeInfo;
-    } else {
-      lastLoadDiagnostic = 'No se encontró progreso guardado — empezando de cero.';
-    }
-  }catch(e){
-    missCounts = {};
-    lastLoadDiagnostic = 'Error al cargar progreso: ' + (e && e.message ? e.message : e);
-  }
-  progressLoaded = true;
-  const diagEl = document.getElementById('fcDiagnostic');
-  if(diagEl) diagEl.textContent = lastLoadDiagnostic;
-}
-
-async function saveProgress(showConfirmation){
-  const statusEl = document.getElementById('fcSavedStatus');
-  try{
-    localStorage.setItem('flashcard-progress', JSON.stringify(buildSessionSnapshot()));
-    if(statusEl && showConfirmation !== false){
-      statusEl.textContent = 'Progreso guardado ✓';
-      setTimeout(() => { if(statusEl) statusEl.textContent = ''; }, 2000);
-    }
-  }catch(e){
-    if(statusEl) statusEl.textContent = 'No se pudo guardar: ' + (e && e.message ? e.message : e);
-  }
-}
-
-let fcCategoryFilter = 'all';
-let pendingSession = null;
-
-
-// The saved record holds the whole session, not just difficulty counts, so a
-// deck can be resumed mid-way. Only the card keys are stored, not the card
-// objects — the vocabulary itself lives in the app and may have grown since.
-function buildSessionSnapshot(){
-  return {
-    missCounts,
-    savedAt: Date.now(),
-    session: {
-      deckKeys: fcDeck.map(c => c.es),
-      index: fcIndex,
-      known: fcKnownCount,
-      mode: fcMode,
-      category: fcCategoryFilter,
-      spanishFront: fcSpanishFront
-    }
-  };
-}
-
-// Rebuild a saved deck against the CURRENT vocabulary. Words that no longer
-// exist are dropped rather than resurrected as blank cards; if the deck no
-// longer resolves to anything, we fall back to a fresh shuffle.
-function restoreSession(s){
-  if(!s || !Array.isArray(s.deckKeys) || s.deckKeys.length === 0) return false;
-
-  fcCategoryFilter = s.category || 'all';
-  fcMode = s.mode || 'all';
-  fcSpanishFront = (s.spanishFront !== undefined) ? s.spanishFront : true;
-
-  fcAllWords = buildFcPool();
-  const byKey = {};
-  fcAllWords.forEach(c => { byKey[c.es] = c; });
-
-  const restored = s.deckKeys.map(k => byKey[k]).filter(Boolean);
-  if(restored.length === 0) return false;
-
-  fcDeck = restored;
-  fcIndex = Math.min(Math.max(0, s.index || 0), fcDeck.length);
-  fcKnownCount = Math.min(Math.max(0, s.known || 0), fcDeck.length);
-  fcFlipped = false;
-  fcHistory = [];
-  return true;
-}
-
-
-// Wann jedes Wort in die App kam. Die Werte bis v20 wurden aus den
-// Versionsarchiven im Repo rekonstruiert (Commit-Datum der jeweiligen
-// Version); neue Wörter werden ab jetzt beim Hinzufügen direkt eingetragen.
-// Wörter ohne Eintrag gelten als alt und stehen am Ende der Reihenfolge.
-const addedAt = {"haber":"2026-10-07","pasar":"2026-10-07","deber":"2026-10-07","parecer":"2026-10-07","volver":"2026-10-07","conocer":"2026-10-07","contar":"2026-10-07","mirar":"2026-10-07","sentir":"2026-10-07","creer":"2026-10-07","trabajar":"2026-10-07","recibir":"2026-10-07","pagar":"2026-10-07","sacar":"2026-10-07","tienda":"2026-10-07","talla":"2026-10-07","precio":"2026-10-07","tarjeta":"2026-10-07","chaqueta":"2026-10-07","recibo":"2026-10-07","foto":"2026-10-07","caro":"2026-10-07","barato":"2026-10-07","me lo llevo":"2026-10-07","¿Tiene algo más barato?":"2026-10-07","pagar con tarjeta":"2026-10-07","hay":"2026-10-07","gimnasio":"2026-09-27","cita":"2026-09-27","desayuno":"2026-09-27","tren":"2026-09-27","vino":"2026-09-27","dirección":"2026-09-27","desayunar":"2026-09-27","invitar":"2026-09-27","llamarse":"2026-09-27","levantarse":"2026-09-27","despertarse":"2026-09-27","ducharse":"2026-09-27","acostarse":"2026-09-27","sentirse":"2026-09-27","preocuparse":"2026-09-27","quedarse":"2026-09-27","me / te / se / nos / se":"2026-09-27","luego":"2026-09-27","en casa":"2026-09-27","a casa":"2026-09-27","once":"2026-09-27","y media":"2026-09-27","y cuarto":"2026-09-27","menos cuarto":"2026-09-27","por la noche":"2026-09-27","de la noche":"2026-09-27","¿Qué hora es?":"2026-09-27","¿A qué hora?":"2026-09-27","en punto":"2026-09-27","trabajo":"2026-08-11","casa":"2026-08-11","familia":"2026-08-11","amigo":"2026-08-11","amiga":"2026-08-11","día":"2026-08-11","mañana":"2026-08-11","noche":"2026-08-11","agua":"2026-08-11","comida":"2026-08-11","escuela":"2026-08-11","libro":"2026-08-11","perro":"2026-08-11","tarea":"2026-08-11","respuesta":"2026-08-11","regalo":"2026-08-11","pan":"2026-08-11","hermano":"2026-08-11","hermana":"2026-08-11","madre":"2026-08-11","padre":"2026-08-11","ciudad":"2026-08-11","coche":"2026-08-11","dinero":"2026-08-11","fin de semana":"2026-08-11","playa":"2026-08-11","sol":"2026-08-11","calor":"2026-08-11","frío":"2026-08-11","partido":"2026-08-11","música":"2026-08-11","verano":"2026-08-11","invierno":"2026-08-11","nieve":"2026-08-11","montaña":"2026-08-11","país":"2026-08-11","mundo":"2026-08-11","ser":"2026-08-11","estar":"2026-08-11","hablar":"2026-08-11","comer":"2026-08-11","vivir":"2026-08-11","ir":"2026-08-11","tener":"2026-08-11","querer":"2026-08-11","poder":"2026-08-11","saber":"2026-08-11","hacer":"2026-08-11","beber":"2026-08-11","cenar":"2026-08-11","estudiar":"2026-08-11","caminar":"2026-08-11","nadar":"2026-08-11","cocinar":"2026-08-11","tocar":"2026-08-11","venir":"2026-08-11","necesitar":"2026-08-11","llegar":"2026-08-11","comprar":"2026-08-11","conducir":"2026-08-11","jugar":"2026-08-11","ganar":"2026-08-11","perder":"2026-08-11","empezar":"2026-08-11","terminar":"2026-08-11","bailar":"2026-08-11","cantar":"2026-08-11","viajar":"2026-08-11","gustar":"2026-08-11","cansado":"2026-08-11","cansada":"2026-08-11","feliz":"2026-08-11","triste":"2026-08-11","rápido":"2026-08-11","temprano":"2026-08-11","tarde":"2026-08-11","aburrido":"2026-08-11","listo":"2026-08-11","malo":"2026-08-11","bueno":"2026-08-11","rico":"2026-08-11","enfermo":"2026-08-11","ocupado":"2026-08-11","nuevo":"2026-08-11","viejo":"2026-08-11","grande":"2026-08-11","pequeño":"2026-08-11","bonito":"2026-08-11","diferente":"2026-08-11","a":"2026-08-11","de":"2026-08-11","en":"2026-08-11","con":"2026-08-11","para":"2026-08-11","por":"2026-08-11","quién":"2026-08-11","dónde":"2026-08-11","cómo":"2026-08-11","cuándo":"2026-08-11","cuál":"2026-08-11","qué":"2026-08-11","por qué":"2026-08-11","cuánto":"2026-08-11","cuántos":"2026-08-11","me llamo...":"2026-08-11","todos los días":"2026-08-11","ayer":"2026-08-11","hoy":"2026-08-11","siempre":"2026-08-11","también":"2026-08-11","pero":"2026-08-11","porque":"2026-08-11","tengo sed":"2026-08-11","tengo hambre":"2026-08-11","el fin de semana pasado":"2026-08-11","el próximo año":"2026-08-11","no tengo que trabajar":"2026-08-11","especialmente":"2026-08-11","oficina":"2026-08-11","jefe":"2026-08-11","jefa":"2026-08-11","reunión":"2026-08-11","correo":"2026-08-11","teléfono":"2026-08-11","año":"2026-08-11","señor":"2026-08-11","carta":"2026-08-11","menú":"2026-08-11","mesero":"2026-08-11","mesera":"2026-08-11","mesa":"2026-08-11","cuenta":"2026-08-11","bebida":"2026-08-11","plato":"2026-08-11","entrada":"2026-08-11","postre":"2026-08-11","propina":"2026-08-11","helado":"2026-08-11","cebolla":"2026-08-11","especialidad":"2026-08-11","botella":"2026-08-11","pedir":"2026-08-11","traer":"2026-08-11","recomendar":"2026-08-11","desear":"2026-08-11","aprender":"2026-08-11","pensar":"2026-08-11","acabar":"2026-08-11","ayudar":"2026-08-11","encontrar":"2026-08-11","esperar":"2026-08-11","llamar":"2026-08-11","sabroso":"2026-08-11","importante":"2026-08-11","difícil":"2026-08-11","fácil":"2026-08-11","nervioso":"2026-08-11","por favor":"2026-08-11","lo siento":"2026-08-11","todavía no":"2026-08-11","muchas gracias":"2026-08-11","de nada":"2026-08-11","Me da dos tacos, por favor":"2026-08-11","¿Me regala un agua?":"2026-08-11","Quiero un taco de carnitas":"2026-08-11","Dos de pastor":"2026-08-11","¿Qué le doy?":"2026-08-11","¿Para aquí o para llevar?":"2026-08-11","¿Con todo?":"2026-08-11","Sin cebolla, por favor":"2026-08-11","¿Cuánto es?":"2026-08-11","para llevar":"2026-08-11","Quisiera agua, por favor":"2026-08-11","Una mesa para dos, por favor":"2026-08-11","¿Qué recomienda?":"2026-08-11","La cuenta, por favor":"2026-08-11","¿Ya están listos para pedir?":"2026-08-11","¿Qué desean tomar?":"2026-08-11","No quiero postre, gracias":"2026-08-11","Está muy rico":"2026-08-11","¿Me trae la carta, por favor?":"2026-08-11","dar":"2026-08-14","tomar":"2026-08-14","quedar":"2026-08-14","llevar":"2026-08-14","dejar":"2026-08-14","espero que sí":"2026-08-14","esperar el autobús":"2026-08-14","dar un paseo":"2026-08-14","banco":"2026-08-17","gato":"2026-08-17","silla":"2026-08-17","farmacia":"2026-08-17","hotel":"2026-08-17","autobús":"2026-08-17","café":"2026-08-17","hora":"2026-08-17","sobre":"2026-08-17","encima de":"2026-08-17","debajo de":"2026-08-17","al lado de":"2026-08-17","cerca de":"2026-08-17","lejos de":"2026-08-17","delante de":"2026-08-17","detrás de":"2026-08-17","entre":"2026-08-17","dentro de":"2026-08-17","fuera de":"2026-08-17","enfrente de":"2026-08-17","antes de":"2026-08-17","después de":"2026-08-17","durante":"2026-08-17","desde":"2026-08-17","hasta":"2026-08-17","del":"2026-08-17","al":"2026-08-17","está":"2026-08-17","desde las nueve hasta las cinco":"2026-08-17","la una":"2026-08-17","llave":"2026-09-13","habitación":"2026-09-13","equipaje":"2026-09-13","mensaje":"2026-09-13","verdad":"2026-09-13","estacionamiento":"2026-09-13","nombre":"2026-09-13","yo":"2026-09-13","tú":"2026-09-13","usted":"2026-09-13","él":"2026-09-13","ella":"2026-09-13","nosotros":"2026-09-13","ustedes":"2026-09-13","ellos":"2026-09-13","me":"2026-09-13","te":"2026-09-13","lo":"2026-09-13","la":"2026-09-13","le":"2026-09-13","nos":"2026-09-13","los":"2026-09-13","las":"2026-09-13","les":"2026-09-13","mi / mis":"2026-09-13","tu / tus":"2026-09-13","su / sus":"2026-09-13","nuestro / nuestra":"2026-09-13","mí":"2026-09-13","a personal":"2026-09-13","a las ocho":"2026-09-13","por la mañana":"2026-09-13","no hay problema":"2026-09-13","yo tampoco":"2026-09-13","no te preocupes":"2026-09-13","buenos días":"2026-09-13","ser difícil":"2026-09-13","otro":"2026-09-13","buscar":"2026-09-13","decir":"2026-09-13","ver":"2026-09-13","poner":"2026-09-13","salir":"2026-09-13","seguir":"2026-09-13","entender":"2026-09-13","leer":"2026-09-13","escribir":"2026-09-13","abrir":"2026-09-13","responder":"2026-09-13","contestar":"2026-09-13","mandar":"2026-09-13"};
+const addedAt = {"¿Mande?":"2026-10-14","¿Puede repetir, por favor?":"2026-10-14","¿Puedes repetir?":"2026-10-14","Más despacio, por favor.":"2026-10-14","No entiendo.":"2026-10-14","¿Cómo se dice … en español?":"2026-10-14","¿Qué significa …?":"2026-10-14","¿Me lo puede escribir?":"2026-10-14","Hablo un poco de español.":"2026-10-14","Estoy aprendiendo español.":"2026-10-14","Perdón, ¿qué dijo?":"2026-10-14","Un momento, por favor.":"2026-10-14","¿Me ayuda, por favor?":"2026-10-14","Mucho gusto.":"2026-10-14","¿De dónde eres?":"2026-10-14","Soy de Suiza.":"2026-10-14","haber":"2026-10-07","pasar":"2026-10-07","deber":"2026-10-07","parecer":"2026-10-07","volver":"2026-10-07","conocer":"2026-10-07","contar":"2026-10-07","mirar":"2026-10-07","sentir":"2026-10-07","creer":"2026-10-07","trabajar":"2026-10-07","recibir":"2026-10-07","pagar":"2026-10-07","sacar":"2026-10-07","tienda":"2026-10-07","talla":"2026-10-07","precio":"2026-10-07","tarjeta":"2026-10-07","chaqueta":"2026-10-07","recibo":"2026-10-07","foto":"2026-10-07","caro":"2026-10-07","barato":"2026-10-07","me lo llevo":"2026-10-07","¿Tiene algo más barato?":"2026-10-07","pagar con tarjeta":"2026-10-07","hay":"2026-10-07","gimnasio":"2026-09-27","cita":"2026-09-27","desayuno":"2026-09-27","tren":"2026-09-27","vino":"2026-09-27","dirección":"2026-09-27","desayunar":"2026-09-27","invitar":"2026-09-27","llamarse":"2026-09-27","levantarse":"2026-09-27","despertarse":"2026-09-27","ducharse":"2026-09-27","acostarse":"2026-09-27","sentirse":"2026-09-27","preocuparse":"2026-09-27","quedarse":"2026-09-27","me / te / se / nos / se":"2026-09-27","luego":"2026-09-27","en casa":"2026-09-27","a casa":"2026-09-27","once":"2026-09-27","y media":"2026-09-27","y cuarto":"2026-09-27","menos cuarto":"2026-09-27","por la noche":"2026-09-27","de la noche":"2026-09-27","¿Qué hora es?":"2026-09-27","¿A qué hora?":"2026-09-27","en punto":"2026-09-27","trabajo":"2026-08-11","casa":"2026-08-11","familia":"2026-08-11","amigo":"2026-08-11","amiga":"2026-08-11","día":"2026-08-11","mañana":"2026-08-11","noche":"2026-08-11","agua":"2026-08-11","comida":"2026-08-11","escuela":"2026-08-11","libro":"2026-08-11","perro":"2026-08-11","tarea":"2026-08-11","respuesta":"2026-08-11","regalo":"2026-08-11","pan":"2026-08-11","hermano":"2026-08-11","hermana":"2026-08-11","madre":"2026-08-11","padre":"2026-08-11","ciudad":"2026-08-11","coche":"2026-08-11","dinero":"2026-08-11","fin de semana":"2026-08-11","playa":"2026-08-11","sol":"2026-08-11","calor":"2026-08-11","frío":"2026-08-11","partido":"2026-08-11","música":"2026-08-11","verano":"2026-08-11","invierno":"2026-08-11","nieve":"2026-08-11","montaña":"2026-08-11","país":"2026-08-11","mundo":"2026-08-11","ser":"2026-08-11","estar":"2026-08-11","hablar":"2026-08-11","comer":"2026-08-11","vivir":"2026-08-11","ir":"2026-08-11","tener":"2026-08-11","querer":"2026-08-11","poder":"2026-08-11","saber":"2026-08-11","hacer":"2026-08-11","beber":"2026-08-11","cenar":"2026-08-11","estudiar":"2026-08-11","caminar":"2026-08-11","nadar":"2026-08-11","cocinar":"2026-08-11","tocar":"2026-08-11","venir":"2026-08-11","necesitar":"2026-08-11","llegar":"2026-08-11","comprar":"2026-08-11","conducir":"2026-08-11","jugar":"2026-08-11","ganar":"2026-08-11","perder":"2026-08-11","empezar":"2026-08-11","terminar":"2026-08-11","bailar":"2026-08-11","cantar":"2026-08-11","viajar":"2026-08-11","gustar":"2026-08-11","cansado":"2026-08-11","cansada":"2026-08-11","feliz":"2026-08-11","triste":"2026-08-11","rápido":"2026-08-11","temprano":"2026-08-11","tarde":"2026-08-11","aburrido":"2026-08-11","listo":"2026-08-11","malo":"2026-08-11","bueno":"2026-08-11","rico":"2026-08-11","enfermo":"2026-08-11","ocupado":"2026-08-11","nuevo":"2026-08-11","viejo":"2026-08-11","grande":"2026-08-11","pequeño":"2026-08-11","bonito":"2026-08-11","diferente":"2026-08-11","a":"2026-08-11","de":"2026-08-11","en":"2026-08-11","con":"2026-08-11","para":"2026-08-11","por":"2026-08-11","quién":"2026-08-11","dónde":"2026-08-11","cómo":"2026-08-11","cuándo":"2026-08-11","cuál":"2026-08-11","qué":"2026-08-11","por qué":"2026-08-11","cuánto":"2026-08-11","cuántos":"2026-08-11","me llamo...":"2026-08-11","todos los días":"2026-08-11","ayer":"2026-08-11","hoy":"2026-08-11","siempre":"2026-08-11","también":"2026-08-11","pero":"2026-08-11","porque":"2026-08-11","tengo sed":"2026-08-11","tengo hambre":"2026-08-11","el fin de semana pasado":"2026-08-11","el próximo año":"2026-08-11","no tengo que trabajar":"2026-08-11","especialmente":"2026-08-11","oficina":"2026-08-11","jefe":"2026-08-11","jefa":"2026-08-11","reunión":"2026-08-11","correo":"2026-08-11","teléfono":"2026-08-11","año":"2026-08-11","señor":"2026-08-11","carta":"2026-08-11","menú":"2026-08-11","mesero":"2026-08-11","mesera":"2026-08-11","mesa":"2026-08-11","cuenta":"2026-08-11","bebida":"2026-08-11","plato":"2026-08-11","entrada":"2026-08-11","postre":"2026-08-11","propina":"2026-08-11","helado":"2026-08-11","cebolla":"2026-08-11","especialidad":"2026-08-11","botella":"2026-08-11","pedir":"2026-08-11","traer":"2026-08-11","recomendar":"2026-08-11","desear":"2026-08-11","aprender":"2026-08-11","pensar":"2026-08-11","acabar":"2026-08-11","ayudar":"2026-08-11","encontrar":"2026-08-11","esperar":"2026-08-11","llamar":"2026-08-11","sabroso":"2026-08-11","importante":"2026-08-11","difícil":"2026-08-11","fácil":"2026-08-11","nervioso":"2026-08-11","por favor":"2026-08-11","lo siento":"2026-08-11","todavía no":"2026-08-11","muchas gracias":"2026-08-11","de nada":"2026-08-11","Me da dos tacos, por favor":"2026-08-11","¿Me regala un agua?":"2026-08-11","Quiero un taco de carnitas":"2026-08-11","Dos de pastor":"2026-08-11","¿Qué le doy?":"2026-08-11","¿Para aquí o para llevar?":"2026-08-11","¿Con todo?":"2026-08-11","Sin cebolla, por favor":"2026-08-11","¿Cuánto es?":"2026-08-11","para llevar":"2026-08-11","Quisiera agua, por favor":"2026-08-11","Una mesa para dos, por favor":"2026-08-11","¿Qué recomienda?":"2026-08-11","La cuenta, por favor":"2026-08-11","¿Ya están listos para pedir?":"2026-08-11","¿Qué desean tomar?":"2026-08-11","No quiero postre, gracias":"2026-08-11","Está muy rico":"2026-08-11","¿Me trae la carta, por favor?":"2026-08-11","dar":"2026-08-14","tomar":"2026-08-14","quedar":"2026-08-14","llevar":"2026-08-14","dejar":"2026-08-14","espero que sí":"2026-08-14","esperar el autobús":"2026-08-14","dar un paseo":"2026-08-14","banco":"2026-08-17","gato":"2026-08-17","silla":"2026-08-17","farmacia":"2026-08-17","hotel":"2026-08-17","autobús":"2026-08-17","café":"2026-08-17","hora":"2026-08-17","sobre":"2026-08-17","encima de":"2026-08-17","debajo de":"2026-08-17","al lado de":"2026-08-17","cerca de":"2026-08-17","lejos de":"2026-08-17","delante de":"2026-08-17","detrás de":"2026-08-17","entre":"2026-08-17","dentro de":"2026-08-17","fuera de":"2026-08-17","enfrente de":"2026-08-17","antes de":"2026-08-17","después de":"2026-08-17","durante":"2026-08-17","desde":"2026-08-17","hasta":"2026-08-17","del":"2026-08-17","al":"2026-08-17","está":"2026-08-17","desde las nueve hasta las cinco":"2026-08-17","la una":"2026-08-17","llave":"2026-09-13","habitación":"2026-09-13","equipaje":"2026-09-13","mensaje":"2026-09-13","verdad":"2026-09-13","estacionamiento":"2026-09-13","nombre":"2026-09-13","yo":"2026-09-13","tú":"2026-09-13","usted":"2026-09-13","él":"2026-09-13","ella":"2026-09-13","nosotros":"2026-09-13","ustedes":"2026-09-13","ellos":"2026-09-13","me":"2026-09-13","te":"2026-09-13","lo":"2026-09-13","la":"2026-09-13","le":"2026-09-13","nos":"2026-09-13","los":"2026-09-13","las":"2026-09-13","les":"2026-09-13","mi / mis":"2026-09-13","tu / tus":"2026-09-13","su / sus":"2026-09-13","nuestro / nuestra":"2026-09-13","mí":"2026-09-13","a personal":"2026-09-13","a las ocho":"2026-09-13","por la mañana":"2026-09-13","no hay problema":"2026-09-13","yo tampoco":"2026-09-13","no te preocupes":"2026-09-13","buenos días":"2026-09-13","ser difícil":"2026-09-13","otro":"2026-09-13","buscar":"2026-09-13","decir":"2026-09-13","ver":"2026-09-13","poner":"2026-09-13","salir":"2026-09-13","seguir":"2026-09-13","entender":"2026-09-13","leer":"2026-09-13","escribir":"2026-09-13","abrir":"2026-09-13","responder":"2026-09-13","contestar":"2026-09-13","mandar":"2026-09-13"};
 
 function addedDate(es){
   return addedAt[es] || '0000-00-00';
 }
 
-function buildFcPool(){
-  const all = [];
-  Object.entries(data).forEach(([cat, words]) => {
-    if(fcCategoryFilter !== 'all' && cat !== fcCategoryFilter) return;
-    words.forEach(([es,en,gender]) => {
-      // raw wird fuer die addedAt-Zuordnung gebraucht: es traegt bei
-      // Substantiven bereits den Artikel und passt dann nicht mehr.
-      all.push({ es: displayForm(es, gender), en, gender, raw: es });
-    });
-  });
-  return all;
-}
-
-function shuffle(arr){
-  const a = [...arr];
-  for(let i = a.length - 1; i > 0; i--){
-    const j = Math.floor(Math.random() * (i+1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
-function startFcDeck(mode){
-  if(mode) fcMode = mode;
-  fcAllWords = buildFcPool();
-  let pool;
-  if(fcMode === 'hard'){
-    pool = fcAllWords.filter(c => (missCounts[c.es] || 0) >= 2);
-  } else if(fcMode === 'new'){
-    // Die 50 zuletzt hinzugekommenen Woerter, danach gemischt: die Auswahl
-    // richtet sich nach dem Datum, die Abfragereihenfolge bleibt zufaellig.
-    pool = fcAllWords.slice()
-      .sort((a, b) => addedDate(b.raw).localeCompare(addedDate(a.raw)))
-      .slice(0, 50);
-  } else {
-    pool = fcAllWords;
-  }
-  fcDeck = shuffle(pool);
-  fcIndex = 0;
-  fcKnownCount = 0;
-  fcFlipped = false;
-  fcHistory = [];
-  renderFc();
-  saveProgress(false);
-}
-
-function pushHistory(){
-  fcHistory.push({
-    deck: [...fcDeck],
-    index: fcIndex,
-    known: fcKnownCount,
-    miss: {...missCounts}
-  });
-  if(fcHistory.length > 50) fcHistory.shift();
-}
-
-
-// Bleibt über das Neuzeichnen hinweg offen: renderFc() baut den ganzen Bereich
-// neu auf, sonst würde die Liste bei jedem Zurücksetzen zuklappen.
-let missListOpen = false;
-
-function renderMissList(){
-  const box = document.createElement('details');
-  box.className = 'miss-list';
-  box.open = missListOpen;
-  box.addEventListener('toggle', () => { missListOpen = box.open; });
-
-  // Nur Wörter des aktuellen Kategoriefilters: fcAllWords wird bereits
-  // über buildFcPool() gefiltert.
-  const entries = fcAllWords
-    .filter(card => (missCounts[card.es] || 0) > 0)
-    .map(card => ({ card, count: missCounts[card.es] }))
-    .sort((a, b) => b.count - a.count || a.card.es.localeCompare(b.card.es));
-
-  const hardTotal = entries.filter(e => e.count >= 2).length;
-
-  const sum = document.createElement('summary');
-  sum.textContent = entries.length === 0
-    ? 'Fehlerwörter (keine)'
-    : 'Fehlerwörter (' + entries.length + ', davon ' + hardTotal + ' schwierig)';
-  box.appendChild(sum);
-
-  const body = document.createElement('div');
-  body.className = 'miss-body';
-
-  if(entries.length === 0){
-    const empty = document.createElement('div');
-    empty.className = 'miss-empty';
-    empty.textContent = 'Noch keine Fehler in dieser Kategorie. Wörter erscheinen hier, sobald du «Repasar de nuevo» drückst.';
-    body.appendChild(empty);
-  } else {
-    entries.forEach(({ card, count }) => {
-      const row = document.createElement('div');
-      row.className = 'miss-row';
-
-      const word = document.createElement('div');
-      word.className = 'miss-word';
-      word.innerHTML = '<div class="miss-es">' + card.es + '</div>' +
-                       '<div class="miss-en">' + card.en + '</div>';
-
-      const badge = document.createElement('span');
-      badge.className = 'miss-count ' + (count >= 2 ? 'hard' : 'soft');
-      badge.textContent = count + '\u00D7';
-      badge.title = count >= 2 ? 'Zählt als schwierig' : 'Noch nicht schwierig (ab 2)';
-
-      const reset = document.createElement('button');
-      reset.className = 'miss-reset';
-      reset.textContent = 'Zurücksetzen';
-      reset.onclick = () => {
-        delete missCounts[card.es];
-        saveProgress(false);
-        renderFc();
-      };
-
-      row.appendChild(word);
-      row.appendChild(badge);
-      row.appendChild(reset);
-      body.appendChild(row);
-    });
-
-    const note = document.createElement('div');
-    note.className = 'miss-note';
-    note.textContent = 'Ab 2 Fehlern zählt ein Wort als schwierig und erscheint im Difíciles-Modus.';
-    body.appendChild(note);
-  }
-
-  box.appendChild(body);
-  return box;
-}
-
-function renderFc(){
-  const wrap = document.getElementById('fcWrap');
-  wrap.innerHTML = '';
-
-  const hardCount = fcAllWords.filter(c => (missCounts[c.es] || 0) >= 2).length;
-  const newCount = Math.min(50, fcAllWords.length);
-
-  const topRow = document.createElement('div');
-  topRow.className = 'fc-toprow';
-
-  const dirBtn = document.createElement('button');
-  dirBtn.textContent = fcSpanishFront ? '🔀 Español → English' : '🔀 English → Español';
-  dirBtn.onclick = () => { fcSpanishFront = !fcSpanishFront; fcFlipped = false; renderFc(); saveProgress(false); };
-
-  const allBtn = document.createElement('button');
-  allBtn.textContent = 'Todas';
-  allBtn.className = fcMode === 'all' ? 'on' : '';
-  allBtn.onclick = () => startFcDeck('all');
-
-  const hardBtn = document.createElement('button');
-  hardBtn.textContent = 'Difíciles (' + hardCount + ')';
-  hardBtn.className = fcMode === 'hard' ? 'on' : '';
-  hardBtn.disabled = hardCount === 0;
-  hardBtn.onclick = () => startFcDeck('hard');
-
-  const newBtn = document.createElement('button');
-  newBtn.className = 'fc-mode' + (fcMode === 'new' ? ' on' : '');
-  newBtn.textContent = 'Nuevas (' + newCount + ')';
-  newBtn.title = 'Die 50 zuletzt hinzugefügten Wörter dieser Kategorie';
-  newBtn.onclick = () => startFcDeck('new');
-
-  const catBtn = document.createElement('button');
-  const curLabel = fcCategoryFilter === 'all' ? 'Todo' : (categoryShortLabels[fcCategoryFilter] || fcCategoryFilter);
-  catBtn.textContent = '📚 ' + curLabel;
-  catBtn.onclick = () => {
-    // Cycle through: all -> each category -> back to all
-    const cats = ['all'].concat(Object.keys(data));
-    const i = cats.indexOf(fcCategoryFilter);
-    fcCategoryFilter = cats[(i + 1) % cats.length];
-    startFcDeck(fcMode);
-  };
-
-  const backBtn = document.createElement('button');
-  backBtn.className = 'fc-back';
-  backBtn.textContent = '⬅ Volver';
-  backBtn.disabled = fcHistory.length === 0;
-  backBtn.onclick = () => {
-    if(fcHistory.length === 0) return;
-    const prev = fcHistory.pop();
-    fcDeck = prev.deck;
-    fcIndex = prev.index;
-    fcKnownCount = prev.known;
-    missCounts = prev.miss;
-    fcFlipped = false;
-    renderFc();
-    saveProgress();
-  };
-
-  topRow.appendChild(dirBtn);
-  topRow.appendChild(catBtn);
-  topRow.appendChild(allBtn);
-  topRow.appendChild(hardBtn);
-  topRow.appendChild(newBtn);
-  topRow.appendChild(backBtn);
-  wrap.appendChild(topRow);
-
-  const diagEl = document.createElement('div');
-  diagEl.className = 'fc-saved';
-  diagEl.id = 'fcDiagnostic';
-  diagEl.style.opacity = '0.55';
-  diagEl.textContent = lastLoadDiagnostic;
-  wrap.appendChild(diagEl);
-
-  const savedStatus = document.createElement('div');
-  savedStatus.className = 'fc-saved';
-  savedStatus.id = 'fcSavedStatus';
-  wrap.appendChild(savedStatus);
-
-  const manualSaveBtn = document.createElement('button');
-  manualSaveBtn.className = 'fc-reset';
-  manualSaveBtn.style.textDecoration = 'underline';
-  manualSaveBtn.textContent = 'Guardar progreso ahora';
-  manualSaveBtn.onclick = () => saveProgress(true);
-  wrap.appendChild(manualSaveBtn);
-
-  if(fcDeck.length === 0){
-    const empty = document.createElement('div');
-    empty.className = 'fc-done';
-    empty.innerHTML = '<h3>' + (fcMode === 'hard' ? 'No hay tarjetas difíciles todavía.' : '¡Sin tarjetas!') + '</h3>' +
-      '<p style="color:#5a5a4e;">' + (fcMode === 'hard' ? 'Words land here once you mark them "Repasar de nuevo" two or more times.' : '') + '</p>';
-    wrap.appendChild(empty);
-    return;
-  }
-
-  if(fcIndex >= fcDeck.length){
-    const done = document.createElement('div');
-    done.className = 'fc-done';
-    done.innerHTML = '<h3>¡Terminaste el mazo! 🎉</h3><p style="color:#5a5a4e;">You knew ' + fcKnownCount + ' of ' + fcDeck.length + ' cards on the first try.</p>';
-    const btn = document.createElement('button');
-    btn.className = 'fc-know';
-    btn.style.marginTop = '1rem';
-    btn.textContent = 'Empezar de nuevo';
-    btn.onclick = () => startFcDeck(fcMode);
-    done.appendChild(document.createElement('br'));
-    done.appendChild(btn);
-    wrap.appendChild(done);
-    return;
-  }
-
-  const card = fcDeck[fcIndex];
-  const frontText = fcSpanishFront ? card.es : card.en;
-  const backText = fcSpanishFront ? card.en : card.es;
-  const frontLabel = fcSpanishFront ? 'Español' : 'English';
-  const backLabel = fcSpanishFront ? 'English' : 'Español';
-
-  const progress = document.createElement('div');
-  progress.className = 'fc-progress';
-  progress.textContent = 'Tarjeta ' + (fcIndex+1) + ' de ' + fcDeck.length + ' · ' + fcKnownCount + ' aprendidas';
-  wrap.appendChild(progress);
-
-  const scene = document.createElement('div');
-  scene.className = 'fc-scene';
-
-  const cardEl = document.createElement('div');
-  cardEl.className = 'fc-card' + (fcFlipped ? ' flipped' : '');
-
-  const front = document.createElement('div');
-  front.className = 'fc-face front';
-  front.innerHTML = '<div class="fc-hint">'+frontLabel+'</div><div class="fc-word">'+frontText+'</div>';
-  const frontPlay = document.createElement('button');
-  frontPlay.className = 'icon-btn';
-  frontPlay.innerHTML = playIconSVG();
-  frontPlay.onclick = (e) => { e.stopPropagation(); speak(card.es); };
-  front.appendChild(frontPlay);
-
-  const back = document.createElement('div');
-  back.className = 'fc-face back';
-  back.innerHTML = '<div class="fc-hint">'+backLabel+'</div><div class="fc-word">'+backText+'</div>';
-  const backPlay = document.createElement('button');
-  backPlay.className = 'icon-btn';
-  backPlay.innerHTML = playIconSVG();
-  backPlay.onclick = (e) => { e.stopPropagation(); speak(card.es); };
-  back.appendChild(backPlay);
-
-  cardEl.appendChild(front);
-  cardEl.appendChild(back);
-  cardEl.onclick = () => { fcFlipped = !fcFlipped; cardEl.classList.toggle('flipped'); };
-
-  scene.appendChild(cardEl);
-  wrap.appendChild(scene);
-
-  const controls = document.createElement('div');
-  controls.className = 'fc-controls';
-
-  const againBtn = document.createElement('button');
-  againBtn.className = 'fc-again';
-  againBtn.textContent = '🔁 Repasar de nuevo';
-  againBtn.onclick = () => {
-    pushHistory();
-    missCounts[card.es] = (missCounts[card.es] || 0) + 1;
-    const c = fcDeck.splice(fcIndex, 1)[0];
-    fcDeck.push(c);
-    fcFlipped = false;
-    renderFc();
-    saveProgress();
-  };
-
-  const knowBtn = document.createElement('button');
-  knowBtn.className = 'fc-know';
-  knowBtn.textContent = '✅ Lo sé';
-  knowBtn.onclick = () => {
-    pushHistory();
-    fcKnownCount++;
-    fcIndex++;
-    fcFlipped = false;
-    renderFc();
-    saveProgress(false);
-  };
-
-  controls.appendChild(againBtn);
-  controls.appendChild(knowBtn);
-  wrap.appendChild(controls);
-
-  const resetBtn = document.createElement('button');
-  resetBtn.className = 'fc-reset';
-  resetBtn.textContent = '🔀 Barajar de nuevo';
-  resetBtn.title = 'Empieza el mazo otra vez en orden aleatorio (mantiene las palabras difíciles)';
-  resetBtn.onclick = () => startFcDeck(fcMode);
-  wrap.appendChild(resetBtn);
-
-  wrap.appendChild(renderMissList());
-}
-
-
-/* ---------- CONJUGATION DRILL ---------- */
-let drillProgressLoaded = false;
-
-async function loadDrillProgress(){
-  try{
-    const raw = localStorage.getItem('conjugation-drill-progress');
-    if(raw){
-      const p = JSON.parse(raw);
-      drillMistakes = p.drillMistakes || {};
-      drillRight = p.drillRight || 0;
-      drillTotal = p.drillTotal || 0;
-    }
-  }catch(e){ drillMistakes = {}; }
-  drillProgressLoaded = true;
-}
-
-async function saveDrillProgress(){
-  try{
-    localStorage.setItem('conjugation-drill-progress',
-      JSON.stringify({ drillMistakes, drillRight, drillTotal, savedAt: Date.now() }));
-  }catch(e){ /* non-fatal: drilling still works, just unsaved */ }
-}
-
-const drillPronouns = [
-  { label:'yo', idx:0 },
-  { label:'tú', idx:1 },
-  { label:'él / ella / usted', idx:2 },
-  { label:'nosotros', idx:3 },
-  { label:'ellos / ustedes', idx:5 }
-];
-
-let drillTense = 'both';   // 'pres' | 'pret' | 'both'
-let drillScope = 'all';    // 'all' | 'irregular'
-let drillCurrent = null;
-let drillRight = 0;
-let drillTotal = 0;
-let drillMistakes = {};    // "infinitive|pronoun|tense" -> count
-
-function stripAccents(s){
-  return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
-}
-
-function drillVerbPool(){
-  const verbs = data['Verbs (infinitive)'] || [];
-  // gustar is excluded: its everyday use is "me gusta / me gustan", not a full
-  // personal conjugation, so drilling "yo gusto" would teach the wrong pattern.
-  let pool = verbs.filter(([es]) => es !== 'gustar');
-  if(drillScope === 'irregular'){
-    pool = pool.filter(([es]) => irregular[es]);
-  }
-  return pool;
-}
-
-function nextDrill(){
-  const pool = drillVerbPool();
-  if(pool.length === 0){ return; }
-  const [inf, meaning] = pool[Math.floor(Math.random()*pool.length)];
-  const pron = drillPronouns[Math.floor(Math.random()*drillPronouns.length)];
-  let tense = drillTense;
-  if(tense === 'both') tense = Math.random() < 0.5 ? 'pres' : 'pret';
-  const conj = conjugate(inf);
-  if(!conj){ nextDrill(); return; }
-  drillCurrent = { inf, meaning, pron, tense, answer: conj[tense][pron.idx] };
-  renderDrill();
-}
-
-function checkDrill(value){
-  if(!drillCurrent) return;
-  const given = value.trim();
-  const answer = drillCurrent.answer;
-  const fbEl = document.getElementById('drillFeedback');
-  if(!fbEl) return;
-
-  drillTotal++;
-  fbEl.className = 'drill-feedback show';
-
-  if(given.toLowerCase() === answer.toLowerCase()){
-    drillRight++;
-    fbEl.classList.add('right');
-    fbEl.innerHTML = '✅ ¡Correcto! <span class="drill-answer">'+answer+'</span>';
-  } else if(stripAccents(given) === stripAccents(answer)){
-    fbEl.classList.add('accent');
-    fbEl.innerHTML = '⚠️ Casi — solo falta el acento: <span class="drill-answer">'+answer+'</span>' +
-      '<div style="margin-top:0.3rem; font-size:0.82rem;">Accents are part of the spelling in Spanish — they mark which syllable is stressed, and sometimes distinguish tenses (hablo vs. habló).</div>';
-    const key = drillCurrent.inf+'|'+drillCurrent.pron.label+'|'+drillCurrent.tense;
-    drillMistakes[key] = (drillMistakes[key]||0)+1;
-  } else {
-    fbEl.classList.add('wrong');
-    fbEl.innerHTML = '📝 No exactamente. La forma correcta es <span class="drill-answer">'+answer+'</span>' +
-      '<div style="margin-top:0.3rem; font-size:0.82rem;">Tu respuesta: '+(given || '(vacío)')+'</div>';
-    const key = drillCurrent.inf+'|'+drillCurrent.pron.label+'|'+drillCurrent.tense;
-    drillMistakes[key] = (drillMistakes[key]||0)+1;
-  }
-
-  saveDrillProgress();
-  const scoreEl = document.getElementById('drillScore');
-  if(scoreEl) scoreEl.textContent = drillRight + ' de ' + drillTotal + ' correctas';
-  const nextBtn = document.getElementById('drillNext');
-  if(nextBtn) nextBtn.style.display = 'block';
-  const speakBtn = document.getElementById('drillSpeak');
-  if(speakBtn) speakBtn.style.display = 'inline-flex';
-}
-
-function renderDrill(){
-  const wrap = document.getElementById('drillWrap');
-  if(!wrap) return;
-  wrap.innerHTML = '';
-
-  const setup = document.createElement('div');
-  setup.className = 'drill-setup';
-  const opts = [
-    { label:'Presente', v:'pres', kind:'tense' },
-    { label:'Pretérito', v:'pret', kind:'tense' },
-    { label:'Ambos', v:'both', kind:'tense' },
-    { label:'Todos los verbos', v:'all', kind:'scope' },
-    { label:'Solo irregulares', v:'irregular', kind:'scope' }
-  ];
-  opts.forEach(o => {
-    const b = document.createElement('button');
-    b.textContent = o.label;
-    const active = o.kind === 'tense' ? drillTense === o.v : drillScope === o.v;
-    if(active) b.classList.add('on');
-    b.onclick = () => {
-      if(o.kind === 'tense') drillTense = o.v; else drillScope = o.v;
-      nextDrill();
-    };
-    setup.appendChild(b);
-  });
-  wrap.appendChild(setup);
-
-  const score = document.createElement('div');
-  score.className = 'drill-score';
-  score.id = 'drillScore';
-  score.textContent = drillTotal > 0 ? drillRight + ' de ' + drillTotal + ' correctas' : 'Escribe la forma correcta del verbo.';
-  wrap.appendChild(score);
-
-  if(!drillCurrent){ return; }
-
-  const card = document.createElement('div');
-  card.className = 'drill-card';
-
-  const tenseLabel = drillCurrent.tense === 'pres' ? 'Presente' : 'Pretérito (pasado)';
-  card.innerHTML =
-    '<div class="drill-tense">'+tenseLabel+'</div>' +
-    '<div class="drill-verb">'+drillCurrent.inf+'</div>' +
-    '<div class="drill-meaning">'+drillCurrent.meaning+'</div>' +
-    '<div class="drill-pronoun">'+drillCurrent.pron.label+' ___</div>';
-
-  const row = document.createElement('div');
-  row.className = 'drill-input-row';
-  const input = document.createElement('input');
-  input.type = 'text';
-  input.autocapitalize = 'none';
-  input.autocomplete = 'off';
-  input.spellcheck = false;
-  input.placeholder = 'tu respuesta...';
-  const btn = document.createElement('button');
-  btn.textContent = 'Comprobar';
-  btn.onclick = () => checkDrill(input.value);
-  input.addEventListener('keydown', e => { if(e.key === 'Enter') checkDrill(input.value); });
-  row.appendChild(input);
-  row.appendChild(btn);
-  card.appendChild(row);
-
-  const fb = document.createElement('div');
-  fb.className = 'drill-feedback';
-  fb.id = 'drillFeedback';
-  card.appendChild(fb);
-
-  const speakBtn = document.createElement('button');
-  speakBtn.className = 'icon-btn';
-  speakBtn.id = 'drillSpeak';
-  speakBtn.style.display = 'none';
-  speakBtn.style.margin = '0.9rem auto 0 auto';
-  speakBtn.innerHTML = playIconSVG();
-  speakBtn.onclick = () => speak(drillCurrent.answer, 0.9);
-  card.appendChild(speakBtn);
-
-  const nextBtn = document.createElement('button');
-  nextBtn.className = 'drill-next';
-  nextBtn.id = 'drillNext';
-  nextBtn.textContent = 'Siguiente →';
-  nextBtn.style.display = 'none';
-  nextBtn.onclick = () => nextDrill();
-  card.appendChild(nextBtn);
-
-  wrap.appendChild(card);
-
-  const hardest = Object.entries(drillMistakes).sort((a,b) => b[1]-a[1]).slice(0,5);
-  if(hardest.length > 0){
-    const mist = document.createElement('div');
-    mist.className = 'drill-mistakes';
-    let html = '<h4>Formas que más te cuestan</h4><ul>';
-    hardest.forEach(([key,count]) => {
-      const [inf, pron, tense] = key.split('|');
-      const t = tense === 'pres' ? 'presente' : 'pretérito';
-      html += '<li>'+inf+' — '+pron+' ('+t+') · '+count+'×</li>';
-    });
-    html += '</ul>';
-    mist.innerHTML = html;
-    wrap.appendChild(mist);
-  }
-
-  setTimeout(() => input.focus(), 50);
-}
-
-
-/* ---------- SPEAKING PRACTICE ---------- */
-// English prompt -> accepted Spanish answers. Multiple variants are listed because
-// Spanish routinely drops the subject pronoun, so both forms are genuinely correct.
 const speakSentences = [
   { en:"I am a student.", es:["Soy estudiante.","Yo soy estudiante."] },
   { en:"We are in Madrid.", es:["Estamos en Madrid.","Nosotros estamos en Madrid."] },
@@ -2377,549 +806,826 @@ const speakSentences = [
   { en:"I think the train arrives at ten thirty.", es:["Pienso que el tren llega a las diez y media."] }
 ];
 
-let speakIndex = 0;
-let speakRight = 0;
-let speakTotal = 0;
-let recognition = null;
-let recognizing = false;
+const listeningExercises = [
+  { es:"Me llamo Ana y soy estudiante.", en:"My name is Ana and I am a student." },
+  { es:"¿Dónde vives tú?", en:"Where do you live?" },
+  { es:"Voy a comer pizza con mi familia.", en:"I'm going to eat pizza with my family." },
+  { es:"Ayer, cené con mi hermano.", en:"Yesterday, I had dinner with my brother." },
+  { es:"No puedo ir porque no tengo coche.", en:"I can't go because I don't have a car." },
+  { es:"Mi madre sabe conducir muy bien.", en:"My mother knows how to drive very well." },
+  { es:"Este fin de semana vamos a la playa.", en:"This weekend we're going to the beach." },
+  { es:"Me gustan mucho los perros.", en:"I like dogs a lot." },
+  { es:"Estoy cansado, pero estoy feliz.", en:"I am tired, but I am happy." },
+  { es:"El próximo año va a ser diferente.", en:"Next year is going to be different." },
+  { es:"¿Para aquí o para llevar?", en:"For here or to go?" },
+  { es:"¿Qué le doy?", en:"What can I get you?" },
+  { es:"¿Ya están listos para pedir?", en:"Are you ready to order?" },
+  { es:"Les recomiendo los tacos al pastor.", en:"I recommend the pastor tacos." },
+  { es:"¿Qué desean tomar?", en:"What would you like to drink?" },
+  { es:"Una mesa para dos, por favor.", en:"A table for two, please." },
+  { es:"La cuenta, por favor.", en:"The bill, please." },
+  { es:"Sin cebolla, por favor.", en:"Without onion, please." },
+  { es:"Le doy el libro a mi hermana.", en:"I give the book to my sister." },
+  { es:"Espero que todo vaya bien.", en:"I hope everything goes well." },
+  { es:"Vamos a dar un paseo.", en:"We're going to take a walk." },
+  { es:"El banco está al lado del restaurante.", en:"The bank is next to the restaurant." },
+  { es:"Mi casa está lejos de la ciudad.", en:"My house is far from the city." },
+  { es:"El gato está debajo de la silla.", en:"The cat is under the chair." },
+  { es:"Trabajo desde las nueve hasta las cinco.", en:"I work from nine until five." },
+  { es:"Le doy propina al mesero.", en:"I give the waiter a tip." },
+  { es:"No te preocupes, yo también acabo de llegar.", en:"Don't worry, I just arrived too." },
+  { es:"¿Me puedes ayudar con el correo?", en:"Can you help me with the email?" },
+  { es:"Siempre tomo café por la mañana.", en:"I always drink coffee in the morning." },
+  { es:"Me levanto a las siete y luego me ducho.", en:"I get up at seven and then I shower." },
+  { es:"¿Cómo te sientes hoy?", en:"How do you feel today?" },
+  { es:"Los domingos nos quedamos en casa.", en:"On Sundays we stay at home." },
+  { es:"Me acuesto a las once de la noche.", en:"I go to bed at eleven at night." },
+  { es:"Por la noche ceno con mi familia.", en:"In the evening I have dinner with my family." }
+];
+// speakSentences und listeningExercises bleiben für die Dialoge in Phase 2 erhalten.
 
-function normalizeES(s){
-  return s.toLowerCase()
-    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
-    .replace(/[¿?¡!.,;:]/g,'')
-    .replace(/\s+/g,' ')
-    .trim();
-}
-
-function bestMatch(heard, accepted){
-  const h = normalizeES(heard);
-  let best = { ratio:0, target:accepted[0] };
-  accepted.forEach(a => {
-    const t = normalizeES(a);
-    if(h === t) { best = { ratio:1, target:a }; return; }
-    const hw = h.split(' '), tw = t.split(' ');
-    const matched = tw.filter(w => hw.includes(w)).length;
-    const ratio = tw.length ? matched / tw.length : 0;
-    if(ratio > best.ratio) best = { ratio, target:a };
-  });
-  return best;
-}
-
-function micIconSVG(){
-  return '<svg viewBox="0 0 24 24"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a1 1 0 0 1 2 0 7 7 0 0 1-6 6.93V21a1 1 0 0 1-2 0v-3.07A7 7 0 0 1 5 11a1 1 0 0 1 2 0 5 5 0 0 0 10 0z"/></svg>';
-}
-
-function speechAvailable(){
-  return ('webkitSpeechRecognition' in window) || ('SpeechRecognition' in window);
-}
-
-function evaluateSpeak(heard){
-  const item = speakSentences[speakIndex];
-  const fb = document.getElementById('speakFeedback');
-  const heardEl = document.getElementById('heardText');
-  if(heardEl) heardEl.textContent = heard ? '“' + heard + '”' : '';
-  if(!fb) return;
-
-  speakTotal++;
-  const m = bestMatch(heard, item.es);
-  fb.className = 'speak-feedback show';
-
-  if(m.ratio === 1){
-    speakRight++;
-    fb.classList.add('right');
-    fb.innerHTML = '✅ ¡Perfecto! <span class="speak-answer">' + m.target + '</span>';
-  } else if(m.ratio >= 0.6){
-    fb.classList.add('close');
-    fb.innerHTML = '⚠️ Casi. Se esperaba: <span class="speak-answer">' + m.target + '</span>' +
-      '<div style="margin-top:0.35rem; font-size:0.82rem;">Speech recognition can also mishear words — if you said it right, trust your ear over the transcript.</div>';
-  } else {
-    fb.classList.add('wrong');
-    fb.innerHTML = '📝 Respuesta esperada: <span class="speak-answer">' + m.target + '</span>';
-  }
-
-  const scoreEl = document.getElementById('speakScore');
-  if(scoreEl) scoreEl.textContent = speakRight + ' de ' + speakTotal + ' correctas';
-
-  const playBtn = document.getElementById('speakPlayAnswer');
-  if(playBtn) playBtn.style.display = 'inline-block';
-}
-
-let micPermissionGranted = false;
-let speechLog = [];
-let noResultTimer = null;
-let recognitionLang = 'es-MX';
-let recognitionStartedAt = null;
-let warmupTimer = null;
-
-function logSpeech(msg){
-  const stamp = new Date().toLocaleTimeString();
-  speechLog.unshift(stamp + ' — ' + msg);
-  speechLog = speechLog.slice(0, 8);
-  const el = document.getElementById('speechLog');
-  if(el) el.innerHTML = speechLog.map(l => '<div>' + l + '</div>').join('');
-}
-
-function isStandalone(){
-  return (window.navigator.standalone === true) ||
-         (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
-}
-
-// iOS often will not surface a microphone prompt for SpeechRecognition alone.
-// Explicitly requesting the audio stream first triggers the permission dialog,
-// then we release the track immediately so it does not hold the mic open.
-async function ensureMicPermission(){
-  if(micPermissionGranted) return true;
-  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
-    logSpeech('getUserMedia no disponible en este navegador.');
-    return false;
-  }
-  try{
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    stream.getTracks().forEach(t => t.stop());
-    micPermissionGranted = true;
-    logSpeech('Permiso de micrófono concedido.');
-    return true;
-  }catch(e){
-    logSpeech('Permiso denegado o no disponible: ' + (e && e.name ? e.name : e));
-    return false;
-  }
-}
-
-async function startListening(){
-  const micBtn = document.getElementById('micBtn');
-  const hint = document.getElementById('micHint');
-
-  if(!speechAvailable()){
-    if(hint) hint.textContent = 'Reconocimiento de voz no disponible — escribe tu respuesta.';
-    logSpeech('SpeechRecognition no existe en window.');
-    return;
-  }
-
-  if(recognizing && recognition){
-    try{ recognition.stop(); }catch(e){}
-    return;
-  }
-
-  // Deliberately no getUserMedia here. On iOS it seizes the audio session, and a
-  // held audio stream is a known way to leave SpeechRecognition receiving silence.
-  // SpeechRecognition requests microphone access on its own.
-
-  // Any text-to-speech still playing (or recently played) contends for the same
-  // audio session and silently kills recognition — no error, no result. Cancel it
-  // and give WebKit a moment to release the session before starting.
-  if(window.speechSynthesis && (window.speechSynthesis.speaking || window.speechSynthesis.pending)){
-    window.speechSynthesis.cancel();
-    logSpeech('TTS cancelado antes de escuchar (conflicto de audio).');
-    await new Promise(r => setTimeout(r, 350));
-  }
-
-  const Rec = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-  // Build and start synchronously inside the user gesture — iOS rejects
-  // recognition.start() if it is deferred past the tap that triggered it.
-  try{
-    recognition = new Rec();
-  }catch(e){
-    if(hint) hint.textContent = 'No se pudo crear el reconocedor.';
-    logSpeech('Constructor falló: ' + e.message);
-    return;
-  }
-
-  // Recognition dialect is its own setting: the voice you listen to should not
-  // decide which accent the recognizer expects from you.
-  recognition.lang = recognitionLang;
-  recognition.interimResults = false;
-  recognition.continuous = false;
-  // maxAlternatives above 1 is unreliable in WebKit; leave it at the default.
-
-  let gotResult = false;
-
-  recognition.onaudiostart = () => logSpeech('Audio capturado (onaudiostart).');
-  recognition.onspeechstart = () => logSpeech('Voz detectada (onspeechstart).');
-
-  recognition.onstart = () => {
-    recognizing = true;
-    gotResult = false;
-    if(micBtn) micBtn.classList.add('listening');
-    logSpeech('Reconocimiento iniciado (lang: ' + recognition.lang + ').');
-
-    // WebKit discards roughly the first couple of seconds of audio after start,
-    // so count the user in rather than letting them speak into the dead window.
-    let warmup = 2;
-    if(hint) hint.textContent = 'Espera... ' + warmup;
-    clearInterval(warmupTimer);
-    warmupTimer = setInterval(() => {
-      warmup--;
-      if(warmup > 0){
-        if(hint) hint.textContent = 'Espera... ' + warmup;
-      } else {
-        clearInterval(warmupTimer);
-        if(hint) hint.textContent = '🎤 ¡Habla ahora!';
-      }
-    }, 1000);
-
-    clearTimeout(noResultTimer);
-    noResultTimer = setTimeout(() => {
-      if(recognizing && !gotResult){
-        logSpeech('Sin resultado tras 15s — posible conflicto de sesión de audio.');
-      }
-    }, 15000);
-  };
-
-  recognition.onresult = (event) => {
-    gotResult = true;
-    clearTimeout(noResultTimer);
-    const res = event.results[0];
-    const alternatives = [];
-    for(let i = 0; i < res.length; i++) alternatives.push(res[i].transcript);
-    logSpeech('Resultado: "' + alternatives[0] + '"');
-
-    const item = speakSentences[speakIndex];
-    let bestAlt = alternatives[0], bestRatio = -1;
-    alternatives.forEach(alt => {
-      const r = bestMatch(alt, item.es).ratio;
-      if(r > bestRatio){ bestRatio = r; bestAlt = alt; }
-    });
-    evaluateSpeak(bestAlt);
-  };
-
-  recognition.onnomatch = () => {
-    logSpeech('onnomatch — no se reconoció ninguna frase.');
-    if(hint) hint.textContent = 'No se entendió. Inténtalo otra vez.';
-  };
-
-  recognition.onerror = (e) => {
-    clearTimeout(noResultTimer);
-    const code = e && e.error ? e.error : 'desconocido';
-    logSpeech('ERROR: ' + code);
-    let msg;
-    if(code === 'not-allowed' || code === 'service-not-allowed'){
-      msg = isStandalone()
-        ? 'Micrófono bloqueado. En iPhone esto suele fallar cuando la app se abre desde la pantalla de inicio — prueba abrirla en Safari.'
-        : 'Micrófono bloqueado. Permite el acceso en Ajustes → Safari → Micrófono.';
-    } else if(code === 'no-speech'){
-      msg = 'No se detectó voz. Habla más cerca del micrófono.';
-    } else if(code === 'network'){
-      msg = 'Error de red — el reconocimiento necesita conexión a internet.';
-    } else if(code === 'aborted'){
-      msg = 'Reconocimiento cancelado.';
-    } else {
-      msg = 'Error: ' + code + '. Usa el campo de texto abajo.';
-    }
-    if(hint) hint.textContent = msg;
-  };
-
-  recognition.onend = () => {
-    recognizing = false;
-    clearTimeout(noResultTimer);
-    if(micBtn) micBtn.classList.remove('listening');
-    const secs = recognitionStartedAt ? ((Date.now() - recognitionStartedAt)/1000).toFixed(1) : '?';
-    logSpeech('Reconocimiento terminado tras ' + secs + 's' + (gotResult ? '.' : ' sin resultado.'));
-    if(!gotResult && parseFloat(secs) < 3){
-      logSpeech('Terminó muy rápido — el servicio de dictado cerró la sesión de inmediato.');
-    }
-    clearInterval(warmupTimer);
-    if(hint && !gotResult){
-      hint.textContent = 'No llegó resultado. Toca otra vez y espera la cuenta antes de hablar.';
-    } else if(hint && gotResult){
-      hint.textContent = 'Toca el micrófono para hablar';
-    }
-  };
-
-  recognitionStartedAt = Date.now();
-  try{
-    recognition.start();
-  }catch(e){
-    logSpeech('start() falló: ' + e.message);
-    if(hint) hint.textContent = 'No se pudo iniciar el micrófono: ' + e.message;
-    return;
-  }
-
-  // Deliberately NOT calling getUserMedia here: holding a second audio stream
-  // while the recognizer is running can starve it of input on iOS. Permission is
-  // requested from the "Probar micrófono" button instead.
-}
-
-
-function renderSpeechDiagnostics(){
-  const el = document.getElementById('diagBody');
-  if(!el) return;
-  const rows = [];
-  const add = (label, ok, text) => rows.push(
-    '<div class="diag-row"><span>'+label+'</span><span class="'+(ok?'diag-ok':'diag-bad')+'">'+text+'</span></div>'
-  );
-
-  const hasAPI = speechAvailable();
-  add('SpeechRecognition API', hasAPI, hasAPI ? 'disponible' : 'no disponible');
-
-  const hasGUM = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
-  add('getUserMedia', hasGUM, hasGUM ? 'disponible' : 'no disponible');
-
-  const secure = window.isSecureContext;
-  add('Contexto seguro (HTTPS)', secure, secure ? 'sí' : 'no');
-
-  const standalone = isStandalone();
-  add('Modo', !standalone, standalone ? 'pantalla de inicio' : 'navegador');
-
-  add('Permiso de micrófono', micPermissionGranted, micPermissionGranted ? 'concedido' : 'aún no concedido');
-  add('Idioma de reconocimiento', true, recognitionLang);
-
-  el.innerHTML = rows.join('') +
-    '<div style="margin-top:0.7rem; font-size:0.76rem;"><strong>Si no llega ningún resultado:</strong> espera la cuenta atrás antes de hablar — WebKit descarta los primeros segundos. Evita reproducir audio justo antes de grabar; comparten la misma sesión de audio y el conflicto corta el reconocimiento sin dar error. Comprueba Ajustes → General → Teclado → Dictado y Ajustes → Safari → Micrófono. Si sigue fallando, recarga la página: la sesión de audio se reinicia.</div>' +
-    '<div style="margin-top:0.5rem; font-size:0.74rem; color:#b0553a;">Nota: «Probar micrófono» usa getUserMedia, que ocupa la sesión de audio. Si lo usas y luego falla el reconocimiento, recarga la página.</div>' +
-    '<button class="diag-test" id="micTestBtn">Probar micrófono</button>' +
-    '<div id="speechLog"></div>';
-
-  const testBtn = document.getElementById('micTestBtn');
-  if(testBtn){
-    testBtn.onclick = async () => {
-      logSpeech('Probando permiso de micrófono...');
-      const ok = await ensureMicPermission();
-      logSpeech(ok ? 'Prueba OK — el micrófono responde.' : 'Prueba fallida — sin acceso al micrófono.');
-      renderSpeechDiagnostics();
-    };
-  }
-  const logEl = document.getElementById('speechLog');
-  if(logEl) logEl.innerHTML = speechLog.map(l => '<div>' + l + '</div>').join('');
-}
-
-function renderSpeak(){
-  const wrap = document.getElementById('speakWrap');
-  if(!wrap) return;
-  wrap.innerHTML = '';
-
-  const note = document.createElement('div');
-  const standalone = isStandalone();
-  note.className = 'speak-note' + ((!speechAvailable() || standalone) ? ' show' : '');
-  if(!speechAvailable()){
-    note.textContent = 'Speech recognition isn\u2019t available in this browser. Type your answer below instead.';
-  } else if(standalone){
-    note.innerHTML = '<strong>Micrófono limitado en la pantalla de inicio.</strong> iOS suele capturar el audio pero no devolver ningún resultado cuando la app se abre desde el icono. Para hablar, abre la web en <strong>Safari</strong>. Aquí puedes escribir la respuesta.';
-  }
-  wrap.appendChild(note);
-
-  const langRow = document.createElement('div');
-  langRow.className = 'drill-setup';
-  [['México','es-MX'],['España','es-ES'],['EE.UU.','es-US']].forEach(([label, code]) => {
-    const b = document.createElement('button');
-    b.textContent = label;
-    if(recognitionLang === code) b.classList.add('on');
-    b.onclick = () => { recognitionLang = code; logSpeech('Idioma de reconocimiento: ' + code); renderSpeak(); };
-    langRow.appendChild(b);
-  });
-  wrap.appendChild(langRow);
-
-  const score = document.createElement('div');
-  score.className = 'speak-score';
-  score.id = 'speakScore';
-  score.textContent = speakTotal > 0 ? speakRight + ' de ' + speakTotal + ' correctas' : 'Di la frase en español.';
-  wrap.appendChild(score);
-
-  const item = speakSentences[speakIndex];
-
-  const card = document.createElement('div');
-  card.className = 'speak-card';
-  card.innerHTML =
-    '<div class="speak-label">Dilo en español</div>' +
-    '<div class="speak-prompt">' + item.en + '</div>';
-
-  if(speechAvailable()){
-    const micBtn = document.createElement('button');
-    micBtn.className = 'mic-btn';
-    micBtn.id = 'micBtn';
-    micBtn.innerHTML = micIconSVG();
-    micBtn.setAttribute('aria-label','Start speaking');
-    micBtn.onclick = startListening;
-    card.appendChild(micBtn);
-
-    const hint = document.createElement('div');
-    hint.className = 'mic-hint';
-    hint.id = 'micHint';
-    hint.textContent = 'Toca el micrófono para hablar';
-    card.appendChild(hint);
-  }
-
-  const heard = document.createElement('div');
-  heard.className = 'heard-text';
-  heard.id = 'heardText';
-  card.appendChild(heard);
-
-  const fallback = document.createElement('div');
-  fallback.className = 'speak-fallback';
-  const fbInput = document.createElement('input');
-  fbInput.type = 'text';
-  fbInput.placeholder = 'o escribe tu respuesta...';
-  fbInput.autocapitalize = 'none';
-  fbInput.spellcheck = false;
-  const fbBtn = document.createElement('button');
-  fbBtn.textContent = 'Comprobar';
-  fbBtn.onclick = () => { if(fbInput.value.trim()) evaluateSpeak(fbInput.value); };
-  fbInput.addEventListener('keydown', e => { if(e.key === 'Enter' && fbInput.value.trim()) evaluateSpeak(fbInput.value); });
-  fallback.appendChild(fbInput);
-  fallback.appendChild(fbBtn);
-  card.appendChild(fallback);
-
-  const fb = document.createElement('div');
-  fb.className = 'speak-feedback';
-  fb.id = 'speakFeedback';
-  card.appendChild(fb);
-
-  const actions = document.createElement('div');
-  actions.className = 'speak-actions';
-
-  const playAnswer = document.createElement('button');
-  playAnswer.id = 'speakPlayAnswer';
-  playAnswer.textContent = '🔊 Oír la respuesta';
-  playAnswer.style.display = 'none';
-  playAnswer.onclick = () => {
-    speak(item.es[0], 0.9);
-    const h = document.getElementById('micHint');
-    if(h) h.textContent = 'Tras escuchar el audio, espera un segundo antes de usar el micrófono.';
-  };
-  actions.appendChild(playAnswer);
-
-  const skipBtn = document.createElement('button');
-  skipBtn.textContent = 'Saltar';
-  skipBtn.onclick = () => { nextSpeak(); };
-  actions.appendChild(skipBtn);
-
-  const nextBtn = document.createElement('button');
-  nextBtn.className = 'primary';
-  nextBtn.textContent = 'Siguiente →';
-  nextBtn.onclick = () => { nextSpeak(); };
-  actions.appendChild(nextBtn);
-
-  card.appendChild(actions);
-  wrap.appendChild(card);
-
-  const diag = document.createElement('details');
-  diag.className = 'speech-diag';
-  diag.innerHTML = '<summary>Diagnóstico del micrófono</summary><div class="diag-body" id="diagBody"></div>';
-  wrap.appendChild(diag);
-  renderSpeechDiagnostics();
-}
-
-function nextSpeak(){
-  speakIndex = Math.floor(Math.random() * speakSentences.length);
-  renderSpeak();
-}
-
-/* ---------- TABS ---------- */
-const tabVocabBtn = document.getElementById('tabVocabBtn');
-const tabListenBtn = document.getElementById('tabListenBtn');
-const tabCardsBtn = document.getElementById('tabCardsBtn');
-const tabDrillBtn = document.getElementById('tabDrillBtn');
-const tabVocab = document.getElementById('tabVocab');
-const tabListen = document.getElementById('tabListen');
-const tabCards = document.getElementById('tabCards');
-const tabDrill = document.getElementById('tabDrill');
-const tabSpeakBtn = document.getElementById('tabSpeakBtn');
-const tabSpeak = document.getElementById('tabSpeak');
-
-function setActiveTab(btn, view){
-  [tabVocabBtn, tabListenBtn, tabCardsBtn, tabDrillBtn, tabSpeakBtn].forEach(b => b.classList.remove('active'));
-  [tabVocab, tabListen, tabCards, tabDrill, tabSpeak].forEach(v => v.classList.remove('active'));
-  btn.classList.add('active');
-  view.classList.add('active');
-}
-
-tabVocabBtn.onclick = () => setActiveTab(tabVocabBtn, tabVocab);
-tabListenBtn.onclick = () => setActiveTab(tabListenBtn, tabListen);
-// Switching tabs must not rebuild these views: the hidden panel keeps its DOM,
-// so a re-render would throw away the current exercise, anything typed, and the
-// feedback already on screen. Only build them the first time they are opened.
-let speakInitialized = false;
-let drillInitialized = false;
-
-tabSpeakBtn.onclick = () => {
-  setActiveTab(tabSpeakBtn, tabSpeak);
-  if(!speakInitialized){
-    nextSpeak();
-    speakInitialized = true;
-  }
-};
-tabDrillBtn.onclick = async () => {
-  setActiveTab(tabDrillBtn, tabDrill);
-  if(!drillProgressLoaded) await loadDrillProgress();
-  if(!drillInitialized){
-    nextDrill();
-    drillInitialized = true;
-  }
-};
-tabCardsBtn.onclick = async () => {
-  setActiveTab(tabCardsBtn, tabCards);
-  if(!progressLoaded) await loadProgress();
-  if(fcAllWords.length === 0){
-    // Resume the saved deck if there is one; otherwise deal a fresh one.
-    if(pendingSession && restoreSession(pendingSession)){
-      pendingSession = null;
-      renderFc();
-    } else {
-      startFcDeck('all');
-    }
-  }
-};
-
-// Kick off progress load in the background as soon as the page opens,
-// so it's likely ready by the time the user visits the Tarjetas tab.
-loadProgress();
-
-// Safety net: also try to save right before the page/tab is hidden or closed.
-document.addEventListener('visibilitychange', () => {
-  if(document.visibilityState === 'hidden' && Object.keys(missCounts).length > 0){
-    saveProgress(false);
-  }
-});
-window.addEventListener('pagehide', () => {
-  if(Object.keys(missCounts).length > 0) saveProgress(false);
-});
-
-renderVocab();
-renderListening();
 </script>
-
-<div class="update-banner" id="updateBanner">
-  Nueva versión disponible.
-  <button id="updateBtn">Actualizar</button>
-</div>
-
 <script>
-if('serviceWorker' in navigator){
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('service-worker.js', { updateViaCache: 'none' })
-      .then(reg => {
-        // Check for a new version whenever the app is opened or brought to the foreground.
-        reg.update();
-        document.addEventListener('visibilitychange', () => {
-          if(document.visibilityState === 'visible') reg.update();
-        });
+'use strict';
 
-        reg.addEventListener('updatefound', () => {
-          const newWorker = reg.installing;
-          if(!newWorker) return;
-          newWorker.addEventListener('statechange', () => {
-            if(newWorker.state === 'installed' && navigator.serviceWorker.controller){
-              const banner = document.getElementById('updateBanner');
-              if(banner) banner.classList.add('show');
-              const btn = document.getElementById('updateBtn');
-              if(btn) btn.onclick = () => {
-                newWorker.postMessage('SKIP_WAITING');
-                window.location.reload();
-              };
-            }
-          });
-        });
-      })
-      .catch(err => console.warn('SW registration failed:', err));
+/* ================= Hilfsfunktionen ================= */
+const DAY = 86400000, MIN = 60000;
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm = s => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+const pad = n => String(n).padStart(2, '0');
+function todayStr(t = Date.now()){ const d = new Date(t); return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`; }
+function startOfDay(t = Date.now()){ const d = new Date(t); d.setHours(0,0,0,0); return d.getTime(); }
+function shuffle(a){ a = a.slice(); for(let i = a.length-1; i > 0; i--){ const j = Math.floor(Math.random()*(i+1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+const icon = (id, cls = '') => `<svg class="ic ${cls}" aria-hidden="true"><use href="#${id}"></use></svg>`;
+const catLabel = cat => categoryShortLabels[cat] || cat;
+const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`;
 
-    let refreshing = false;
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
-      if(refreshing) return;
-      refreshing = true;
-      window.location.reload();
+/* ================= Tarjetas (Datenbasis) ================= */
+let _cards = null;
+function allCards(){
+  if(_cards) return _cards;
+  const seen = new Set(); _cards = [];
+  for(const [cat, words] of Object.entries(data)){
+    for(const [es, en, g] of words){
+      const key = displayForm(es, g);   // gleicher Schlüssel wie im alten Fortschritt
+      if(seen.has(key)) continue;
+      seen.add(key);
+      _cards.push({ key, raw: es, en, gender: g, cat });
+    }
+  }
+  return _cards;
+}
+const cardsIn = cat => cat === 'all' ? allCards() : allCards().filter(c => c.cat === cat);
+// Reihenfolge, in der neue Karten eingeführt werden: Rettungssätze zuerst
+const NEW_ORDER = ['Survival phrases','Verbs (infinitive)','Phrases & connectors','Question words','Nouns','Adjectives','Reflexive verbs','Pronouns','Prepositions'];
+const newRank = c => { const i = NEW_ORDER.indexOf(c.cat); return i < 0 ? NEW_ORDER.length : i; };
+
+/* ================= Speicher ================= */
+const STORE_KEY = 'srs-v1';
+function defaultState(){
+  return { cards:{}, day:{ date: todayStr(), newDone:0, reviewsDone:0 }, streak:{ last:null, count:0 },
+           settings:{ newPerDay:20, front:'en', theme:'auto', voice:null, autoplay:true }, migrated:false };
+}
+function loadState(){
+  const d = defaultState();
+  try{
+    const raw = localStorage.getItem(STORE_KEY);
+    if(raw){
+      const s = JSON.parse(raw);
+      return { ...d, ...s, cards: s.cards || {}, day: s.day || d.day, streak: s.streak || d.streak,
+               settings: { ...d.settings, ...(s.settings || {}) } };
+    }
+  }catch(e){}
+  return d;
+}
+let S = loadState();
+function saveState(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(S)); }catch(e){ toast('No se pudo guardar el progreso en este navegador.'); } }
+function rollDay(){ const t = todayStr(); if(S.day.date !== t) S.day = { date:t, newDone:0, reviewsDone:0 }; }
+
+// Alter Fortschritt (Fehlerzähler bis v23) wird einmalig übernommen:
+// Wörter mit Fehlern kommen heute als Wiederholung, schwierige mit niedrigerer Leichtigkeit.
+function migrateOld(){
+  if(S.migrated) return 0;
+  let n = 0;
+  try{
+    const raw = localStorage.getItem('flashcard-progress');
+    if(raw){
+      const mc = (JSON.parse(raw) || {}).missCounts || {};
+      const keys = new Set(allCards().map(c => c.key));
+      const today = startOfDay();
+      for(const [k, v] of Object.entries(mc)){
+        if(!keys.has(k) || !(v > 0) || S.cards[k]) continue;
+        S.cards[k] = { state:'review', step:0, ivl:1, ease:Math.max(1.3, 2.5 - 0.15*Math.min(v, 5)), reps:v, lapses:v, due:today };
+        n++;
+      }
+    }
+  }catch(e){}
+  S.migrated = true; saveState();
+  return n;
+}
+
+/* ================= Wiederholungsplanung (SM-2 mit Lernschritten) ================= */
+const LEARN_STEPS = [1, 10], RELEARN_STEPS = [10];   // Minuten
+function schedule(card, grade, now = Date.now()){
+  const c = card ? { ...card } : { state:'new', step:0, ivl:0, ease:2.5, reps:0, lapses:0, due:now };
+  const sod = startOfDay(now);
+  c.reps = (c.reps || 0) + 1;
+  if(c.state === 'new' || c.state === 'learning'){
+    if(c.state === 'new'){ c.state = 'learning'; c.step = 0; }
+    const st = LEARN_STEPS;
+    if(grade === 1){ c.step = 0; c.due = now + st[0]*MIN; }
+    else if(grade === 2){ const a = st[c.step], b = st[c.step + 1] ?? a; c.due = now + Math.round((a + b) / 2)*MIN; }
+    else if(grade === 3){
+      c.step += 1;
+      if(c.step >= st.length){ c.state = 'review'; c.step = 0; c.ivl = 1; c.due = sod + DAY; }
+      else c.due = now + st[c.step]*MIN;
+    } else { c.state = 'review'; c.step = 0; c.ivl = 4; c.due = sod + 4*DAY; }
+  } else if(c.state === 'review'){
+    if(grade === 1){
+      c.lapses = (c.lapses || 0) + 1;
+      c.ease = Math.max(1.3, c.ease - 0.2);
+      c.ivl = Math.max(1, Math.round(c.ivl * 0.5));
+      c.state = 'relearning'; c.step = 0; c.due = now + RELEARN_STEPS[0]*MIN;
+    } else {
+      const hardIvl = Math.max(c.ivl + 1, Math.round(c.ivl * 1.2));
+      const goodIvl = Math.max(hardIvl + 1, Math.round(c.ivl * c.ease));
+      const easyIvl = Math.max(goodIvl + 1, Math.round(c.ivl * c.ease * 1.3));
+      if(grade === 2){ c.ivl = hardIvl; c.ease = Math.max(1.3, c.ease - 0.15); }
+      else if(grade === 3){ c.ivl = goodIvl; }
+      else { c.ivl = easyIvl; c.ease = c.ease + 0.15; }
+      c.due = sod + c.ivl*DAY;
+    }
+  } else {   // relearning
+    if(grade === 1){ c.step = 0; c.due = now + RELEARN_STEPS[0]*MIN; }
+    else { c.state = 'review'; c.step = 0; if(grade === 4) c.ivl += 1; c.due = sod + c.ivl*DAY; }
+  }
+  return c;
+}
+function fmtDays(d){
+  if(d <= 1) return '1 día';
+  if(d < 14) return `${d} días`;
+  if(d < 60) return `${Math.round(d/7)} sem.`;
+  if(d < 365) return `${Math.round(d/30)} meses`;
+  return `${(d/365).toFixed(1)} años`;
+}
+function previewLabel(card, grade, now = Date.now()){
+  const n = schedule(card, grade, now);
+  if(n.state === 'review') return fmtDays(n.ivl);
+  const m = Math.max(1, Math.round((n.due - now) / MIN));
+  return m < 60 ? `${m} min` : `${Math.round(m/60)} h`;
+}
+function stateOf(key){
+  const c = S.cards[key];
+  if(!c) return 'new';
+  if(c.state === 'learning' || c.state === 'relearning') return 'learning';
+  return c.ivl >= 21 ? 'mature' : 'review';
+}
+function todayCounts(cat = 'all'){
+  rollDay();
+  const eod = startOfDay() + DAY;
+  let learning = 0, reviews = 0, unseen = 0;
+  for(const c of cardsIn(cat)){
+    const s = S.cards[c.key];
+    if(!s) unseen++;
+    else if(s.state === 'learning' || s.state === 'relearning') learning++;
+    else if(s.due < eod) reviews++;
+  }
+  const newLeft = Math.max(0, S.settings.newPerDay - S.day.newDone);
+  return { learning, reviews, news: Math.min(unseen, newLeft) };
+}
+function currentStreak(){
+  if(!S.streak.last) return 0;
+  const t = todayStr(), y = todayStr(Date.now() - DAY);
+  return (S.streak.last === t || S.streak.last === y) ? S.streak.count : 0;
+}
+function bumpStreak(){
+  const t = todayStr(); if(S.streak.last === t) return;
+  const y = todayStr(Date.now() - DAY);
+  S.streak.count = S.streak.last === y ? S.streak.count + 1 : 1;
+  S.streak.last = t;
+}
+
+/* ================= Sitzung ================= */
+let session = null, flipped = false;
+function startSession(mode = 'normal', cat = 'all'){
+  rollDay();
+  const cards = cardsIn(cat);
+  const eod = startOfDay() + DAY;
+  session = { mode, cat, history:[], done:0, current:null, src:null };
+  if(mode === 'normal'){
+    session.reviews = shuffle(cards.filter(c => { const s = S.cards[c.key]; return s && s.state === 'review' && s.due < eod; }).map(c => c.key));
+    const newLeft = Math.max(0, S.settings.newPerDay - S.day.newDone);
+    session.news = cards.filter(c => !S.cards[c.key]).sort((a, b) => newRank(a) - newRank(b)).slice(0, newLeft).map(c => c.key);
+    session.learning = new Set(cards.filter(c => { const s = S.cards[c.key]; return s && (s.state === 'learning' || s.state === 'relearning'); }).map(c => c.key));
+  } else {
+    let list = [];
+    if(mode === 'hard') list = cards.filter(c => (S.cards[c.key]?.lapses || 0) >= 2);
+    if(mode === 'newest') list = cards.slice().sort((a, b) => addedDate(b.raw).localeCompare(addedDate(a.raw))).slice(0, 50);
+    session.cram = shuffle(list.map(c => c.key));
+  }
+  flipped = false;
+  pickNext();
+}
+function pickNext(){
+  const s = session, now = Date.now();
+  if(s.mode !== 'normal'){ s.current = s.cram[0] || null; s.src = 'cram'; return; }
+  const learn = [...s.learning].map(k => ({ k, due: S.cards[k]?.due ?? 0 })).sort((a, b) => a.due - b.due);
+  if(learn.length && learn[0].due <= now){ s.current = learn[0].k; s.src = 'learn'; return; }
+  const wantNew = s.news.length && (!s.reviews.length || s.done % 4 === 3);   // jede 4. Karte neu
+  if(wantNew){ s.current = s.news[0]; s.src = 'new'; return; }
+  if(s.reviews.length){ s.current = s.reviews[0]; s.src = 'review'; return; }
+  if(learn.length){ s.current = learn[0].k; s.src = 'learn'; return; }   // vorziehen statt warten
+  s.current = null; s.src = null;
+}
+function remaining(){
+  const s = session;
+  if(!s) return { news:0, learning:0, reviews:0 };
+  if(s.mode !== 'normal') return { news:0, learning:0, reviews:s.cram.length };
+  return { news:s.news.length, learning:s.learning.size, reviews:s.reviews.length };
+}
+function answer(grade){
+  const s = session, k = s && s.current; if(!k) return;
+  rollDay();
+  s.history.push({ k, src:s.src, card: S.cards[k] ? { ...S.cards[k] } : null, day:{ ...S.day }, streak:{ ...S.streak },
+    reviews: s.reviews ? s.reviews.slice() : null, news: s.news ? s.news.slice() : null,
+    learning: s.learning ? [...s.learning] : null, cram: s.cram ? s.cram.slice() : null, done:s.done });
+  const wasNew = !S.cards[k];
+  const nc = schedule(S.cards[k], grade, Date.now());
+  S.cards[k] = nc;
+  if(wasNew) S.day.newDone++; else S.day.reviewsDone++;
+  bumpStreak();
+  if(s.mode === 'normal'){
+    if(s.src === 'new') s.news.shift();
+    else if(s.src === 'review') s.reviews.shift();
+    if(nc.state === 'learning' || nc.state === 'relearning') s.learning.add(k); else s.learning.delete(k);
+  } else {
+    s.cram.shift();
+    if(grade === 1) s.cram.push(k);
+  }
+  s.done++;
+  saveState();
+  flipped = false;
+  pickNext();
+}
+function undo(){
+  const s = session, h = s && s.history.pop(); if(!h) return;
+  if(h.card) S.cards[h.k] = h.card; else delete S.cards[h.k];
+  S.day = h.day; S.streak = h.streak;
+  if(s.mode === 'normal'){ s.reviews = h.reviews; s.news = h.news; s.learning = new Set(h.learning); }
+  else s.cram = h.cram;
+  s.done = h.done; s.current = h.k; s.src = h.src;
+  flipped = false; saveState();
+}
+
+/* ================= Stimme ================= */
+let voices = [];
+function loadVoices(){
+  if(!('speechSynthesis' in window)) return;
+  voices = speechSynthesis.getVoices().filter(v => /^es/i.test(v.lang));
+  fillVoiceSelect();
+}
+function pickVoice(){
+  if(!voices.length) return null;
+  if(S.settings.voice){ const v = voices.find(v => v.name === S.settings.voice); if(v) return v; }
+  return voices.find(v => /paulina/i.test(v.name)) || voices.find(v => v.lang === 'es-MX')
+      || voices.find(v => v.lang === 'es-US') || voices.find(v => /m[oó]nica/i.test(v.name)) || voices[0];
+}
+function speak(text){
+  if(!('speechSynthesis' in window) || !text) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  const v = pickVoice(); if(v){ u.voice = v; u.lang = v.lang; } else u.lang = 'es-MX';
+  u.rate = 0.92;
+  speechSynthesis.speak(u);
+}
+
+/* ================= Verbanalyse ================= */
+const PERSONS = ['yo','tú','él, ella, usted','nosotros','vosotros','ellos, ustedes'];
+const REFL = ['me','te','se','nos','os','se'];
+function regularForms(inf){
+  const end = inf.slice(-2), stem = inf.slice(0, -2);
+  const E = { ar:[['o','as','a','amos','áis','an'],['é','aste','ó','amos','asteis','aron']],
+              er:[['o','es','e','emos','éis','en'],['í','iste','ió','imos','isteis','ieron']],
+              ir:[['o','es','e','imos','ís','en'],['í','iste','ió','imos','isteis','ieron']] };
+  if(!E[end]) return null;
+  return { stem, pres: E[end][0].map(e => stem + e), pret: E[end][1].map(e => stem + e) };
+}
+function verbInfo(inf){
+  const reflexive = /se$/.test(inf) && !/\s/.test(inf);
+  const base = reflexive ? inf.slice(0, -2) : inf;
+  const conj = conjugate(base), reg = regularForms(base);
+  if(!conj || !reg) return null;
+  const PEOPLE = [0,1,2,3,5];   // vosotros zählt für die Einordnung nicht (Lateinamerika)
+  const diff = (a, b) => PEOPLE.filter(i => norm(a[i]) !== norm(b[i]));
+  const inStem = (a, b, i) => { const x = norm(a[i]), y = norm(b[i]); let p = 0; while(p < x.length && p < y.length && x[p] === y[p]) p++; return p < reg.stem.length; };
+  const pd = diff(conj.pres, reg.pres), td = diff(conj.pret, reg.pret);
+  let presType = null, pretType = null;
+  if(pd.length){
+    const set = pd.join(',');
+    if(set === '0') presType = 'yo';
+    else if(set === '0,1,2,5' && [1,2,5].every(i => inStem(conj.pres, reg.pres, i))) presType = 'bota';
+    else presType = 'irregular';
+  }
+  if(td.length){
+    const set = td.join(',');
+    if(/e$/.test(conj.pret[0]) && /o$/.test(conj.pret[2])) pretType = 'fuerte';
+    else if(set === '0') pretType = 'ortografia';
+    else if(set === '2,5') pretType = 'tercera';
+    else pretType = 'irregular';
+  }
+  return { inf, base, reflexive, conj, reg, presType, pretType };
+}
+const PRES_TAG = { bota:['Verbo bota','tag-bota'], yo:['Yo irregular','tag-yo'], irregular:['Irregular','tag-irr'] };
+const PRET_TAG = { fuerte:['Pretérito fuerte','tag-fuerte'], tercera:['Cambia en él y ellos','tag-bota'], ortografia:['Ortografía en yo','tag-yo'], irregular:['Pretérito irregular','tag-irr'] };
+const EXPLAIN = {
+  bota:'La raíz cambia en todas las formas menos nosotros y vosotros. Mira la tabla: las casillas que cambian dibujan una bota.',
+  yo:'Solo la forma de yo es irregular. Las demás siguen la regla.',
+  fuerte:'Pretérito fuerte: raíz propia y siempre las mismas terminaciones, <span class="nw">-e, -iste, -o, -imos, -ieron</span>. Sin acentos.',
+  tercera:'La raíz cambia solo en él / ella y en ellos.',
+  ortografia:'Solo cambia la escritura en yo, para conservar el sonido.',
+  irregular:'Estas formas hay que aprenderlas de memoria.'
+};
+const _vinfo = new Map();
+function info(inf){ if(!_vinfo.has(inf)) _vinfo.set(inf, verbInfo(inf)); return _vinfo.get(inf); }
+let _verbs = null;
+function verbList(){
+  if(_verbs) return _verbs;
+  const seen = new Set(); _verbs = [];
+  (data['Verbs (infinitive)'] || []).forEach(([es, en]) => { if(!seen.has(es) && info(es)){ seen.add(es); _verbs.push({ inf:es, en }); } });
+  (data['Reflexive verbs'] || []).forEach(([es, en]) => {
+    if(/se$/.test(es) && !/\s/.test(es) && !seen.has(es) && info(es)){ seen.add(es); _verbs.push({ inf:es, en: en.split(' — ')[0] }); }
+  });
+  return _verbs;
+}
+let _forms = null;
+function formIndex(){
+  if(_forms) return _forms;
+  _forms = new Map();
+  const add = (form, hit) => { const k = norm(form); if(!_forms.has(k)) _forms.set(k, []); _forms.get(k).push(hit); };
+  for(const v of verbList()){
+    const i = info(v.inf);
+    for(const tense of ['pres','pret']) i.conj[tense].forEach((f, p) => {
+      add(f, { inf:v.inf, tense, p, form: i.reflexive ? `${REFL[p]} ${f}` : f });
+      if(i.reflexive) add(`${REFL[p]} ${f}`, { inf:v.inf, tense, p, form:`${REFL[p]} ${f}` });
     });
+  }
+  return _forms;
+}
+function markDiff(actual, regular){
+  if(!regular || actual === regular) return esc(actual);
+  let p = 0; while(p < actual.length && p < regular.length && actual[p] === regular[p]) p++;
+  let s = 0; while(s < actual.length - p && s < regular.length - p && actual[actual.length-1-s] === regular[regular.length-1-s]) s++;
+  let mid = actual.slice(p, actual.length - s);
+  const regMid = regular.slice(p, regular.length - s);
+  if(regMid === '' && mid.length === 1){
+    if(/[iu]/.test(mid) && s > 0 && /[eo]/.test(actual[actual.length - s])){ s -= 1; mid = actual.slice(p, actual.length - s); }
+    else if(mid === 'e' && p > 0 && actual[p - 1] === 'u'){ p -= 1; mid = actual.slice(p, actual.length - s); }
+  }
+  if(!mid) return esc(actual);
+  return esc(actual.slice(0, p)) + `<mark class="chg">${esc(mid)}</mark>` + esc(actual.slice(actual.length - s));
+}
+function tableHTML(i, tense){
+  const forms = i.conj[tense], reg = i.reg[tense];
+  const strong = tense === 'pret' && i.pretType === 'fuerte' ? forms[0].slice(0, -1) : null;
+  return '<div class="conj">' + [0,3,1,4,2,5].map(p => {
+    const f = forms[p], r = reg[p];
+    const changed = norm(f) !== norm(r);
+    let html = strong && f.startsWith(strong)
+      ? `<mark class="chg">${esc(strong)}</mark><mark class="end">${esc(f.slice(strong.length))}</mark>`
+      : markDiff(f, r);
+    const full = i.reflexive ? `${REFL[p]} ${f}` : f;
+    if(i.reflexive) html = `<span class="refl">${REFL[p]}</span> ${html}`;
+    return `<button class="cell${changed ? ' chg' : ''}${p === 4 ? ' vos' : ''}" data-say="${esc(full)}">`
+         + `<small>${PERSONS[p]}${p === 4 ? ' (España)' : ''}</small><span class="f">${html}</span></button>`;
+  }).join('') + '</div>';
+}
+function tagsHTML(i){
+  const t = [i.presType && PRES_TAG[i.presType], i.pretType && PRET_TAG[i.pretType]].filter(Boolean);
+  return t.length ? `<div class="tags">${t.map(([l, c]) => `<span class="tag ${c}">${l}</span>`).join('')}</div>` : '';
+}
+
+/* ================= Ajolote und Kanal ================= */
+const GILL = 'M0 0 C -10 -9, -38 -15, -50 -7 C -56 -1, -48 8, -32 8 C -18 8, -7 4, 0 0 Z';
+const VEIN = 'M-6 0 C -18 -2, -32 -3, -44 -2';
+const gills = () => [-30, -3, 24].map(r => `<g transform="rotate(${r})"><path class="a-gill" d="${GILL}"/><path class="a-vein" d="${VEIN}"/></g>`).join('');
+function ajoloteSVG(mood = 'normal', cls = ''){
+  const alt = mood === 'happy' ? 'Un ajolote feliz' : mood === 'sleepy' ? 'Un ajolote dormido' : 'Un ajolote sonriente';
+  return `<svg class="ajolote ${cls}" data-mood="${mood}" viewBox="0 18 240 166" role="img" aria-label="${alt}">
+  <g class="sway-l" transform="translate(66 92)">${gills()}</g>
+  <g class="sway-r" transform="translate(174 92) scale(-1 1)">${gills()}</g>
+  <path class="a-tail" d="M160 144 C 188 136, 214 138, 228 149 C 214 160, 190 168, 160 162 Z"/>
+  <ellipse class="a-body" cx="120" cy="150" rx="50" ry="31"/>
+  <ellipse class="a-arm" cx="86" cy="170" rx="12" ry="7"/>
+  <ellipse class="a-arm" cx="154" cy="170" rx="12" ry="7"/>
+  <ellipse class="a-head" cx="120" cy="96" rx="62" ry="48"/>
+  <ellipse class="a-shine" cx="100" cy="66" rx="27" ry="9"/>
+  <circle class="a-spot" cx="157" cy="70" r="3.5"/><circle class="a-spot" cx="166" cy="83" r="2.5"/><circle class="a-spot" cx="81" cy="69" r="2.5"/>
+  <g class="eyes eyes-normal"><circle class="a-eye" cx="98" cy="97" r="7.5"/><circle class="a-eye" cx="142" cy="97" r="7.5"/><circle class="a-glint" cx="100.6" cy="94.2" r="2.4"/><circle class="a-glint" cx="144.6" cy="94.2" r="2.4"/></g>
+  <g class="eyes eyes-happy"><path class="a-line" d="M90 100 Q98 89 106 100"/><path class="a-line" d="M134 100 Q142 89 150 100"/></g>
+  <g class="eyes eyes-sleepy"><path class="a-line" d="M90 97 Q98 102 106 97"/><path class="a-line" d="M134 97 Q142 102 150 97"/><text class="a-z" x="172" y="56">z</text><text class="a-z" x="188" y="38">z</text></g>
+  <ellipse class="a-cheek" cx="84" cy="112" rx="10.5" ry="5.5"/><ellipse class="a-cheek" cx="156" cy="112" rx="10.5" ry="5.5"/>
+  <path class="a-line" d="M108 113 Q120 124 132 113"/>
+  <g class="sparkles"><path transform="translate(36 40)" d="M0 -10 L2.6 -2.6 L10 0 L2.6 2.6 L0 10 L-2.6 2.6 L-10 0 L-2.6 -2.6 Z"/><path transform="translate(206 58)" d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z"/><path transform="translate(26 128)" d="M0 -7 L1.8 -1.8 L7 0 L1.8 1.8 L0 7 L-1.8 1.8 L-7 0 L-1.8 -1.8 Z"/></g>
+</svg>`;
+}
+const boatX = p => 14 + Math.round(Math.max(0, Math.min(1, p)) * 232);
+function canalSVG(p){
+  return `<svg class="canal" viewBox="0 0 320 70" aria-hidden="true">
+  <path class="c-water2" d="M0 44 Q 20 38 40 44 T 80 44 T 120 44 T 160 44 T 200 44 T 240 44 T 280 44 T 320 44 V70 H0 Z"/>
+  <path class="c-water" d="M0 50 Q 20 45 40 50 T 80 50 T 120 50 T 160 50 T 200 50 T 240 50 T 280 50 T 320 50 V70 H0 Z"/>
+  <use href="#flor" x="284" y="18" width="30" height="30"/>
+  <g class="c-boat" style="transform:translateX(${boatX(p)}px)">
+    <path class="b-hull" d="M0 40 L50 40 L43 51 L7 51 Z"/>
+    <rect class="b-arch" x="3" y="16" width="44" height="15" rx="5"/>
+    <rect class="b-p1" x="7" y="19.5" width="10" height="8" rx="2"/><rect class="b-p2" x="20" y="19.5" width="10" height="8" rx="2"/><rect class="b-p3" x="33" y="19.5" width="10" height="8" rx="2"/>
+    <rect class="b-post" x="6" y="30" width="3.2" height="10"/><rect class="b-post" x="40.8" y="30" width="3.2" height="10"/>
+  </g>
+</svg>`;
+}
+
+/* ================= Ansicht: Hoy ================= */
+let firstHoy = true, lastP = 0;
+function survivalOfDay(){
+  const list = data['Survival phrases'] || [];
+  if(!list.length) return null;
+  const [es, en] = list[Math.floor(startOfDay() / DAY) % list.length];
+  return { es, en };
+}
+function renderHoy(){
+  const v = $('#view-hoy');
+  const c = todayCounts('all');
+  const rest = c.learning + c.reviews + c.news;
+  const done = S.day.newDone + S.day.reviewsDone;
+  const total = done + rest;
+  const p = total ? done / total : 0;
+  const h = new Date().getHours();
+  const greet = h < 12 ? 'Buenos días' : h < 19 ? 'Buenas tardes' : 'Buenas noches';
+  const fecha = new Date().toLocaleDateString('es-MX', { weekday:'long', day:'numeric', month:'long' });
+  const streak = currentStreak();
+  const lost = S.streak.count > 0 && streak === 0 && done === 0;
+  const running = session && session.mode === 'normal' && session.current;
+  const repasos = c.reviews + c.learning;
+  let lede;
+  if(rest === 0) lede = done ? 'Por hoy ya está todo. ¡Bien hecho!' : 'Hoy no te toca nada. Vuelve mañana.';
+  else {
+    const parts = [];
+    if(repasos) parts.push(plural(repasos, 'repaso', 'repasos'));
+    if(c.news) parts.push(plural(c.news, 'palabra nueva', 'palabras nuevas'));
+    lede = (lost ? 'Te extrañé. ' : '') + `Hoy te tocan ${parts.join(' y ')}.`;
+  }
+  const mood = rest === 0 && done ? 'happy' : lost ? 'sleepy' : 'normal';
+  const fr = survivalOfDay();
+  const flowers = Math.min(streak, 7);
+  v.innerHTML = `
+    <header class="hoy-head">
+      <div><p class="fecha">${esc(fecha)}</p><h1 class="greet">${greet}</h1></div>
+      <button class="icon-btn" data-act="settings" aria-label="Ajustes">${icon('i-ajustes')}</button>
+    </header>
+    <p class="lede">${lede}</p>
+    <div class="lago">
+      ${ajoloteSVG(mood, firstHoy ? 'enter' : '')}
+      ${canalSVG(firstHoy ? p : lastP)}
+      ${total ? `<p class="canal-cap">${done} de ${total} hechas hoy</p>` : ''}
+    </div>
+    ${rest ? `<button class="btn-go" data-act="go">${running ? 'Seguir' : 'Empezar'}</button>`
+           : `<button class="btn-soft" data-act="hard">Practicar las difíciles</button>`}
+    ${streak ? `<div class="racha"><span class="flores">${'<svg><use href="#flor"></use></svg>'.repeat(flowers)}</span>${plural(streak, 'día seguido', 'días seguidos')}</div>` : ''}
+    ${fr ? `<section class="frase"><div><h2>Frase del día</h2><p class="frase-es">${esc(fr.es)}</p><p class="frase-en">${esc(fr.en)}</p></div>
+      <button class="play" data-say="${esc(fr.es)}" aria-label="Escuchar la frase">${icon('i-play')}</button></section>` : ''}`;
+  if(!firstHoy){
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      const b = $('.c-boat', v); if(b) b.style.transform = `translateX(${boatX(p)}px)`;
+    }));
+  }
+  firstHoy = false; lastP = p;
+}
+
+/* ================= Ansicht: Tarjetas ================= */
+let cardCat = 'all', missOpen = false;
+const cardByKey = k => allCards().find(c => c.key === k);
+function genderPill(c){
+  if(!c.gender) return '';
+  return c.gender === 'm' ? '<span class="gp gp-m">masc.</span>' : '<span class="gp gp-f">fem.</span>';
+}
+function chipsHTML(sel){
+  const cats = ['all', ...Object.keys(data)];
+  return cats.map(c => `<button class="chip" data-cat="${esc(c)}" aria-pressed="${c === sel}">${c === 'all' ? 'Todo' : esc(catLabel(c))}</button>`).join('');
+}
+function renderTarjetas(){
+  const v = $('#view-tarjetas');
+  if(session && session.current){ v.innerHTML = sessionHTML(); return; }
+  if(session && session.done){ v.innerHTML = doneHTML(); return; }
+  v.innerHTML = idleHTML();
+}
+function sessionHTML(){
+  const c = cardByKey(session.current);
+  if(!c){ answerSkip(); return idleHTML(); }
+  const r = remaining();
+  const enFirst = S.settings.front === 'en';
+  const front = enFirst ? esc(c.en) : esc(c.key);
+  const backBig = enFirst ? esc(c.key) : esc(c.en);
+  const backSmall = enFirst ? esc(c.en) : esc(c.key);
+  const card = S.cards[c.key];
+  const counts = session.mode === 'normal'
+    ? `<span class="n-new"><b>${r.news}</b><small>nuevas</small></span><span class="n-learn"><b>${r.learning}</b><small>aprendiendo</small></span><span class="n-rev"><b>${r.reviews}</b><small>repaso</small></span>`
+    : `<span class="n-rev"><b>${r.reviews}</b><small>${r.reviews === 1 ? 'tarjeta' : 'tarjetas'}</small></span>`;
+  return `
+    <div class="sess-top">
+      <button class="btn-text" data-act="end">Terminar</button>
+      <button class="btn-text" data-act="undo" ${session.history.length ? '' : 'disabled'}>Deshacer</button>
+    </div>
+    <div class="counts" aria-label="Pendientes">${counts}</div>
+    <button class="flash${flipped ? ' flipped' : ''}" data-act="flip" aria-label="${flipped ? 'Respuesta' : 'Mostrar respuesta'}">
+      <span class="flash-inner">
+        <span class="face front"><span class="flash-cat">${esc(catLabel(c.cat))}</span><span class="flash-big">${front}</span><span class="flash-hint">Piénsalo y toca para ver</span></span>
+        <span class="face back"><span class="flash-cat">${esc(catLabel(c.cat))}</span><span class="flash-big">${backBig}</span>${genderPill(c)}<span class="flash-small">${backSmall}</span></span>
+      </span>
+    </button>
+    <div class="below">
+      ${flipped ? `<div class="grades">
+        ${[[1,'Otra vez'],[2,'Difícil'],[3,'Bien'],[4,'Fácil']].map(([g, l]) =>
+          `<button class="grade g${g}" data-grade="${g}"><span>${l}</span><small>${previewLabel(card, g)}</small></button>`).join('')}
+        </div>
+        <p style="text-align:center;margin:.9rem 0 0"><button class="play" data-say="${esc(c.key)}" aria-label="Escuchar" style="display:inline-grid">${icon('i-play')}</button></p>`
+      : `<button class="btn-go" data-act="flip">Mostrar respuesta</button>`}
+    </div>`;
+}
+function answerSkip(){ if(session){ session.current = null; } }
+function doneHTML(){
+  const n = session.done;
+  const hard = cardsIn('all').filter(c => (S.cards[c.key]?.lapses || 0) >= 2).length;
+  return `<div class="done">
+    ${ajoloteSVG('happy')}
+    <h1>¡Listo!</h1>
+    <p>${n === 1 ? 'Repasaste 1 tarjeta.' : `Repasaste ${n} tarjetas.`} ${currentStreak() > 1 ? `Llevas ${currentStreak()} días seguidos.` : ''}</p>
+    <button class="btn-go" data-act="home">Volver a Hoy</button>
+    <div class="practice">${hard ? `<button class="btn-soft" data-act="hard">Practicar las difíciles (${hard})</button>` : ''}
+      <button class="btn-soft" data-act="close-session">Ver tarjetas</button></div>
+  </div>`;
+}
+function idleHTML(){
+  const c = todayCounts(cardCat);
+  const rest = c.learning + c.reviews + c.news;
+  const hard = cardsIn(cardCat).filter(x => (S.cards[x.key]?.lapses || 0) >= 2).length;
+  const parts = [];
+  if(c.reviews + c.learning) parts.push(plural(c.reviews + c.learning, 'repaso', 'repasos'));
+  if(c.news) parts.push(plural(c.news, 'nueva', 'nuevas'));
+  return `<div class="idle">
+    <header class="top"><h1 class="title">Tarjetas</h1></header>
+    <div class="chips" role="group" aria-label="Categoría">${chipsHTML(cardCat)}</div>
+    <p class="summary">${rest ? `Pendientes: ${parts.join(' y ')}.` : 'En esta categoría no te toca nada ahora.'}</p>
+    <button class="btn-go" data-act="start" ${rest ? '' : 'disabled'}>Empezar repaso</button>
+    <h2>Practicar sin esperar</h2>
+    <div class="practice">
+      <button class="btn-soft" data-act="hard" ${hard ? '' : 'disabled'}>Las difíciles (${hard})</button>
+      <button class="btn-soft" data-act="newest">Las 50 más nuevas</button>
+    </div>
+    ${missHTML()}
+  </div>`;
+}
+function missHTML(){
+  const list = cardsIn(cardCat).map(c => ({ c, n: S.cards[c.key]?.lapses || 0 })).filter(x => x.n > 0)
+    .sort((a, b) => b.n - a.n || a.c.key.localeCompare(b.c.key));
+  const hard = list.filter(x => x.n >= 2).length;
+  return `<details class="misslist" ${missOpen ? 'open' : ''} data-miss>
+    <summary>Palabras con errores (${list.length}${list.length ? `, ${hard} difíciles` : ''})</summary>
+    <div class="rows">${list.length ? list.map(({ c, n }) => `
+      <div class="row"><div class="w"><span class="w-es">${esc(c.key)}</span><span class="w-en">${esc(c.en)}</span></div>
+      <span class="miss-n ${n >= 2 ? 'hard' : 'soft'}" title="${n >= 2 ? 'Cuenta como difícil' : 'Todavía no es difícil'}">${n}×</span>
+      <button class="btn-soft" data-reset="${esc(c.key)}">Reiniciar</button></div>`).join('')
+      + '<p class="miss-note">Con dos errores o más, la palabra cuenta como difícil.</p>'
+      : '<p class="empty">Aquí aparecen las palabras que marcas con «Otra vez».</p>'}</div>
+  </details>`;
+}
+
+/* ================= Ansicht: Palabras ================= */
+let wordCat = 'all', wordQuery = '', wordsBuilt = false;
+function renderPalabras(){
+  const v = $('#view-palabras');
+  if(!wordsBuilt){
+    v.innerHTML = `
+      <header class="top"><h1 class="title">Palabras</h1><span class="muted">${allCards().length}</span></header>
+      <input class="search" type="search" data-input="words" placeholder="Busca en español o en inglés" aria-label="Buscar palabra">
+      <div class="chips" role="group" aria-label="Categoría" data-chips="words">${chipsHTML(wordCat)}</div>
+      <div class="legend"><span><i class="dot"></i>nueva</span><span><i class="dot learning"></i>aprendiendo</span><span><i class="dot review"></i>en repaso</span><span><i class="dot mature"></i>dominada</span></div>
+      <div data-list="words"></div>`;
+    wordsBuilt = true;
+  }
+  renderWordList();
+}
+function renderWordList(){
+  const box = $('[data-list="words"]'); if(!box) return;
+  const q = norm(wordQuery);
+  const verbs = new Set(verbList().map(x => x.inf));
+  const groups = {};
+  for(const c of cardsIn(wordCat)){
+    if(q && !norm(c.key).includes(q) && !norm(c.en).includes(q)) continue;
+    (groups[c.cat] = groups[c.cat] || []).push(c);
+  }
+  const keys = Object.keys(groups);
+  if(!keys.length){ box.innerHTML = `<p class="empty">Nada con «${esc(wordQuery)}». Prueba en inglés o sin acentos.</p>`; return; }
+  box.innerHTML = keys.map(cat => `<div class="group"><h2>${esc(catLabel(cat))} <span class="muted">${groups[cat].length}</span></h2>
+    ${groups[cat].map(c => {
+      const isVerb = verbs.has(c.raw);
+      const st = stateOf(c.key);
+      const inner = `<span class="w-es">${esc(c.key)} ${genderPill(c)}</span><span class="w-en">${esc(c.en)}</span>`;
+      return `<div class="row"><span class="dot ${st === 'new' ? '' : st}"></span>
+        ${isVerb ? `<button class="w link" data-verb="${esc(c.raw)}">${inner}</button>` : `<div class="w">${inner}</div>`}
+        <button class="play" data-say="${esc(c.key)}" aria-label="Escuchar ${esc(c.key)}">${icon('i-play')}</button></div>`;
+    }).join('')}</div>`).join('');
+}
+
+/* ================= Ansicht: Verbos ================= */
+let verbQuery = '', verbsBuilt = false;
+function renderVerbos(){
+  const v = $('#view-verbos');
+  if(!verbsBuilt){
+    v.innerHTML = `
+      <header class="top"><h1 class="title">Verbos</h1><span class="muted">${verbList().length}</span></header>
+      <input class="search" type="search" data-input="verbs" placeholder="Busca un verbo o una forma: pienso, tuve…" aria-label="Buscar verbo">
+      <div data-list="lookup"></div>
+      <div data-list="verbs"></div>`;
+    verbsBuilt = true;
+  }
+  renderVerbList();
+}
+function renderVerbList(){
+  const q = norm(verbQuery);
+  const lk = $('[data-list="lookup"]'), box = $('[data-list="verbs"]');
+  if(!box) return;
+  const hits = q ? (formIndex().get(q) || []) : [];
+  const uniq = []; const seen = new Set();
+  for(const h of hits){ const k = h.inf + h.tense + h.p; if(!seen.has(k)){ seen.add(k); uniq.push(h); } }
+  lk.innerHTML = uniq.slice(0, 4).map(h => `<button class="hit" data-verb="${esc(h.inf)}">«<b>${esc(h.form)}</b>» es ${esc(h.inf)}, ${h.tense === 'pres' ? 'presente' : 'pretérito'} de ${PERSONS[h.p].split(',')[0]}.</button>`).join('');
+  const list = verbList().filter(x => !q || norm(x.inf).includes(q) || norm(x.en).includes(q));
+  if(!list.length && !uniq.length){ box.innerHTML = `<p class="empty">No encuentro «${esc(verbQuery)}». Prueba con el infinitivo o en inglés.</p>`; return; }
+  box.innerHTML = list.map(x => { const i = info(x.inf); return `
+    <div class="row"><button class="w link-plain" data-verb="${esc(x.inf)}" style="text-align:left">
+      <span class="w-es">${esc(x.inf)}</span><span class="w-en">${esc(x.en)}</span>${tagsHTML(i)}</button>
+      <button class="play" data-say="${esc(x.inf)}" aria-label="Escuchar ${esc(x.inf)}">${icon('i-play')}</button></div>`; }).join('');
+}
+function openVerb(inf){
+  const i = info(inf); if(!i) return;
+  const entry = verbList().find(x => x.inf === inf);
+  const ex = (type, cls) => type ? `<p class="explain ${cls}">${icon(type === 'bota' ? 'i-bota' : 'i-estrella')}<span>${EXPLAIN[type]}</span></p>` : '';
+  const d = $('#sheet-verb');
+  d.innerHTML = `<div class="sheet-in">
+    <div class="grab"></div>
+    <div class="sheet-head"><div><h2 class="verb-title">${esc(inf)}</h2><p class="muted" style="margin:.1rem 0 0">${esc(entry ? entry.en : '')}</p>${tagsHTML(i)}</div>
+      <button class="play" data-say="${esc(inf)}" aria-label="Escuchar ${esc(inf)}">${icon('i-play')}</button></div>
+    <h3>Presente</h3>${tableHTML(i, 'pres')}${ex(i.presType, i.presType === 'bota' ? '' : 'fuerte')}
+    <h3>Pretérito</h3>${tableHTML(i, 'pret')}${ex(i.pretType, i.pretType === 'tercera' ? '' : 'fuerte')}
+    ${i.conj.note ? `<p class="note">${esc(i.conj.note)}</p>` : ''}
+    <button class="btn-soft close" data-close>Cerrar</button>
+  </div>`;
+  if(!d.open) d.showModal();
+  d.scrollTop = 0;
+}
+
+/* ================= Ajustes ================= */
+function fillVoiceSelect(){
+  const sel = $('#voz'); if(!sel) return;
+  if(!voices.length){ sel.innerHTML = '<option>Sin voces en español en este dispositivo</option>'; sel.disabled = true; return; }
+  sel.disabled = false;
+  const cur = pickVoice();
+  sel.innerHTML = voices.map(v => `<option value="${esc(v.name)}" ${cur && v.name === cur.name ? 'selected' : ''}>${esc(v.name)} (${esc(v.lang)})</option>`).join('');
+}
+function syncSettings(){
+  $$('#sheet-settings .seg').forEach(seg => {
+    const key = seg.dataset.setting, val = String(S.settings[key]);
+    $$('button', seg).forEach(b => b.setAttribute('aria-pressed', String(b.dataset.value === val)));
+  });
+  fillVoiceSelect();
+}
+function applyTheme(){
+  const t = S.settings.theme, root = document.documentElement;
+  if(t === 'auto') root.removeAttribute('data-theme'); else root.setAttribute('data-theme', t);
+  const dark = t === 'dark' || (t === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
+  $('meta[name="theme-color"]').setAttribute('content', dark ? '#0F1E26' : '#1A7F7A');
+}
+
+/* ================= Navigation ================= */
+let currentView = 'hoy';
+const scrollPos = {};
+const RENDER = { hoy: renderHoy, tarjetas: renderTarjetas, palabras: renderPalabras, verbos: renderVerbos };
+function show(view){
+  scrollPos[currentView] = window.scrollY;
+  currentView = view;
+  $$('.view').forEach(x => x.classList.toggle('active', x.id === 'view-' + view));
+  $$('.tab').forEach(t => t.setAttribute('aria-current', t.dataset.view === view ? 'page' : 'false'));
+  RENDER[view]();
+  window.scrollTo(0, scrollPos[view] || 0);
+}
+function rerender(){ RENDER[currentView](); }
+
+let toastTimer = null;
+function toast(msg, label, action){
+  const t = $('#toast');
+  t.innerHTML = `<span>${esc(msg)}</span>${label ? `<button>${esc(label)}</button>` : ''}`;
+  t.hidden = false;
+  if(label){ $('button', t).onclick = () => { t.hidden = true; action(); }; }
+  clearTimeout(toastTimer);
+  if(!label) toastTimer = setTimeout(() => { t.hidden = true; }, 3800);
+}
+
+/* ================= Ereignisse ================= */
+document.addEventListener('click', e => {
+  const say = e.target.closest('[data-say]');
+  if(say){ speak(say.dataset.say); if(say.classList.contains('play') || say.classList.contains('cell')) return; }
+  const tab = e.target.closest('.tab'); if(tab){ show(tab.dataset.view); return; }
+  const verb = e.target.closest('[data-verb]'); if(verb){ openVerb(verb.dataset.verb); return; }
+  const close = e.target.closest('[data-close]'); if(close){ close.closest('dialog').close(); return; }
+  const chip = e.target.closest('[data-cat]');
+  if(chip){
+    if(chip.closest('[data-chips="words"]')){
+      wordCat = chip.dataset.cat;
+      $$('[data-chips="words"] .chip').forEach(c => c.setAttribute('aria-pressed', String(c === chip)));
+      renderWordList();
+    } else { cardCat = chip.dataset.cat; renderTarjetas(); }
+    return;
+  }
+  const seg = e.target.closest('.seg button');
+  if(seg){
+    const key = seg.parentElement.dataset.setting;
+    let val = seg.dataset.value;
+    if(key === 'newPerDay') val = Number(val);
+    if(key === 'autoplay') val = val === 'true';
+    S.settings[key] = val; saveState(); syncSettings();
+    if(key === 'theme') applyTheme();
+    return;
+  }
+  const reset = e.target.closest('[data-reset]');
+  if(reset){ const c = S.cards[reset.dataset.reset]; if(c){ c.lapses = 0; c.ease = Math.max(c.ease, 2.5); saveState(); } renderTarjetas(); return; }
+  const g = e.target.closest('[data-grade]');
+  if(g){ answer(Number(g.dataset.grade)); renderTarjetas(); return; }
+  const act = e.target.closest('[data-act]'); if(!act) return;
+  switch(act.dataset.act){
+    case 'settings': syncSettings(); $('#sheet-settings').showModal(); break;
+    case 'go': if(!(session && session.mode === 'normal' && session.current)) startSession('normal', 'all'); show('tarjetas'); break;
+    case 'start': startSession('normal', cardCat); renderTarjetas(); break;
+    case 'hard': startSession('hard', currentView === 'hoy' ? 'all' : cardCat); show('tarjetas'); break;
+    case 'newest': startSession('newest', cardCat); renderTarjetas(); break;
+    case 'flip':
+      if(!flipped){
+        flipped = true; renderTarjetas();
+        const c = cardByKey(session.current);
+        if(S.settings.autoplay && c) speak(c.key);
+      }
+      break;
+    case 'undo': undo(); renderTarjetas(); break;
+    case 'end': case 'close-session': session = null; renderTarjetas(); break;
+    case 'home': session = null; show('hoy'); break;
+  }
+});
+document.addEventListener('input', e => {
+  if(e.target.dataset.input === 'words'){ wordQuery = e.target.value; renderWordList(); }
+  if(e.target.dataset.input === 'verbs'){ verbQuery = e.target.value; renderVerbList(); }
+});
+document.addEventListener('change', e => {
+  if(e.target.id === 'voz'){ S.settings.voice = e.target.value; saveState(); speak('Hola, ¿cómo estás?'); }
+});
+document.addEventListener('toggle', e => { if(e.target.matches && e.target.matches('[data-miss]')) missOpen = e.target.open; }, true);
+$$('dialog.sheet').forEach(d => d.addEventListener('click', e => { if(e.target === d) d.close(); }));
+document.addEventListener('keydown', e => {
+  if(currentView !== 'tarjetas' || !session || !session.current || document.querySelector('dialog[open]')) return;
+  if(e.target.matches('input, select, textarea')) return;
+  if((e.key === ' ' || e.key === 'Enter') && !flipped){ e.preventDefault(); $('[data-act="flip"]').click(); }
+  else if(flipped && ['1','2','3','4'].includes(e.key)){ answer(Number(e.key)); renderTarjetas(); }
+  else if(e.key === 'z'){ undo(); renderTarjetas(); }
+});
+document.addEventListener('visibilitychange', () => {
+  if(document.visibilityState === 'hidden') saveState();
+  else { rollDay(); if(currentView === 'hoy') renderHoy(); }
+});
+matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', applyTheme);
+
+/* ================= Start ================= */
+applyTheme();
+const migrated = migrateOld();
+if('speechSynthesis' in window){ loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
+renderHoy();
+if(migrated) toast(`Tu progreso anterior está aquí: ${plural(migrated, 'palabra difícil', 'palabras difíciles')}.`);
+
+if('serviceWorker' in navigator && location.protocol !== 'file:'){
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('service-worker.js', { updateViaCache:'none' }).then(reg => {
+      reg.update();
+      document.addEventListener('visibilitychange', () => { if(document.visibilityState === 'visible') reg.update(); });
+      reg.addEventListener('updatefound', () => {
+        const w = reg.installing; if(!w) return;
+        w.addEventListener('statechange', () => {
+          if(w.state === 'installed' && navigator.serviceWorker.controller)
+            toast('Hay una versión nueva.', 'Actualizar', () => w.postMessage('SKIP_WAITING'));
+        });
+      });
+    }).catch(() => {});
+    let refreshing = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => { if(refreshing) return; refreshing = true; location.reload(); });
   });
 }
+
 </script>
 </body>
 </html>
