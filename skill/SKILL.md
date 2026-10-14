@@ -113,3 +113,6 @@ Token niemals in Dateien oder ins Gedächtnis schreiben.
   vor Debugging lesen
 - `references/architektur.md` — Aufbau der App, Speicherformat, Funktionsnamen
 - `scripts/deploy.py` — Upload inklusive Archiv und Verifikation
+- `references/verbesserungspruefung.md` — Prompt für eine grundsätzliche
+  Überprüfung von App und Lernmethode (Höhe, Tiefe, Breite). Nur aufrufen,
+  wenn Miro eine grundsätzliche Verbesserung will.
