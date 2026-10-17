@@ -28,6 +28,16 @@ description: >
    Mónica ist die Spanien-Stimme).
 4. **Antwortsprache Deutsch**, spanische Beispiele im Original.
 
+## Zwei Apps — seit 17.10.2026
+
+- **Charla** auf claude.ai (https://claude.ai/artifact/VGMNXae5DLpgK1TXRAbh8R): die
+  Haupt-App für Gesprächsübung mit Claude als Partner. Alles dazu in
+  `references/charla.md` — vor jeder Änderung daran lesen.
+- **GitHub-App** (unten): bleibt als Offline-Version mit den Verbtabellen. Keine neuen
+  Funktionen mehr, nur noch Inhalte auf Wunsch.
+
+Vokabeln lernt Miro mit Anki. Keine Vokabel-Wiederholung mehr in den Apps einbauen.
+
 ## Repo und Struktur
 
 - Repo: `themyr97/claude-spanish-appo`, öffentlich, GitHub Pages
@@ -113,6 +123,8 @@ Token niemals in Dateien oder ins Gedächtnis schreiben.
   vor Debugging lesen
 - `references/architektur.md` — Aufbau der App, Speicherformat, Funktionsnamen
 - `scripts/deploy.py` — Upload inklusive Archiv und Verifikation
+- `references/charla.md` — die Gesprächs-App auf claude.ai: Aufbau, Daten, wie ich Miros
+  Gespräche lese
 - `references/verbesserungspruefung.md` — Prompt für eine grundsätzliche
   Überprüfung von App und Lernmethode (Höhe, Tiefe, Breite). Nur aufrufen,
   wenn Miro eine grundsätzliche Verbesserung will.
