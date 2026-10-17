@@ -6,7 +6,7 @@
 > Rohdatei:
 > https://raw.githubusercontent.com/themyr97/claude-spanish-appo/main/LERNSTAND.md
 
-**Stand:** 14. Oktober 2026 · App-Version v24 · 342 Karten
+**Stand:** 14. Oktober 2026 · GitHub-App v24 (offline) · Charla-App auf claude.ai
 
 ---
 
@@ -277,6 +277,15 @@ schwierig ist, Fortschritte). Den schätzt er ausdrücklich — beibehalten.
 - Sin errores ✅
 
 **✅ Pienso que a las nueve y cuarto de la mañana.**
+
+## Arbeitsteilung ab 17.10.2026
+
+- **Vokabeln: Anki** (3000 häufigste Wörter, Pakete à 500).
+- **Gesprächsübung: Charla-App** auf claude.ai — https://claude.ai/artifact/VGMNXae5DLpgK1TXRAbh8R
+  Täglich eine Charla (~8 Wechsel) und die fälligen eigenen Sätze, 10–15 Minuten.
+- **Hier im Chat: Grammatik und Erklärungen**, gezielt an den Fehlern aus den Charlas.
+  **Vor jeder Lektion die letzten Charlas lesen** (`read_db`, siehe
+  `skill/references/charla.md`) und die Fehlermuster hier nachführen.
 
 ## Lerntaktik ab 14.10.2026
 
